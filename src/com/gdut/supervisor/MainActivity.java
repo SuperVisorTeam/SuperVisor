@@ -2,10 +2,10 @@ package com.gdut.supervisor;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.KeyEvent;
@@ -53,8 +53,9 @@ public class MainActivity extends ActionBarActivity implements OnClickListener
 		mActionBar.setBackgroundDrawable(getResources().getDrawable(R.color.actionbar_background));
 		// 首次进入时先用SupervisorFragment(督导功能)来填充界面
 		SupervisorFragment supervisorFragment = new SupervisorFragment();
-		final FragmentManager fragmentManager = getSupportFragmentManager();
-		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+		final android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+		android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager
+				.beginTransaction();
 		fragmentTransaction.replace(R.id.fragment_content, supervisorFragment);
 		fragmentTransaction.commit();
 
