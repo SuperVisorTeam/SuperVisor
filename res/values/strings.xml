@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">SuperVisor</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="app_name">督导系统</string>
     <string name="action_settings">Settings</string>
+    <!-- 使用帮助 -->
+    <string name="help_fragment_title">使用帮助</string>
+    <string name="helpMessage">(1)直接录入：界面中有红色标记的标签内容是必须填写的.第一个界面在红色标签内容不为空的情况下，学院和专业班级和应到人数会自动填写。
+        \n\n(2)预定录入：列举该督导员这周内预定的所有教室，并通过点击预定的教室进入录入界面进行录入。
+        \n\n(3)查询表单：输入日期便可以找到关于自己在相应日期督导的表单，单击表单便可以进入查看和修改的界面。</string>
+    <!-- 待定················ -->
 
 </resources>

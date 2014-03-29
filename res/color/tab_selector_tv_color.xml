@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 底部菜单RadioGroup的按下效果 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true" android:color="#87CEFF"></item>
+    <item android:state_checked="false" android:color="@android:color/darker_gray"></item>
+    <item android:color="@android:color/darker_gray"></item>
+</selector>
