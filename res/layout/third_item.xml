@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/linearlayout" >
+
+    <!-- 第三页 -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/shape"
+        android:orientation="vertical" >
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true" >
+
+            <TableRow android:layout_marginTop="5dp" >
+
+                <TextView
+                    style="@style/textview3"
+                    android:text="@string/ontime" />
+
+                <include layout="@layout/ontime" >
+                </include>
+            </TableRow>
+        </TableLayout>
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1" >
+
+            <TableRow android:background="@drawable/shape1" >
+
+                <TextView
+                    style="@style/textview3"
+                    android:text="@string/teacher_name" />
+
+                <EditText
+                    android:id="@+id/teachernameEditText"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="3dp"
+                    android:enabled="false"
+                    android:singleLine="true"
+                    android:textColor="@color/black" />
+            </TableRow>
+
+            <TableRow android:background="@drawable/shape1" >
+
+                <TextView
+                    style="@style/textview1"
+                    android:text="督导员" />
+
+                <EditText
+                    android:id="@+id/supervisorEditText"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="3dp"
+                    android:enabled="false"
+                    android:singleLine="true"
+                    android:textColor="@color/black" />
+            </TableRow>
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="1" >
+
+                <TableRow android:background="@drawable/shape1" >
+
+                    <TextView
+                        style="@style/textview3"
+                        android:text="@string/submit_time" />
+
+                    <EditText
+                        android:id="@+id/submitTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"                     
+                   		android:layout_marginTop="3dp"
+                        android:enabled="false"
+                        android:singleLine="true"
+                        android:textColor="@color/black" />
+
+                    <Button
+                        android:id="@+id/submit_time_bt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                   		android:layout_marginBottom="3dp"
+                        android:text="点击" />
+                </TableRow>
+            </TableLayout>
+
+            <TableRow>
+
+                <TextView
+                    style="@style/textview3"
+                    android:text="@string/other" />
+
+                <EditText
+                    android:id="@+id/othercomEditText"
+                    android:layout_width="230dp"
+                    android:layout_height="150dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="top"
+                    android:textColor="@color/black" >
+                </EditText>
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+</LinearLayout>

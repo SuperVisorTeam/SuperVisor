@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/linearlayout" >
+
+    <!-- 校区 -->
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="5dp"        
+        android:focusable="true"
+        android:focusableInTouchMode="true" 
+        android:background="@drawable/frame_shape"
+        >
+
+        <TableRow android:layout_marginTop="20dp">
+
+            <TextView
+                style="@style/textview1"
+                android:text="督导员" />
+
+            <EditText
+                android:id="@+id/supervisor_no"
+                android:layout_width="180dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:singleLine="true"
+                android:textColor="@color/black" 
+                android:enabled="false"/>
+        </TableRow>
+
+        <TableRow   android:background="@drawable/gray_rectange">
+
+            <TextView
+                style="@style/textview1"
+                android:text="开始日期" />
+
+            <Button
+                android:id="@+id/startdate"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="10dp"
+                android:singleLine="true"
+                android:textColor="@color/black" 
+                style="@style/button_style"/>
+        </TableRow>
+
+        <TableRow  >
+
+            <TextView
+                style="@style/textview1"
+                android:text="结束日期" />
+
+            <Button
+                android:id="@+id/enddate"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:singleLine="true"
+                android:textColor="@color/black" 
+                style="@style/button_style"/>
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

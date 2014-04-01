@@ -1,20 +1,17 @@
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
+<resources>
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
-    <style name="AppBaseTheme" parent="android:Theme.Light">
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+            backward-compatibility can go here.
         -->
     </style>
-
-    <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme"></style>
-    <!-- RadioGroup的主题 -->
+      <!-- RadioGroup的主题 -->
     <style name="tab_rb_style">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
@@ -28,11 +25,14 @@
         <item name="android:paddingTop">5dp</item>
         <item name="android:singleLine">true</item>
     </style>
-	<!-- 使用support v7的主题 -->
-    <style name="MyTheme" parent="@style/Theme.AppCompat.Light"></style>
     <!-- 查找表单的对话框主题 -->
     <style name="diolog_datechoose">
         <item name="android:background">@android:color/white</item>
     </style>
-
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+    <style name="MyTheme" parent="@style/Theme.AppCompat.Light"></style>
+    <!-- 查找表单的对话框主题 -->
 </resources>

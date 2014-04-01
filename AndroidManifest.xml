@@ -23,6 +23,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+                     <!-- SupervisorActivity，三个表单的主界面 -->
+           <activity
+            android:name=".SupervisorActivity" 
+            android:theme="@android:style/Theme.NoTitleBar"
+            >
+            </activity>
+            <!--表单一对应Activity -->
+            <activity
+            android:name=".FirstItemActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar">        
+        </activity>
+         <!--表单二对应Activity -->
+        <activity
+            android:name=".SecondItemActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar">        
+        </activity>
+         <!--表单三对应Activity -->
+        <activity
+            android:name=".ThirdItemActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar">        
+        </activity>
     </application>
 
 

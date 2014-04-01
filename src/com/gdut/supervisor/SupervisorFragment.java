@@ -1,5 +1,7 @@
 package com.gdut.supervisor;
 
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -33,11 +35,13 @@ public class SupervisorFragment extends Fragment implements OnClickListener
 		{
 		//预定录入按钮
 		case R.id.ib_supervisor_preparewrite:
-			Toast.makeText(getActivity(), "预定录入", 0).show();
+			
 			break;
 		//直接录入按钮
 		case R.id.ib_supervisor_directwrite:
-			Toast.makeText(getActivity(), "直接录入", 0).show();
+			Intent intent = new Intent();
+			intent.setClass(getActivity(), SupervisorActivity.class);
+		    startActivity(intent);
 			break;
 		default:
 			break;

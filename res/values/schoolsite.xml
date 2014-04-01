@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string-array name="shoolsite">
+        <item></item>
+        <item>大学城</item>
+        <item>龙洞</item> 
+        <item>东风路</item> 
+        <item>商学院</item> 
+    </string-array>
+</resources>

@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string-array name="site">
+        <item></item>
+        <item>1-103</item>
+        <item>1号大教室</item>
+        <item>2号大教室</item>
+        <item>3号大教室</item>
+        <item>4-1203</item>
+        <item>4-205</item>
+        <item>4-206</item>
+        <item>4-304</item>
+        <item>4-305</item>
+        <item>4-306</item>
+        <item>4-307</item>
+        <item>4-308</item>
+        <item>4号大教室</item>
+        <item>5-1004</item>
+        <item>5-1005</item>
+        <item>5-1006</item>
+        <item>5-101</item>
+        <item>5-102</item>
+        <item>5-1102</item>
+        <item>5-1201</item>
+        <item>5-1206</item>
+        <item>5-204</item>
+        <item>5-301</item>
+        <item>5-404</item>
+        <item>5-406</item>
+        <item>5-408</item>
+        <item>5-409</item>
+        <item>5-4展览厅</item>
+        <item>5-505</item>
+        <item>5-506</item>
+        <item>5-507</item>
+        <item>5-508</item>
+        <item>5-601</item>
+        <item>5-604</item>
+        <item>5-605</item>
+        <item>5-606</item>
+        <item>5-607</item>
+        <item>5-608</item>
+        <item>5-701</item>
+        <item>5-705</item>
+        <item>5-707</item>
+        <item>5-708</item>
+        <item>5-709</item>
+        <item>5-801</item>
+        <item>5-805</item>
+        <item>5-806</item>
+        <item>5-807</item>
+        <item>5-905</item>
+        <item>5-906</item>
+        <item>5-907</item>
+        <item>5号大教室</item>
+        <item>6-101</item>
+        <item>6-102</item>
+        <item>6-201</item>
+        <item>6-202</item>
+        <item>6-301</item>
+        <item>6-302</item>
+        <item>6-401</item>
+        <item>6-402</item>
+        <item>6-501</item>
+        <item>6-502</item>
+        <item>6-601</item>
+        <item>6-602</item>
+        <item>6-701</item>
+        <item>6-702</item>
+        <item>7-1001</item>
+        <item>7-1003</item>
+        <item>7-1004</item>
+        <item>7-1005</item>
+        <item>7-1006</item>
+        <item>7-1007</item>
+        <item>7-1008</item>
+        <item>7-1101</item>
+        <item>7-1104</item>
+        <item>7-1105</item>
+        <item>7-1106</item>
+        <item>7-1107</item>
+        <item>7-1108</item>
+        <item>7-1201</item>
+        <item>7-1203</item>
+        <item>7-1204</item>
+        <item>7-1205</item>
+        <item>7-1206</item>
+        <item>7-1207</item>
+        <item>7-1208</item>
+        <item>7-201</item>
+        <item>7-203</item>
+        <item>7-204</item>
+        <item>7-205</item>
+        <item>7-206</item>
+        <item>7-207</item>
+        <item>7-208</item>
+        <item>7-301</item>
+        <item>7-408</item>
+        <item>7-701</item>
+        <item>7-803</item>
+        <item>7-805</item>
+        <item>7-806</item>
+        <item>7-901</item>
+        <item>7-903</item>
+        <item>7-904</item>
+        <item>7-905</item>
+        <item>7-906</item>
+        <item>7-907</item>
+        <item>7-908</item>
+        <item>CAI_1</item>
+        <item>CAI_2</item>
+        <item>CAI_3</item>
+        <item>公共场地</item>
+        <item>公用场地</item>
+        <item>实3-403</item>
+        <item>实3-501</item>
+        <item>实3-504</item>
+        <item>实3-505</item>
+        <item>实3-508</item>
+        <item>实3-513</item>
+        <item>实3-517</item>
+        <item>实3-606</item>
+        <item>实3-607</item>
+        <item>实3-611</item>
+        <item>实4-215</item>
+        <item>实4-507</item>
+        <item>实4-509</item>
+        <item>实4-610</item>
+        <item>实A南-216</item>
+        <item>实A南-217</item>
+        <item>实A南-305</item>
+        <item>实A南-306</item>
+        <item>实A南-405</item>
+        <item>实A南-406</item>
+        <item>实A南-506</item>
+        <item>实A南-507</item>
+        <item>实A南-606</item>
+        <item>实A南-607</item>
+        <item>实A南-704</item>
+        <item>实C2-204</item>
+        <item>实C2-205</item>
+        <item>实C2-304</item>
+        <item>实C2-305</item>
+        <item>实C2-404</item>
+        <item>实C2-405</item>
+        <item>实C2-602</item>
+        <item>实D-303</item>
+        <item>实D-402</item>
+        <item>实D-602</item>
+        <item>实验三号楼4楼</item>
+        <item>实验室</item>
+        <item>教-101</item>
+        <item>教-102</item>
+        <item>教-103</item>
+        <item>教-104</item>
+        <item>教-106</item>
+        <item>教-107</item>
+        <item>教-108</item>
+        <item>教-109</item>
+        <item>教-207</item>
+        <item>教-208</item>
+        <item>教-209</item>
+        <item>教-210</item>
+        <item>教-305</item>
+        <item>教1-217</item>
+        <item>教1-218</item>
+        <item>教1-221</item>
+        <item>教1-223</item>
+        <item>教1-301</item>
+        <item>教1-302</item>
+        <item>教1-303</item>
+        <item>教1-304</item>
+        <item>教1-305</item>
+        <item>教1-306</item>
+        <item>教1-307</item>
+        <item>教1-308</item>
+        <item>教1-309</item>
+        <item>教1-310</item>
+        <item>教1-314</item>
+        <item>教1-316</item>
+        <item>教1-318</item>
+        <item>教1-319</item>
+        <item>教1-320</item>
+        <item>教1-321</item>
+        <item>教1-322</item>
+        <item>教1-323</item>
+        <item>教1-324</item>
+        <item>教1-325</item>
+        <item>教1-326</item>
+        <item>教1-328</item>
+        <item>教1-330</item>
+        <item>教1-331</item>
+        <item>教1-333</item>
+        <item>教1-335</item>
+        <item>教1-337</item>
+        <item>教1-339</item>
+        <item>教1-401</item>
+        <item>教1-402</item>
+        <item>教1-403</item>
+        <item>教1-404</item>
+        <item>教1-406</item>
+        <item>教1-407</item>
+        <item>教1-408</item>
+        <item>教1-409</item>
+        <item>教1-410</item>
+        <item>教1-411</item>
+        <item>教1-414</item>
+        <item>教1-416</item>
+        <item>教1-418</item>
+        <item>教1-419</item>
+        <item>教1-421</item>
+        <item>教1-422</item>
+        <item>教1-423</item>
+        <item>教1-424</item>
+        <item>教1-425</item>
+        <item>教1-426</item>
+        <item>教1-427</item>
+        <item>教1-428</item>
+        <item>教1-429</item>
+        <item>教1-433</item>
+        <item>教1-435</item>
+        <item>教1-437</item>
+        <item>教1-501</item>
+        <item>教1-503</item>
+        <item>教1-504</item>
+        <item>教1-505</item>
+        <item>教1-506</item>
+        <item>教1-507</item>
+        <item>教1-508</item>
+        <item>教1-513</item>
+        <item>教1-514</item>
+        <item>教1-515</item>
+        <item>教1-516</item>
+        <item>教1-518</item>
+        <item>教1-520</item>
+        <item>教1-521</item>
+        <item>教1-522</item>
+        <item>教1-523</item>
+        <item>教101</item>
+        <item>教102</item>
+        <item>教109</item>
+        <item>教110</item>
+        <item >教2-201</item>
+        <item >教2-202</item>
+        <item >教2-203</item>
+        <item >教2-204</item>
+        <item >教2-205</item>
+        <item >教2-206</item>
+        <item >教2-207</item>
+        <item >教2-208</item>
+        <item >教2-209</item>
+        <item >教2-211</item>
+        <item >教2-212</item>
+        <item >教2-213</item>
+        <item >教2-214</item>
+        <item >教2-215</item>
+        <item >教2-216</item>
+        <item >教2-217</item>
+        <item >教2-218</item>
+        <item >教2-219</item>
+        <item >教2-220</item>
+        <item >教2-221</item>
+        <item >教2-222</item>
+        <item >教2-223</item>
+        <item >教2-224</item>
+        <item >教2-225</item>
+        <item >教2-227</item>
+        <item >教2-301</item>
+        <item >教2-303</item>
+        <item >教2-304</item>
+        <item >教2-305</item>
+        <item >教2-307</item>
+        <item >教2-308</item>
+        <item >教2-309</item>
+        <item >教2-311</item>
+        <item >教2-312</item>
+        <item >教2-313</item>
+        <item >教2-314</item>
+        <item >教2-315</item>
+        <item >教2-316</item>
+        <item >教2-317</item>
+        <item >教2-318</item>
+        <item >教2-319</item>
+        <item >教2-320</item>
+        <item >教2-321</item>
+        <item >教2-322</item>
+        <item >教2-323</item>
+        <item >教2-324</item>
+        <item >教2-325</item>
+        <item >教2-327</item>
+        <item >教2-409</item>
+        <item >教2-418</item>
+        <item >教2-420</item>
+        <item >教2-422</item>
+        <item >教2-424</item>
+        <item >教2-501</item>
+        <item >教2-502</item>
+        <item >教2-503</item>
+        <item >教2-504</item>
+        <item >教2-506</item>
+        <item >教2-507</item>
+        <item >教2-508</item>
+        <item >教2-512</item>
+        <item >教2-514</item>
+        <item >教2-515</item>
+        <item >教2-516</item>
+        <item >教2-517</item>
+        <item >教2-518</item>
+        <item >教2-519</item>
+        <item >教2-522</item>
+        <item >教2-523</item>
+        <item >教2-524</item>
+        <item >教2-525</item>
+        <item >教2-527</item>
+        <item >教2-529</item>
+        <item>教201</item>
+        <item>教202</item>
+        <item>教203</item>
+        <item>教204</item>
+        <item>教205</item>
+        <item>教206</item>
+        <item>教207</item>
+        <item>教210</item>
+        <item>教212</item>
+        <item>教213</item>
+        <item>教214</item>
+        <item>教216</item>
+        <item>教217</item>
+        <item>教3-101</item>
+        <item>教3-102</item>
+        <item>教3-103</item>
+        <item>教3-104</item>
+        <item>教3-105</item>
+        <item>教3-106</item>
+        <item>教3-107</item>
+        
+        <item>教3-109</item>
+        <item>教3-110</item>
+        <item>教3-112</item>
+        <item>教3-201</item>
+        <item>教3-202</item>
+        <item>教3-203</item>
+        <item>教3-204</item>
+        <item>教3-205</item>
+        <item>教3-206</item>
+        <item>教3-207</item>
+        <item>教3-209</item>
+        <item>教3-210</item>
+        <item>教3-212</item>
+        <item>教3-301</item>
+        <item>教3-302</item>
+        <item>教3-303</item>
+        <item>教3-304</item>
+        <item>教3-306</item>
+        <item>教3-307</item>
+        <item>教3-309</item>
+        <item>教3-310</item>
+        <item>教3-312</item>
+        <item>教301</item>
+        <item>教302</item>
+        <item>教303</item>
+        <item>教304</item>
+        <item>教305</item>
+        <item>教306</item>
+        <item>教310</item>
+        <item>教312</item>
+        <item>教313</item>
+        <item>教314</item>
+        <item>教316</item>
+        <item>教317</item>
+        <item>教4-201</item>
+        <item>教4-202</item>
+        <item>教4-203</item>
+        <item>教4-204</item>
+        <item>教4-205</item>
+        <item>教4-206</item>
+        <item>教4-207</item>
+        <item>教4-209</item>
+        <item>教4-210</item>
+        <item>教4-212</item>
+        <item>教4-301</item>
+        <item>教4-302</item>
+        <item>教4-303</item>
+        <item>教4-304</item>
+        <item>教4-305</item>
+        <item>教4-306</item>
+        <item>教4-307</item>
+        <item>教4-309</item>
+        <item>教4-310</item>
+        <item>教4-312</item>
+        <item>教401</item>
+        <item>教402</item>
+        <item>教403</item>
+        <item>教404</item>
+        <item>教405</item>
+        <item>教406</item>
+        <item>教408</item>
+        <item>教410</item>
+        <item>教411</item>
+        <item>教412</item>
+        <item>教413</item>
+        <item>教414</item>
+        <item>教415</item>
+        <item>教5-102</item>
+        <item>教5-103</item>
+        <item>教5-104</item>
+        <item>教5-105</item>
+        <item>教5-106</item>
+        <item>教5-107</item>
+        <item>教5-202</item>
+        <item>教5-203</item>
+        <item>教5-204</item>
+        <item>教5-205</item>
+        <item>教5-206</item>
+        <item>教5-207</item>
+        <item>教5-302</item>
+        <item>教5-303</item>
+        <item>教5-304</item>
+        <item>教5-305</item>
+        <item>教5-306</item>
+        <item>教5-307</item>
+        <item>教501</item>
+        <item>教502</item>
+        <item>教503</item>
+        <item>教504</item>
+        <item>教505</item>
+        <item>教506</item>
+        <item>教507</item>
+        <item>教509</item>
+        <item>教511</item>
+        <item>教512</item>
+        <item>教515</item>
+        <item>教516</item>
+        <item>教6-201</item>
+        <item>教6-202</item>
+        <item>教6-208</item>
+        <item>教601</item>
+        <item>教603</item>
+        <item>教604</item>
+        <item>教606</item>
+        <item>教608</item>
+        <item>教611</item>
+        <item>教612</item>
+        <item>教614</item>
+        <item>教615</item>
+        <item>教901</item>
+        <item>机房（东风路）</item>
+        <item>综合楼-310</item>
+        <item>综合楼-502</item>
+        <item>综合楼-511</item>
+        <item>综合楼-602</item>
+        <item>综合楼-701</item>
+        <item>舞蹈室4-1201</item>
+        <item>计算机基础实验（一）</item>
+        <item>计算机基础实验（二）</item>
+        <item>语音室1</item>
+        <item>语音室2</item>
+        <item>语音室3</item>
+        <item>语音室4</item>
+        <item>语音室7-1103</item>
+        <item>语音室7-1502</item>
+        <item>语音室7-1503</item>
+        <item>运动场1</item>
+      
+        
+    </string-array>
+</resources>

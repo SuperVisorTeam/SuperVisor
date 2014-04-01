@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:orientation="vertical" >  
+    
+   <RelativeLayout
+        android:id="@+id/Linear"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:orientation="horizontal" >
+       <Button
+            android:id="@+id/clearButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:background="@color/skyblue"        
+            android:text="重置"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:id="@+id/GDUT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/gdut_logo" />
+           <Button
+            android:id="@+id/submitButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:background="@color/skyblue"        
+            android:text="提交"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+    </RelativeLayout>
+    
+    <!-- ViewPager布局 -->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" 
+        android:layout_weight="1">
+
+        <android.support.v4.view.PagerTabStrip    
+            android:id="@+id/pagertab"    
+            android:layout_width="wrap_content"    
+            android:layout_height="wrap_content"    
+            android:layout_gravity="top"
+            android:background="@color/teal"
+            android:textColor="@color/skyblue"/>    
+           
+    </android.support.v4.view.ViewPager>  
+  
+    
+</LinearLayout>

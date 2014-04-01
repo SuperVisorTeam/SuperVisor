@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+   	<string name="Url">http://psy.gdut.edu.cn:8080</string>
+   <!--  <string name="Url">http://192.168.1.106:8080</string> -->
+    <!-- <string name="Url">http://192.168.1.140:8080</string> -->
+    <!-- <string name="Url">http://192.168.1.199:8080</string> -->
+    <!-- <string name="Url">http://10.10.123.131:8080</string> -->
+
+</resources>

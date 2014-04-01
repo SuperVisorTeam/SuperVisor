@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <style name="menu_bn">
+        <item name="android:width">80dp</item>
+        <item name="android:height">80dp</item>
+    </style>
+</resources>
