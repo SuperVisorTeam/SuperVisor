@@ -10,7 +10,8 @@
         android:gravity="center"
         android:text="评价老师"/>
     <EditText 
-        android:hint="待测··"
+        android:id="@+id/et_evaluate_test"
+        android:hint="input···"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>
 

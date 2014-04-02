@@ -1,14 +1,13 @@
 package com.gdut.supervisor;
 
 
-import com.gdut.adapter.SupervisorAdapter;
-import com.gdut.supervisor.R;
-
-import android.support.v4.view.PagerTabStrip;
-import android.support.v4.view.ViewPager;
-import android.support.v4.view.PagerTitleStrip;
 import android.app.ActivityGroup;
 import android.os.Bundle;
+import android.support.v4.view.PagerTabStrip;
+import android.support.v4.view.PagerTitleStrip;
+import android.support.v4.view.ViewPager;
+
+import com.gdut.adapter.SupervisorAdapter;
 
 @SuppressWarnings("deprecation")
 public class SupervisorActivity extends ActivityGroup {
