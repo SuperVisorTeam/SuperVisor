@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android" >
     <!-- 底部菜单帮助按钮的按下效果 -->
-    <item android:state_checked="false" android:drawable="@drawable/help_normal"></item>
-    <item android:state_checked="true" android:drawable="@drawable/help_pressed"></item>
+    <item android:state_checked="false" android:drawable="@drawable/tools_normal"></item>
+    <item android:state_checked="true" android:drawable="@drawable/tools_pressed"></item>
 
 </selector>

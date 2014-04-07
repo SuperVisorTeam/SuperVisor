@@ -3,7 +3,6 @@ package com.gdut.supervisor;
 
 import android.app.ActivityGroup;
 import android.os.Bundle;
-import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.PagerTitleStrip;
 import android.support.v4.view.ViewPager;
 
@@ -19,7 +18,7 @@ public class SupervisorActivity extends ActivityGroup {
     /**
      * 一个viewpager的指示器，效果就是一个横的粗的下划线
      */
-    private PagerTabStrip pagerTabStrip;
+    private PagerTitleStrip pagerTabStrip;
     //
     private PagerTitleStrip pagerTitleStrip;
     /**
@@ -32,7 +31,7 @@ public class SupervisorActivity extends ActivityGroup {
 		  setContentView(R.layout.form);
         //实例化控件
 		 viewPager=(ViewPager)findViewById(R.id.viewpager);		 
-		 pagerTabStrip=(PagerTabStrip)findViewById(R.id.pagertab);
+		 pagerTabStrip=(PagerTitleStrip)findViewById(R.id.pagertab);
 		 
 		 //为viewpager加载adapter	
 		 pagerAdpter =new SupervisorAdapter(SupervisorActivity.this);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android" >
     <!-- 底部菜单评价按钮的按下效果 -->
-    <item android:state_checked="false" android:drawable="@drawable/talk_normal"></item>
-    <item android:state_checked="true" android:drawable="@drawable/talk_pressed"></item>
+    <item android:state_checked="false" android:drawable="@drawable/evaluate_normal"></item>
+    <item android:state_checked="true" android:drawable="@drawable/evaluate_pressed"></item>
 
 </selector>

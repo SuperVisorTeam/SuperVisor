@@ -2,7 +2,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- 底部菜单督导按钮的按下效果 -->
-    <item android:drawable="@drawable/write_normal" android:state_checked="false"></item>
-    <item android:drawable="@drawable/write_pressed" android:state_checked="true"></item>
+    <item android:drawable="@drawable/supervisor_normal" android:state_checked="false"></item>
+    <item android:drawable="@drawable/supervisor_pressed" android:state_checked="true"></item>
 
 </selector>

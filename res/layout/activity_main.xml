@@ -2,15 +2,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:keepScreenOn="true"
     android:orientation="vertical" >
 
     <!-- 主菜单界面 -->
+
     <FrameLayout
         android:id="@+id/fragment_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical" >
+
     </FrameLayout>
 
     <LinearLayout
@@ -21,7 +25,7 @@
         <RadioGroup
             android:id="@+id/tab_rg_menu"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@drawable/background"
             android:orientation="horizontal" >
 
@@ -30,25 +34,25 @@
                 style="@style/tab_rb_style"
                 android:checked="true"
                 android:drawableTop="@drawable/tab_selector_write"
-                android:text="督导功能" />
+                android:text="@string/supervisor" />
 
             <RadioButton
                 android:id="@+id/tab_rb_2"
                 style="@style/tab_rb_style"
                 android:drawableTop="@drawable/tab_selector_search"
-                android:text="查询功能" />
+                android:text="@string/educational" />
 
             <RadioButton
                 android:id="@+id/tab_rb_3"
                 style="@style/tab_rb_style"
                 android:drawableTop="@drawable/tab_selector_evaluate"
-                android:text="评价老师" />
+                android:text="@string/evaluate" />
 
             <RadioButton
                 android:id="@+id/tab_rb_4"
                 style="@style/tab_rb_style"
                 android:drawableTop="@drawable/tab_selector_help"
-                android:text="使用帮助" />
+                android:text="@string/tools" />
         </RadioGroup>
     </LinearLayout>
 

@@ -15,54 +15,43 @@ import android.widget.Toast;
 import com.gdut.supervisor.utils.SearchFormAdapter;
 
 /**
- * 表单查询的Fragment
- * 
- * @author Mr.Zheng
- * 
+ * 教务的Fragment
  */
 @SuppressLint("ValidFragment")
-public class SearchFragment extends Fragment implements OnItemClickListener
+public class EducationalFragment extends Fragment implements OnItemClickListener
 {
 	private ListView listView;
 	private View view;
 
-	public static SearchFragment searchFragment;
+	public static EducationalFragment searchFragment;
 
 	/**
 	 * 私有化构造方法
 	 */
-	private SearchFragment()
+	private EducationalFragment()
 	{
-		Log.v("log", "-->SearchFragment-SearchFragment()");
 	}
+
 	/**
-	 * 创建SearchFragment对象，使用同步。
+	 * 内部类，保证加载时时线程安全的。
 	 */
-	private static synchronized void syscInt()
+	private static class SingletonHolder
 	{
-		if (searchFragment == null)
-		{
-			Log.v("log", "-->SearchFragment-syscInt()");
-			searchFragment = new SearchFragment();
-		}
+		private static EducationalFragment instance = new EducationalFragment();
 	}
+
 	/**
-	 *提供外部创建SearchFragment对象的方法。 
+	 * 提供外部创建SearchFragment对象的方法。
 	 */
-	public static SearchFragment getInstance()
+	public static EducationalFragment getInstance()
 	{
-		if (searchFragment == null)
-		{
-			Log.v("log", "-->SearchFragment-getInstance()");
-			syscInt();
-		}
-		return searchFragment;
+		return SingletonHolder.instance;
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
-		view = inflater.inflate(R.layout.search_fragment, container, false);
+		view = inflater.inflate(R.layout.fragment_educational, container, false);
 		listView = (ListView) view.findViewById(R.id.lv_searchform_everyday);
 		listView.setOnItemClickListener(this);
 		listView.setAdapter(new SearchFormAdapter(getActivity(), null));

@@ -21,19 +21,14 @@ public class EvaluateFragment extends Fragment
 	 */
 	private EvaluateFragment()
 	{
-		Log.v("log", "-->EvaluateFragment-EvaluateFragment()");
 	}
 
 	/**
-	 * 创建EvaluateFragment对象
+	 * 内部类，保证加载时时线程安全的。
 	 */
-	private static synchronized void syscInt()
+	private static class SingletonHolder
 	{
-		if (evaluateFragment == null)
-		{
-			Log.v("log", "-->EvaluateFragment-syscInt()");
-			evaluateFragment = new EvaluateFragment();
-		}
+		private static EvaluateFragment instance = new EvaluateFragment();
 	}
 
 	/**
@@ -41,18 +36,13 @@ public class EvaluateFragment extends Fragment
 	 */
 	public static EvaluateFragment getInstance()
 	{
-		if (evaluateFragment == null)
-		{
-			Log.v("log", "-->EvaluateFragment-getInstance()");
-			syscInt();
-		}
-		return evaluateFragment;
+		return SingletonHolder.instance;
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
-		return inflater.inflate(R.layout.evaluate_fragment, container, false);
+		return inflater.inflate(R.layout.fragment_evaluate, container, false);
 	}
 
 }

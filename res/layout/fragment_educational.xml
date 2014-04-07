@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <!-- 查询功能的Fragment -->
+    <!-- 教务功能的Fragment -->
 
     <ListView
         android:id="@+id/lv_searchform_everyday"
