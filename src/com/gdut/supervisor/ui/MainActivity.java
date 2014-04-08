@@ -1,4 +1,6 @@
-package com.gdut.supervisor;
+package com.gdut.supervisor.ui;
+
+import com.gdut.supervisor.R;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;

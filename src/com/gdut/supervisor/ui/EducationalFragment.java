@@ -1,4 +1,4 @@
-package com.gdut.supervisor;
+package com.gdut.supervisor.ui;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.gdut.supervisor.R;
 import com.gdut.supervisor.utils.SearchFormAdapter;
 
 /**
