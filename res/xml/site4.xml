@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="教学楼">
+                <item >教-101</item>
+                <item >教-102</item>
+                <item >教-103</item>
+                <item >教-104</item>
+                <item >教-105</item>
+                <item >教-106</item>
+                <item >教-107</item>
+                <item >教-108</item>
+                <item >教-109</item>
+                <item >教-202</item>
+                <item >教-203</item>
+                <item >教-204</item>
+                <item >教-205</item>
+                <item >教-206</item>
+                <item >教-207</item>
+                <item >教-208</item>
+                <item >教-209</item>
+                <item >教-210</item>
+                <item >教-301</item>
+                <item >教-302</item>
+                <item >教-303</item>
+                <item >教-304</item>
+                <item >教-305</item>
+                <item >教-306</item>
+                <item >教-307</item>
+                <item >教-308</item>
+                <item >教-309</item>
+                <item >教-310</item>
+    </string-array>
+    
+    <string-array name="CAI">
+                <item >CAI_1</item>
+                <item >CAI_2</item>
+                <item >CAI_3</item>
+    </string-array>
+   
+    <string-array name="实验室">
+               <item >会计手工模拟实验室</item>
+               <item >企业资源管理实验室</item>
+               <item >微机实操技能实验室</item>
+               <item >电子商务实验室</item>
+               <item >计算机基础实验（二）</item>
+               <item >计算机基础实验（一）</item>
+    </string-array>
+   
+    <string-array name="语音室">
+               <item >语音室1</item>
+               <item >语音室2</item>
+               <item >语音室3</item>
+               <item >语音室4</item>
+    </string-array>
+</resources>
+
+
