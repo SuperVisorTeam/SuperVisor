@@ -3,6 +3,7 @@ package com.gdut.supervisor.ui;
 import com.gdut.supervisor.R;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,7 +20,27 @@ import android.widget.ImageButton;
 @SuppressLint("ValidFragment")
 public class SupervisorFragment extends Fragment implements OnClickListener
 {
-	private ImageButton btn_directwrite, btn_preparewrite;
+	/**
+	 * 直接录入按钮
+	 */
+	private ImageButton btn_directwrite;
+	/**
+	 * 预定录入按钮
+	 */
+	private ImageButton btn_preparewrite;
+	/**
+	 * 高开窗口
+	 */
+	private AlertDialog leaveDialog;
+	/**
+	 * 判断查询功能是否打开
+	 */
+	public static boolean searchIsOpen = false;
+	/**
+	 * 判断预定功能是否打开
+	 */
+	public static boolean scheduleIsOpen = false;
+	
 	public static SupervisorFragment supervisorFragment;
 
 	/**
@@ -49,8 +70,10 @@ public class SupervisorFragment extends Fragment implements OnClickListener
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		View parentView = inflater.inflate(R.layout.fragment_supervisor, container, false);
+		//
 		btn_directwrite = (ImageButton) parentView.findViewById(R.id.ib_supervisor_directwrite);
 		btn_preparewrite = (ImageButton) parentView.findViewById(R.id.ib_supervisor_preparewrite);
+		//
 		btn_directwrite.setOnClickListener(this);
 		btn_preparewrite.setOnClickListener(this);
 		return parentView;
@@ -77,4 +100,5 @@ public class SupervisorFragment extends Fragment implements OnClickListener
 		}
 
 	}
+		
 }

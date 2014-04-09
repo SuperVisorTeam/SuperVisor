@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    	
+	<string-array name="教学1号楼">
+            <item >教101</item>
+	        <item >教102</item>
+	        <item >教103</item>
+	        <item >教105</item>
+	        <item >教107</item>
+	        <item >教109</item>
+	        <item >教110</item>
+    </string-array>
+    
+    <string-array name="教学2号楼">
+	        <item >教201</item>
+	        <item >教202</item>
+	        <item >教203</item>
+	        <item >教204</item>
+	        <item >教205</item>
+	        <item >教206</item>
+	        <item >教207</item>
+	        <item >教208</item>
+	        <item >教210</item>
+	        <item >教211</item>
+	        <item >教212</item>
+	        <item >教213</item>
+	        <item >教214</item>
+	        <item >教215</item>
+	        <item >教216</item>
+	        <item >教217</item>
+    </string-array>
+    
+    <string-array name="教学3号楼">
+	        <item >教301</item>
+	        <item >教302</item>
+	        <item >教303</item>
+	        <item >教304</item>
+	        <item >教305</item>
+	        <item >教306</item>
+	        <item >教307</item>
+	        <item >教308</item>
+	        <item >教309</item>
+	        <item >教310</item>
+	        <item >教311</item>
+	        <item >教312</item>
+	        <item >教313</item>
+	        <item >教314</item>
+	        <item >教315</item>
+	        <item >教316</item>
+	        <item >教317</item>
+    </string-array>
+    
+	<string-array name="教学4号楼">
+	        <item >教401</item>
+	        <item >教402</item>
+	        <item >教403</item>
+	        <item >教404</item>
+	        <item >教405</item>
+	        <item >教406</item>
+	        <item >教407</item>
+	        <item >教408</item>
+	        <item >教409</item>
+	        <item >教410</item>
+	        <item >教411</item>
+	        <item >教412</item>
+	        <item >教413</item>
+	        <item >教414</item>
+	        <item >教415</item>
+    </string-array>
+    
+    <string-array name="教学5号楼">
+	        <item >教501</item>
+	        <item >教502</item>
+	        <item >教503</item>
+	        <item >教504</item>
+	        <item >教505</item>
+	        <item >教506</item>
+	        <item >教507</item>
+	        <item >教508</item>
+	        <item >教509</item>
+	        <item >教510</item>
+	        <item >教511</item>
+	        <item >教512</item>
+	        <item >教513</item>
+	        <item >教514</item>
+	        <item >教515</item>
+	        <item >教516</item>
+	        <item >教517</item>
+    </string-array>
+    
+    <string-array name="教学6号楼">
+	        <item >教601</item>
+	        <item >教602</item>
+	        <item >教603</item>
+	        <item >教604</item>
+	        <item >教605</item>
+	        <item >教606</item>
+	        <item >教607</item>
+	        <item >教608</item>
+	        <item >教609</item>
+	        <item >教610</item>
+	        <item >教611</item>
+	        <item >教612</item>
+	        <item >教614</item>
+	        <item >教615</item>
+    </string-array>
+    
+    <string-array name="教学8号楼">
+	        <item >教801</item>
+    </string-array>	
+    
+    <string-array name="教学9号楼">
+	        <item >教901</item>
+    </string-array>
+    
+    <string-array name="实A南">
+	        <item >实A南-216</item>
+	        <item >实A南-217</item>
+	        <item >实A南-305</item>
+	        <item >实A南-306</item>
+	        <item >实A南-405</item>
+	        <item >实A南-406</item>
+	        <item >实A南-506</item>
+	        <item >实A南-507</item>
+	        <item >实A南-606</item>
+	        <item >实A南-607</item>
+	        <item >实A南-704</item>
+     </string-array>
+     
+     <string-array name="实B南">
+	        <item >实B南-501</item>
+	        <item >实B南-502</item>
+	        <item >实B南-504</item>
+	        <item >实B南-505</item>
+      </string-array>
+      
+      <string-array name="实C1">
+	        <item >实C1-202</item>
+	        <item >实C1-203</item>
+	        <item >实C1-205</item>
+	        <item >实C1-303</item>
+	        <item >实C1-304</item>
+	        <item >实C1-306</item>
+	        <item >实C1-307</item>
+	        <item >实C1-402</item>
+	        <item >实C1-403</item>
+	        <item >实C1-405</item>
+	        <item >实C1-406</item>
+	        <item >实C1-502</item>
+	        <item >实C1-503</item>
+	        <item >实C1-505</item>
+	        <item >实C1-506</item>
+	        <item >实C1-602</item>
+	        <item >实C1-603</item>
+	        <item >实C1-604</item>
+	        <item >实C1-605</item>
+	        <item >实C1-701</item>
+	        <item >实C1-702</item>
+      </string-array> 
+        
+      <string-array name="实C2">
+	        <item >实C2-204</item>
+	        <item >实C2-205</item>
+	        <item >实C2-206</item>
+	        <item >实C2-304</item>
+	        <item >实C2-305</item>
+	        <item >实C2-306</item>
+	        <item >实C2-403</item>
+	        <item >实C2-404</item>
+	        <item >实C2-405</item>
+	        <item >实C2-406</item>
+	        <item >实C2-506</item>
+	        <item >实C2-507</item>
+	        <item >实C2-602</item>
+	        <item >实C2-606</item>
+	        <item >实C2-607</item>
+      </string-array>   
+         
+      <string-array name="实D">
+	        <item >实D-302</item>
+	        <item >实D-303</item>
+	        <item >实D-402</item>
+	        <item >实D-403</item>
+	        <item >实D-503</item>
+	        <item >实D-602</item>
+      </string-array>   
+         
+      <string-array name="行政楼">
+	        <item >行政楼211</item>
+      </string-array> 
+          
+      <string-array name="运动场">
+	        <item >运动场1</item>
+	        <item >运动场2</item>
+	        <item >运动场3</item>
+	        <item >运动场4</item>
+	        <item >运动场5</item>
+	        <item >运动场6</item>
+	        <item >运动场7</item>
+	        <item >运动场8</item>
+	        <item >运动场9</item>
+	        <item >运动场10</item>
+    </string-array>
+</resources>

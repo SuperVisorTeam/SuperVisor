@@ -5,6 +5,7 @@ import com.gdut.supervisor.R;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -27,16 +28,34 @@ import android.widget.Toast;
 public class MainActivity extends ActionBarActivity implements OnClickListener
 {
 	private RadioGroup mTabRg;
+	/**
+	 *评价功能的Fragment
+	 */
 	private EvaluateFragment evaluateFragment;
+	/**
+	 *督导功能的Fragment
+	 */
 	private SupervisorFragment supervisorFragment;
+	/**
+	 *教务功能的Fragment
+	 */
 	private EducationalFragment searchFragment;
+	/**
+	 *工具功能的Fragment
+	 */
 	private ToolsFragment helpFragment;
+	/**
+	 * 高开窗口
+	 */
+	private AlertDialog leaveDialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_main);	
+		//初始化各种窗口
+		iniDialog();
 		// 初始化
 		InitView();
 	}
@@ -53,6 +72,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener
 	private void InitView()
 	{
 		//初始化四个Fragment
+		
 		evaluateFragment = EvaluateFragment.getInstance();
 		supervisorFragment = SupervisorFragment.getInstance();
 		searchFragment = EducationalFragment.getInstance();
@@ -103,23 +123,13 @@ public class MainActivity extends ActionBarActivity implements OnClickListener
 	 * 返回键的响应
 	 */
 	@Override
-	public boolean dispatchKeyEvent(KeyEvent event)
-	{
-		if (event.getKeyCode() == KeyEvent.KEYCODE_BACK)
-		{
-			if (event.getAction() == KeyEvent.ACTION_DOWN && event.getRepeatCount() == 0)
-			{
-				new AlertDialog.Builder(this).setTitle("提示").setMessage("确定退出吗？")
-						.setPositiveButton("确定", new DialogInterface.OnClickListener()
-						{
-							@Override
-							public void onClick(DialogInterface dialog, int which)
-							{
-								finish();
-							}
-						}).setNegativeButton("取消", null).show();
+	public boolean dispatchKeyEvent(KeyEvent event) {
+		if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+			if (event.getAction() == KeyEvent.ACTION_DOWN
+					&& event.getRepeatCount() == 0) {
+				leaveDialog.show();
+				return true;
 			}
-			return true;
 		}
 		return super.dispatchKeyEvent(event);
 	}
@@ -158,5 +168,40 @@ public class MainActivity extends ActionBarActivity implements OnClickListener
 			break;
 		}
 	}
-
+	
+	// 初始化各种窗口
+		private void iniDialog() {
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage("您确定要退出督导系统 吗？")
+					.setPositiveButton("后台运行",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int which) {
+									runInBG();
+								}
+							})
+					.setNegativeButton("退出", new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							exit();
+						}
+					}).setNeutralButton("取消", null);
+			leaveDialog = builder.create();
+			leaveDialog.setTitle("退出");
+		}
+	/** 
+	 * 后台运行
+	 */
+		private void runInBG() {
+			Intent intent = new Intent();
+			intent.setAction(Intent.ACTION_MAIN);
+			intent.addCategory(Intent.CATEGORY_HOME);
+			startActivity(intent);
+		}
+		/** 
+		 *  退出
+		 */	
+		private void exit() {
+			finish();
+			android.os.Process.killProcess(android.os.Process.myPid()); 
+		}
 }
