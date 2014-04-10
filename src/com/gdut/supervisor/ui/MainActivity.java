@@ -180,7 +180,11 @@ public class MainActivity extends ActionBarActivity implements OnClickListener
 							})
 					.setNegativeButton("ÍË³ö", new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int which) {
-							exit();
+							finish();
+							android.os.Process
+							.killProcess(android.os.Process
+									.myPid());
+							//exit();
 						}
 					}).setNeutralButton("È¡Ïû", null);
 			leaveDialog = builder.create();

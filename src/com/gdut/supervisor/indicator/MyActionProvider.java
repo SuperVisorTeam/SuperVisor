@@ -3,6 +3,8 @@ package com.gdut.supervisor.indicator;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
+import android.content.Intent;
+import android.sax.StartElementListener;
 import android.support.v4.view.ActionProvider;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.PopupMenu.OnMenuItemClickListener;
@@ -14,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.gdut.supervisor.R;
+import com.gdut.supervisor.ui.LoginActivity;
 
 /**
  * PopupMenu菜单
@@ -85,7 +88,9 @@ public class MyActionProvider extends ActionProvider implements OnMenuItemClickL
 			break;
 		//注销
 		case R.id.menu_logout:
-			Toast.makeText(context, "注销", 0).show();
+			//Toast.makeText(context, "注销", 0).show();
+			Intent intent = new Intent(context, LoginActivity.class);
+			context.startActivity(intent);
 			break;
 		// 设置菜单
 		default:
