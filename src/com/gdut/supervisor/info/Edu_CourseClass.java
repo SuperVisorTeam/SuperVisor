@@ -8,246 +8,246 @@ package com.gdut.supervisor.info;
 
 
 /**
- * edu_CourseClass | 鏁欏鐝熀鏈俊鎭?
+ * edu_CourseClass | 教学班基本信息
  * 
  */
 
 public class Edu_CourseClass {
 	/**
-	 * 鏁欏鐝紪鍙?Unique)
+	 * 教学班编号(Unique)
 	 * 
 	 */
 	public String Course_Class_No;
 	/**
-	 * 鏁欏鐝粍鎴?
+	 * 教学班组成
 	 * 
 	 */
 	public String Teaching_Class_Group;
 	/**
-	 * 骞寸骇
+	 * 年级
 	 */
 	public String student_grade;
 	/**
-	 * 寮?瀛︽湡
+	 * 开课学期
 	 * 
 	 */
 	public String Semester;
 	/**
-	 * 鏍″尯缂栫爜
+	 * 校区编码
 	 * 
 	 */
 	public String School_District;
 	/**
-	 * 寮?鏁欏笀
+	 * 开课教师
 	 * 
 	 */
 	public String Teacher_Name;
 	/**
-	 * 鏁欏笀鑱屽伐鍙?
+	 * 教师职工号
 	 * 
 	 */
 	public String Teacher_Staff_ID;
 	/**
-	 * 鏁欏笀鑱岀О
+	 * 教师职称
 	 * 
 	 */
 	public String Teacher_Title;
 	/**
-	 * 寮?瀛﹂櫌
+	 * 开课学院
 	 * 
 	 */
 	public String Commence_Dept;
 	/**
-	 * 璇剧▼浠ｇ爜
+	 * 课程代码
 	 * 
 	 */
 	public String Course_No;
 	/**
-	 * 璇剧▼鍚嶇О
+	 * 课程名称
 	 * 
 	 */
 	public String Course_Name;
 	/**
-	 * 璇剧▼鎬ц川(D)
+	 * 课程性质(D)
 	 * 
 	 */
 	public String Course_Nature;
 	/**
-	 * 璇剧▼绫诲埆(D)
+	 * 课程类别(D)
 	 * 
 	 */
 	public String Course_Category;
 	/**
-	 * 璁″垝涓婅浜烘暟
+	 * 计划上课人数
 	 * 
 	 */
 	public int Plan_Population = 0;
 	/**
-	 * 宸查?璇句汉鏁?
+	 * 已选课人数
 	 * 
 	 */
 	public int Actual_Population = 0;
 	/**
-	 * 鍗曞弻鍛ㄧ姸鎬?
+	 * 单双周状态
 	 * 
 	 */
 	public int Mono_Week_State = 0;
 	/**
-	 * 杩炴帓鐘舵?
+	 * 连排状态
 	 * 
 	 */
 	public int Continuous_State = 0;
 	/**
-	 * 鐝骇绫诲瀷
+	 * 班级类型
 	 * 
 	 */
 	public int Class_Category;
 	/**
-	 * 鍙岃flg
+	 * 双语flg
 	 * 
 	 */
 	public int Bilingual_Flag;
 	/**
-	 * 鍛ㄥ鏃?
+	 * 周学时
 	 * 
 	 */
 	public String Week_Credit_Hour;
 	/**
-	 * 瀛﹀垎
+	 * 学分
 	 * 
 	 */
 	public float Credit_Point;
 	/**
-	 * 鎬诲鏃?
+	 * 总学时
 	 * 
 	 */
 	public String Total_Credit_Hour;
 	/**
-	 * 璁茶瀛︽椂
+	 * 讲课学时
 	 * 
 	 */
 	public int Teaching_Hours;
 	/**
-	 * 瀹為獙瀛︽椂
+	 * 实验学时
 	 * 
 	 */
 	public int Experiment_Hours;
 	/**
-	 * 涓婃満瀛︽椂
+	 * 上机学时
 	 * 
 	 */
 	public int PC_Hours;
 	/**
-	 * 璇剧▼瀹炶返瀛︽椂
+	 * 课程实践学时
 	 * 
 	 */
 	public int Design_Hours;
 	/**
-	 * 涔犻璇惧鏃?
+	 * 习题课学时
 	 * 
 	 */
 	public int Exercise_Hours;
 	/**
-	 * 璇惧唴涓婃満瀛︽椂
+	 * 课内上机学时
 	 * 
 	 */
 	public int Inside_PC_Hours;
 	/**
-	 * 璇惧涓婃満瀛︽椂
+	 * 课外上机学时
 	 * 
 	 */
 	public int Outside_PC_Hours;
 	/**
-	 * 璇惧瀛︽椂
+	 * 课外学时
 	 * 
 	 */
 	public int Outside_Hours;
 	/**
-	 * 璧锋鍛?
+	 * 起止周
 	 * 
 	 */
 	public String Week_Period;
 	/**
-	 * 涓婅鏃堕棿
+	 * 上课时间
 	 * 
 	 */
 	public String Lesson_Time;
 	/**
-	 * 涓婅鍦扮偣
+	 * 上课地点
 	 * 
 	 */
 	public String Lesson_Place;
 	/**
-	 * 鏁欐潗鍚嶇О
+	 * 教材名称
 	 * 
 	 */
 	public String Textbook_Name;
 	/**
-	 * 鏁欐潗浣滆?
+	 * 教材作者
 	 * 
 	 */
 	public String Textbook_Author;
 	/**
-	 * 鍑虹増绀?
+	 * 出版社
 	 * 
 	 */
 	public String Textbook_Publisher;
 	/**
-	 * 鐗堝埆
+	 * 版别
 	 * 
 	 */
 	public String Textbook_Version;
 	/**
-	 * 鑾峰鎯呭喌
+	 * 获奖情况
 	 * 
 	 */
 	public String Textbook_Award;
 	/**
-	 * 瀹為獙鍦哄湴
+	 * 实验场地
 	 * 
 	 */
 	public String Experiment_Place;
 	/**
-	 * 鑰冩牳
+	 * 考核
 	 * 
 	 */
 	public String Check_Mode;
 	/**
-	 * 鏁欏绫诲瀷缂栫爜
+	 * 教室类型编码
 	 * 
 	 */
 	public String Classroom_Category;
 	/**
-	 * 鏁欏绫诲瀷鍚嶇О
+	 * 教室类型名称
 	 * 
 	 */
 	public String Classroom_Category_Name;
 	/**
-	 * 澶囨敞
+	 * 备注
 	 * 
 	 */
 	public String Course_Class_Remark;
 	/**
-	 * 瀛︾敓瀛﹂櫌
+	 * 学生学院
 	 */
 	public String Student_Faculty;
 	/**
-	 * 鍒涘缓鑰呯紪鐮?
+	 * 创建者编码
 	 * 
 	 */
 	public String Add_User;
 	/**
-	 * 鍒涘缓鏃ユ湡
+	 * 创建日期
 	 * 
 	 */
 	public String Add_Time;
 	/**
-	 * 淇敼鑰呯紪鐮?
+	 * 修改者编码
 	 * 
 	 */
 	public String Modify_User;
 	/**
-	 * 淇敼鏃ユ湡
+	 * 修改日期
 	 * 
 	 */
 	public String Modify_Time;

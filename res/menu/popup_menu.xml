@@ -5,7 +5,7 @@
     <item
         android:id="@+id/popup_menu"
         android:orderInCategory="100"
-        app:actionProviderClass="com.gdut.supervisor.utils.MyActionProvider"
+        app:actionProviderClass="com.gdut.supervisor.indicator.MyActionProvider"
         app:showAsAction="always">
     </item>
 </menu>

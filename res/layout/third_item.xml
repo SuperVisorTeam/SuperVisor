@@ -42,7 +42,7 @@
                     android:text="@string/teacher_name" />
 
                 <EditText
-                    android:id="@+id/teachernameEditText"
+                    android:id="@+id/edtTxt_teacher_name"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
@@ -59,7 +59,7 @@
                     android:text="督导员" />
 
                 <EditText
-                    android:id="@+id/supervisorEditText"
+                    android:id="@+id/edtTxt_supervisor"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
@@ -81,7 +81,7 @@
                         android:text="@string/submit_time" />
 
                     <EditText
-                        android:id="@+id/submitTime"
+                        android:id="@+id/edtTxt_submit_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"                     
                    		android:layout_marginTop="3dp"
@@ -90,12 +90,12 @@
                         android:textColor="@color/black" />
 
                     <Button
-                        android:id="@+id/submit_time_bt"
+                        android:id="@+id/btn_get_submit_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
                    		android:layout_marginBottom="3dp"
-                        android:text="点击" />
+                        android:text="获取" />
                 </TableRow>
             </TableLayout>
 
@@ -106,7 +106,7 @@
                     android:text="@string/other" />
 
                 <EditText
-                    android:id="@+id/othercomEditText"
+                    android:id="@+id/edtTxt_remark"
                     android:layout_width="230dp"
                     android:layout_height="150dp"
                     android:layout_marginRight="10dp"

@@ -8,182 +8,179 @@ import java.util.Map;
 import org.apache.http.client.ClientProtocolException;
 import org.xmlpull.v1.XmlPullParserException;
 
-import com.gdut.supervisor.R;
-import com.gdut.supervisor.dialog.ShowMessageDialog;
-import com.gdut.supervisor.info.BaseMessage;
-import com.gdut.supervisor.ui.SupervisorActivity;
-import com.gdut.supervisor.ui.SupervisorFragment;
-import com.gdut.supervisor.utils.ClassGroupXMLHandler;
-import com.gdut.supervisor.utils.ClassNameHandler;
-import com.gdut.supervisor.utils.ClassRoomGroupXMLHandler;
-import com.gdut.supervisor.utils.SubmitHandler;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.DatePicker.OnDateChangedListener;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.DatePicker.OnDateChangedListener;
 
-public class FirstItemFragment extends Fragment{
+import com.gdut.supervisor.R;
+import com.gdut.supervisor.dialog.ShowMessageDialog;
+import com.gdut.supervisor.info.BaseMessage;
+import com.gdut.supervisor.ui.SupervisorActivity;
+import com.gdut.supervisor.utils.ClassGroupXMLHandler;
+import com.gdut.supervisor.utils.ClassNameHandler;
+import com.gdut.supervisor.utils.ClassRoomGroupXMLHandler;
+import com.gdut.supervisor.utils.SubmitHandler;
+/**
+ *µÚÒ»ÕÅ±íµ¥
+ */
+public class FirstItemFragment extends Fragment
+{
 	/**
-	 * 
-	 * @author Emotion_sk ç¬¬ä¸€å¼ è¡¨çš„å†…å®¹
+	 * ÉÏ¿ÎÊ±¼ä
 	 */
-		/**
-		 * ä¸Šè¯¾æ—¶é—´
-		 */
-		private static Spinner checkclassSpinner;
-		/**
-		 * å­¦æ ¡æ ¡åŒº
-		 */
-		private static Spinner schoollocationSpinner;
-		/**
-		 * å®ä¾‹åŒ–å­¦æ ¡æ ¡åŒºé€‚é…å™¨
-		 */
-		private static ArrayAdapter<CharSequence> schoollocationSpinnerAdapter;
-		/**
-		 * å®ä¾‹åŒ–ä¸Šè¯¾æ—¶é—´çš„é€‚é…å™¨
-		 */
-		private static ArrayAdapter<CharSequence> checkclassSpinnerAdapter;
-		/**
-		 * å®ä¾‹åŒ–ä¸Šè¯¾æ•™å­¦æ¥¼çš„é€‚é…å™¨
-		 */
-		ArrayAdapter<String> classAdapter;
-		/**
-		 * å®ä¾‹åŒ–ä¸Šè¯¾æ•™å®¤çš„é€‚é…å™¨
-		 */
-		private ArrayAdapter<String> classroomAdapter;
-		/**
-		 * ä¸“ä¸šç­çº§çš„æ•°ç»„
-		 */
-		private static String classname[];
-		/**
-		 * ä¸“ä¸šç­çº§
-		 */
-		private static String classGroup;
-		/**
-		 * å­¦é™¢åç§°
-		 */
-		private static EditText schoolnameEditText;
-		/**
-		 * ä¸“ä¸šç­çº§
-		 */
-		private static Button classnameEditText;
+	private static Spinner checkclassSpinner;
+	/**
+	 * Ñ§Ğ£Ğ£Çø
+	 */
+	private static Spinner schoollocationSpinner;
+	/**
+	 * ÊµÀı»¯Ñ§Ğ£Ğ£ÇøÊÊÅäÆ÷
+	 */
+	private static ArrayAdapter<CharSequence> schoollocationSpinnerAdapter;
+	/**
+	 * ÊµÀı»¯ÉÏ¿ÎÊ±¼äµÄÊÊÅäÆ÷
+	 */
+	private static ArrayAdapter<CharSequence> checkclassSpinnerAdapter;
+	/**
+	 * ÊµÀı»¯ÉÏ¿Î½ÌÑ§Â¥µÄÊÊÅäÆ÷
+	 */
+	ArrayAdapter<String> classAdapter;
+	/**
+	 * ÊµÀı»¯ÉÏ¿Î½ÌÊÒµÄÊÊÅäÆ÷
+	 */
+	private ArrayAdapter<String> classroomAdapter;
+	/**
+	 * ×¨Òµ°à¼¶µÄÊı×é
+	 */
+	private static String classname[];
+	/**
+	 * ×¨Òµ°à¼¶
+	 */
+	private static String classGroup;
+	/**
+	 * Ñ§ÔºÃû³Æ
+	 */
+	private static EditText schoolnameEditText;
+	/**
+	 * ×¨Òµ°à¼¶
+	 */
+	private static Button classnameEditText;
 
-		/**
-		 * 
-		 */
-		private static EditText[] editText = new EditText[2];
-		/**
-		 * ç¼ºè¯¾äººæ•°
-		 */
-		public static int absentnum = 0;
-		/**
-		 * æ—¥æœŸæ–‡æœ¬æ¡†
-		 */
-		private static Button dateEditText;
-		/**
-		 * ä¸Šè¯¾åœ°ç‚¹
-		 */
-		private static Button schoollationEditText;
-		/**
-		 * æ—¥æœŸçª—å£
-		 */
-		private AlertDialog dataDialog;
-		/**
-		 * å·²ç»é¢„å®šçª—å£
-		 */
-		private AlertDialog hasBookDialog;
-		/**
-		 * ä¸“ä¸šç­çº§çª—å£
-		 */
-		private AlertDialog classnameDialog;
-		/**
-		 * ä¸Šè¯¾åœ°ç‚¹
-		 */
-		private AlertDialog schoollationDialog;
-		/**
-		 * ä¸Šè¯¾åœ°ç‚¹
-		 */
-		private String schoollationString = "";
-		/**
-		 * æ—¥æœŸ
-		 */
-		private String dateString = "";
-		/**
-		 * æ—¥æœŸ
-		 */
-		private static String defString = "";
-		/**
-		 * å¹´
-		 */
-		private int year;
-		/**
-		 * æœˆ
-		 */
-		private int month;
-		/**
-		 * æ—¥
-		 */
-		private int day;
-		Map<String, Object> utilMap;
-		/**
-		 * æ ¡åŒºID
-		 */
-		private static int schoolID;
-		/**
-		 * æ ¡åŒºæ–‡ä»¶ID
-		 */
-		private static int schoolXMLID;
-		/**
-		 * å®šä¹‰ä¸€ä¸ªæ ‡ç­¾åˆ¤æ–­æ˜¯å¦æŒ‰äº†è·å¾—æ•°æ®æŒ‰é’®
-		 */
-		private boolean isGeDatat = false;
-		/**
-		 * åˆ¤æ–­æ˜¯å¦å·²ç»è·å¾—æ•°æ®
-		 */
-		public static boolean isGet = false;
+	/**
+     * 
+	 */
+	private static EditText[] editText = new EditText[2];
+	/**
+	 * È±¿ÎÈËÊı
+	 */
+	public static int absentnum = 0;
+	/**
+	 * ÈÕÆÚÎÄ±¾¿ò
+	 */
+	private static Button dateEditText;
+	/**
+	 * ÉÏ¿ÎµØµã
+	 */
+	private static Button schoollationEditText;
+	/**
+	 * ÈÕÆÚ´°¿Ú
+	 */
+	private AlertDialog dataDialog;
+	/**
+	 * ÒÑ¾­Ô¤¶¨´°¿Ú
+	 */
+	private AlertDialog hasBookDialog;
+	/**
+	 * ×¨Òµ°à¼¶´°¿Ú
+	 */
+	private AlertDialog classnameDialog;
+	/**
+	 * ÉÏ¿ÎµØµã
+	 */
+	private AlertDialog schoollationDialog;
+	/**
+	 * ÉÏ¿ÎµØµã
+	 */
+	private String schoollationString = "";
+	/**
+	 * ÈÕÆÚ
+	 */
+	private String dateString = "";
+	/**
+	 * ÈÕÆÚ
+	 */
+	private static String defString = "";
+	/**
+	 * Äê
+	 */
+	private int year;
+	/**
+	 * ÔÂ
+	 */
+	private int month;
+	/**
+	 * ÈÕ
+	 */
+	private int day;
+	Map<String, Object> utilMap;
+	/**
+	 * Ğ£ÇøID
+	 */
+	private static int schoolID;
+	/**
+	 * Ğ£ÇøÎÄ¼şID
+	 */
+	private static int schoolXMLID;
+	/**
+	 * ¶¨ÒåÒ»¸ö±êÇ©ÅĞ¶ÏÊÇ·ñ°´ÁË»ñµÃÊı¾İ°´Å¥
+	 */
+	private boolean isGeDatat = false;
+	/**
+	 * ÅĞ¶ÏÊÇ·ñÒÑ¾­»ñµÃÊı¾İ
+	 */
+	public static boolean isGet = false;
+
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
+	public void onCreate(Bundle savedInstanceState)
+	{
 		super.onCreate(savedInstanceState);
-	
 	}
+
 	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	{
+		View rootView = inflater.inflate(R.layout.frist, container, false);
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        View rootView = inflater.inflate(R.layout.frist, container, false);
-        
-    	// å­¦æ ¡æ ¡åŒº
+		// Ñ§Ğ£Ğ£Çø
 		schoollocationSpinner = (Spinner) rootView.findViewById(R.id.schoollocationSpinner);
-		schoollocationSpinnerAdapter = ArrayAdapter.createFromResource(
-				getActivity(), R.array.shoolsite,
+		schoollocationSpinnerAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.shoolsite,
 				android.R.layout.simple_dropdown_item_1line);
 		schoollocationSpinner.setAdapter(schoollocationSpinnerAdapter);
-		// ä¸Šè¯¾åœ°ç‚¹
+		// ÉÏ¿ÎµØµã
 		schoollationEditText = (Button) rootView.findViewById(R.id.schoollationEditText);
 		schoollationEditText.setOnClickListener(new ButtonActionListener());
 		schoollationEditText.setTextSize(20.0f);
-		// å­¦é™¢åç§°
+		// Ñ§ÔºÃû³Æ
 		schoolnameEditText = (EditText) rootView.findViewById(R.id.schoolnameEditText);
-		// ä¸“ä¸šç­çº§
-		classnameEditText = (Button)rootView. findViewById(R.id.classnameEditText);
+		// ×¨Òµ°à¼¶
+		classnameEditText = (Button) rootView.findViewById(R.id.classnameEditText);
 		classnameEditText.setTextSize(20.0f);
 		classnameEditText.setOnClickListener(new ButtonActionListener());
 		classnameEditText.setText("");
-		// æ—¥æœŸ
+		// ÈÕÆÚ
 		dateEditText = (Button) rootView.findViewById(R.id.dateEditText);
 		dateEditText.setTextSize(20.0f);
 		Calendar c = Calendar.getInstance(Locale.CHINA);
@@ -195,10 +192,9 @@ public class FirstItemFragment extends Fragment{
 		dateEditText.setText(dateString);
 
 		dateEditText.setOnClickListener(new ButtonActionListener());
-		// ä¸Šè¯¾æ—¶é—´
+		// ÉÏ¿ÎÊ±¼ä
 		checkclassSpinner = (Spinner) rootView.findViewById(R.id.checkclassSpinner);
-		checkclassSpinnerAdapter = ArrayAdapter.createFromResource(
-				getActivity(), R.array.time,
+		checkclassSpinnerAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.time,
 				android.R.layout.simple_dropdown_item_1line);
 		checkclassSpinner.setAdapter(checkclassSpinnerAdapter);
 
@@ -213,318 +209,361 @@ public class FirstItemFragment extends Fragment{
 
 		editText[1].setText("0");
 		//
-		checkclassSpinner
-				.setOnItemSelectedListener(new autoCompleteTextViewListener());
-		schoollocationSpinner
-				.setOnItemSelectedListener(new schoollocationListener());
-        return rootView;
+		checkclassSpinner.setOnItemSelectedListener(new autoCompleteTextViewListener());
+		schoollocationSpinner.setOnItemSelectedListener(new schoollocationListener());
+		return rootView;
 
-    }
-	// æ ¡åŒºäº‹ä»¶
-				private class schoollocationListener implements OnItemSelectedListener {
-					public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
-							long arg3) {
-						if (!SupervisorFragment.searchIsOpen && !SupervisorFragment.scheduleIsOpen) {
-							schoollationEditText.setText("");
-						}
-						schoolID = arg2;
-						switch (schoolID) {
-						case 1: {
-							schoolXMLID = R.xml.site1;
-						}
-							break;
-						case 2: {
-							schoolXMLID = R.xml.site2;
-						}
-							break;
-						case 3: {
-							schoolXMLID = R.xml.site3;
-						}
-							break;
-						case 4: {
-							schoolXMLID = R.xml.site4;
-						}
-							break;
-						}
-					}
+	}
 
-					public void onNothingSelected(AdapterView<?> arg0) {
+	// Ğ£ÇøÊÂ¼ş
+	private class schoollocationListener implements OnItemSelectedListener
+	{
+		public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3)
+		{
+			if (!SupervisorFragment.searchIsOpen && !SupervisorFragment.scheduleIsOpen)
+			{
+				schoollationEditText.setText("");
+			}
+			schoolID = arg2;
+			switch (schoolID)
+			{
+			case 1:
+			{
+				schoolXMLID = R.xml.site1;
+			}
+				break;
+			case 2:
+			{
+				schoolXMLID = R.xml.site2;
+			}
+				break;
+			case 3:
+			{
+				schoolXMLID = R.xml.site3;
+			}
+				break;
+			case 4:
+			{
+				schoolXMLID = R.xml.site4;
+			}
+				break;
+			}
+		}
 
-					}
-				}	
-	// æ—¥æœŸæŒ‰é’®
-	private class ButtonActionListener implements OnClickListener {
-		public void onClick(View v) {
-			if (v.getId() == R.id.dateEditText) {
+		public void onNothingSelected(AdapterView<?> arg0)
+		{
+
+		}
+	}
+
+	// ÈÕÆÚ°´Å¥
+	private class ButtonActionListener implements OnClickListener
+	{
+		public void onClick(View v)
+		{
+			if (v.getId() == R.id.dateEditText)
+			{
 				iniDateDialog();
 				dataDialog.show();
 			}
-			if (v.getId() == R.id.schoollationEditText) {
+			if (v.getId() == R.id.schoollationEditText)
+			{
 				iniSchoollationDialog();
 				schoollationDialog.show();
 			}
-			if (v.getId() == R.id.classnameEditText) {
+			if (v.getId() == R.id.classnameEditText)
+			{
 				if (classnameEditText.getText().toString() != null
-						&& !classnameEditText.getText().toString().equals("")) {
+						&& !classnameEditText.getText().toString().equals(""))
+				{
 					iniClassnameDialog();
 					classnameDialog.show();
 				}
 			}
 		}
-		
+
 	}
+
 	/**
-	 * æ—¥æœŸçª—å£
+	 * ÈÕÆÚ´°¿Ú
 	 */
-	private void iniDateDialog() {
-		// æ—¥æœŸçª—å£
-		AlertDialog.Builder builder = new AlertDialog.Builder(
-				getActivity());
+	private void iniDateDialog()
+	{
+		// ÈÕÆÚ´°¿Ú
+		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 		LayoutInflater mInflater2 = LayoutInflater.from(getActivity());
 		View view2 = mInflater2.inflate(R.layout.date, null);
-		DatePicker datePicker1 = (DatePicker) view2
-				.findViewById(R.id.datePicker);
-		datePicker1.init(year, month, day, new OnDateChangedListener() {
+		DatePicker datePicker1 = (DatePicker) view2.findViewById(R.id.datePicker);
+		datePicker1.init(year, month, day, new OnDateChangedListener()
+		{
 
-			public void onDateChanged(DatePicker arg0, int year, int month,
-					int day) {
+			public void onDateChanged(DatePicker arg0, int year, int month, int day)
+			{
 				FirstItemFragment.this.year = year;
 				FirstItemFragment.this.month = month;
 				FirstItemFragment.this.day = day;
 				dateString = year + "-" + (month + 1) + "-" + day;
 				System.out.println("dateString==" + dateString);
-				dataDialog.setTitle("æ—¥æœŸï¼š" + dateString);
+				dataDialog.setTitle("ÈÕÆÚ£º" + dateString);
 
 			}
 		});
-		builder.setPositiveButton("ç¡®å®š", new DialogInterface.OnClickListener() {
+		builder.setPositiveButton("È·¶¨", new DialogInterface.OnClickListener()
+		{
 
-			public void onClick(DialogInterface dialog, int which) {
-				// æ˜¾ç¤ºå½“å‰æ—¥æœŸ
+			public void onClick(DialogInterface dialog, int which)
+			{
+				// ÏÔÊ¾µ±Ç°ÈÕÆÚ
 				dateEditText.setText(dateString);
-				if (!SupervisorFragment.searchIsOpen) {
+				if (!SupervisorFragment.searchIsOpen)
+				{
 					getData();
 				}
 				isGeDatat = true;
 			}
 
-		}).setNegativeButton("å–æ¶ˆ", new DialogInterface.OnClickListener() {
+		}).setNegativeButton("È¡Ïû", new DialogInterface.OnClickListener()
+		{
 
-			public void onClick(DialogInterface dialog, int which) {
+			public void onClick(DialogInterface dialog, int which)
+			{
 				dialog.dismiss();
 			}
 		});
 		dataDialog = builder.create();
-		dataDialog.setTitle("æ—¥æœŸï¼š" + dateString);
+		dataDialog.setTitle("ÈÕÆÚ£º" + dateString);
 		dataDialog.setView(view2);
 	}
+
 	/**
-	 * ä¸Šè¯¾åœ°ç‚¹çª—å£
+	 * ÉÏ¿ÎµØµã´°¿Ú
 	 */
-	private void iniSchoollationDialog() {
-		AlertDialog.Builder builder = new AlertDialog.Builder(
-				getActivity());
+	private void iniSchoollationDialog()
+	{
+		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 		LayoutInflater mInflater2 = LayoutInflater.from(getActivity());
 		View view = mInflater2.inflate(R.layout.schoollation, null);
-		final Spinner classSpinner = (Spinner) view
-				.findViewById(R.id.classSpinner);
+		final Spinner classSpinner = (Spinner) view.findViewById(R.id.classSpinner);
 		if (schoollocationSpinner.getSelectedItem().toString() != null
-				&& !schoollocationSpinner.getSelectedItem().toString()
-						.equals("")) {
+				&& !schoollocationSpinner.getSelectedItem().toString().equals(""))
+		{
 			String str[] = null;
-			try {
-				str = ClassGroupXMLHandler.exchangeXmlToStringarr(
-						getActivity(), schoolXMLID);
-			} catch (XmlPullParserException e) {
+			try
+			{
+				str = ClassGroupXMLHandler.exchangeXmlToStringarr(getActivity(), schoolXMLID);
+			} catch (XmlPullParserException e)
+			{
 				e.printStackTrace();
-			} catch (IOException e) {
+			} catch (IOException e)
+			{
 				e.printStackTrace();
 			}
-			classAdapter = new ArrayAdapter<String>(getActivity(),
-					android.R.layout.simple_dropdown_item_1line, str);
+			classAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line,
+					str);
 			classSpinner.setAdapter(classAdapter);
-		} else {
-			String str[] = { "", "", "" };
-			classAdapter = new ArrayAdapter<String>(getActivity(),
-					android.R.layout.simple_dropdown_item_1line, str);
+		} else
+		{
+			String str[] =
+			{ "", "", "" };
+			classAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line,
+					str);
 			classSpinner.setAdapter(classAdapter);
 		}
-		final Spinner class_roomSpinner = (Spinner) view
-				.findViewById(R.id.class_roomSpinner);
-		builder.setPositiveButton("ç¡®å®š", new DialogInterface.OnClickListener() {
+		final Spinner class_roomSpinner = (Spinner) view.findViewById(R.id.class_roomSpinner);
+		builder.setPositiveButton("È·¶¨", new DialogInterface.OnClickListener()
+		{
 
-			public void onClick(DialogInterface dialog, int which) {
+			public void onClick(DialogInterface dialog, int which)
+			{
 				if (classSpinner.getSelectedItem().toString() == null
 						|| classSpinner.getSelectedItem().toString().equals("")
 						|| class_roomSpinner.getSelectedItem().toString() == null
-						|| class_roomSpinner.getSelectedItem().toString()
-								.equals("")) {
+						|| class_roomSpinner.getSelectedItem().toString().equals(""))
+				{
 					return;
-				} else {
-					schoollationString = class_roomSpinner.getSelectedItem()
-							.toString();
+				} else
+				{
+					schoollationString = class_roomSpinner.getSelectedItem().toString();
 					schoollationEditText.setText(schoollationString);
-					if (!SupervisorFragment.searchIsOpen) {
+					if (!SupervisorFragment.searchIsOpen)
+					{
 						getData();
 					}
 					isGeDatat = true;
 				}
 			}
 
-		}).setNegativeButton("å–æ¶ˆ", new DialogInterface.OnClickListener() {
+		}).setNegativeButton("È¡Ïû", new DialogInterface.OnClickListener()
+		{
 
-			public void onClick(DialogInterface dialog, int which) {
+			public void onClick(DialogInterface dialog, int which)
+			{
 				dialog.dismiss();
 			}
 		});
 		schoollationDialog = builder.create();
-		schoollationDialog.setTitle("ä¸Šè¯¾åœ°ç‚¹");
+		schoollationDialog.setTitle("ÉÏ¿ÎµØµã");
 		schoollationDialog.setView(view);
-		classSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+		classSpinner.setOnItemSelectedListener(new OnItemSelectedListener()
+		{
 
-			public void onItemSelected(AdapterView<?> arg0, View arg1,
-					int arg2, long arg3) {
+			public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3)
+			{
 				if (classSpinner.getSelectedItem().toString() == null
-						|| classSpinner.getSelectedItem().toString().equals("")) {
-					String str[] = { "", "", "" };
-					classroomAdapter = new ArrayAdapter<String>(
-							getActivity(),
+						|| classSpinner.getSelectedItem().toString().equals(""))
+				{
+					String str[] =
+					{ "", "", "" };
+					classroomAdapter = new ArrayAdapter<String>(getActivity(),
 							android.R.layout.simple_dropdown_item_1line, str);
 					class_roomSpinner.setAdapter(classroomAdapter);
-				} else {
+				} else
+				{
 					String str[] = null;
-					try {
-						str = ClassRoomGroupXMLHandler.exchangeXmlToStringarr(
-								getActivity(), schoolXMLID,
+					try
+					{
+						str = ClassRoomGroupXMLHandler.exchangeXmlToStringarr(getActivity(), schoolXMLID,
 								classSpinner.getSelectedItem().toString());
-					} catch (XmlPullParserException e) {
+					} catch (XmlPullParserException e)
+					{
 						e.printStackTrace();
-					} catch (IOException e) {
+					} catch (IOException e)
+					{
 						e.printStackTrace();
 					}
-					classroomAdapter = new ArrayAdapter<String>(
-							getActivity(),
+					classroomAdapter = new ArrayAdapter<String>(getActivity(),
 							android.R.layout.simple_dropdown_item_1line, str);
 					class_roomSpinner.setAdapter(classroomAdapter);
 				}
 			}
 
-			public void onNothingSelected(AdapterView<?> arg0) {
+			public void onNothingSelected(AdapterView<?> arg0)
+			{
 			}
 		});
 	}
+
 	/**
-	 * ä¸“ä¸šç­çº§çª—å£
+	 * ×¨Òµ°à¼¶´°¿Ú
 	 */
-	private void iniClassnameDialog() {
-		AlertDialog.Builder builder = new AlertDialog.Builder(
-				getActivity());
+	private void iniClassnameDialog()
+	{
+		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 		String classcontext = "\n";
-		for (int i = 0; i < classname.length; i++) {
+		for (int i = 0; i < classname.length; i++)
+		{
 			classcontext = classcontext + classname[i] + "\n";
 		}
 		classnameDialog = builder.create();
 		classnameDialog.setMessage(classcontext);
-		classnameDialog.setTitle("ä¸“ä¸šç­çº§");
+		classnameDialog.setTitle("×¨Òµ°à¼¶");
 	}
-	// è·å¾—å½•å…¥æ•°æ®
-	private void getData() {
+
+	// »ñµÃÂ¼ÈëÊı¾İ
+	private void getData()
+	{
 		if (schoollocationSpinner.getSelectedItem().toString() == null
-				|| schoollocationSpinner.getSelectedItem().toString()
-						.equals("")
+				|| schoollocationSpinner.getSelectedItem().toString().equals("")
 				|| schoollationEditText.getText().toString() == null
 				|| schoollationEditText.getText().toString().equals("")
-				|| dateEditText.getText().toString() == null
-				|| dateEditText.getText().toString().equals("")
+				|| dateEditText.getText().toString() == null || dateEditText.getText().toString().equals("")
 				|| checkclassSpinner.getSelectedItem().toString() == null
-				|| checkclassSpinner.getSelectedItem().toString().equals("")) {
-		} else {
-			if (SupervisorActivity.secondOpen) {
-			//	SecondItemActivity.clearSecondItem();
+				|| checkclassSpinner.getSelectedItem().toString().equals(""))
+		{
+		} else
+		{
+			if (SupervisorActivity.secondOpen)
+			{
+				// SecondItemActivity.clearSecondItem();
 			}
-			if (SupervisorActivity.thirdOpen) {
-			//	ThirdItemActivity.clearThirdItem();
+			if (SupervisorActivity.thirdOpen)
+			{
+				// ThirdItemActivity.clearThirdItem();
 			}
-			try {
+			try
+			{
 				int code = -1;
-				code = SubmitHandler.getMap(schoolID + "", dateEditText
-						.getText().toString(), schoollationEditText.getText()
-						.toString(), checkclassSpinner.getSelectedItem()
-						.toString(), BaseMessage.supervisor_no);
-				if (code == 409) {
-					inihasBookDialog(schoollationEditText.getText().toString()
-							+ "\nç­çº§å·²ç»è¢«ç£å¯¼ï¼Œè¯·é€‰æ‹©å…¶å®ƒæ•™å­¦ç­è¿›è¡Œç£å¯¼ï¼");
-				} else if (code == 200) {
+				code = SubmitHandler.getMap(schoolID + "", dateEditText.getText().toString(), schoollationEditText
+						.getText().toString(), checkclassSpinner.getSelectedItem().toString(),
+						BaseMessage.supervisor_no);
+				if (code == 409)
+				{
+					inihasBookDialog(schoollationEditText.getText().toString() + "\n°à¼¶ÒÑ¾­±»¶½µ¼£¬ÇëÑ¡ÔñÆäËü½ÌÑ§°à½øĞĞ¶½µ¼£¡");
+				} else if (code == 200)
+				{
 					utilMap = SubmitHandler.getmap;
-					if (SupervisorActivity.secondOpen) {
-						//SecondItemActivity.clearSecondItem();
+					if (SupervisorActivity.secondOpen)
+					{
+						// SecondItemActivity.clearSecondItem();
 					}
-					if (SupervisorActivity.thirdOpen) {
-						//ThirdItemActivity.clearThirdItem();
+					if (SupervisorActivity.thirdOpen)
+					{
+						// ThirdItemActivity.clearThirdItem();
 					}
-					BaseMessage.class_no = (String) utilMap
-							.get("course_class_no");
-					schoolnameEditText.setText((String) utilMap
-							.get("student_faculty"));
+					BaseMessage.class_no = (String) utilMap.get("course_class_no");
+					schoolnameEditText.setText((String) utilMap.get("student_faculty"));
 					int i = 0;
-					classname = ClassNameHandler
-							.exchangeStringToArray((String) utilMap
-									.get("teaching_class_group"));
+					classname = ClassNameHandler.exchangeStringToArray((String) utilMap
+							.get("teaching_class_group"));
 					classGroup = (String) utilMap.get("teaching_class_group");
 					double num1 = (Double) utilMap.get("plan_population");
 					int num = (int) num1;
 					BaseMessage.num = num;
 					editText[i++].setText(num + "");
-					BaseMessage.teacherName = (String) utilMap
-							.get("teacher_name");
-					classnameEditText.setText("æ˜¾ç¤ºå…¨éƒ¨ä¸“ä¸šç­çº§");
+					BaseMessage.teacherName = (String) utilMap.get("teacher_name");
+					classnameEditText.setText("ÏÔÊ¾È«²¿×¨Òµ°à¼¶");
 					editText[i++].setText("0");
-				} else if (code == 402) {
-					inihasBookDialog(schoollationEditText.getText().toString()
-							+ "\nä»Šå¤©å·²è¢«åˆ«äººé¢„è®¢äº†ï¼Œè¯·é€‰æ‹©å…¶å®ƒæ•™å­¦ç­è¿›è¡Œç£å¯¼ï¼");
-				} else if (code == 404) {
-					inihasBookDialog(schoollationEditText.getText().toString()
-							+ "\næ²¡æœ‰å¯¹åº”çš„è¯¾è¦ä¸Šï¼Œè¯·é€‰æ‹©å…¶å®ƒæ•™å­¦ç­è¿›è¡Œç£å¯¼ï¼");
-				} else if (code == 400) {
-					inihasBookDialog(schoollationEditText.getText().toString()
-							+ "\nè¯·æ±‚çš„å‚æ•°æœ‰é”™!");
-				} else {
-					inihasBookDialog("è¯·ä¿æŒç½‘ç»œè¿æ¥ï¼");
+				} else if (code == 402)
+				{
+					inihasBookDialog(schoollationEditText.getText().toString() + "\n½ñÌìÒÑ±»±ğÈËÔ¤¶©ÁË£¬ÇëÑ¡ÔñÆäËü½ÌÑ§°à½øĞĞ¶½µ¼£¡");
+				} else if (code == 404)
+				{
+					inihasBookDialog(schoollationEditText.getText().toString() + "\nÃ»ÓĞ¶ÔÓ¦µÄ¿ÎÒªÉÏ£¬ÇëÑ¡ÔñÆäËü½ÌÑ§°à½øĞĞ¶½µ¼£¡");
+				} else if (code == 400)
+				{
+					inihasBookDialog(schoollationEditText.getText().toString() + "\nÇëÇóµÄ²ÎÊıÓĞ´í!");
+				} else
+				{
+					inihasBookDialog("Çë±£³ÖÍøÂçÁ¬½Ó£¡");
 				}
-			} catch (ClientProtocolException e) {
-				ShowMessageDialog.showMessage(getActivity(),
-						"è¯·ä¿æŒç½‘ç»œè¿æ¥ï¼");
+			} catch (ClientProtocolException e)
+			{
+				ShowMessageDialog.showMessage(getActivity(), "Çë±£³ÖÍøÂçÁ¬½Ó£¡");
 				return;
-			} catch (IOException e) {
-				ShowMessageDialog.showMessage(getActivity(),
-						"è¯·ä¿æŒç½‘ç»œè¿æ¥ï¼");
+			} catch (IOException e)
+			{
+				ShowMessageDialog.showMessage(getActivity(), "Çë±£³ÖÍøÂçÁ¬½Ó£¡");
 				return;
 			}
 		}
 	}
-	/**
-	 * å·²ç»é¢„å®šçª—å£
-	 */
-	private void inihasBookDialog(String message) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(
-				getActivity());
-		builder.setPositiveButton("ç¡®å®š", new DialogInterface.OnClickListener() {
 
-			public void onClick(DialogInterface dialog, int which) {
+	/**
+	 * ÒÑ¾­Ô¤¶¨´°¿Ú
+	 */
+	private void inihasBookDialog(String message)
+	{
+		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+		builder.setPositiveButton("È·¶¨", new DialogInterface.OnClickListener()
+		{
+
+			public void onClick(DialogInterface dialog, int which)
+			{
 				hasGetNull();
 			}
 
 		});
 		hasBookDialog = builder.create();
-		hasBookDialog.setTitle("æç¤º");
+		hasBookDialog.setTitle("ÌáÊ¾");
 		hasBookDialog.setMessage(message);
 		hasBookDialog.show();
 	}
-	
+
 	/**
-	 *   é‡ç½®å‡½æ•°
+	 * ÖØÖÃº¯Êı
 	 */
-	private void hasGetNull() {
+	private void hasGetNull()
+	{
 		int i = 0;
 		BaseMessage.num = 0;
 		editText[i++].setText("0");
@@ -534,37 +573,32 @@ public class FirstItemFragment extends Fragment{
 		schoollationEditText.setText("");
 		BaseMessage.teacherName = "";
 	}
-	
-	// æ£€æŸ¥èŠ‚æ¬¡çš„äº‹ä»¶
-		private class autoCompleteTextViewListener implements
-				OnItemSelectedListener {
-			public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
-				if (isGeDatat) {
-					if (!SupervisorFragment.searchIsOpen) {
-					//	getData();
-					}
-				}
-				isGeDatat = true;
-			}
 
-			public void onNothingSelected(AdapterView<?> arg0) {
-			}	
-		}	
-		// æ¢å¤æ—¶è°ƒç”¨
-		//å¯èƒ½ç”¨ä¸ä¸Šäº†ï¼å› ä¸ºä½¿ç”¨äº†ViewPager+Fragment
-	/*	public void onResume() {
-			super.onResume();
-			for (int i = 0; i < 2; i++) {
-				editText[i].clearFocus();
-			}
-			if (SupervisorFragment.searchIsOpen) {
-				if (!isGet) {
-					isGet = true;
-					setFristItemClassSituation();
+	// ¼ì²é½Ú´ÎµÄÊÂ¼ş
+	private class autoCompleteTextViewListener implements OnItemSelectedListener
+	{
+		public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3)
+		{
+			if (isGeDatat)
+			{
+				if (!SupervisorFragment.searchIsOpen)
+				{
+					// getData();
 				}
-			} else if (SupervisorFragment.scheduleIsOpen) {
-				setFristItemClassSituation();
 			}
-		}*/
+			isGeDatat = true;
+		}
+
+		public void onNothingSelected(AdapterView<?> arg0)
+		{
+		}
+	}
+	// »Ö¸´Ê±µ÷ÓÃ
+	// ¿ÉÄÜÓÃ²»ÉÏÁË£¡ÒòÎªÊ¹ÓÃÁËViewPager+Fragment
+	/*
+	 * public void onResume() { super.onResume(); for (int i = 0; i < 2; i++) {
+	 * editText[i].clearFocus(); } if (SupervisorFragment.searchIsOpen) { if
+	 * (!isGet) { isGet = true; setFristItemClassSituation(); } } else if
+	 * (SupervisorFragment.scheduleIsOpen) { setFristItemClassSituation(); } }
+	 */
 }

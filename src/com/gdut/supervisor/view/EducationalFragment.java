@@ -1,4 +1,4 @@
-package com.gdut.supervisor.ui;
+package com.gdut.supervisor.view;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;

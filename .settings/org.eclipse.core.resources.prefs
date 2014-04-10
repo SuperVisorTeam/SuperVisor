@@ -1,10 +1,3 @@
 eclipse.preferences.version=1
 encoding//src/com/gdut/supervisor/adapter/SupervisorAdapter.java=GBK
-encoding//src/com/gdut/supervisor/info/BaseMessage.java=UTF-8
-encoding//src/com/gdut/supervisor/info/Edu_CourseClass.java=UTF-8
-encoding//src/com/gdut/supervisor/ui/EvaluateFragment.java=GBK
-encoding//src/com/gdut/supervisor/ui/MainActivity.java=GBK
-encoding//src/com/gdut/supervisor/ui/SupervisorActivity.java=GBK
-encoding//src/com/gdut/supervisor/ui/SupervisorFragment.java=GBK
-encoding//src/com/gdut/supervisor/utils/PrintlnFromData.java=UTF-8
 separateDerivedEncodings=true

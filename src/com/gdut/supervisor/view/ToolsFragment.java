@@ -1,4 +1,4 @@
-package com.gdut.supervisor.ui;
+package com.gdut.supervisor.view;
 
 import com.gdut.supervisor.R;
 

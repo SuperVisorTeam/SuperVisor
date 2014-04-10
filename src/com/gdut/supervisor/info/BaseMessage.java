@@ -2,33 +2,33 @@ package com.gdut.supervisor.info;
 
 /**
  * 
- * @author Emotion_sk 浠昏鑰佸笀鐨勭浉鍏充俊鎭?
+ * @author Emotion_sk 任课老师的相关信
  * 
  */
 public class BaseMessage {
 	/**
-	 * 搴斿埌浜烘暟
+	 * 应到人数
 	 */
 	public static int num = 0;
 	/**
-	 * 榛樿鐨処P鍦板潃
+	 * 默认的IP地址
 	 */
 	public static String baseUrl;
 	/**
-	 * 鐫ｅ鍛樼殑瀛﹀彿
+	 * 督导员的学号
 	 */
 	public static String supervisor_no;
 	/**
-	 * 濮撳悕
+	 * 姓名
 	 */
 	public static String teacherName;
 	/**
-	 * 鏁欏鐝紪鍙?
+	 * 教学班编
 	 * 
 	 */
 	public static String class_no;
 	/**
-	 * 鏄剧ず鏃堕棿
+	 * 显示时间
 	 */
 	public static String temp_time;
 }

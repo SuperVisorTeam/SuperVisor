@@ -1,20 +1,20 @@
 package com.gdut.supervisor.ui;
 
-import com.gdut.supervisor.R;
-import com.gdut.supervisor.adapter.SupervisorAdapter;
-import com.gdut.supervisor.info.BaseMessage;
-
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.PagerTabStrip;
-import android.support.v4.view.ViewPager;
 import android.support.v4.view.PagerTitleStrip;
+import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
 import android.widget.Button;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Bundle;
+
+import com.gdut.supervisor.R;
+import com.gdut.supervisor.adapter.SupervisorAdapter;
+import com.gdut.supervisor.info.BaseMessage;
+import com.gdut.supervisor.view.SupervisorFragment;
 /**
  * 包含三表单的FragmentActivity
  */

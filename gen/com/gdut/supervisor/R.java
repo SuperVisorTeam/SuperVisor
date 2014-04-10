@@ -1492,6 +1492,7 @@ containing a value of this type.
         public static final int activity_chooser_view_content=0x7f060025;
         public static final int always=0x7f06000b;
         public static final int beginning=0x7f060011;
+        public static final int btn_get_submit_time=0x7f06007e;
         public static final int btn_searchform_begindate=0x7f060045;
         public static final int btn_searchform_enddate=0x7f060046;
         public static final int checkbox=0x7f06002d;
@@ -1512,6 +1513,10 @@ containing a value of this type.
         public static final int eatnumEditText=0x7f060070;
         public static final int eatreduceButton=0x7f06006f;
         public static final int edit_query=0x7f060030;
+        public static final int edtTxt_remark=0x7f06007f;
+        public static final int edtTxt_submit_time=0x7f06007d;
+        public static final int edtTxt_supervisor=0x7f06007c;
+        public static final int edtTxt_teacher_name=0x7f06007b;
         public static final int end=0x7f060013;
         public static final int enddate=0x7f060049;
         public static final int et_evaluate_test=0x7f060052;
@@ -1536,25 +1541,26 @@ containing a value of this type.
         public static final int lv_searchform_everyday=0x7f060051;
         public static final int menu_about=0x7f060081;
         public static final int menu_help=0x7f060080;
+        public static final int menu_logout=0x7f060083;
         public static final int menu_setting=0x7f060082;
         public static final int middle=0x7f060012;
         public static final int never=0x7f060009;
-        public static final int no=0x7f060061;
         public static final int none=0x7f060010;
         public static final int normal=0x7f060000;
-        public static final int othercomEditText=0x7f06007f;
         public static final int pagertab=0x7f060050;
         public static final int peoplenumEditText=0x7f06005d;
         public static final int phoneaddButton=0x7f060074;
         public static final int phonenumEditText=0x7f060073;
         public static final int phonereduceButton=0x7f060072;
-        public static final int popup_menu=0x7f060083;
+        public static final int popup_menu=0x7f060084;
         public static final int popup_view=0x7f06003c;
         public static final int progressBar1=0x7f060043;
         public static final int progress_circular=0x7f060018;
         public static final int progress_horizontal=0x7f060019;
         public static final int radio=0x7f06002f;
-        public static final int radioGroup=0x7f06005f;
+        public static final int rdoBtn_teacher_if_ontime_no=0x7f060061;
+        public static final int rdoBtn_teacher_if_ontime_yes=0x7f060060;
+        public static final int rdoGop_teacher_if_ontime=0x7f06005f;
         public static final int reallynumEditText=0x7f06005e;
         public static final int schoollationEditText=0x7f06005a;
         public static final int schoollocationSpinner=0x7f060058;
@@ -1582,10 +1588,7 @@ containing a value of this type.
         public static final int split_action_bar=0x7f06001e;
         public static final int startdate=0x7f060048;
         public static final int submitButton=0x7f06004e;
-        public static final int submitTime=0x7f06007d;
         public static final int submit_area=0x7f060039;
-        public static final int submit_time_bt=0x7f06007e;
-        public static final int supervisorEditText=0x7f06007c;
         public static final int supervisor_no=0x7f060047;
         public static final int tabMode=0x7f060002;
         public static final int tab_rb_1=0x7f06003f;
@@ -1593,7 +1596,6 @@ containing a value of this type.
         public static final int tab_rb_3=0x7f060041;
         public static final int tab_rb_4=0x7f060042;
         public static final int tab_rg_menu=0x7f06003e;
-        public static final int teachernameEditText=0x7f06007b;
         public static final int title=0x7f06002b;
         public static final int top_action_bar=0x7f060020;
         public static final int truantnumEditText=0x7f06006a;
@@ -1604,7 +1606,6 @@ containing a value of this type.
         public static final int useLogo=0x7f060003;
         public static final int viewpager=0x7f06004f;
         public static final int withText=0x7f06000c;
-        public static final int yes=0x7f060060;
     }
     public static final class integer {
         /**  The maximum number of action buttons that should be permitted within
@@ -1684,7 +1685,7 @@ containing a value of this type.
         public static final int popup_menu=0x7f0e0001;
     }
     public static final class string {
-        public static final int Url=0x7f0b003e;
+        public static final int Url=0x7f0b003f;
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
          */
         public static final int abc_action_bar_home_description=0x7f0b0001;
@@ -1728,66 +1729,67 @@ containing a value of this type.
         public static final int about=0x7f0b0011;
         /**   
          */
-        public static final int app_name=0x7f0b003d;
-        public static final int check_class=0x7f0b0021;
-        public static final int check_title=0x7f0b002e;
-        public static final int class_location=0x7f0b0020;
-        public static final int class_name=0x7f0b001e;
-        public static final int clear=0x7f0b001a;
-        public static final int eat=0x7f0b0027;
+        public static final int app_name=0x7f0b003e;
+        public static final int check_class=0x7f0b0022;
+        public static final int check_title=0x7f0b002f;
+        public static final int class_location=0x7f0b0021;
+        public static final int class_name=0x7f0b001f;
+        public static final int clear=0x7f0b001b;
+        public static final int eat=0x7f0b0028;
         public static final int educational=0x7f0b000e;
         public static final int evaluate=0x7f0b000f;
-        public static final int feedback=0x7f0b003b;
+        public static final int feedback=0x7f0b003c;
         public static final int help=0x7f0b0012;
-        public static final int helpMessage=0x7f0b0031;
-        public static final int help_fragment_title=0x7f0b0030;
+        public static final int helpMessage=0x7f0b0032;
+        public static final int help_fragment_title=0x7f0b0031;
         /**  表格2内容 
          */
-        public static final int late=0x7f0b0024;
-        public static final int leave=0x7f0b0026;
-        public static final int login=0x7f0b001b;
-        public static final int login_title=0x7f0b0016;
-        public static final int logo=0x7f0b0014;
-        public static final int name=0x7f0b0017;
-        public static final int ontime=0x7f0b002c;
-        public static final int other=0x7f0b002d;
-        public static final int password=0x7f0b0019;
-        public static final int people_num=0x7f0b0022;
-        public static final int phone=0x7f0b0028;
-        public static final int prompt=0x7f0b003a;
-        public static final int really_num=0x7f0b0023;
+        public static final int late=0x7f0b0025;
+        public static final int leave=0x7f0b0027;
+        public static final int login=0x7f0b001c;
+        public static final int login_title=0x7f0b0017;
+        public static final int logo=0x7f0b0015;
+        public static final int logout=0x7f0b0014;
+        public static final int name=0x7f0b0018;
+        public static final int ontime=0x7f0b002d;
+        public static final int other=0x7f0b002e;
+        public static final int password=0x7f0b001a;
+        public static final int people_num=0x7f0b0023;
+        public static final int phone=0x7f0b0029;
+        public static final int prompt=0x7f0b003b;
+        public static final int really_num=0x7f0b0024;
         /**  表格1内容 
          */
-        public static final int school_location=0x7f0b001c;
-        public static final int school_name=0x7f0b001d;
+        public static final int school_location=0x7f0b001d;
+        public static final int school_name=0x7f0b001e;
         /**  反馈模块 
          */
-        public static final int sent=0x7f0b0039;
+        public static final int sent=0x7f0b003a;
         public static final int setting=0x7f0b0013;
-        public static final int shone=0x7f0b002a;
-        public static final int sleep=0x7f0b0029;
-        public static final int soft_update_cancel=0x7f0b0038;
-        public static final int soft_update_info=0x7f0b0034;
-        public static final int soft_update_later=0x7f0b0036;
+        public static final int shone=0x7f0b002b;
+        public static final int sleep=0x7f0b002a;
+        public static final int soft_update_cancel=0x7f0b0039;
+        public static final int soft_update_info=0x7f0b0035;
+        public static final int soft_update_later=0x7f0b0037;
         /**  更新模块 
          */
-        public static final int soft_update_no=0x7f0b0032;
-        public static final int soft_update_title=0x7f0b0033;
-        public static final int soft_update_updatebtn=0x7f0b0035;
-        public static final int soft_updating=0x7f0b0037;
+        public static final int soft_update_no=0x7f0b0033;
+        public static final int soft_update_title=0x7f0b0034;
+        public static final int soft_update_updatebtn=0x7f0b0036;
+        public static final int soft_updating=0x7f0b0038;
         /**  表格3内容 
          */
-        public static final int submit_time=0x7f0b002b;
+        public static final int submit_time=0x7f0b002c;
         /**  各菜单名称 
          */
         public static final int supervisor=0x7f0b000d;
-        public static final int teacher_name=0x7f0b001f;
-        public static final int title=0x7f0b0015;
-        public static final int title_com=0x7f0b002f;
+        public static final int teacher_name=0x7f0b0020;
+        public static final int title=0x7f0b0016;
+        public static final int title_com=0x7f0b0030;
         public static final int tools=0x7f0b0010;
-        public static final int truant=0x7f0b0025;
-        public static final int user=0x7f0b0018;
-        public static final int welcome=0x7f0b003c;
+        public static final int truant=0x7f0b0026;
+        public static final int user=0x7f0b0019;
+        public static final int welcome=0x7f0b003d;
     }
     public static final class style {
         /** 

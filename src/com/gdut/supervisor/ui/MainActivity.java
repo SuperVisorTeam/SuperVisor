@@ -1,26 +1,24 @@
 package com.gdut.supervisor.ui;
 
-import com.gdut.supervisor.R;
-
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.PopupMenu;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
-import android.widget.Toast;
+
+import com.gdut.supervisor.R;
+import com.gdut.supervisor.view.EducationalFragment;
+import com.gdut.supervisor.view.EvaluateFragment;
+import com.gdut.supervisor.view.SupervisorFragment;
+import com.gdut.supervisor.view.ToolsFragment;
 
 /**
  * 主菜单界面,需导入support-v7-appcompat支持包
