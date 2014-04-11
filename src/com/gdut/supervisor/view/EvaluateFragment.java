@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * ÆÀ¼ÛÀÏÊ¦µÄFragment
+ * è¯„ä»·è€å¸ˆçš„Fragment
  */
 @SuppressLint("ValidFragment")
 public class EvaluateFragment extends Fragment
@@ -19,14 +19,14 @@ public class EvaluateFragment extends Fragment
 	public static EvaluateFragment evaluateFragment;
 
 	/**
-	 * Ë½ÓĞ»¯¹¹Ôì·½·¨
+	 * ç§æœ‰åŒ–æ„é€ æ–¹æ³•
 	 */
 	private EvaluateFragment()
 	{
 	}
 
 	/**
-	 * ÄÚ²¿Àà£¬±£Ö¤¼ÓÔØÊ±Ê±Ïß³Ì°²È«µÄ¡£
+	 * å†…éƒ¨ç±»ï¼Œä¿è¯åŠ è½½æ—¶æ—¶çº¿ç¨‹å®‰å…¨çš„ã€‚
 	 */
 	private static class SingletonHolder
 	{
@@ -34,7 +34,7 @@ public class EvaluateFragment extends Fragment
 	}
 
 	/**
-	 * Ìá¹©Íâ²¿´´½¨EvaluateFragmentµÄ·½·¨,Ê¹ÓÃµ¥Àı¡£
+	 * æä¾›å¤–éƒ¨åˆ›å»ºEvaluateFragmentçš„æ–¹æ³•,ä½¿ç”¨å•ä¾‹ã€‚
 	 */
 	public static EvaluateFragment getInstance()
 	{

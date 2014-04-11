@@ -15,44 +15,44 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 
 /**
- * ¸Ã×Ô¶¨ÒåµÄSupervisorAdapter¼Ì³ĞÓÚFragmentPagerAdapter ¼ÓÔØÁËÈı¸ö±íµ¥Ëù¶ÔÓ¦µÄFragment
- * ËùÓĞ³ÉÔ±±äÁ¿µÄ¸³Öµ¶¼ÔÚ¹¹Ôìº¯ÊıSupervisorAdapter(FragmentManager fm)Àï£¬
- * °üÀ¨Ã¿¸öÒ³ÃæµÄ±êÌâÌá¹©ÕßList<String> titleList£¬Ã¿¸öÒ³¿¨Ìá¹©ÕßList<View> viewList
+ * è¯¥è‡ªå®šä¹‰çš„SupervisorAdapterç»§æ‰¿äºFragmentPagerAdapter åŠ è½½äº†ä¸‰ä¸ªè¡¨å•æ‰€å¯¹åº”çš„Fragment
+ * æ‰€æœ‰æˆå‘˜å˜é‡çš„èµ‹å€¼éƒ½åœ¨æ„é€ å‡½æ•°SupervisorAdapter(FragmentManager fm)é‡Œï¼Œ
+ * åŒ…æ‹¬æ¯ä¸ªé¡µé¢çš„æ ‡é¢˜æä¾›è€…List<String> titleListï¼Œæ¯ä¸ªé¡µå¡æä¾›è€…List<View> viewList
  */
 public class SupervisorAdapter extends FragmentPagerAdapter
 {
 
 	/**
-	 * ´æ´¢SupervisorActivityµÄÉÏÏÂÎÄ¶ÔÏó£¬
+	 * å­˜å‚¨SupervisorActivityçš„ä¸Šä¸‹æ–‡å¯¹è±¡ï¼Œ
 	 */
 	Context context;
 
 	FragmentManager myFragmentManager;
 	/**
-	 * °ÑĞèÒª»¬¶¯µÄÒ³¿¨Ìí¼Óµ½Õâ¸ölistÖĞ
+	 * æŠŠéœ€è¦æ»‘åŠ¨çš„é¡µå¡æ·»åŠ åˆ°è¿™ä¸ªlistä¸­
 	 */
 	private List<Fragment> fragmentViewList;
 
 	/**
-	 * ¸ÃList´æ·ÅÈı¸ö±íµ¥µÄ±êÌâµÄ±êÌâ
+	 * è¯¥Listå­˜æ”¾ä¸‰ä¸ªè¡¨å•çš„æ ‡é¢˜çš„æ ‡é¢˜
 	 */
 	private List<String> titleList;
 	/**
-	 * Èı¸ö±íµ¥µÄÊÓÍ¼²ÎÊı
+	 * ä¸‰ä¸ªè¡¨å•çš„è§†å›¾å‚æ•°
 	 */
 	private LayoutParams param;
 
-	// Ä¬ÈÏµÄ¹¹Ôìº¯Êı
+	// é»˜è®¤çš„æ„é€ å‡½æ•°
 	public SupervisorAdapter(FragmentManager fm)
 	{
 		super(fm);
-		// ÎªÈı¸ö±íµ¥ÉèÖÃ±êÌâ£¬´æÓÚtitleListÖĞ
-		titleList = new ArrayList<String>();// Ã¿¸öÒ³ÃæµÄTitleÊı¾İ
-		titleList.add("±íµ¥Ò»");
-		titleList.add("±íµ¥¶ş");
-		titleList.add("±íµ¥Èı");
+		// ä¸ºä¸‰ä¸ªè¡¨å•è®¾ç½®æ ‡é¢˜ï¼Œå­˜äºtitleListä¸­
+		titleList = new ArrayList<String>();// æ¯ä¸ªé¡µé¢çš„Titleæ•°æ®
+		titleList.add("è¡¨å•ä¸€");
+		titleList.add("è¡¨å•äºŒ");
+		titleList.add("è¡¨å•ä¸‰");
 
-		// »ñÈ¡Èı¸ö±íµ¥Fragment¶ÔÓ¦µÄview,´æ·ÅÓÚfragmentViewListÀï£¬
+		// è·å–ä¸‰ä¸ªè¡¨å•Fragmentå¯¹åº”çš„view,å­˜æ”¾äºfragmentViewListé‡Œï¼Œ
 		fragmentViewList = new ArrayList<Fragment>();
 		//
 		fragmentViewList.add(new FirstItemFragment());
@@ -61,10 +61,10 @@ public class SupervisorAdapter extends FragmentPagerAdapter
 	}
 
 	/*
-	 * ÒÔÏÂ¶¼ÊÇ¸¸ÀàPagerAdapterµÄÎ´ÊµÏÖ·½·¨µÄÊµÏÖ
+	 * ä»¥ä¸‹éƒ½æ˜¯çˆ¶ç±»PagerAdapterçš„æœªå®ç°æ–¹æ³•çš„å®ç°
 	 */
 	/**
-	 * µÃµ½Ã¿¸öFragment
+	 * å¾—åˆ°æ¯ä¸ªFragment
 	 */
 	@Override
 	public Fragment getItem(int arg0)
@@ -74,7 +74,7 @@ public class SupervisorAdapter extends FragmentPagerAdapter
 	}
 
 	/**
-	 * µÃµ½Ò³Êı
+	 * å¾—åˆ°é¡µæ•°
 	 */
 	@Override
 	public int getCount()
@@ -84,7 +84,7 @@ public class SupervisorAdapter extends FragmentPagerAdapter
 	}
 
 	/**
-	 * Ã¿¸öÒ³ÃæµÄtitle
+	 * æ¯ä¸ªé¡µé¢çš„title
 	 */
 	@Override
 	public CharSequence getPageTitle(int position)
@@ -99,7 +99,7 @@ public class SupervisorAdapter extends FragmentPagerAdapter
 	}
 
 	/**
-	 * Ã¿¸öµÃµ½Ã¿¸öÒ³ÃæµÄID
+	 * æ¯ä¸ªå¾—åˆ°æ¯ä¸ªé¡µé¢çš„ID
 	 */
 	@Override
 	public long getItemId(int position)

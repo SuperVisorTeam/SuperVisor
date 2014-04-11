@@ -20,21 +20,20 @@ import com.gdut.supervisor.info.BaseMessage;
 public class LoginHandler {
 
 	private DefaultHttpClient httpclient = new DefaultHttpClient();
-	/** µÇÂ¼URL */
+	/** ç™»å½•URL */
 	// private String loginUrl =
 	// "http://cscw.gdut.edu.cn:8888/edusupervisor/j_spring_security_check";
-	/** ÍË³öURL */
+	/** é€€å‡ºURL */
 	private String logoutUrl;
 
-	/** ±í¸ñÌá½»µÄURL */
+	/** è¡¨æ ¼æäº¤çš„URL */
 	private String submitTableUrl;
-
 
 	public LoginHandler() {
 	}
-	
+
 	/**
-	 * »ñµÃ±í¸ñÌá½»µÄURL
+	 * è·å¾—è¡¨æ ¼æäº¤çš„URL
 	 * 
 	 * @return
 	 */
@@ -43,7 +42,7 @@ public class LoginHandler {
 	}
 
 	/**
-	 * Éè¶¨±í¸ñÌá½»µÄURL
+	 * è®¾å®šè¡¨æ ¼æäº¤çš„URL
 	 * 
 	 * @param submitTableUrl
 	 */
@@ -52,7 +51,7 @@ public class LoginHandler {
 	}
 
 	/**
-	 * »ñµÃÍË³öURL
+	 * è·å¾—é€€å‡ºURL
 	 * 
 	 * @return
 	 */
@@ -61,7 +60,7 @@ public class LoginHandler {
 	}
 
 	/**
-	 * Éè¶¨ÍË³öURL
+	 * è®¾å®šé€€å‡ºURL
 	 * 
 	 * @param logoutUrl
 	 */
@@ -92,7 +91,7 @@ public class LoginHandler {
 
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
 
-			// è¾“å…¥ç£å¯¼å‘˜çš„ç”¨æˆ·å?å¯†ç 
+			// è¾“å…¥ç£å¯¼å‘˜çš„ç”¨æˆ·ï¿½?å¯†ç 
 			params.add(new BasicNameValuePair("j_username", username));
 			params.add(new BasicNameValuePair("j_password", password));
 
@@ -113,7 +112,7 @@ public class LoginHandler {
 	}
 
 	/**
-	 * é€?‡ºç™»å½•
+	 * é€€å‡ºç™»å½•
 	 * 
 	 * @return
 	 */
@@ -130,7 +129,7 @@ public class LoginHandler {
 			statusLine = response.getStatusLine();
 
 			int statusCode = statusLine.getStatusCode();
-			// é€?‡ºæˆåŠŸ
+			// é€€å‡ºæˆåŠŸ
 			if (statusCode == 200) {
 				return true;
 			}

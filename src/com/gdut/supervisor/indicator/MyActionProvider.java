@@ -3,8 +3,9 @@ package com.gdut.supervisor.indicator;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
-import android.sax.StartElementListener;
 import android.support.v4.view.ActionProvider;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.PopupMenu.OnMenuItemClickListener;
@@ -16,10 +17,12 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.gdut.supervisor.R;
+import com.gdut.supervisor.info.BaseMessage;
 import com.gdut.supervisor.ui.LoginActivity;
+import com.gdut.supervisor.ui.MainActivity;
 
 /**
- * PopupMenu²Ëµ¥
+ * PopupMenuèœå•
  */
 public class MyActionProvider extends ActionProvider implements OnMenuItemClickListener
 {
@@ -36,7 +39,7 @@ public class MyActionProvider extends ActionProvider implements OnMenuItemClickL
 	}
 
 	/**
-	 * ·µ»ØµÄview¼´ÎªÏÔÊ¾ÔÚactionbarÉÏ¿ÉÒÔµã»÷µÄÍ¼±ê¡£
+	 * è¿”å›çš„viewå³ä¸ºæ˜¾ç¤ºåœ¨actionbarä¸Šå¯ä»¥ç‚¹å‡»çš„å›¾æ ‡ã€‚
 	 */
 	@Override
 	public View onCreateActionView()
@@ -59,7 +62,7 @@ public class MyActionProvider extends ActionProvider implements OnMenuItemClickL
 	}
 
 	/**
-	 * ²Ëµ¥µã»÷¼àÌı
+	 * èœå•ç‚¹å‡»ç›‘å¬
 	 */
 	@Override
 	public boolean onMenuItemClick(MenuItem arg0)
@@ -67,32 +70,48 @@ public class MyActionProvider extends ActionProvider implements OnMenuItemClickL
 		AlertDialog.Builder builder = new Builder(context);
 		builder.setInverseBackgroundForced(true);
 		builder.setIcon(R.drawable.icon);
-		// ÉèÖÃÊÇ·ñµã»÷Íâ±ßÔµÈ¡ÏûÏÔÊ¾£¬2.3Ä¬ÈÏ
+		// è®¾ç½®æ˜¯å¦ç‚¹å‡»å¤–è¾¹ç¼˜å–æ¶ˆæ˜¾ç¤ºï¼Œ2.3é»˜è®¤
 		builder.setCancelable(false);
 		switch (arg0.getItemId())
 		{
-		// °ïÖú²Ëµ¥
+		// å¸®åŠ©èœå•
 		case R.id.menu_help:
 			view = layoutInflater.inflate(R.layout.alertdialog_menu_help, null);
-			builder.setTitle("Ê¹ÓÃ°ïÖú");
-			builder.setPositiveButton("È·¶¨", null);
+			builder.setTitle("ä½¿ç”¨å¸®åŠ©");
+			builder.setPositiveButton("ç¡®å®š", null);
 			builder.setView(view);
 			builder.create().show();
 			break;
-		// ¹ØÓÚ²Ëµ¥
+		// å…³äºèœå•
 		case R.id.menu_about:
-			Toast.makeText(context, "¹ØÓÚ", 0).show();
+			Toast.makeText(context, "å…³äº", 0).show();
 			break;
 		case R.id.menu_setting:
-			Toast.makeText(context, "ÉèÖÃ", 0).show();
+			Toast.makeText(context, "è®¾ç½®", 0).show();
 			break;
-		//×¢Ïú
+		//æ³¨é”€
 		case R.id.menu_logout:
-			//Toast.makeText(context, "×¢Ïú", 0).show();
-			Intent intent = new Intent(context, LoginActivity.class);
-			context.startActivity(intent);
+			//Toast.makeText(context, "æ³¨é”€", 0).show();
+			new AlertDialog.Builder(context)
+			.setTitle("æç¤º")
+			.setMessage("ç¡®è®¤æ³¨é”€ï¼Ÿ")
+			.setPositiveButton("ç¡®å®š", new OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+					Intent intent = new Intent(context, LoginActivity.class);
+					context.startActivity(intent);
+					BaseMessage.supervisor_no = null;
+					MainActivity m = (MainActivity)context;
+					m.finish();
+					
+				}
+			})
+			.setNegativeButton("å–æ¶ˆ", null)
+			.show();
 			break;
-		// ÉèÖÃ²Ëµ¥
+		// è®¾ç½®èœå•
 		default:
 			return false;
 		}

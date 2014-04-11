@@ -20,7 +20,7 @@ public class Edu_Survey {
 	 */
 	public String Survey_ID;
 	/**
-	 * 教学班编�?
+	 * 教学班编号
 	 * 
 	 */
 	public Edu_CourseClass course_class_no;
@@ -109,7 +109,7 @@ public class Edu_Survey {
 	 */
 	public String Pic_Path;
 	/**
-	 * 督导总评�?
+	 * 督导总评�?
 	 * 
 	 */
 	public Integer Survey_Score;
@@ -119,12 +119,12 @@ public class Edu_Survey {
 	 */
 	public String Survey_Level;
 	/**
-	 * 通知发�?标识
+	 * 通知发�?标识
 	 * 
 	 */
 	public String Notice_Flag;
 	/**
-	 * 发�?范围
+	 * 发�?范围
 	 * 
 	 */
 	public String Survey_Receiver;
@@ -141,15 +141,15 @@ public class Edu_Survey {
 	 */
 	public String Terminal_Visit_Ip;
 	/**
-	 * 审核状�?
+	 * 审核状�?
 	 */
 	public String Audit_Status;
 	/**
-	 * 审核�?
+	 * 审核�?
 	 */
 	public String Auditor;
 	/**
-	 * 创建者编�?
+	 * 创建者编�?
 	 * 
 	 */
 	public String Add_User;
@@ -159,7 +159,7 @@ public class Edu_Survey {
 	 */
 	public String Add_Time;
 	/**
-	 * 修改者编�?
+	 * 修改者编�?
 	 * 
 	 */
 	public String Modify_User;

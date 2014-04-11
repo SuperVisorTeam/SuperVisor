@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * ¹¤¾ßµÄFragment
+ * å·¥å…·çš„Fragment
  */
 @SuppressLint("ValidFragment")
 public class ToolsFragment extends Fragment
@@ -19,7 +19,7 @@ public class ToolsFragment extends Fragment
 	public static ToolsFragment helpFragment;
 
 	/**
-	 * Ë½ÓĞ»¯¹¹Ôì·½·¨
+	 * ç§æœ‰åŒ–æ„é€ æ–¹æ³•
 	 */
 	private ToolsFragment()
 	{
@@ -27,7 +27,7 @@ public class ToolsFragment extends Fragment
 	}
 
 	/**
-	 * ÄÚ²¿Àà£¬±£Ö¤¼ÓÔØÊ±Ê±Ïß³Ì°²È«µÄ¡£
+	 * å†…éƒ¨ç±»ï¼Œä¿è¯åŠ è½½æ—¶æ—¶çº¿ç¨‹å®‰å…¨çš„ã€‚
 	 */
 	private static class SingletonHolder
 	{
@@ -35,7 +35,7 @@ public class ToolsFragment extends Fragment
 	}
 
 	/**
-	 * Ìá¹©Íâ²¿´´½¨HelpFragment¶ÔÏóµÄ·½·¨¡£
+	 * æä¾›å¤–éƒ¨åˆ›å»ºHelpFragmentå¯¹è±¡çš„æ–¹æ³•ã€‚
 	 */
 	public static ToolsFragment getInstance()
 	{

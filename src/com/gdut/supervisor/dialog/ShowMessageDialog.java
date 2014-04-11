@@ -9,9 +9,9 @@ public class ShowMessageDialog
 	public static void showMessage(Context context, String msg)
 	{
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
-		builder.setMessage(msg).setPositiveButton("确定", null);
+		builder.setMessage(msg).setPositiveButton("纭畾", null);
 		AlertDialog dialog = builder.create();
-		dialog.setTitle("提示");
+		dialog.setTitle("鎻愮ず");
 		dialog.show();
 	}
 }

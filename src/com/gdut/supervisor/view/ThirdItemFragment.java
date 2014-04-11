@@ -18,20 +18,20 @@ import android.widget.Toast;
 import com.gdut.supervisor.R;
 
 /**
- * µÚÈıÕÂ±íµ¥
+ * ç¬¬ä¸‰ç« è¡¨å•
  */
 public class ThirdItemFragment extends Fragment implements OnCheckedChangeListener, OnClickListener
 {
 	/**
-	 * ÈÎ¿Î½ÌÊ¦ÊÇ·ñ°´Ê±µ½Ğ£
+	 * ä»»è¯¾æ•™å¸ˆæ˜¯å¦æŒ‰æ—¶åˆ°æ ¡
 	 */
 	private RadioGroup rdoGop_thacher_if_ontime;
 	/**
-	 * ÈÎ¿Î½ÌÊ¦¡¢¶½µ¼Ô±¡¢Ìá½»Ê±¼ä¡¢±¸×¢
+	 * ä»»è¯¾æ•™å¸ˆã€ç£å¯¼å‘˜ã€æäº¤æ—¶é—´ã€å¤‡æ³¨
 	 */
 	private EditText edtTxt_teacher_name, edtTxt_supervisor, edtTxt_summit_time, edt_remark;
 	/**
-	 * »ñÈ¡µ±Ç°Ê±¼ä°´Å¥
+	 * è·å–å½“å‰æ—¶é—´æŒ‰é’®
 	 */
 	private Button btn_get_summit_time;
 
@@ -65,7 +65,7 @@ public class ThirdItemFragment extends Fragment implements OnCheckedChangeListen
 	}
 
 	/**
-	 * ³õÊ¼»¯¿Ø¼ş¡¢Ìí¼Ó¼àÌı
+	 * åˆå§‹åŒ–æ§ä»¶ã€æ·»åŠ ç›‘å¬
 	 * 
 	 * @param view
 	 */
@@ -88,47 +88,47 @@ public class ThirdItemFragment extends Fragment implements OnCheckedChangeListen
 	}
 
 	/**
-	 * RadioGroupÈÎ¿Î½ÌÊ¦ÊÇ·ñ°´Ê±µ½Ğ£µÄ¼àÌı
+	 * RadioGroupä»»è¯¾æ•™å¸ˆæ˜¯å¦æŒ‰æ—¶åˆ°æ ¡çš„ç›‘å¬
 	 */
 	@Override
 	public void onCheckedChanged(RadioGroup group, int checkedId)
 	{
 		switch (checkedId)
 		{
-		// ÊÇ
+		// æ˜¯
 		case R.id.rdoBtn_teacher_if_ontime_yes:
-			Toast.makeText(getActivity(), "ÊÇ", 0).show();
+			Toast.makeText(getActivity(), "æ˜¯", 0).show();
 			break;
-		// ·ñ
+		// å¦
 		case R.id.rdoBtn_teacher_if_ontime_no:
-			Toast.makeText(getActivity(), "·ñ", 0).show();
+			Toast.makeText(getActivity(), "å¦", 0).show();
 			break;
 		default:
 			break;
 		}
 	}
 	/**
-	 * Ìá½»Ê±¼ä¶àµÄ¼àÌı
+	 * æäº¤æ—¶é—´å¤šçš„ç›‘å¬
 	 */
 	@Override
 	public void onClick(View v)
 	{
 		switch (v.getId())
 		{
-		// ÈÎ¿Î½ÌÊ¦
+		// ä»»è¯¾æ•™å¸ˆ
 		case R.id.edtTxt_teacher_name:
 			break;
-		// ¶½µ¼Ô±
+		// ç£å¯¼å‘˜
 		case R.id.edtTxt_supervisor:
 			break;
-		// µã»÷»ñÈ¡µ±Ç°Ê±¼ä
+		// ç‚¹å‡»è·å–å½“å‰æ—¶é—´
 		case R.id.btn_get_submit_time:
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			Date curDate = new Date(System.currentTimeMillis());
 			String curTime = formatter.format(curDate);
 			edtTxt_summit_time.setText(curTime);
 			break;
-		// ±¸×¢
+		// å¤‡æ³¨
 		case R.id.edtTxt_remark:
 			break;
 		default:

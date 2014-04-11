@@ -43,7 +43,7 @@ public class SubmitHandler {
 
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
 
-			// ÊäÈë¶½µ¼Ô±µÄÓÃ»§Ãû/ÃÜÂë
+			// è¾“å…¥ç£å¯¼å‘˜çš„ç”¨æˆ·å/å¯†ç 
 			params.add(new BasicNameValuePair("j_username", username));
 			params.add(new BasicNameValuePair("j_password", password));
 
@@ -68,25 +68,25 @@ public class SubmitHandler {
 	 * @param classSituation
 	 * @return
 	 * @throws Exception
-	 *             Ìá½»±íµ¥
+	 *             æäº¤è¡¨å•
 	 */
 	public static int submitForm(Edu_Survey classSituation) throws Exception {
 
 		/**
-		 * ±í¸ñÌá½»µÄURL
+		 * è¡¨æ ¼æäº¤çš„URL
 		 */
 		String submitTableUrl = BaseMessage.baseUrl + "/Edu_Survey/save";
 		Edu_SurveyToIphone es = ChangeData.changePhone(classSituation);
-		PrintlnPhoneFromData.println(es, "Ìá½»ºóµÄÊı¾İÏÔÊ¾");
+		PrintlnPhoneFromData.println(es, "æäº¤åçš„æ•°æ®æ˜¾ç¤º");
 		String json = gson.toJson(es);
 
 		
 		/*String json = "";
-		if (es.getCourse_class_no() == null)// Ô¤¶¨
+		if (es.getCourse_class_no() == null)// é¢„å®š
 		{
 			json = gson.toJson(classSituation);
 		} else {
-			PrintlnPhoneFromData.println(es, "Ìá½»ºóµÄÊı¾İÏÔÊ¾");
+			PrintlnPhoneFromData.println(es, "æäº¤åçš„æ•°æ®æ˜¾ç¤º");
 			json = gson.toJson(es);
 		}
 */
@@ -103,16 +103,16 @@ public class SubmitHandler {
 		HttpEntity entity = response.getEntity();
 
 		String responseText = EntityUtils.toString(entity, HTTP.UTF_8);
-		System.out.println("Ìá½»±íµ¥µÄ×´Ì¬Âë£º"
+		System.out.println("æäº¤è¡¨å•çš„çŠ¶æ€ç ï¼š"
 				+ response.getStatusLine().getStatusCode());
 		if (response.getStatusLine().getStatusCode() == 200) {
-			System.out.println("Ìá½»³É¹¦");
+			System.out.println("æäº¤æˆåŠŸ");
 		} else if (response.getStatusLine().getStatusCode() == 400) {
-			System.out.println("±íµ¥²ÎÊıÓĞÎó!");
+			System.out.println("è¡¨å•å‚æ•°æœ‰è¯¯!");
 		} else if (response.getStatusLine().getStatusCode() == 409) {
-			System.out.println("½ÌÑ§°àÒÑ¾­±»¶½µ¼£¡£¡!");
+			System.out.println("æ•™å­¦ç­å·²ç»è¢«ç£å¯¼ï¼ï¼!");
 		} else {
-			System.out.println("Ìá½»Ê§°Ü!");
+			System.out.println("æäº¤å¤±è´¥!");
 		}
 
 		return response.getStatusLine().getStatusCode();
@@ -127,12 +127,12 @@ public class SubmitHandler {
 	 * @return
 	 * @throws ClientProtocolException
 	 * @throws IOException
-	 *             Í¨¹ıĞ£Çø£¬ÈÕÆÚ£¬ÉÏ¿ÎµØµã£¬ÉÏ¿Î½Ú´Î ·µ»ØÑ§ÔºÃû³Æ£¬×¨Òµ°à¼¶£¬Ó¦µ½ÈËÊı
+	 *             é€šè¿‡æ ¡åŒºï¼Œæ—¥æœŸï¼Œä¸Šè¯¾åœ°ç‚¹ï¼Œä¸Šè¯¾èŠ‚æ¬¡ è¿”å›å­¦é™¢åç§°ï¼Œä¸“ä¸šç­çº§ï¼Œåº”åˆ°äººæ•°
 	 */
 	public static int getMap(String school_district, String date,
 			String study_place, String section, String user_no)
 			throws ClientProtocolException, IOException {
-		// È¡µÃ
+		// å–å¾—
 		HttpGet httpGet = new HttpGet(BaseMessage.baseUrl + "/dudao/"
 				+ school_district + "/" + date + "/" + study_place + "/"
 				+ section + "/" + user_no);
@@ -140,12 +140,12 @@ public class SubmitHandler {
 				+ school_district + "/" + date + "/" + study_place + "/"
 				+ section + "/" + user_no);
 		HttpResponse response = httpclient.execute(httpGet);
-		System.out.println("»ñÈ¡ÉÏ¿ÎµØµãµÄ×´Ì¬Âë£º"
+		System.out.println("è·å–ä¸Šè¯¾åœ°ç‚¹çš„çŠ¶æ€ç ï¼š"
 				+ response.getStatusLine().getStatusCode());
 		if (response.getStatusLine().getStatusCode() == 404) {
-			System.out.println("ÊäÈëÊı¾İ´íÎó»ò´ËµØµãÃ»ÓĞ¶ÔÓ¦µÄ¿ÎÒªÉÏ");
+			System.out.println("è¾“å…¥æ•°æ®é”™è¯¯æˆ–æ­¤åœ°ç‚¹æ²¡æœ‰å¯¹åº”çš„è¯¾è¦ä¸Š");
 		} else if (response.getStatusLine().getStatusCode() == 200) {
-			System.out.println("ÊäÈëÕıÈ·");
+			System.out.println("è¾“å…¥æ­£ç¡®");
 
 			HttpEntity entity = response.getEntity();
 
@@ -153,9 +153,9 @@ public class SubmitHandler {
 
 			getmap = gson.fromJson(responseText, HashMap.class);
 		} else if (response.getStatusLine().getStatusCode() == 402) {
-			System.out.println("¸Ã°à¼¶ÒÑ¾­±»Ô¤¶¨");
+			System.out.println("è¯¥ç­çº§å·²ç»è¢«é¢„å®š");
 		} else if (response.getStatusLine().getStatusCode() == 409) {
-			System.out.println("¸Ã°à¼¶ÒÑ¾­±»¶½µ¼");
+			System.out.println("è¯¥ç­çº§å·²ç»è¢«ç£å¯¼");
 		}
 
 		return response.getStatusLine().getStatusCode();
@@ -169,7 +169,7 @@ public class SubmitHandler {
 	 * @return
 	 * @throws ClientProtocolException
 	 * @throws IOException
-	 *             Í¨¹ı¶½µ¼Ô±µÄÑ§ºÅ£¬¿ªÊ¼Ê±¼ä£¬½áÊøÊ±¼ä À´»ñÈ¡ÉÏ¿ÎµØµã£¬Ğ£Çø£¬×¨Òµ°à¼¶µÈ±íµ¥Êı¾İ
+	 *             é€šè¿‡ç£å¯¼å‘˜çš„å­¦å·ï¼Œå¼€å§‹æ—¶é—´ï¼Œç»“æŸæ—¶é—´ æ¥è·å–ä¸Šè¯¾åœ°ç‚¹ï¼Œæ ¡åŒºï¼Œä¸“ä¸šç­çº§ç­‰è¡¨å•æ•°æ®
 	 */
 	public static Map<String, List<List>> getMap2(String user_no,
 			String start_date, String end_date) throws ClientProtocolException,
@@ -179,11 +179,11 @@ public class SubmitHandler {
 
 		HttpResponse response = httpclient.execute(httpGet);
 		System.out
-				.println("²éÕÒµÄ×´Ì¬Âë£º" + response.getStatusLine().getStatusCode());
+				.println("æŸ¥æ‰¾çš„çŠ¶æ€ç ï¼š" + response.getStatusLine().getStatusCode());
 		if (response.getStatusLine().getStatusCode() == 404) {
-			System.out.println("ÊäÈëÊı¾İ´íÎó»ò´ËµØµãÃ»ÓĞ¶ÔÓ¦µÄ¿ÎÒªÉÏ");
+			System.out.println("è¾“å…¥æ•°æ®é”™è¯¯æˆ–æ­¤åœ°ç‚¹æ²¡æœ‰å¯¹åº”çš„è¯¾è¦ä¸Š");
 		} else if (response.getStatusLine().getStatusCode() == 200) {
-			System.out.println("ÊäÈëÕıÈ·");
+			System.out.println("è¾“å…¥æ­£ç¡®");
 
 			HttpEntity entity = response.getEntity();
 
@@ -199,12 +199,12 @@ public class SubmitHandler {
 	}
 
 	/**
-	 * ²éÕÒ¹¦ÄÜµÄÊµÏÖ
+	 * æŸ¥æ‰¾åŠŸèƒ½çš„å®ç°
 	 */
 	public static Edu_Survey getEdu_Survey(String survey_id)
 			throws ClientProtocolException, IOException {
 
-		// È¡µÃ
+		// å–å¾—
 		HttpGet httpGet = new HttpGet(BaseMessage.baseUrl
 				+ "/dudao/checkForUpdate/" + survey_id);
 
@@ -219,14 +219,14 @@ public class SubmitHandler {
 		Edu_Survey edu_survey = gson.fromJson(responseText, Edu_Survey.class);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-		// ´´½¨ÈÕÆÚ
+		// åˆ›å»ºæ—¥æœŸ
 		String modifys = edu_survey.getModify_Time();
 		long modifytime = Long.valueOf(modifys);
 		Date modifydt = new Date(modifytime);
 		String modifydate = sdf.format(modifydt);
 		edu_survey.setModify_Time(modifydate);
 
-		// ´´½¨ÈÕÆÚ
+		// åˆ›å»ºæ—¥æœŸ
 		String adds = edu_survey.getAdd_Time();
 		long addtime = Long.valueOf(adds);
 		Date addtimedt = new Date(addtime);
@@ -241,13 +241,13 @@ public class SubmitHandler {
 	 * @param classSituation
 	 * @return
 	 * @throws Exception
-	 *             ĞŞ¸Ä±íµ¥
+	 *             ä¿®æ”¹è¡¨å•
 	 */
 	public static int modificationForm(Edu_Survey modificationSituation)
 			throws Exception {
 
 		/**
-		 * ĞŞ¸ÄµÄURL
+		 * ä¿®æ”¹çš„URL
 		 */
 		String modificationUrl = BaseMessage.baseUrl + "/Edu_Survey/update";
 
@@ -266,12 +266,12 @@ public class SubmitHandler {
 		HttpEntity entity = response.getEntity();
 
 		String responseText = EntityUtils.toString(entity, HTTP.UTF_8);
-		System.out.println("ĞŞ¸Ä±íµ¥µÄ×´Ì¬Âë£º"
+		System.out.println("ä¿®æ”¹è¡¨å•çš„çŠ¶æ€ç ï¼š"
 				+ response.getStatusLine().getStatusCode());
 		if (response.getStatusLine().getStatusCode() == 200) {
-			System.out.println("ĞŞ¸Ä³É¹¦");
+			System.out.println("ä¿®æ”¹æˆåŠŸ");
 		} else {
-			System.out.println("ĞŞ¸ÄÌá½»Ê§°Ü!");
+			System.out.println("ä¿®æ”¹æäº¤å¤±è´¥!");
 		}
 
 		return response.getStatusLine().getStatusCode();
@@ -285,7 +285,7 @@ public class SubmitHandler {
 	 * @return
 	 * @throws ClientProtocolException
 	 * @throws IOException
-	 *             Ô¤¶¨¹¦ÄÜ Í¨¹ıÑ§ºÅ À´»ñµÃÏà¹ØµÄĞÅÏ¢
+	 *             é¢„å®šåŠŸèƒ½ é€šè¿‡å­¦å· æ¥è·å¾—ç›¸å…³çš„ä¿¡æ¯
 	 */
 	public static Map<String, List<List>> getScheduleMap(String user_no)
 			throws ClientProtocolException, IOException {
@@ -294,11 +294,11 @@ public class SubmitHandler {
 
 		HttpResponse response = httpclient.execute(httpGet);
 		System.out
-				.println("Ô¤¶¨µÄ×´Ì¬Âë£º" + response.getStatusLine().getStatusCode());
+				.println("é¢„å®šçš„çŠ¶æ€ç ï¼š" + response.getStatusLine().getStatusCode());
 		if (response.getStatusLine().getStatusCode() == 404) {
-			System.out.println("Ã»ÓĞÕÒµ½ÏàÓ¦µÄÔ¤¶¨½ÌÊÒ");
+			System.out.println("æ²¡æœ‰æ‰¾åˆ°ç›¸åº”çš„é¢„å®šæ•™å®¤");
 		} else if (response.getStatusLine().getStatusCode() == 200) {
-			System.out.println("ÊäÈëÕıÈ·");
+			System.out.println("è¾“å…¥æ­£ç¡®");
 
 			HttpEntity entity = response.getEntity();
 

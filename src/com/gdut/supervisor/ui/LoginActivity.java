@@ -26,6 +26,7 @@ import com.gdut.supervisor.utils.LoginHandler;
 
 
 public class LoginActivity extends Activity implements OnClickListener {
+	protected static final int LOGIN_EXCEPTION = 0;
 	private EditText et_account;
 	private EditText et_password;
 	private Button btn_debark;
@@ -38,7 +39,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 	private LoginHandler loginHandler = new LoginHandler();
 	int statusCode = -1;
 	
-	private Handler handler = new Handler() {	//ÓÃÓÚÏìÓ¦´¦ÀíµÇÂ½Ïß³ÌµÄ½á¹û
+	private Handler handler = new Handler() {	//ç”¨äºå“åº”å¤„ç†ç™»é™†çº¿ç¨‹çš„ç»“æœ
 
 		@Override
 		public void handleMessage(Message msg) {
@@ -46,6 +47,8 @@ public class LoginActivity extends Activity implements OnClickListener {
 			super.handleMessage(msg);
 			if(msg.what == statusCode) {
 				handleDebarkReulst(statusCode);
+			} else if(msg.what == LOGIN_EXCEPTION) {
+				Toast.makeText(LoginActivity.this, "ç³»ç»Ÿç¹å¿™,è¯·ç¨åé‡è¯•", Toast.LENGTH_SHORT).show();
 			}
 		}
 		
@@ -54,7 +57,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);// È¥µô±êÌâÀ¸
+		requestWindowFeature(Window.FEATURE_NO_TITLE);// å»æ‰æ ‡é¢˜æ 
 		setContentView(R.layout.login);
 
 		et_account = (EditText) findViewById(R.id.et_login_account);
@@ -65,7 +68,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 
 		btn_debark.setOnClickListener(this);
 
-		// »ñÈ¡Ä¬ÈÏÕËºÅºÍÃÜÂëÓÃÓÚÏÔÊ¾£¬ÈçÖ®Ç°Ã»¼Ç×¡ÃÜÂë£¬ÔòÃÜÂë´¦²»ÏÔÊ¾
+		// è·å–é»˜è®¤è´¦å·å’Œå¯†ç ç”¨äºæ˜¾ç¤ºï¼Œå¦‚ä¹‹å‰æ²¡è®°ä½å¯†ç ï¼Œåˆ™å¯†ç å¤„ä¸æ˜¾ç¤º
 		preferences = getSharedPreferences("userdata", MODE_PRIVATE);
 		editor = preferences.edit();
 		et_account.setText(preferences.getString("account", null));
@@ -75,28 +78,28 @@ public class LoginActivity extends Activity implements OnClickListener {
 
 	}
 	/**
-	 * ÏìÓ¦µÇÂ¼°´Å¥
+	 * å“åº”ç™»å½•æŒ‰é’®
 	 */
 	@Override
 	public void onClick(View v) {
-		// ²½ÖèÒ»£ºÅĞ¶ÏµÇÂ½ÊÇ·ñ³É¹¦£¬Èô³É¹¦Ôò½øÈëÖ÷½çÃæ£¬²¢±£´æÓÃ»§ĞÅÏ¢£¬²»³É¹¦Ôò×ö³öÌáÊ¾
+		// æ­¥éª¤ä¸€ï¼šåˆ¤æ–­ç™»é™†æ˜¯å¦æˆåŠŸï¼Œè‹¥æˆåŠŸåˆ™è¿›å…¥ä¸»ç•Œé¢ï¼Œå¹¶ä¿å­˜ç”¨æˆ·ä¿¡æ¯ï¼Œä¸æˆåŠŸåˆ™åšå‡ºæç¤º
 		account = et_account.getText().toString().trim();
 		password = et_password.getText().toString().trim();
 
 		if (account.equals("")) {
-			Toast.makeText(this, "ÇëÊäÈëÕËºÅ", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "è¯·è¾“å…¥è´¦å·", Toast.LENGTH_SHORT).show();
 		} else if (password.equals("")) {
-			Toast.makeText(this, "ÇëÊäÈëÃÜÂë", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "è¯·è¾“å…¥å¯†ç ", Toast.LENGTH_SHORT).show();
 		} else {
-			//ÅĞ¶ÏÁªÍø×´¿ö
+			//åˆ¤æ–­è”ç½‘çŠ¶å†µ
 			ConnectivityManager connManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
 			NetworkInfo netInfo = connManager.getActiveNetworkInfo();
 			if (netInfo == null || !netInfo.isAvailable()) {
-				Toast.makeText(this, "ÍøÂç²»¿ÉÓÃ", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "ç½‘ç»œä¸å¯ç”¨", Toast.LENGTH_SHORT).show();
 			} else {
 				
 				System.out.println(account + password);
-				// ½øĞĞµÇÂ¼²Ù×÷
+				// è¿›è¡Œç™»å½•æ“ä½œ
 				new Thread() {
 
 					@Override
@@ -108,7 +111,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 							handler.sendEmptyMessage(statusCode);
 						} catch (Exception ex) {
 							ex.printStackTrace();
-							Toast.makeText(LoginActivity.this, "ÏµÍ³·±Ã¦", Toast.LENGTH_SHORT).show();
+							handler.sendEmptyMessage(LOGIN_EXCEPTION);
 							return;
 						}
 					}
@@ -123,12 +126,12 @@ public class LoginActivity extends Activity implements OnClickListener {
 
 	}
 	/**
-	 * ¶ÔµÇÂ½½á¹û½øĞĞ´¦Àí£¬µÇÂ¼³É¹¦Ôò½øÈëÖ÷½çÃæ
+	 * å¯¹ç™»é™†ç»“æœè¿›è¡Œå¤„ç†ï¼Œç™»å½•æˆåŠŸåˆ™è¿›å…¥ä¸»ç•Œé¢
 	 * @param statusCode
 	 */
 	public void handleDebarkReulst(int statusCode) {
 		switch (statusCode) {
-		case 200: /* µÇÂ¼³É¹¦ */
+		case 200: /* ç™»å½•æˆåŠŸ */
 			editor.putString("account", account);
 			if(cb_rmpsword.isChecked()) {
 				editor.putString("password", password);
@@ -141,17 +144,17 @@ public class LoginActivity extends Activity implements OnClickListener {
 			Intent intent = new Intent(this, MainActivity.class);
 			startActivity(intent);
 			finish();
-			//Toast.makeText(this, "µÇÂ½³É¹¦" + account, Toast.LENGTH_SHORT).show();
+			//Toast.makeText(this, "ç™»é™†æˆåŠŸ" + account, Toast.LENGTH_SHORT).show();
 			break;
-		case 404: /* ÓÃ»§²»´æÔÚ */
-			Toast.makeText(this, "ÓÃ»§²»´æÔÚ", Toast.LENGTH_SHORT).show();
+		case 404: /* ç”¨æˆ·ä¸å­˜åœ¨ */
+			Toast.makeText(this, "ç”¨æˆ·ä¸å­˜åœ¨", Toast.LENGTH_SHORT).show();
 			break;
-		case 401: /* ÃÜÂë´íÎó */
-			Toast.makeText(this, "ÃÜÂë´íÎó,ÇëÖØĞÂÊäÈë", Toast.LENGTH_SHORT)
+		case 401: /* å¯†ç é”™è¯¯ */
+			Toast.makeText(this, "å¯†ç é”™è¯¯,è¯·é‡æ–°è¾“å…¥", Toast.LENGTH_SHORT)
 					.show();
 			break;
-		case 403: /* ½ûÖ¹·ÃÎÊ */
-			Toast.makeText(this, "½ûÖ¹·ÃÎÊ", Toast.LENGTH_SHORT).show();
+		case 403: /* ç¦æ­¢è®¿é—® */
+			Toast.makeText(this, "ç¦æ­¢è®¿é—®", Toast.LENGTH_SHORT).show();
 			break;
 
 		default:
@@ -160,7 +163,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 	}
 	
 	/**
-	 * ·µ»Ø¼üµÄÏìÓ¦
+	 * è¿”å›é”®çš„å“åº”
 	 */
 	@Override
 	public boolean dispatchKeyEvent(KeyEvent event) {
@@ -168,9 +171,9 @@ public class LoginActivity extends Activity implements OnClickListener {
 		if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
 			if (event.getAction() == KeyEvent.ACTION_DOWN && event.getRepeatCount() == 0) {
 				new AlertDialog.Builder(this)
-						.setTitle("ÌáÊ¾")
-						.setMessage("È·¶¨ÍË³öÂğ£¿")
-						.setPositiveButton("È·¶¨",
+						.setTitle("æç¤º")
+						.setMessage("ç¡®å®šé€€å‡ºå—ï¼Ÿ")
+						.setPositiveButton("ç¡®å®š",
 								new DialogInterface.OnClickListener() {
 
 									@Override
@@ -178,8 +181,9 @@ public class LoginActivity extends Activity implements OnClickListener {
 											int which) {
 										// TODO Auto-generated method stub
 										finish();
+										android.os.Process.killProcess(android.os.Process.myPid());
 									}
-								}).setNegativeButton("È¡Ïû", null).show();
+								}).setNegativeButton("å–æ¶ˆ", null).show();
 			}
 			return true;
 		}

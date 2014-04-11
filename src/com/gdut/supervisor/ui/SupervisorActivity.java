@@ -16,190 +16,190 @@ import com.gdut.supervisor.adapter.SupervisorAdapter;
 import com.gdut.supervisor.info.BaseMessage;
 import com.gdut.supervisor.view.SupervisorFragment;
 /**
- * °üº¬Èı±íµ¥µÄFragmentActivity
+ * åŒ…å«ä¸‰è¡¨å•çš„FragmentActivity
  */
 public class SupervisorActivity extends FragmentActivity  {
 	/**
-	 * Çå¿Õ°´Å¥
+	 * æ¸…ç©ºæŒ‰é’®
 	 */
 	private Button clearButton;
 	/**
-	 * Ìá½»°´Å¥
+	 * æäº¤æŒ‰é’®
 	 */
 	private Button submitButton;
 	/**
-	 * ¸ß¿ª´°¿Ú
+	 * é«˜å¼€çª—å£
 	 */
 	private AlertDialog leaveDialog;
 	/**
-	 * ÒÑ¾­¶½µ¼´°¿Ú
+	 * å·²ç»ç£å¯¼çª—å£
 	 */
 	private AlertDialog hasSaveDialog;
 	/**
-	 * ÒÑ¾­¶½µ¼´°¿Ú
+	 * å·²ç»ç£å¯¼çª—å£
 	 */
 	private AlertDialog schedulehasSaveDialog;
 	/**
-	 * Ìá½»´°¿Ú
+	 * æäº¤çª—å£
 	 */
 	private AlertDialog submitDialog;
 	/**
-	 * Ìá½»³É¹¦´°¿Ú
+	 * æäº¤æˆåŠŸçª—å£
 	 */
 	private AlertDialog submitsuccessDialog;
 	/**
-	 * ÉóºË´°¿Ú
+	 * å®¡æ ¸çª—å£
 	 */
 	private AlertDialog auditDialog;
 	/**
-	 * Ô¤¶¨Ìá½»³É¹¦´°¿Ú
+	 * é¢„å®šæäº¤æˆåŠŸçª—å£
 	 */
 	private AlertDialog schedulesuccessDialog;
 
 	/**
-	 * ĞŞ¸Ä´°¿Ú
+	 * ä¿®æ”¹çª—å£
 	 */
 	private AlertDialog modificationDialog;
 	/**
-	 * ĞŞ¸Ä³É¹¦´°¿Ú
+	 * ä¿®æ”¹æˆåŠŸçª—å£
 	 */
 	private AlertDialog modificationsuccessDialog;
 	/**
-	 * ĞŞ¸ÄÊ§°Ü´°¿Ú
+	 * ä¿®æ”¹å¤±è´¥çª—å£
 	 */
 	private AlertDialog modificationfaileDialog;
 	/**
-	 * ÖØÖÃ´°¿Ú
+	 * é‡ç½®çª—å£
 	 */
 	private AlertDialog clearDialog;
 
 	/**
-	 * ÓÃÀ´ÅĞ¶ÏµÚÒ»¸ö¿¨Æ¬ÊÇ·ñ±»´ò¿ª
+	 * ç”¨æ¥åˆ¤æ–­ç¬¬ä¸€ä¸ªå¡ç‰‡æ˜¯å¦è¢«æ‰“å¼€
 	 */
 	private boolean firstOpen = true;
 	/**
-	 * ÓÃÀ´ÅĞ¶ÏµÚ¶ş¸ö¿¨Æ¬ÊÇ·ñ±»´ò¿ª
+	 * ç”¨æ¥åˆ¤æ–­ç¬¬äºŒä¸ªå¡ç‰‡æ˜¯å¦è¢«æ‰“å¼€
 	 */
 	public static boolean secondOpen = false;
 
 	/**
-	 * ÓÃÀ´ÅĞ¶ÏµÚÈı¸ö¿¨Æ¬ÊÇ·ñ±»´ò¿ª
+	 * ç”¨æ¥åˆ¤æ–­ç¬¬ä¸‰ä¸ªå¡ç‰‡æ˜¯å¦è¢«æ‰“å¼€
 	 */
 	public static boolean thirdOpen = false;
 
 	/**
-	 * ´´½¨Ò»ÕÅ±í£¬´æ´¢¸Ã´Î¶½µ¼µÄÇé¿ö
+	 * åˆ›å»ºä¸€å¼ è¡¨ï¼Œå­˜å‚¨è¯¥æ¬¡ç£å¯¼çš„æƒ…å†µ
 	 */
 	public static com.gdut.supervisor.info.Edu_Survey situation;
 	/**
-	 * °à¼¶»ù±¾ĞÅÏ¢
+	 * ç­çº§åŸºæœ¬ä¿¡æ¯
 	 */
 	public static com.gdut.supervisor.info.Edu_CourseClass edu_CourseClass;
     /**
-     * ¸ÃviewPager ÓÃÓÚ¼ÓÔØÈı¸ö±íµ¥
+     * è¯¥viewPager ç”¨äºåŠ è½½ä¸‰ä¸ªè¡¨å•
      */
     private ViewPager viewPager; 
     /**
-     * Ò»¸öviewpagerµÄÖ¸Ê¾Æ÷£¬Ğ§¹û¾ÍÊÇÒ»¸öºáµÄ´ÖµÄÏÂ»®Ïß
+     * ä¸€ä¸ªviewpagerçš„æŒ‡ç¤ºå™¨ï¼Œæ•ˆæœå°±æ˜¯ä¸€ä¸ªæ¨ªçš„ç²—çš„ä¸‹åˆ’çº¿
      */
     private PagerTabStrip pagerTabStrip;
     //
     private PagerTitleStrip pagerTitleStrip;
     /**
-     * ×°ÔØÔÚviewpagerÖĞµÄAdpter
+     * è£…è½½åœ¨viewpagerä¸­çš„Adpter
      */
     SupervisorAdapter  pagerAdpter;
     /**
-     * ×°¿Ø
+     * è£…æ§
      */
     FragmentManager  myFragmentManager;
 	protected void onCreate(Bundle savedInstanceState) {
 		  super.onCreate(savedInstanceState);
 		  setContentView(R.layout.form);
-        //ÊµÀı»¯¿Ø¼ş
+        //å®ä¾‹åŒ–æ§ä»¶
 		 viewPager=(ViewPager)findViewById(R.id.viewpager);		 
 		 pagerTabStrip=(PagerTabStrip)findViewById(R.id.pagertab);
-		 //ÊµÀı»¯°´Å¥¿Ø¼ş
+		 //å®ä¾‹åŒ–æŒ‰é’®æ§ä»¶
 		 clearButton = (Button) findViewById(R.id.clearButton);
 		 submitButton = (Button) findViewById(R.id.submitButton);
 		 //
 		 myFragmentManager=getSupportFragmentManager();
-		 //Îªviewpager¼ÓÔØadapter	
+		 //ä¸ºviewpageråŠ è½½adapter	
 		 SupervisorAdapter mySupervisorAdapter=new SupervisorAdapter(myFragmentManager);
 		 viewPager.setAdapter(mySupervisorAdapter);
 		 
 		 iniDialog();
 		 //
 		 if (!SupervisorFragment.searchIsOpen && !SupervisorFragment.scheduleIsOpen) {
-				submitButton.setText("Ìá½»");
-				clearButton.setText("ÖØÖÃ");
+				submitButton.setText("æäº¤");
+				clearButton.setText("é‡ç½®");
 			} else if (SupervisorFragment.searchIsOpen) {
-				submitButton.setText("ĞŞ¸Ä");
-				clearButton.setText("ÍË³ö");
+				submitButton.setText("ä¿®æ”¹");
+				clearButton.setText("é€€å‡º");
 			} else if (SupervisorFragment.scheduleIsOpen) {
-				submitButton.setText("Ìá½»");
-				clearButton.setText("ÍË³ö");
+				submitButton.setText("æäº¤");
+				clearButton.setText("é€€å‡º");
 			}
 		}
-	// ³õÊ¼»¯¸÷ÖÖ´°¿Ú
+	// åˆå§‹åŒ–å„ç§çª—å£
 	private void iniDialog() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage("ÍË³öÖ®ºó£¬´°¿ÚµÄÊı¾İ½«»áÊ§È¥!!")
-				.setPositiveButton("ÍË³ö", new DialogInterface.OnClickListener() {
+		builder.setMessage("é€€å‡ºä¹‹åï¼Œçª—å£çš„æ•°æ®å°†ä¼šå¤±å»!!")
+				.setPositiveButton("é€€å‡º", new DialogInterface.OnClickListener() {
 
 					public void onClick(DialogInterface dialog, int which) {
 						exit();
 					}
 
 				})
-				.setNegativeButton("È¡Ïû", new DialogInterface.OnClickListener() {
+				.setNegativeButton("å–æ¶ˆ", new DialogInterface.OnClickListener() {
 
 					public void onClick(DialogInterface dialog, int which) {
 						dialog.dismiss();
 					}
 				});
 		leaveDialog = builder.create();
-		leaveDialog.setTitle("ÍË³ö");
+		leaveDialog.setTitle("é€€å‡º");
 		builder = new AlertDialog.Builder(this);
-		builder.setMessage("ÄúÈ·¶¨Òª Ìá½» Âğ£¿")
-				.setPositiveButton("Ìá½»", new DialogInterface.OnClickListener() {
+		builder.setMessage("æ‚¨ç¡®å®šè¦ æäº¤ å—ï¼Ÿ")
+				.setPositiveButton("æäº¤", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						//submitFrom();
 					}
 				})
-				.setNegativeButton("·µ»Ø", new DialogInterface.OnClickListener() {
+				.setNegativeButton("è¿”å›", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 					}
 				});
 		submitDialog = builder.create();
-		submitDialog.setTitle("Ìá½»");
+		submitDialog.setTitle("æäº¤");
 		builder = new AlertDialog.Builder(this);
-		builder.setMessage("ÊÇ·ñÖØÖÃ£¿ÖØÖÃÖ®ºó´°¿ÚËùÓĞµÄÄÚÈİ½«²»±£´æ£¡")
-				.setPositiveButton("ÖØÖÃ", new DialogInterface.OnClickListener() {
+		builder.setMessage("æ˜¯å¦é‡ç½®ï¼Ÿé‡ç½®ä¹‹åçª—å£æ‰€æœ‰çš„å†…å®¹å°†ä¸ä¿å­˜ï¼")
+				.setPositiveButton("é‡ç½®", new DialogInterface.OnClickListener() {
 
 					public void onClick(DialogInterface dialog, int which) {
 					//	clear();
 					}
 
 				})
-				.setNegativeButton("È¡Ïû", new DialogInterface.OnClickListener() {
+				.setNegativeButton("å–æ¶ˆ", new DialogInterface.OnClickListener() {
 
 					public void onClick(DialogInterface dialog, int which) {
 						dialog.dismiss();
 					}
 				});
 		clearDialog = builder.create();
-		clearDialog.setTitle("ÖØÖÃ");
+		clearDialog.setTitle("é‡ç½®");
 		builder = new AlertDialog.Builder(this);
-		builder.setMessage("Ìá½»³É¹¦")
-				.setPositiveButton("ÍË³ö", new DialogInterface.OnClickListener() {
+		builder.setMessage("æäº¤æˆåŠŸ")
+				.setPositiveButton("é€€å‡º", new DialogInterface.OnClickListener() {
 
 					public void onClick(DialogInterface dialog, int which) {
 						exit();
 					}
 
 				})
-				.setNegativeButton("ÔÙĞ´Ò»ÕÅ",
+				.setNegativeButton("å†å†™ä¸€å¼ ",
 						new DialogInterface.OnClickListener() {
 
 							public void onClick(DialogInterface dialog,
@@ -209,16 +209,16 @@ public class SupervisorActivity extends FragmentActivity  {
 							}
 						});
 		submitsuccessDialog = builder.create();
-		submitsuccessDialog.setTitle("ÌáÊ¾");
+		submitsuccessDialog.setTitle("æç¤º");
 		builder = new AlertDialog.Builder(this);
-		builder.setMessage("Ìá½»³É¹¦")
-				.setPositiveButton("ÍË³ö", new DialogInterface.OnClickListener() {
+		builder.setMessage("æäº¤æˆåŠŸ")
+				.setPositiveButton("é€€å‡º", new DialogInterface.OnClickListener() {
 
 					public void onClick(DialogInterface dialog, int which) {
 						exit();
 					}
 				})
-				.setNegativeButton("·µ»ØÔ¤¶¨",
+				.setNegativeButton("è¿”å›é¢„å®š",
 						new DialogInterface.OnClickListener() {
 
 							public void onClick(DialogInterface dialog,
@@ -236,17 +236,17 @@ public class SupervisorActivity extends FragmentActivity  {
 							}
 						});
 		schedulesuccessDialog = builder.create();
-		schedulesuccessDialog.setTitle("ÌáÊ¾");
+		schedulesuccessDialog.setTitle("æç¤º");
 		builder = new AlertDialog.Builder(this);
-		builder.setMessage("¸Ã°à¼¶ÒÑ¾­±»¶½µ¼£¡£¡")
-				.setPositiveButton("ÍË³ö", new DialogInterface.OnClickListener() {
+		builder.setMessage("è¯¥ç­çº§å·²ç»è¢«ç£å¯¼ï¼ï¼")
+				.setPositiveButton("é€€å‡º", new DialogInterface.OnClickListener() {
 
 					public void onClick(DialogInterface dialog, int which) {
 						exit();
 					}
 
 				})
-				.setNegativeButton("ÔÙĞ´Ò»ÕÅ",
+				.setNegativeButton("å†å†™ä¸€å¼ ",
 						new DialogInterface.OnClickListener() {
 
 							public void onClick(DialogInterface dialog,
@@ -256,17 +256,17 @@ public class SupervisorActivity extends FragmentActivity  {
 							}
 						});
 		hasSaveDialog = builder.create();
-		hasSaveDialog.setTitle("ÌáÊ¾");
+		hasSaveDialog.setTitle("æç¤º");
 		builder = new AlertDialog.Builder(this);
-		builder.setMessage("¸ÃÔ¤¶¨°à¼¶ÒÑ¾­±»¶½µ¼£¡£¡")
-				.setPositiveButton("ÍË³ö", new DialogInterface.OnClickListener() {
+		builder.setMessage("è¯¥é¢„å®šç­çº§å·²ç»è¢«ç£å¯¼ï¼ï¼")
+				.setPositiveButton("é€€å‡º", new DialogInterface.OnClickListener() {
 
 					public void onClick(DialogInterface dialog, int which) {
 						exit();
 					}
 
 				})
-				.setNegativeButton("·µ»ØÔ¤¶¨",
+				.setNegativeButton("è¿”å›é¢„å®š",
 						new DialogInterface.OnClickListener() {
 
 							public void onClick(DialogInterface dialog,
@@ -284,9 +284,9 @@ public class SupervisorActivity extends FragmentActivity  {
 							}
 						});
 		schedulehasSaveDialog = builder.create();
-		schedulehasSaveDialog.setTitle("ÌáÊ¾");
+		schedulehasSaveDialog.setTitle("æç¤º");
 	}
-	//·µ»Ø°´Å¥µÄµã»÷ÊÂ¼ş¼àÌıÆ÷
+	//è¿”å›æŒ‰é’®çš„ç‚¹å‡»äº‹ä»¶ç›‘å¬å™¨
 	public boolean dispatchKeyEvent(KeyEvent event) {
 		if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
 			if (event.getAction() == KeyEvent.ACTION_DOWN
@@ -294,7 +294,7 @@ public class SupervisorActivity extends FragmentActivity  {
 				if (!SupervisorFragment.searchIsOpen && !SupervisorFragment.scheduleIsOpen) {
 					leaveDialog.show();
 				} else if (SupervisorFragment.searchIsOpen) {
-					System.out.println("²éÑ¯Ö®ºóµÄÍË³öÊÂ¼ş£¡£¡");
+					System.out.println("æŸ¥è¯¢ä¹‹åçš„é€€å‡ºäº‹ä»¶ï¼ï¼");
 					BaseMessage.num = 0;
 					BaseMessage.teacherName = "";
 					SupervisorFragment.searchIsOpen = false;
@@ -305,7 +305,7 @@ public class SupervisorActivity extends FragmentActivity  {
 					startActivity(intent);
 					SupervisorActivity.this.finish();*/
 				} else if (SupervisorFragment.scheduleIsOpen) {
-					System.out.println("Ô¤Ô¼Ö®ºóµÄÍË³öÊÂ¼ş£¡£¡");
+					System.out.println("é¢„çº¦ä¹‹åçš„é€€å‡ºäº‹ä»¶ï¼ï¼");
 					BaseMessage.num = 0;
 					BaseMessage.teacherName = "";
 					SupervisorFragment.scheduleIsOpen = false;
@@ -321,7 +321,7 @@ public class SupervisorActivity extends FragmentActivity  {
 		}
 		return super.dispatchKeyEvent(event);
 	}
-	// ÍË³ö°´Å¥ÊÂ¼ş
+	// é€€å‡ºæŒ‰é’®äº‹ä»¶
 	private void exit() {
 		BaseMessage.num = 0;
 		BaseMessage.teacherName = "";

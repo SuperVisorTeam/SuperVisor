@@ -16,7 +16,7 @@ import com.gdut.supervisor.R;
 import com.gdut.supervisor.utils.SearchFormAdapter;
 
 /**
- * ½ÌÎñµÄFragment
+ * æ•™åŠ¡çš„Fragment
  */
 @SuppressLint("ValidFragment")
 public class EducationalFragment extends Fragment implements OnItemClickListener
@@ -27,14 +27,14 @@ public class EducationalFragment extends Fragment implements OnItemClickListener
 	public static EducationalFragment searchFragment;
 
 	/**
-	 * Ë½ÓĞ»¯¹¹Ôì·½·¨
+	 * ç§æœ‰åŒ–æ„é€ æ–¹æ³•
 	 */
 	private EducationalFragment()
 	{
 	}
 
 	/**
-	 * ÄÚ²¿Àà£¬±£Ö¤¼ÓÔØÊ±Ê±Ïß³Ì°²È«µÄ¡£
+	 * å†…éƒ¨ç±»ï¼Œä¿è¯åŠ è½½æ—¶æ—¶çº¿ç¨‹å®‰å…¨çš„ã€‚
 	 */
 	private static class SingletonHolder
 	{
@@ -42,7 +42,7 @@ public class EducationalFragment extends Fragment implements OnItemClickListener
 	}
 
 	/**
-	 * Ìá¹©Íâ²¿´´½¨SearchFragment¶ÔÏóµÄ·½·¨¡£
+	 * æä¾›å¤–éƒ¨åˆ›å»ºSearchFragmentå¯¹è±¡çš„æ–¹æ³•ã€‚
 	 */
 	public static EducationalFragment getInstance()
 	{
@@ -59,10 +59,10 @@ public class EducationalFragment extends Fragment implements OnItemClickListener
 		return view;
 	}
 
-	// Itemµã»÷¼àÌı
+	// Itemç‚¹å‡»ç›‘å¬
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 	{
-		Toast.makeText(getActivity(), "µã»÷ÁËµÚ:" + (position + 1) + "Ïî", 0).show();
+		Toast.makeText(getActivity(), "ç‚¹å‡»äº†ç¬¬:" + (position + 1) + "é¡¹", 0).show();
 	}
 }

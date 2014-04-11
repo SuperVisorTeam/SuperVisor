@@ -8,246 +8,246 @@ package com.gdut.supervisor.info;
 
 
 /**
- * edu_CourseClass | ½ÌÑ§°à»ù±¾ĞÅÏ¢
+ * edu_CourseClass | æ•™å­¦ç­åŸºæœ¬ä¿¡æ¯
  * 
  */
 
 public class Edu_CourseClass {
 	/**
-	 * ½ÌÑ§°à±àºÅ(Unique)
+	 * æ•™å­¦ç­ç¼–å·(Unique)
 	 * 
 	 */
 	public String Course_Class_No;
 	/**
-	 * ½ÌÑ§°à×é³É
+	 * æ•™å­¦ç­ç»„æˆ
 	 * 
 	 */
 	public String Teaching_Class_Group;
 	/**
-	 * Äê¼¶
+	 * å¹´çº§
 	 */
 	public String student_grade;
 	/**
-	 * ¿ª¿ÎÑ§ÆÚ
+	 * å¼€è¯¾å­¦æœŸ
 	 * 
 	 */
 	public String Semester;
 	/**
-	 * Ğ£Çø±àÂë
+	 * æ ¡åŒºç¼–ç 
 	 * 
 	 */
 	public String School_District;
 	/**
-	 * ¿ª¿Î½ÌÊ¦
+	 * å¼€è¯¾æ•™å¸ˆ
 	 * 
 	 */
 	public String Teacher_Name;
 	/**
-	 * ½ÌÊ¦Ö°¹¤ºÅ
+	 * æ•™å¸ˆèŒå·¥å·
 	 * 
 	 */
 	public String Teacher_Staff_ID;
 	/**
-	 * ½ÌÊ¦Ö°³Æ
+	 * æ•™å¸ˆèŒç§°
 	 * 
 	 */
 	public String Teacher_Title;
 	/**
-	 * ¿ª¿ÎÑ§Ôº
+	 * å¼€è¯¾å­¦é™¢
 	 * 
 	 */
 	public String Commence_Dept;
 	/**
-	 * ¿Î³Ì´úÂë
+	 * è¯¾ç¨‹ä»£ç 
 	 * 
 	 */
 	public String Course_No;
 	/**
-	 * ¿Î³ÌÃû³Æ
+	 * è¯¾ç¨‹åç§°
 	 * 
 	 */
 	public String Course_Name;
 	/**
-	 * ¿Î³ÌĞÔÖÊ(D)
+	 * è¯¾ç¨‹æ€§è´¨(D)
 	 * 
 	 */
 	public String Course_Nature;
 	/**
-	 * ¿Î³ÌÀà±ğ(D)
+	 * è¯¾ç¨‹ç±»åˆ«(D)
 	 * 
 	 */
 	public String Course_Category;
 	/**
-	 * ¼Æ»®ÉÏ¿ÎÈËÊı
+	 * è®¡åˆ’ä¸Šè¯¾äººæ•°
 	 * 
 	 */
 	public int Plan_Population = 0;
 	/**
-	 * ÒÑÑ¡¿ÎÈËÊı
+	 * å·²é€‰è¯¾äººæ•°
 	 * 
 	 */
 	public int Actual_Population = 0;
 	/**
-	 * µ¥Ë«ÖÜ×´Ì¬
+	 * å•åŒå‘¨çŠ¶æ€
 	 * 
 	 */
 	public int Mono_Week_State = 0;
 	/**
-	 * Á¬ÅÅ×´Ì¬
+	 * è¿æ’çŠ¶æ€
 	 * 
 	 */
 	public int Continuous_State = 0;
 	/**
-	 * °à¼¶ÀàĞÍ
+	 * ç­çº§ç±»å‹
 	 * 
 	 */
 	public int Class_Category;
 	/**
-	 * Ë«Óïflg
+	 * åŒè¯­flg
 	 * 
 	 */
 	public int Bilingual_Flag;
 	/**
-	 * ÖÜÑ§Ê±
+	 * å‘¨å­¦æ—¶
 	 * 
 	 */
 	public String Week_Credit_Hour;
 	/**
-	 * Ñ§·Ö
+	 * å­¦åˆ†
 	 * 
 	 */
 	public float Credit_Point;
 	/**
-	 * ×ÜÑ§Ê±
+	 * æ€»å­¦æ—¶
 	 * 
 	 */
 	public String Total_Credit_Hour;
 	/**
-	 * ½²¿ÎÑ§Ê±
+	 * è®²è¯¾å­¦æ—¶
 	 * 
 	 */
 	public int Teaching_Hours;
 	/**
-	 * ÊµÑéÑ§Ê±
+	 * å®éªŒå­¦æ—¶
 	 * 
 	 */
 	public int Experiment_Hours;
 	/**
-	 * ÉÏ»úÑ§Ê±
+	 * ä¸Šæœºå­¦æ—¶
 	 * 
 	 */
 	public int PC_Hours;
 	/**
-	 * ¿Î³ÌÊµ¼ùÑ§Ê±
+	 * è¯¾ç¨‹å®è·µå­¦æ—¶
 	 * 
 	 */
 	public int Design_Hours;
 	/**
-	 * Ï°Ìâ¿ÎÑ§Ê±
+	 * ä¹ é¢˜è¯¾å­¦æ—¶
 	 * 
 	 */
 	public int Exercise_Hours;
 	/**
-	 * ¿ÎÄÚÉÏ»úÑ§Ê±
+	 * è¯¾å†…ä¸Šæœºå­¦æ—¶
 	 * 
 	 */
 	public int Inside_PC_Hours;
 	/**
-	 * ¿ÎÍâÉÏ»úÑ§Ê±
+	 * è¯¾å¤–ä¸Šæœºå­¦æ—¶
 	 * 
 	 */
 	public int Outside_PC_Hours;
 	/**
-	 * ¿ÎÍâÑ§Ê±
+	 * è¯¾å¤–å­¦æ—¶
 	 * 
 	 */
 	public int Outside_Hours;
 	/**
-	 * ÆğÖ¹ÖÜ
+	 * èµ·æ­¢å‘¨
 	 * 
 	 */
 	public String Week_Period;
 	/**
-	 * ÉÏ¿ÎÊ±¼ä
+	 * ä¸Šè¯¾æ—¶é—´
 	 * 
 	 */
 	public String Lesson_Time;
 	/**
-	 * ÉÏ¿ÎµØµã
+	 * ä¸Šè¯¾åœ°ç‚¹
 	 * 
 	 */
 	public String Lesson_Place;
 	/**
-	 * ½Ì²ÄÃû³Æ
+	 * æ•™æåç§°
 	 * 
 	 */
 	public String Textbook_Name;
 	/**
-	 * ½Ì²Ä×÷Õß
+	 * æ•™æä½œè€…
 	 * 
 	 */
 	public String Textbook_Author;
 	/**
-	 * ³ö°æÉç
+	 * å‡ºç‰ˆç¤¾
 	 * 
 	 */
 	public String Textbook_Publisher;
 	/**
-	 * °æ±ğ
+	 * ç‰ˆåˆ«
 	 * 
 	 */
 	public String Textbook_Version;
 	/**
-	 * »ñ½±Çé¿ö
+	 * è·å¥–æƒ…å†µ
 	 * 
 	 */
 	public String Textbook_Award;
 	/**
-	 * ÊµÑé³¡µØ
+	 * å®éªŒåœºåœ°
 	 * 
 	 */
 	public String Experiment_Place;
 	/**
-	 * ¿¼ºË
+	 * è€ƒæ ¸
 	 * 
 	 */
 	public String Check_Mode;
 	/**
-	 * ½ÌÊÒÀàĞÍ±àÂë
+	 * æ•™å®¤ç±»å‹ç¼–ç 
 	 * 
 	 */
 	public String Classroom_Category;
 	/**
-	 * ½ÌÊÒÀàĞÍÃû³Æ
+	 * æ•™å®¤ç±»å‹åç§°
 	 * 
 	 */
 	public String Classroom_Category_Name;
 	/**
-	 * ±¸×¢
+	 * å¤‡æ³¨
 	 * 
 	 */
 	public String Course_Class_Remark;
 	/**
-	 * Ñ§ÉúÑ§Ôº
+	 * å­¦ç”Ÿå­¦é™¢
 	 */
 	public String Student_Faculty;
 	/**
-	 * ´´½¨Õß±àÂë
+	 * åˆ›å»ºè€…ç¼–ç 
 	 * 
 	 */
 	public String Add_User;
 	/**
-	 * ´´½¨ÈÕÆÚ
+	 * åˆ›å»ºæ—¥æœŸ
 	 * 
 	 */
 	public String Add_Time;
 	/**
-	 * ĞŞ¸ÄÕß±àÂë
+	 * ä¿®æ”¹è€…ç¼–ç 
 	 * 
 	 */
 	public String Modify_User;
 	/**
-	 * ĞŞ¸ÄÈÕÆÚ
+	 * ä¿®æ”¹æ—¥æœŸ
 	 * 
 	 */
 	public String Modify_Time;

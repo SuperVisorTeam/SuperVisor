@@ -23,9 +23,9 @@ public class SearchFormAdapter extends BaseAdapter
 		inflater = LayoutInflater.from(context);
 		// this.str = str;
 		this.str = new String[]
-		{ "教务功能", "教务功能", "教务功能", "教务功能", "教务功能", "教务功能", "教务功能",
-				"教务功能", "教务功能", "教务功能", "教务功能", "教务功能", "教务功能", "教务功能",
-				"教务功能" };
+		{ "鏁欏姟鍔熻兘", "鏁欏姟鍔熻兘", "鏁欏姟鍔熻兘", "鏁欏姟鍔熻兘", "鏁欏姟鍔熻兘", "鏁欏姟鍔熻兘", "鏁欏姟鍔熻兘",
+				"鏁欏姟鍔熻兘", "鏁欏姟鍔熻兘", "鏁欏姟鍔熻兘", "鏁欏姟鍔熻兘", "鏁欏姟鍔熻兘", "鏁欏姟鍔熻兘", "鏁欏姟鍔熻兘",
+				"鏁欏姟鍔熻兘" };
 	}
 
 	@Override

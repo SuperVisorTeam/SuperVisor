@@ -17,10 +17,10 @@ import com.gdut.supervisor.info.BaseMessage;
 import com.gdut.supervisor.utils.LoginHandler;
 
 public class WelcomeActivity extends Activity {
-	protected static final int START_LOGIN = 0;	//¿ªÆôµÇÂ½½çÃæµÄ 
+	protected static final int START_LOGIN = 0;	//å¼€å¯ç™»é™†ç•Œé¢çš„ 
 	protected static final int START_MAIN = 1;
 	private SharedPreferences preferences = null;
-	private LoginHandler loginHandler = new LoginHandler();	//»ñµÃµÇÂ¼´¦ÀíÆ÷¶ÔÏó
+	private LoginHandler loginHandler = new LoginHandler();	//è·å¾—ç™»å½•å¤„ç†å™¨å¯¹è±¡
 	private String account;
 	private String password;
 	Intent intent;
@@ -29,31 +29,31 @@ public class WelcomeActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		// ³ıÈ¥±êÌâÀ¸
+		// é™¤å»æ ‡é¢˜æ 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.welcome);
-		// »ñµÃÓÃ»§ĞÅÏ¢
+		// è·å¾—ç”¨æˆ·ä¿¡æ¯
 		preferences = getSharedPreferences("userdata", MODE_PRIVATE);
 		account = preferences.getString("account", "");
 		password = preferences.getString("password", "");
-		// »ñÈ¡×Ô¶¯µÇÂ½±êÖ¾
+		// è·å–è‡ªåŠ¨ç™»é™†æ ‡å¿—
 		final boolean isAutoDebark = preferences.getBoolean("isAutoDebark",
 				false);
-		new Handler().postDelayed(new Runnable() {// ĞÂ½¨Ò»¸öhandlerÊµÏÖÌø×ª
+		new Handler().postDelayed(new Runnable() {// æ–°å»ºä¸€ä¸ªhandlerå®ç°è·³è½¬
 
 					public void run() {
-						if (isAutoDebark) { // Èô×Ô¶¯µÇÂ½£¬Ôò½øĞĞµÇÂ¼²Ù×÷£¬µÇÂ¼³É¹¦ºóÖ±½Ó´ò¿ªÖ÷½çÃæ
+						if (isAutoDebark) { // è‹¥è‡ªåŠ¨ç™»é™†ï¼Œåˆ™è¿›è¡Œç™»å½•æ“ä½œï¼Œç™»å½•æˆåŠŸåç›´æ¥æ‰“å¼€ä¸»ç•Œé¢
 							ConnectivityManager connManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
 							NetworkInfo netInfo = connManager
 									.getActiveNetworkInfo();
 							if (netInfo == null || !netInfo.isAvailable()) {
-								Toast.makeText(WelcomeActivity.this, "ÍøÂç²»¿ÉÓÃ",
+								Toast.makeText(WelcomeActivity.this, "ç½‘ç»œä¸å¯ç”¨",
 										Toast.LENGTH_LONG).show();
 								handler.sendEmptyMessage(START_LOGIN);
 							} else {
 								login();
 							}
-						} else { // ·ñÔòÆô¶¯µÇÂ½½çÃæ
+						} else { // å¦åˆ™å¯åŠ¨ç™»é™†ç•Œé¢
 							handler.sendEmptyMessage(START_LOGIN);
 						}
 					}
@@ -85,7 +85,7 @@ public class WelcomeActivity extends Activity {
 	};
 
 	/**
-	 * ½øĞĞµÇÂ¼²Ù×÷
+	 * è¿›è¡Œç™»å½•æ“ä½œ
 	 */
 	public void login() {
 		new Thread() {
@@ -99,20 +99,20 @@ public class WelcomeActivity extends Activity {
 					int statusCode = loginHandler.login(account, password)
 							.getStatusCode();
 					switch (statusCode) {
-					case 200: /* µÇÂ¼³É¹¦ */
+					case 200: /* ç™»å½•æˆåŠŸ */
 						handler.sendEmptyMessage(START_MAIN);
 						break;
-					// case 404: /* ÓÃ»§²»´æÔÚ */
-					// Toast.makeText(WelcomeActivity.this, "ÓÃ»§²»´æÔÚ",
+					// case 404: /* ç”¨æˆ·ä¸å­˜åœ¨ */
+					// Toast.makeText(WelcomeActivity.this, "ç”¨æˆ·ä¸å­˜åœ¨",
 					// Toast.LENGTH_SHORT).show();
 					// break;
-					case 401: /* ÃÜÂë´íÎó */
-						Toast.makeText(WelcomeActivity.this, "ÃÜÂë´íÎó,ÇëÖØĞÂÊäÈë",
+					case 401: /* å¯†ç é”™è¯¯ */
+						Toast.makeText(WelcomeActivity.this, "å¯†ç é”™è¯¯,è¯·é‡æ–°è¾“å…¥",
 								Toast.LENGTH_SHORT).show();
 						handler.sendEmptyMessage(START_LOGIN);
 						break;
-					case 403: /* ½ûÖ¹·ÃÎÊ */
-						Toast.makeText(WelcomeActivity.this, "½ûÖ¹·ÃÎÊ",
+					case 403: /* ç¦æ­¢è®¿é—® */
+						Toast.makeText(WelcomeActivity.this, "ç¦æ­¢è®¿é—®",
 								Toast.LENGTH_SHORT).show();
 						handler.sendEmptyMessage(START_LOGIN);
 						break;
@@ -121,12 +121,12 @@ public class WelcomeActivity extends Activity {
 					}
 				} catch (Exception ex) {
 					ex.printStackTrace();
-//					Toast.makeText(WelcomeActivity.this, "ÏµÍ³·±Ã¦",	//ÎÊÌâ£ºÔÚÅ×³öÒì³£Ğ´ÍÁË¾Ã»ÓĞÓÃ£¿
+//					Toast.makeText(WelcomeActivity.this, "ç³»ç»Ÿç¹å¿™",	//é—®é¢˜ï¼šåœ¨æŠ›å‡ºå¼‚å¸¸å†™åœŸå¸æ²¡æœ‰ç”¨ï¼Ÿ
 //							Toast.LENGTH_SHORT).show();
 					handler.sendEmptyMessage(START_LOGIN);
 					return;
 				}
-				Looper.loop();// ½øÈëloopÖĞµÄÑ­»·£¬²é¿´ÏûÏ¢¶ÓÁĞ
+				Looper.loop();// è¿›å…¥loopä¸­çš„å¾ªç¯ï¼ŒæŸ¥çœ‹æ¶ˆæ¯é˜Ÿåˆ—
 
 			}
 

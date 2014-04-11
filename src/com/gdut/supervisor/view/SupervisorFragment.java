@@ -15,43 +15,43 @@ import com.gdut.supervisor.R;
 import com.gdut.supervisor.ui.SupervisorActivity;
 
 /**
- * ¶½µ¼¹¦ÄÜµÄFragment
+ * ç£å¯¼åŠŸèƒ½çš„Fragment
  */
 @SuppressLint("ValidFragment")
 public class SupervisorFragment extends Fragment implements OnClickListener
 {
 	/**
-	 * Ö±½ÓÂ¼Èë°´Å¥
+	 * ç›´æ¥å½•å…¥æŒ‰é’®
 	 */
 	private ImageButton btn_directwrite;
 	/**
-	 * Ô¤¶¨Â¼Èë°´Å¥
+	 * é¢„å®šå½•å…¥æŒ‰é’®
 	 */
 	private ImageButton btn_preparewrite;
 	/**
-	 * ¸ß¿ª´°¿Ú
+	 * é«˜å¼€çª—å£
 	 */
 	private AlertDialog leaveDialog;
 	/**
-	 * ÅĞ¶Ï²éÑ¯¹¦ÄÜÊÇ·ñ´ò¿ª
+	 * åˆ¤æ–­æŸ¥è¯¢åŠŸèƒ½æ˜¯å¦æ‰“å¼€
 	 */
 	public static boolean searchIsOpen = false;
 	/**
-	 * ÅĞ¶ÏÔ¤¶¨¹¦ÄÜÊÇ·ñ´ò¿ª
+	 * åˆ¤æ–­é¢„å®šåŠŸèƒ½æ˜¯å¦æ‰“å¼€
 	 */
 	public static boolean scheduleIsOpen = false;
 	
 	public static SupervisorFragment supervisorFragment;
 
 	/**
-	 * Ë½ÓĞ»¯¹¹Ôì·½·¨
+	 * ç§æœ‰åŒ–æ„é€ æ–¹æ³•
 	 */
 	private SupervisorFragment()
 	{
 	}
 
 	/**
-	 * ÄÚ²¿Àà£¬±£Ö¤¼ÓÔØÊ±Ê±Ïß³Ì°²È«µÄ¡£
+	 * å†…éƒ¨ç±»ï¼Œä¿è¯åŠ è½½æ—¶æ—¶çº¿ç¨‹å®‰å…¨çš„ã€‚
 	 */
 	private static class SingletonHolder
 	{
@@ -59,7 +59,7 @@ public class SupervisorFragment extends Fragment implements OnClickListener
 	}
 
 	/**
-	 * Ìá¹©Íâ²¿´´½¨SupervisorFragment¶ÔÏóµÄ·½·¨¡£
+	 * æä¾›å¤–éƒ¨åˆ›å»ºSupervisorFragmentå¯¹è±¡çš„æ–¹æ³•ã€‚
 	 */
 	public static SupervisorFragment getInstance()
 	{
@@ -79,17 +79,17 @@ public class SupervisorFragment extends Fragment implements OnClickListener
 		return parentView;
 	}
 
-	// Îª°´Å¥Ìí¼Ó¼àÌı
+	// ä¸ºæŒ‰é’®æ·»åŠ ç›‘å¬
 	@Override
 	public void onClick(View v)
 	{
 		switch (v.getId())
 		{
-		// Ô¤¶¨Â¼Èë°´Å¥
+		// é¢„å®šå½•å…¥æŒ‰é’®
 		case R.id.ib_supervisor_preparewrite:
 
 			break;
-		// Ö±½ÓÂ¼Èë°´Å¥
+		// ç›´æ¥å½•å…¥æŒ‰é’®
 		case R.id.ib_supervisor_directwrite:
 			Intent intent = new Intent();
 			intent.setClass(getActivity(), SupervisorActivity.class);

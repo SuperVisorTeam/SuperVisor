@@ -34,48 +34,48 @@ import com.gdut.supervisor.utils.ClassNameHandler;
 import com.gdut.supervisor.utils.ClassRoomGroupXMLHandler;
 import com.gdut.supervisor.utils.SubmitHandler;
 /**
- *µÚÒ»ÕÅ±íµ¥
+ *ç¬¬ä¸€å¼ è¡¨å•
  */
 public class FirstItemFragment extends Fragment
 {
 	/**
-	 * ÉÏ¿ÎÊ±¼ä
+	 * ä¸Šè¯¾æ—¶é—´
 	 */
 	private static Spinner checkclassSpinner;
 	/**
-	 * Ñ§Ğ£Ğ£Çø
+	 * å­¦æ ¡æ ¡åŒº
 	 */
 	private static Spinner schoollocationSpinner;
 	/**
-	 * ÊµÀı»¯Ñ§Ğ£Ğ£ÇøÊÊÅäÆ÷
+	 * å®ä¾‹åŒ–å­¦æ ¡æ ¡åŒºé€‚é…å™¨
 	 */
 	private static ArrayAdapter<CharSequence> schoollocationSpinnerAdapter;
 	/**
-	 * ÊµÀı»¯ÉÏ¿ÎÊ±¼äµÄÊÊÅäÆ÷
+	 * å®ä¾‹åŒ–ä¸Šè¯¾æ—¶é—´çš„é€‚é…å™¨
 	 */
 	private static ArrayAdapter<CharSequence> checkclassSpinnerAdapter;
 	/**
-	 * ÊµÀı»¯ÉÏ¿Î½ÌÑ§Â¥µÄÊÊÅäÆ÷
+	 * å®ä¾‹åŒ–ä¸Šè¯¾æ•™å­¦æ¥¼çš„é€‚é…å™¨
 	 */
 	ArrayAdapter<String> classAdapter;
 	/**
-	 * ÊµÀı»¯ÉÏ¿Î½ÌÊÒµÄÊÊÅäÆ÷
+	 * å®ä¾‹åŒ–ä¸Šè¯¾æ•™å®¤çš„é€‚é…å™¨
 	 */
 	private ArrayAdapter<String> classroomAdapter;
 	/**
-	 * ×¨Òµ°à¼¶µÄÊı×é
+	 * ä¸“ä¸šç­çº§çš„æ•°ç»„
 	 */
 	private static String classname[];
 	/**
-	 * ×¨Òµ°à¼¶
+	 * ä¸“ä¸šç­çº§
 	 */
 	private static String classGroup;
 	/**
-	 * Ñ§ÔºÃû³Æ
+	 * å­¦é™¢åç§°
 	 */
 	private static EditText schoolnameEditText;
 	/**
-	 * ×¨Òµ°à¼¶
+	 * ä¸“ä¸šç­çº§
 	 */
 	private static Button classnameEditText;
 
@@ -84,72 +84,72 @@ public class FirstItemFragment extends Fragment
 	 */
 	private static EditText[] editText = new EditText[2];
 	/**
-	 * È±¿ÎÈËÊı
+	 * ç¼ºè¯¾äººæ•°
 	 */
 	public static int absentnum = 0;
 	/**
-	 * ÈÕÆÚÎÄ±¾¿ò
+	 * æ—¥æœŸæ–‡æœ¬æ¡†
 	 */
 	private static Button dateEditText;
 	/**
-	 * ÉÏ¿ÎµØµã
+	 * ä¸Šè¯¾åœ°ç‚¹
 	 */
 	private static Button schoollationEditText;
 	/**
-	 * ÈÕÆÚ´°¿Ú
+	 * æ—¥æœŸçª—å£
 	 */
 	private AlertDialog dataDialog;
 	/**
-	 * ÒÑ¾­Ô¤¶¨´°¿Ú
+	 * å·²ç»é¢„å®šçª—å£
 	 */
 	private AlertDialog hasBookDialog;
 	/**
-	 * ×¨Òµ°à¼¶´°¿Ú
+	 * ä¸“ä¸šç­çº§çª—å£
 	 */
 	private AlertDialog classnameDialog;
 	/**
-	 * ÉÏ¿ÎµØµã
+	 * ä¸Šè¯¾åœ°ç‚¹
 	 */
 	private AlertDialog schoollationDialog;
 	/**
-	 * ÉÏ¿ÎµØµã
+	 * ä¸Šè¯¾åœ°ç‚¹
 	 */
 	private String schoollationString = "";
 	/**
-	 * ÈÕÆÚ
+	 * æ—¥æœŸ
 	 */
 	private String dateString = "";
 	/**
-	 * ÈÕÆÚ
+	 * æ—¥æœŸ
 	 */
 	private static String defString = "";
 	/**
-	 * Äê
+	 * å¹´
 	 */
 	private int year;
 	/**
-	 * ÔÂ
+	 * æœˆ
 	 */
 	private int month;
 	/**
-	 * ÈÕ
+	 * æ—¥
 	 */
 	private int day;
 	Map<String, Object> utilMap;
 	/**
-	 * Ğ£ÇøID
+	 * æ ¡åŒºID
 	 */
 	private static int schoolID;
 	/**
-	 * Ğ£ÇøÎÄ¼şID
+	 * æ ¡åŒºæ–‡ä»¶ID
 	 */
 	private static int schoolXMLID;
 	/**
-	 * ¶¨ÒåÒ»¸ö±êÇ©ÅĞ¶ÏÊÇ·ñ°´ÁË»ñµÃÊı¾İ°´Å¥
+	 * å®šä¹‰ä¸€ä¸ªæ ‡ç­¾åˆ¤æ–­æ˜¯å¦æŒ‰äº†è·å¾—æ•°æ®æŒ‰é’®
 	 */
 	private boolean isGeDatat = false;
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÒÑ¾­»ñµÃÊı¾İ
+	 * åˆ¤æ–­æ˜¯å¦å·²ç»è·å¾—æ•°æ®
 	 */
 	public static boolean isGet = false;
 
@@ -164,23 +164,23 @@ public class FirstItemFragment extends Fragment
 	{
 		View rootView = inflater.inflate(R.layout.frist, container, false);
 
-		// Ñ§Ğ£Ğ£Çø
+		// å­¦æ ¡æ ¡åŒº
 		schoollocationSpinner = (Spinner) rootView.findViewById(R.id.schoollocationSpinner);
 		schoollocationSpinnerAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.shoolsite,
 				android.R.layout.simple_dropdown_item_1line);
 		schoollocationSpinner.setAdapter(schoollocationSpinnerAdapter);
-		// ÉÏ¿ÎµØµã
+		// ä¸Šè¯¾åœ°ç‚¹
 		schoollationEditText = (Button) rootView.findViewById(R.id.schoollationEditText);
 		schoollationEditText.setOnClickListener(new ButtonActionListener());
 		schoollationEditText.setTextSize(20.0f);
-		// Ñ§ÔºÃû³Æ
+		// å­¦é™¢åç§°
 		schoolnameEditText = (EditText) rootView.findViewById(R.id.schoolnameEditText);
-		// ×¨Òµ°à¼¶
+		// ä¸“ä¸šç­çº§
 		classnameEditText = (Button) rootView.findViewById(R.id.classnameEditText);
 		classnameEditText.setTextSize(20.0f);
 		classnameEditText.setOnClickListener(new ButtonActionListener());
 		classnameEditText.setText("");
-		// ÈÕÆÚ
+		// æ—¥æœŸ
 		dateEditText = (Button) rootView.findViewById(R.id.dateEditText);
 		dateEditText.setTextSize(20.0f);
 		Calendar c = Calendar.getInstance(Locale.CHINA);
@@ -192,7 +192,7 @@ public class FirstItemFragment extends Fragment
 		dateEditText.setText(dateString);
 
 		dateEditText.setOnClickListener(new ButtonActionListener());
-		// ÉÏ¿ÎÊ±¼ä
+		// ä¸Šè¯¾æ—¶é—´
 		checkclassSpinner = (Spinner) rootView.findViewById(R.id.checkclassSpinner);
 		checkclassSpinnerAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.time,
 				android.R.layout.simple_dropdown_item_1line);
@@ -215,7 +215,7 @@ public class FirstItemFragment extends Fragment
 
 	}
 
-	// Ğ£ÇøÊÂ¼ş
+	// æ ¡åŒºäº‹ä»¶
 	private class schoollocationListener implements OnItemSelectedListener
 	{
 		public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3)
@@ -256,7 +256,7 @@ public class FirstItemFragment extends Fragment
 		}
 	}
 
-	// ÈÕÆÚ°´Å¥
+	// æ—¥æœŸæŒ‰é’®
 	private class ButtonActionListener implements OnClickListener
 	{
 		public void onClick(View v)
@@ -285,11 +285,11 @@ public class FirstItemFragment extends Fragment
 	}
 
 	/**
-	 * ÈÕÆÚ´°¿Ú
+	 * æ—¥æœŸçª—å£
 	 */
 	private void iniDateDialog()
 	{
-		// ÈÕÆÚ´°¿Ú
+		// æ—¥æœŸçª—å£
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 		LayoutInflater mInflater2 = LayoutInflater.from(getActivity());
 		View view2 = mInflater2.inflate(R.layout.date, null);
@@ -304,16 +304,16 @@ public class FirstItemFragment extends Fragment
 				FirstItemFragment.this.day = day;
 				dateString = year + "-" + (month + 1) + "-" + day;
 				System.out.println("dateString==" + dateString);
-				dataDialog.setTitle("ÈÕÆÚ£º" + dateString);
+				dataDialog.setTitle("æ—¥æœŸï¼š" + dateString);
 
 			}
 		});
-		builder.setPositiveButton("È·¶¨", new DialogInterface.OnClickListener()
+		builder.setPositiveButton("ç¡®å®š", new DialogInterface.OnClickListener()
 		{
 
 			public void onClick(DialogInterface dialog, int which)
 			{
-				// ÏÔÊ¾µ±Ç°ÈÕÆÚ
+				// æ˜¾ç¤ºå½“å‰æ—¥æœŸ
 				dateEditText.setText(dateString);
 				if (!SupervisorFragment.searchIsOpen)
 				{
@@ -322,7 +322,7 @@ public class FirstItemFragment extends Fragment
 				isGeDatat = true;
 			}
 
-		}).setNegativeButton("È¡Ïû", new DialogInterface.OnClickListener()
+		}).setNegativeButton("å–æ¶ˆ", new DialogInterface.OnClickListener()
 		{
 
 			public void onClick(DialogInterface dialog, int which)
@@ -331,12 +331,12 @@ public class FirstItemFragment extends Fragment
 			}
 		});
 		dataDialog = builder.create();
-		dataDialog.setTitle("ÈÕÆÚ£º" + dateString);
+		dataDialog.setTitle("æ—¥æœŸï¼š" + dateString);
 		dataDialog.setView(view2);
 	}
 
 	/**
-	 * ÉÏ¿ÎµØµã´°¿Ú
+	 * ä¸Šè¯¾åœ°ç‚¹çª—å£
 	 */
 	private void iniSchoollationDialog()
 	{
@@ -370,7 +370,7 @@ public class FirstItemFragment extends Fragment
 			classSpinner.setAdapter(classAdapter);
 		}
 		final Spinner class_roomSpinner = (Spinner) view.findViewById(R.id.class_roomSpinner);
-		builder.setPositiveButton("È·¶¨", new DialogInterface.OnClickListener()
+		builder.setPositiveButton("ç¡®å®š", new DialogInterface.OnClickListener()
 		{
 
 			public void onClick(DialogInterface dialog, int which)
@@ -393,7 +393,7 @@ public class FirstItemFragment extends Fragment
 				}
 			}
 
-		}).setNegativeButton("È¡Ïû", new DialogInterface.OnClickListener()
+		}).setNegativeButton("å–æ¶ˆ", new DialogInterface.OnClickListener()
 		{
 
 			public void onClick(DialogInterface dialog, int which)
@@ -402,7 +402,7 @@ public class FirstItemFragment extends Fragment
 			}
 		});
 		schoollationDialog = builder.create();
-		schoollationDialog.setTitle("ÉÏ¿ÎµØµã");
+		schoollationDialog.setTitle("ä¸Šè¯¾åœ°ç‚¹");
 		schoollationDialog.setView(view);
 		classSpinner.setOnItemSelectedListener(new OnItemSelectedListener()
 		{
@@ -444,7 +444,7 @@ public class FirstItemFragment extends Fragment
 	}
 
 	/**
-	 * ×¨Òµ°à¼¶´°¿Ú
+	 * ä¸“ä¸šç­çº§çª—å£
 	 */
 	private void iniClassnameDialog()
 	{
@@ -456,10 +456,10 @@ public class FirstItemFragment extends Fragment
 		}
 		classnameDialog = builder.create();
 		classnameDialog.setMessage(classcontext);
-		classnameDialog.setTitle("×¨Òµ°à¼¶");
+		classnameDialog.setTitle("ä¸“ä¸šç­çº§");
 	}
 
-	// »ñµÃÂ¼ÈëÊı¾İ
+	// è·å¾—å½•å…¥æ•°æ®
 	private void getData()
 	{
 		if (schoollocationSpinner.getSelectedItem().toString() == null
@@ -488,7 +488,7 @@ public class FirstItemFragment extends Fragment
 						BaseMessage.supervisor_no);
 				if (code == 409)
 				{
-					inihasBookDialog(schoollationEditText.getText().toString() + "\n°à¼¶ÒÑ¾­±»¶½µ¼£¬ÇëÑ¡ÔñÆäËü½ÌÑ§°à½øĞĞ¶½µ¼£¡");
+					inihasBookDialog(schoollationEditText.getText().toString() + "\nç­çº§å·²ç»è¢«ç£å¯¼ï¼Œè¯·é€‰æ‹©å…¶å®ƒæ•™å­¦ç­è¿›è¡Œç£å¯¼ï¼");
 				} else if (code == 200)
 				{
 					utilMap = SubmitHandler.getmap;
@@ -511,40 +511,40 @@ public class FirstItemFragment extends Fragment
 					BaseMessage.num = num;
 					editText[i++].setText(num + "");
 					BaseMessage.teacherName = (String) utilMap.get("teacher_name");
-					classnameEditText.setText("ÏÔÊ¾È«²¿×¨Òµ°à¼¶");
+					classnameEditText.setText("æ˜¾ç¤ºå…¨éƒ¨ä¸“ä¸šç­çº§");
 					editText[i++].setText("0");
 				} else if (code == 402)
 				{
-					inihasBookDialog(schoollationEditText.getText().toString() + "\n½ñÌìÒÑ±»±ğÈËÔ¤¶©ÁË£¬ÇëÑ¡ÔñÆäËü½ÌÑ§°à½øĞĞ¶½µ¼£¡");
+					inihasBookDialog(schoollationEditText.getText().toString() + "\nä»Šå¤©å·²è¢«åˆ«äººé¢„è®¢äº†ï¼Œè¯·é€‰æ‹©å…¶å®ƒæ•™å­¦ç­è¿›è¡Œç£å¯¼ï¼");
 				} else if (code == 404)
 				{
-					inihasBookDialog(schoollationEditText.getText().toString() + "\nÃ»ÓĞ¶ÔÓ¦µÄ¿ÎÒªÉÏ£¬ÇëÑ¡ÔñÆäËü½ÌÑ§°à½øĞĞ¶½µ¼£¡");
+					inihasBookDialog(schoollationEditText.getText().toString() + "\næ²¡æœ‰å¯¹åº”çš„è¯¾è¦ä¸Šï¼Œè¯·é€‰æ‹©å…¶å®ƒæ•™å­¦ç­è¿›è¡Œç£å¯¼ï¼");
 				} else if (code == 400)
 				{
-					inihasBookDialog(schoollationEditText.getText().toString() + "\nÇëÇóµÄ²ÎÊıÓĞ´í!");
+					inihasBookDialog(schoollationEditText.getText().toString() + "\nè¯·æ±‚çš„å‚æ•°æœ‰é”™!");
 				} else
 				{
-					inihasBookDialog("Çë±£³ÖÍøÂçÁ¬½Ó£¡");
+					inihasBookDialog("è¯·ä¿æŒç½‘ç»œè¿æ¥ï¼");
 				}
 			} catch (ClientProtocolException e)
 			{
-				ShowMessageDialog.showMessage(getActivity(), "Çë±£³ÖÍøÂçÁ¬½Ó£¡");
+				ShowMessageDialog.showMessage(getActivity(), "è¯·ä¿æŒç½‘ç»œè¿æ¥ï¼");
 				return;
 			} catch (IOException e)
 			{
-				ShowMessageDialog.showMessage(getActivity(), "Çë±£³ÖÍøÂçÁ¬½Ó£¡");
+				ShowMessageDialog.showMessage(getActivity(), "è¯·ä¿æŒç½‘ç»œè¿æ¥ï¼");
 				return;
 			}
 		}
 	}
 
 	/**
-	 * ÒÑ¾­Ô¤¶¨´°¿Ú
+	 * å·²ç»é¢„å®šçª—å£
 	 */
 	private void inihasBookDialog(String message)
 	{
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-		builder.setPositiveButton("È·¶¨", new DialogInterface.OnClickListener()
+		builder.setPositiveButton("ç¡®å®š", new DialogInterface.OnClickListener()
 		{
 
 			public void onClick(DialogInterface dialog, int which)
@@ -554,13 +554,13 @@ public class FirstItemFragment extends Fragment
 
 		});
 		hasBookDialog = builder.create();
-		hasBookDialog.setTitle("ÌáÊ¾");
+		hasBookDialog.setTitle("æç¤º");
 		hasBookDialog.setMessage(message);
 		hasBookDialog.show();
 	}
 
 	/**
-	 * ÖØÖÃº¯Êı
+	 * é‡ç½®å‡½æ•°
 	 */
 	private void hasGetNull()
 	{
@@ -574,7 +574,7 @@ public class FirstItemFragment extends Fragment
 		BaseMessage.teacherName = "";
 	}
 
-	// ¼ì²é½Ú´ÎµÄÊÂ¼ş
+	// æ£€æŸ¥èŠ‚æ¬¡çš„äº‹ä»¶
 	private class autoCompleteTextViewListener implements OnItemSelectedListener
 	{
 		public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3)
@@ -593,8 +593,8 @@ public class FirstItemFragment extends Fragment
 		{
 		}
 	}
-	// »Ö¸´Ê±µ÷ÓÃ
-	// ¿ÉÄÜÓÃ²»ÉÏÁË£¡ÒòÎªÊ¹ÓÃÁËViewPager+Fragment
+	// æ¢å¤æ—¶è°ƒç”¨
+	// å¯èƒ½ç”¨ä¸ä¸Šäº†ï¼å› ä¸ºä½¿ç”¨äº†ViewPager+Fragment
 	/*
 	 * public void onResume() { super.onResume(); for (int i = 0; i < 2; i++) {
 	 * editText[i].clearFocus(); } if (SupervisorFragment.searchIsOpen) { if

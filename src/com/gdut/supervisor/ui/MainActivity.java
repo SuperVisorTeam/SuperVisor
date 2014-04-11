@@ -21,29 +21,29 @@ import com.gdut.supervisor.view.SupervisorFragment;
 import com.gdut.supervisor.view.ToolsFragment;
 
 /**
- * Ö÷²Ëµ¥½çÃæ,Ğèµ¼Èësupport-v7-appcompatÖ§³Ö°ü
+ * ä¸»èœå•ç•Œé¢,éœ€å¯¼å…¥support-v7-appcompatæ”¯æŒåŒ…
  */
 public class MainActivity extends ActionBarActivity implements OnClickListener
 {
 	private RadioGroup mTabRg;
 	/**
-	 *ÆÀ¼Û¹¦ÄÜµÄFragment
+	 *è¯„ä»·åŠŸèƒ½çš„Fragment
 	 */
 	private EvaluateFragment evaluateFragment;
 	/**
-	 *¶½µ¼¹¦ÄÜµÄFragment
+	 *ç£å¯¼åŠŸèƒ½çš„Fragment
 	 */
 	private SupervisorFragment supervisorFragment;
 	/**
-	 *½ÌÎñ¹¦ÄÜµÄFragment
+	 *æ•™åŠ¡åŠŸèƒ½çš„Fragment
 	 */
 	private EducationalFragment searchFragment;
 	/**
-	 *¹¤¾ß¹¦ÄÜµÄFragment
+	 *å·¥å…·åŠŸèƒ½çš„Fragment
 	 */
 	private ToolsFragment helpFragment;
 	/**
-	 * ¸ß¿ª´°¿Ú
+	 * é«˜å¼€çª—å£
 	 */
 	private AlertDialog leaveDialog;
 
@@ -52,9 +52,9 @@ public class MainActivity extends ActionBarActivity implements OnClickListener
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);	
-		//³õÊ¼»¯¸÷ÖÖ´°¿Ú
+		//åˆå§‹åŒ–å„ç§çª—å£
 		iniDialog();
-		// ³õÊ¼»¯
+		// åˆå§‹åŒ–
 		InitView();
 	}
 	@Override
@@ -65,17 +65,17 @@ public class MainActivity extends ActionBarActivity implements OnClickListener
 	}
 
 	/**
-	 * ³õÊ¼»¯½çÃæ
+	 * åˆå§‹åŒ–ç•Œé¢
 	 */
 	private void InitView()
 	{
-		//³õÊ¼»¯ËÄ¸öFragment
+		//åˆå§‹åŒ–å››ä¸ªFragment
 		
 		evaluateFragment = EvaluateFragment.getInstance();
 		supervisorFragment = SupervisorFragment.getInstance();
 		searchFragment = EducationalFragment.getInstance();
 		helpFragment = ToolsFragment.getInstance();
-		// Ê×´Î½øÈëÊ±ÏÈÓÃSupervisorFragment(¶½µ¼¹¦ÄÜ)À´Ìî³ä½çÃæ
+		// é¦–æ¬¡è¿›å…¥æ—¶å…ˆç”¨SupervisorFragment(ç£å¯¼åŠŸèƒ½)æ¥å¡«å……ç•Œé¢
 		final android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
 		android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager
 				.beginTransaction();
@@ -83,7 +83,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener
 		fragmentTransaction.commit();
 
 		mTabRg = (RadioGroup) findViewById(R.id.tab_rg_menu);
-		// Îªµ×²¿²Ëµ¥°´¼üÌí¼Ó¼àÌı
+		// ä¸ºåº•éƒ¨èœå•æŒ‰é”®æ·»åŠ ç›‘å¬
 		mTabRg.setOnCheckedChangeListener(new OnCheckedChangeListener()
 		{
 			@Override
@@ -93,19 +93,19 @@ public class MainActivity extends ActionBarActivity implements OnClickListener
 						.beginTransaction();
 				switch (checkedId)
 				{
-				// ¶½µ¼¹¦ÄÜ
+				// ç£å¯¼åŠŸèƒ½
 				case R.id.tab_rb_1:
 					fragmentTransaction.replace(R.id.fragment_content, supervisorFragment);
 					break;
-				// ²éÑ¯±íµ¥
+				// æŸ¥è¯¢è¡¨å•
 				case R.id.tab_rb_2:
 					fragmentTransaction.replace(R.id.fragment_content, searchFragment);
 					break;
-				// ÆÀ¼ÛÀÏÊ¦
+				// è¯„ä»·è€å¸ˆ
 				case R.id.tab_rb_3:
 					fragmentTransaction.replace(R.id.fragment_content,evaluateFragment);
 					break;
-				// Ê¹ÓÃ°ïÖú
+				// ä½¿ç”¨å¸®åŠ©
 				case R.id.tab_rb_4:
 					fragmentTransaction.replace(R.id.fragment_content, helpFragment);
 					break;
@@ -118,7 +118,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener
 	}
 
 	/**
-	 * ·µ»Ø¼üµÄÏìÓ¦
+	 * è¿”å›é”®çš„å“åº”
 	 */
 	@Override
 	public boolean dispatchKeyEvent(KeyEvent event) {
@@ -133,7 +133,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener
 	}
 
 	/**
-	 * ButtonÏìÓ¦
+	 * Buttonå“åº”
 	 */
 	@Override
 	public void onClick(View v)
@@ -144,41 +144,41 @@ public class MainActivity extends ActionBarActivity implements OnClickListener
 		View view = inflater.inflate(R.layout.alertdialog_searchform_datechoose_datepicker, null);
 		switch (v.getId())
 		{
-		// Ñ¡Ôñ¿ªÊ¼Ê±¼äµÄButton
+		// é€‰æ‹©å¼€å§‹æ—¶é—´çš„Button
 		case R.id.btn_searchform_begindate:
-			builder.setTitle("Ê±¼ä");
+			builder.setTitle("æ—¶é—´");
 			builder.setView(view);
-			builder.setPositiveButton("È·¶¨", null);
-			builder.setNegativeButton("È¡Ïû", null);
+			builder.setPositiveButton("ç¡®å®š", null);
+			builder.setNegativeButton("å–æ¶ˆ", null);
 			builder.create().show();
 			break;
-		// Ñ¡Ôñ½áÊøÊ±¼äµÄButton
+		// é€‰æ‹©ç»“æŸæ—¶é—´çš„Button
 		case R.id.btn_searchform_enddate:
-			builder.setTitle("Ê±¼ä");
+			builder.setTitle("æ—¶é—´");
 			builder.setView(view);
-			builder.setPositiveButton("È·¶¨", null);
-			builder.setNegativeButton("È¡Ïû", null);
+			builder.setPositiveButton("ç¡®å®š", null);
+			builder.setNegativeButton("å–æ¶ˆ", null);
 			builder.create().show();
 			break;
-		// ÆäËüµÄButton
+		// å…¶å®ƒçš„Button
 		// ...
 		default:
 			break;
 		}
 	}
 	
-	// ³õÊ¼»¯¸÷ÖÖ´°¿Ú
+	// åˆå§‹åŒ–å„ç§çª—å£
 		private void iniDialog() {
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setMessage("ÄúÈ·¶¨ÒªÍË³ö¶½µ¼ÏµÍ³ Âğ£¿")
-					.setPositiveButton("ºóÌ¨ÔËĞĞ",
+			builder.setMessage("æ‚¨ç¡®å®šè¦é€€å‡ºç£å¯¼ç³»ç»Ÿ å—ï¼Ÿ")
+					.setPositiveButton("åå°è¿è¡Œ",
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
 										int which) {
 									runInBG();
 								}
 							})
-					.setNegativeButton("ÍË³ö", new DialogInterface.OnClickListener() {
+					.setNegativeButton("é€€å‡º", new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int which) {
 							finish();
 							android.os.Process
@@ -186,12 +186,12 @@ public class MainActivity extends ActionBarActivity implements OnClickListener
 									.myPid());
 							//exit();
 						}
-					}).setNeutralButton("È¡Ïû", null);
+					}).setNeutralButton("å–æ¶ˆ", null);
 			leaveDialog = builder.create();
-			leaveDialog.setTitle("ÍË³ö");
+			leaveDialog.setTitle("é€€å‡º");
 		}
 	/** 
-	 * ºóÌ¨ÔËĞĞ
+	 * åå°è¿è¡Œ
 	 */
 		private void runInBG() {
 			Intent intent = new Intent();
@@ -200,7 +200,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener
 			startActivity(intent);
 		}
 		/** 
-		 *  ÍË³ö
+		 *  é€€å‡º
 		 */	
 		private void exit() {
 			finish();
