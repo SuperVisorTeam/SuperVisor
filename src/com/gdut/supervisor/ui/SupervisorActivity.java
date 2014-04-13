@@ -73,6 +73,7 @@ public class SupervisorActivity extends FragmentActivity  {
 	 */
 	private AlertDialog clearDialog;
 
+	
 	/**
 	 * 用来判断第一个卡片是否被打开
 	 */

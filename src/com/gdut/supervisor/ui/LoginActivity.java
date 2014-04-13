@@ -83,8 +83,8 @@ public class LoginActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		// 步骤一：判断登陆是否成功，若成功则进入主界面，并保存用户信息，不成功则做出提示
-		account = et_account.getText().toString().trim();
-		password = et_password.getText().toString().trim();
+		account = et_account.getText().toString();
+		password = et_password.getText().toString();
 
 		if (account.equals("")) {
 			Toast.makeText(this, "请输入账号", Toast.LENGTH_SHORT).show();
