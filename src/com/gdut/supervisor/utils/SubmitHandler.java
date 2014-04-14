@@ -119,7 +119,7 @@ public class SubmitHandler {
 	}
 
 	/**
-	 * 
+	 * 通过校区，日期，上课地点，上课节次 返回学院名称，专业班级，应到人数
 	 * @param school_district
 	 * @param date
 	 * @param study_place
@@ -127,7 +127,7 @@ public class SubmitHandler {
 	 * @return
 	 * @throws ClientProtocolException
 	 * @throws IOException
-	 *             通过校区，日期，上课地点，上课节次 返回学院名称，专业班级，应到人数
+	 *             
 	 */
 	public static int getMap(String school_district, String date,
 			String study_place, String section, String user_no)

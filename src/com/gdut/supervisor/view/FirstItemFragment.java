@@ -12,6 +12,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,7 @@ import android.widget.Spinner;
 import com.gdut.supervisor.R;
 import com.gdut.supervisor.dialog.ShowMessageDialog;
 import com.gdut.supervisor.info.BaseMessage;
+import com.gdut.supervisor.ui.LoginActivity;
 import com.gdut.supervisor.ui.SupervisorActivity;
 import com.gdut.supervisor.utils.ClassGroupXMLHandler;
 import com.gdut.supervisor.utils.ClassNameHandler;
@@ -48,6 +50,8 @@ import com.gdut.supervisor.utils.SubmitHandler;
  */
 public class FirstItemFragment extends Fragment implements OnClickListener
 {
+
+
 	/**
 	 * 上课时间
 	 */
@@ -163,7 +167,74 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 	{
 		super.onCreate(savedInstanceState);
 	}
+	
+	/**
+	 *处理线程的handler
+	 */
+	private Handler myhandler = new Handler() {	//用于响应处理登陆线程的结果
 
+		@Override
+		public void handleMessage(Message msg) {
+			// TODO Auto-generated method stub
+			super.handleMessage(msg);
+			if(msg.what ==0x123) 
+			{
+				switch(msg.arg1)
+				{
+				
+				case 409:
+					inihasBookDialog(schoollationEditText.getText().toString()
+							+ "\n班级已经被督导，请选择其它教学班进行督导！");
+					break;
+				case 402:
+					inihasBookDialog(schoollationEditText.getText().toString()
+							+ "\n今天已被别人预订了，请选择其它教学班进行督导！");
+					break;
+				case 404:
+					inihasBookDialog(schoollationEditText.getText().toString()
+							+ "\n没有对应的课要上，请选择其它教学班进行督导！");
+					break;
+				case 400:
+					inihasBookDialog(schoollationEditText.getText().toString()
+							+ "\n请求的参数有错!");
+					break;
+				case 200:
+					//如果提交成功
+					Toast.makeText(getActivity(), "请求成功", 2*1000).show();				
+					utilMap = SubmitHandler.getmap;
+			
+					//得到教学班编号					
+					BaseMessage.class_no = (String) utilMap
+							.get("course_class_no");
+					//得到学院名称
+					schoolnameEditText.setText((String) utilMap
+							.get("student_faculty"));
+					int i = 0;
+					//通过解析字符串得到专业班级数组
+					classname = ClassNameHandler
+							.exchangeStringToArray((String) utilMap
+									.get("teaching_class_group"));
+					
+					classGroup = (String) utilMap.get("teaching_class_group");
+					//应到人数
+					double num1 = (Double) utilMap.get("plan_population");
+					int num = (int) num1;
+					BaseMessage.num = num;
+					studentNumber_editText.setText(num + "");
+					BaseMessage.teacherName = (String) utilMap
+							.get("teacher_name");
+					classnameEditText.setText("显示全部专业班级");
+					//设置实到的输入框初始值
+					realNumber_editText.setText("0");
+					break;
+					default :
+						break;
+				}
+			
+			}
+		}
+		
+	};
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
@@ -250,7 +321,9 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 		//获取专业班级的按钮
 		else	if(v.getId()==R.id.classnameEditText)
 		{
-			
+			//初始化专业班级选择窗口
+			iniClassnameDialog();
+			classnameDialog.show();
 		}
 	}
 	/**
@@ -265,8 +338,8 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 		@Override
 		public void onItemSelected(AdapterView<?> parent, View view,
 				int position, long id) {
-			
-			switch (position) {
+			schoolID=position;
+			switch (schoolID) {
 			case 1: {
 				schoolXMLID = R.xml.site1;
 			}
@@ -381,6 +454,9 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 				else {
 					schoollationString = class_roomSpinner.getSelectedItem().toString();
 					schoollationEditText.setText(schoollationString);
+					//用新线程请求数据
+					ThreadForGetData threadForGetData=new ThreadForGetData();
+					threadForGetData.start();
 					}
 				}		
 		}).setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -432,5 +508,178 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 		dataDialog = builder.create();
 		dataDialog.setTitle("日期：" + dateString);
 		dataDialog.setView(view2);
+	}
+	// 获得录入数据
+	/**
+	 * 该线程利用上述得到的教室名称和节次作为参数，向服务器请求在该课室上课的学院和班级列表，并返回数据						
+	 */
+	private class ThreadForGetData extends Thread
+	{
+		@Override
+		public void run() {
+			if (schoollocationSpinner.getSelectedItem().toString() == null
+					|| schoollocationSpinner.getSelectedItem().toString()
+							.equals("")
+					|| schoollationEditText.getText().toString() == null
+					|| schoollationEditText.getText().toString().equals("")
+					|| dateEditText.getText().toString() == null
+					|| dateEditText.getText().toString().equals("")
+					|| checkclassSpinner.getSelectedItem().toString() == null
+					|| checkclassSpinner.getSelectedItem().toString().equals("")) {
+			} else {
+				//如果第二个选项卡打开了，重置第二个菜单的数据列表
+				/*if (SupervisorActivity.secondOpen) {
+					SecondItemActivity.clearSecondItem();
+				}
+				//如果第三个选项卡打开了，重置第三个菜单的数据列表
+				if (SupervisorActivity.thirdOpen) {
+					ThirdItemActivity.clearThirdItem();
+				}*/
+				try {
+					int code = -1;
+					//将【校区ID】，【日期】，【上课地点】，【上课时间】，【督导员学号】
+					//作为参数上传到服务器端请求数据，该函数返回响应码
+					code = SubmitHandler.getMap(schoolID + "", dateEditText
+							.getText().toString(), schoollationEditText.getText()
+							.toString(), checkclassSpinner.getSelectedItem()
+							.toString(), BaseMessage.supervisor_no);
+					Message message=new Message();
+					//打包状态码放在Message中
+					message.arg1=code;
+					message.what=0x123;
+					myhandler.sendMessage(message);
+					}catch (ClientProtocolException e) 
+					       {
+								ShowMessageDialog.showMessage(getActivity(),
+										"请保持网络连接！");
+								return;
+							} catch (IOException e)
+							{
+								ShowMessageDialog.showMessage(getActivity(),
+										"请保持网络连接！");
+								return;
+							}
+							    
+				}
+		}
+		
+	}
+
+	/*private void getData() {
+		//如果有哪个选项为空则不做任何操作
+		if (schoollocationSpinner.getSelectedItem().toString() == null
+				|| schoollocationSpinner.getSelectedItem().toString()
+						.equals("")
+				|| schoollationEditText.getText().toString() == null
+				|| schoollationEditText.getText().toString().equals("")
+				|| dateEditText.getText().toString() == null
+				|| dateEditText.getText().toString().equals("")
+				|| checkclassSpinner.getSelectedItem().toString() == null
+				|| checkclassSpinner.getSelectedItem().toString().equals("")) {
+		} else {
+			//如果第二个选项卡打开了，重置第二个菜单的数据列表
+			if (SupervisorActivity.secondOpen) {
+				SecondItemActivity.clearSecondItem();
+			}
+			//如果第三个选项卡打开了，重置第三个菜单的数据列表
+			if (SupervisorActivity.thirdOpen) {
+				ThirdItemActivity.clearThirdItem();
+			}
+			try {
+				int code = -1;
+				//将【校区ID】，【日期】，【上课地点】，【上课时间】，【督导员学号】
+				//作为参数上传到服务器端请求数据，该函数返回响应码
+				code = SubmitHandler.getMap(schoolID + "", dateEditText
+						.getText().toString(), schoollationEditText.getText()
+						.toString(), checkclassSpinner.getSelectedItem()
+						.toString(), BaseMessage.supervisor_no);
+				//提交时，如果有其它辅导员督导该班，则弹出该窗口进行提示，并将输入的值全都重置为0
+				if (code == 409) {
+					inihasBookDialog(schoollationEditText.getText().toString()
+							+ "\n班级已经被督导，请选择其它教学班进行督导！");
+				} 
+				else if (code == 200) {
+					//如果提交成功
+					utilMap = SubmitHandler.getmap;
+			
+					//得到教学班编号					
+					BaseMessage.class_no = (String) utilMap
+							.get("course_class_no");
+					//得到学院名称
+					schoolnameEditText.setText((String) utilMap
+							.get("student_faculty"));
+					int i = 0;
+					//通过解析字符串得到专业班级数组
+					classname = ClassNameHandler
+							.exchangeStringToArray((String) utilMap
+									.get("teaching_class_group"));
+					
+					classGroup = (String) utilMap.get("teaching_class_group");
+					//应到人数
+					double num1 = (Double) utilMap.get("plan_population");
+					int num = (int) num1;
+					BaseMessage.num = num;
+					studentNumber_editText.setText(num + "");
+					BaseMessage.teacherName = (String) utilMap
+							.get("teacher_name");
+					classnameEditText.setText("显示全部专业班级");
+					//设置实到的输入框初始值
+					realNumber_editText.setText("0");
+				} 
+				//以下都是提交后返回码返回的异常代表码，会弹出相应的提示框
+				else if (code == 402) {
+					inihasBookDialog(schoollationEditText.getText().toString()
+							+ "\n今天已被别人预订了，请选择其它教学班进行督导！");
+				} else if (code == 404) {
+					inihasBookDialog(schoollationEditText.getText().toString()
+							+ "\n没有对应的课要上，请选择其它教学班进行督导！");
+				} else if (code == 400) {
+					inihasBookDialog(schoollationEditText.getText().toString()
+							+ "\n请求的参数有错!");
+				} else {
+					inihasBookDialog("请保持网络连接！");
+				}
+			} catch (ClientProtocolException e) {
+				ShowMessageDialog.showMessage(getActivity(),
+						"请保持网络连接！");
+				return;
+			} catch (IOException e) {
+				ShowMessageDialog.showMessage(getActivity(),
+						"请保持网络连接！");
+				return;
+			}
+		}
+	}*/
+	/**
+	 * 已经预定窗口，
+	 */
+	private void inihasBookDialog(String message) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(
+				getActivity());
+		builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+
+			public void onClick(DialogInterface dialog, int which) {
+				//hasGetNull();
+			}
+
+		});
+		hasBookDialog = builder.create();
+		hasBookDialog.setTitle("提示");
+		hasBookDialog.setMessage(message);
+		hasBookDialog.show();
+	}
+	/**
+	 * 专业班级窗口，用于选择相应的专业班级
+	 */
+	private void iniClassnameDialog() {
+		AlertDialog.Builder builder = new AlertDialog.Builder(
+				getActivity());
+		String classcontext = "\n";
+		for (int i = 0; i < classname.length; i++) {
+			classcontext = classcontext + classname[i] + "\n";
+		}
+		classnameDialog = builder.create();
+		classnameDialog.setMessage(classcontext);
+		classnameDialog.setTitle("专业班级");
 	}
 }
