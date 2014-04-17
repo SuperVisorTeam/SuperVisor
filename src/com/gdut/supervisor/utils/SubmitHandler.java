@@ -11,6 +11,7 @@ import java.util.Map;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
+import org.apache.http.ParseException;
 import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -22,10 +23,13 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
+import android.widget.Toast;
+
 import com.gdut.supervisor.dialog.ShowMessageDialog;
 import com.gdut.supervisor.info.BaseMessage;
 import com.gdut.supervisor.info.Edu_Survey;
 import com.gdut.supervisor.info.Edu_SurveyToIphone;
+import com.gdut.supervisor.ui.SupervisorActivity;
 import com.google.gson.Gson;
 
 public class SubmitHandler {
@@ -157,7 +161,6 @@ public class SubmitHandler {
 		} else if (response.getStatusLine().getStatusCode() == 409) {
 			System.out.println("该班级已经被督导");
 		}
-
 		return response.getStatusLine().getStatusCode();
 	}
 
@@ -172,31 +175,50 @@ public class SubmitHandler {
 	 *             通过督导员的学号，开始时间，结束时间 来获取上课地点，校区，专业班级等表单数据
 	 */
 	public static Map<String, List<List>> getMap2(String user_no,
-			String start_date, String end_date) throws ClientProtocolException,
-			IOException {
+			String start_date, String end_date) 
+			 {
+		String responseTexts = null;
+		HttpResponse response = null;
+		HttpEntity entity;
+		try{
 		HttpGet httpGet = new HttpGet(BaseMessage.baseUrl + "/dudao/check/"
 				+ user_no + "/" + start_date + "/" + end_date);
 
-		HttpResponse response = httpclient.execute(httpGet);
+	       response = httpclient.execute(httpGet);
+	        entity = response.getEntity();
 		System.out
 				.println("查找的状态码：" + response.getStatusLine().getStatusCode());
+		String responseText = EntityUtils.toString(entity, HTTP.UTF_8);
+		
+		}catch(ClientProtocolException e){
+			e.printStackTrace();
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
+		catch(ParseException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			httpclient.getConnectionManager().shutdown();  
+		}
+		
 		if (response.getStatusLine().getStatusCode() == 404) {
 			System.out.println("输入数据错误或此地点没有对应的课要上");
-		} else if (response.getStatusLine().getStatusCode() == 200) {
-			System.out.println("输入正确");
-
-			HttpEntity entity = response.getEntity();
-
-			String responseText = EntityUtils.toString(entity, HTTP.UTF_8);
-
-			Map<String, List<List>> map = gson.fromJson(responseText,
+		} else if 
+		     (response.getStatusLine().getStatusCode() == 200) {
+			System.out.println("输入正确");	
+			
+			@SuppressWarnings("unchecked")
+			Map<String, List<List>> map = gson.fromJson(responseTexts,
 					HashMap.class);
 			return map;
 		}
-
 		return null;
-
 	}
+		
 
 	/**
 	 * 查找功能的实现
@@ -232,7 +254,7 @@ public class SubmitHandler {
 		Date addtimedt = new Date(addtime);
 		String add_Time = sdf.format(addtimedt);
 		edu_survey.setAdd_Time(add_Time);
-
+       
 		return edu_survey;
 	}
 

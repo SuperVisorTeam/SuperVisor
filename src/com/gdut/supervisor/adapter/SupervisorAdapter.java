@@ -41,6 +41,10 @@ public class SupervisorAdapter extends FragmentPagerAdapter
 	 * 三个表单的视图参数
 	 */
 	private LayoutParams param;
+	
+	FirstItemFragment firstItemFragment=new FirstItemFragment();
+	SecondItemFragment  secondItemFragment =new SecondItemFragment();   
+	ThirdItemFragment thirdItemFragment =new ThirdItemFragment();
 
 	// 默认的构造函数
 	public SupervisorAdapter(FragmentManager fm)
@@ -53,11 +57,12 @@ public class SupervisorAdapter extends FragmentPagerAdapter
 		titleList.add("表单三");
 
 		// 获取三个表单Fragment对应的view,存放于fragmentViewList里，
-		fragmentViewList = new ArrayList<Fragment>();
-		//
-		fragmentViewList.add(new FirstItemFragment());
-		fragmentViewList.add(new SecondItemFragment());
-		fragmentViewList.add(new ThirdItemFragment());
+				fragmentViewList = new ArrayList<Fragment>();
+				//
+				
+				fragmentViewList.add(firstItemFragment);
+				fragmentViewList.add(secondItemFragment);
+				fragmentViewList.add(thirdItemFragment);
 	}
 
 	/*

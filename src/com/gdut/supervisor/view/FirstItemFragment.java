@@ -153,7 +153,10 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 	 * 日
 	 */
 	private static int day;
-	Map<String, Object> utilMap;
+    /**
+     *存放请求后得到的响应数据
+     */
+	Map<String, Object> utilMap=null;
 	/**
 	 * 校区ID
 	 */
@@ -166,6 +169,7 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		   System.out.println("---------OnCreatView");
 	}
 	
 	/**
@@ -256,7 +260,7 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 		classnameEditText = (Button) rootView.findViewById(R.id.classnameEditText);
 		classnameEditText.setTextSize(20.0f);
 		classnameEditText.setOnClickListener(this);
-		classnameEditText.setText("");
+	  //classnameEditText.setText("");
 		//获取时间日期的按钮，点击可选择日期
 		dateEditText = (Button) rootView.findViewById(R.id.dateEditText);
 		dateEditText.setTextSize(20.0f);
@@ -284,6 +288,7 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 		//
 		//checkclassSpinner.setOnItemSelectedListener(new autoCompleteTextViewListener());
 	    schoollocationSpinner.setOnItemSelectedListener(new schoollocationListener());
+	    System.out.println("---------OnCreatView");
 		return rootView;
 	}
 
@@ -322,6 +327,7 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 		else	if(v.getId()==R.id.classnameEditText)
 		{
 			//初始化专业班级选择窗口
+			if(utilMap==null) return;
 			iniClassnameDialog();
 			classnameDialog.show();
 		}
@@ -535,32 +541,29 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 				if (SupervisorActivity.thirdOpen) {
 					ThirdItemActivity.clearThirdItem();
 				}*/
-				try {
+				
 					int code = -1;
 					//将【校区ID】，【日期】，【上课地点】，【上课时间】，【督导员学号】
 					//作为参数上传到服务器端请求数据，该函数返回响应码
-					code = SubmitHandler.getMap(schoolID + "", dateEditText
-							.getText().toString(), schoollationEditText.getText()
-							.toString(), checkclassSpinner.getSelectedItem()
-							.toString(), BaseMessage.supervisor_no);
+					try {
+						code = SubmitHandler.getMap(schoolID + "", dateEditText
+								.getText().toString(), schoollationEditText.getText()
+								.toString(), checkclassSpinner.getSelectedItem()
+								.toString(), BaseMessage.supervisor_no);
+					} catch (ClientProtocolException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					Message message=new Message();
 					//打包状态码放在Message中
 					message.arg1=code;
 					message.what=0x123;
 					myhandler.sendMessage(message);
-					}catch (ClientProtocolException e) 
-					       {
-								ShowMessageDialog.showMessage(getActivity(),
-										"请保持网络连接！");
-								return;
-							} catch (IOException e)
-							{
-								ShowMessageDialog.showMessage(getActivity(),
-										"请保持网络连接！");
-								return;
-							}
+					}
 							    
-				}
 		}
 		
 	}
@@ -682,4 +685,5 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 		classnameDialog.setMessage(classcontext);
 		classnameDialog.setTitle("专业班级");
 	}
+
 }
