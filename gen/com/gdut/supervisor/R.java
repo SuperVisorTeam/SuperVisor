@@ -246,6 +246,14 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int buttonBarStyle=0x7f010013;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int circleBackground=0x7f01006a;
         /**  Specifies a layout for custom navigation. Overrides navigationMode. 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
@@ -329,6 +337,19 @@ containing a value of this type.
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int expandActivityOverflowButtonDrawable=0x7f010067;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>East</code></td><td>0</td><td></td></tr>
+<tr><td><code>South</code></td><td>90</td><td></td></tr>
+<tr><td><code>West</code></td><td>180</td><td></td></tr>
+<tr><td><code>North</code></td><td>270</td><td></td></tr>
+</table>
+         */
+        public static final int firstChildPosition=0x7f01006b;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -387,6 +408,14 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int isLightTheme=0x7f010055;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int isRotating=0x7f01006d;
         /**  Specifies padding that should be applied to the left and right sides of
              system-provided items in the bar. 
          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
@@ -468,6 +497,14 @@ containing a value of this type.
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int logo=0x7f010029;
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int name=0x7f01006e;
         /**  The type of navigation to use. 
          <p>Must be one of the following constant values.</p>
 <table>
@@ -561,6 +598,14 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int queryHint=0x7f010057;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int rotateToCenter=0x7f01006c;
         /**  SearchView dropdown background 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
@@ -1457,167 +1502,184 @@ containing a value of this type.
         public static final int ib_supervisor_preparewrite=0x7f020069;
         public static final int ic_launcher=0x7f02006a;
         public static final int icon=0x7f02006b;
-        public static final int input_over=0x7f02006c;
-        public static final int login_input=0x7f02006d;
-        public static final int menu_actionbar=0x7f02006e;
-        public static final int noodlesmaster_timer=0x7f02006f;
-        public static final int shape=0x7f020070;
-        public static final int shape1=0x7f020071;
-        public static final int shape2=0x7f020072;
-        public static final int shape3=0x7f020073;
-        public static final int spacebar=0x7f020074;
-        public static final int supervisor_normal=0x7f020075;
-        public static final int supervisor_pressed=0x7f020076;
-        public static final int tab_bg_halo=0x7f020077;
-        public static final int tab_selector_checked_bg=0x7f020078;
-        public static final int tab_selector_evaluate=0x7f020079;
-        public static final int tab_selector_help=0x7f02007a;
-        public static final int tab_selector_search=0x7f02007b;
-        public static final int tab_selector_write=0x7f02007c;
-        public static final int tools_normal=0x7f02007d;
-        public static final int tools_pressed=0x7f02007e;
-        public static final int welcomepager=0x7f02007f;
+        public static final int icon_facebook=0x7f02006c;
+        public static final int icon_google=0x7f02006d;
+        public static final int icon_linkedin=0x7f02006e;
+        public static final int icon_myspace=0x7f02006f;
+        public static final int icon_twitter=0x7f020070;
+        public static final int icon_wordpress=0x7f020071;
+        public static final int input_over=0x7f020072;
+        public static final int login_input=0x7f020073;
+        public static final int menu_actionbar=0x7f020074;
+        public static final int noodlesmaster_timer=0x7f020075;
+        public static final int shape=0x7f020076;
+        public static final int shape1=0x7f020077;
+        public static final int shape2=0x7f020078;
+        public static final int shape3=0x7f020079;
+        public static final int spacebar=0x7f02007a;
+        public static final int supervisor_normal=0x7f02007b;
+        public static final int supervisor_pressed=0x7f02007c;
+        public static final int tab_bg_halo=0x7f02007d;
+        public static final int tab_selector_checked_bg=0x7f02007e;
+        public static final int tab_selector_evaluate=0x7f02007f;
+        public static final int tab_selector_help=0x7f020080;
+        public static final int tab_selector_search=0x7f020081;
+        public static final int tab_selector_write=0x7f020082;
+        public static final int tools_normal=0x7f020083;
+        public static final int tools_pressed=0x7f020084;
+        public static final int welcomepager=0x7f020085;
     }
     public static final class id {
-        public static final int GDUT=0x7f06004d;
-        public static final int Label=0x7f060055;
-        public static final int Linear=0x7f06004b;
-        public static final int Ps_1=0x7f060056;
-        public static final int Ps_2=0x7f06006c;
-        public static final int action_bar=0x7f06001c;
+        public static final int East=0x7f06001a;
+        public static final int GDUT=0x7f060051;
+        public static final int Label=0x7f060060;
+        public static final int Linear=0x7f06004f;
+        public static final int North=0x7f06001d;
+        public static final int Ps_1=0x7f060061;
+        public static final int Ps_2=0x7f060077;
+        public static final int South=0x7f06001b;
+        public static final int West=0x7f06001c;
+        public static final int action_bar=0x7f060020;
         public static final int action_bar_activity_content=0x7f060015;
-        public static final int action_bar_container=0x7f06001b;
-        public static final int action_bar_overlay_layout=0x7f06001f;
-        public static final int action_bar_root=0x7f06001a;
-        public static final int action_bar_subtitle=0x7f060023;
-        public static final int action_bar_title=0x7f060022;
-        public static final int action_context_bar=0x7f06001d;
+        public static final int action_bar_container=0x7f06001f;
+        public static final int action_bar_overlay_layout=0x7f060023;
+        public static final int action_bar_root=0x7f06001e;
+        public static final int action_bar_subtitle=0x7f060027;
+        public static final int action_bar_title=0x7f060026;
+        public static final int action_context_bar=0x7f060021;
         public static final int action_menu_divider=0x7f060016;
         public static final int action_menu_presenter=0x7f060017;
-        public static final int action_mode_close_button=0x7f060024;
-        public static final int activity_chooser_view_content=0x7f060025;
+        public static final int action_mode_close_button=0x7f060028;
+        public static final int activity_chooser_view_content=0x7f060029;
         public static final int always=0x7f06000b;
         public static final int beginning=0x7f060011;
-        public static final int btn_get_submit_time=0x7f060085;
-        public static final int btn_login_debark=0x7f060065;
-        public static final int btn_searchform_begindate=0x7f060045;
-        public static final int btn_searchform_enddate=0x7f060046;
-        public static final int cb_login_auto_debark=0x7f060064;
-        public static final int cb_login_rm_password=0x7f060063;
-        public static final int checkbox=0x7f06002d;
-        public static final int checkclassSpinner=0x7f060059;
-        public static final int classSpinner=0x7f060069;
-        public static final int class_roomSpinner=0x7f06006a;
-        public static final int classnameEditText=0x7f06005c;
-        public static final int clearButton=0x7f06004c;
+        public static final int btn_get_submit_time=0x7f060090;
+        public static final int btn_login_debark=0x7f060070;
+        public static final int btn_searchform_begindate=0x7f060049;
+        public static final int btn_searchform_enddate=0x7f06004a;
+        public static final int cb_login_auto_debark=0x7f06006f;
+        public static final int cb_login_rm_password=0x7f06006e;
+        public static final int checkbox=0x7f060031;
+        public static final int checkclassSpinner=0x7f060064;
+        public static final int classSpinner=0x7f060074;
+        public static final int class_roomSpinner=0x7f060075;
+        public static final int classnameEditText=0x7f060067;
+        public static final int clearButton=0x7f060050;
         public static final int collapseActionView=0x7f06000d;
-        public static final int dateEditText=0x7f060057;
-        public static final int datePicker=0x7f06004a;
-        public static final int default_activity_button=0x7f060028;
+        public static final int dateEditText=0x7f060062;
+        public static final int datePicker=0x7f06004e;
+        public static final int default_activity_button=0x7f06002c;
         public static final int dialog=0x7f06000e;
         public static final int disableHome=0x7f060008;
-        public static final int dp_searchtime=0x7f060044;
+        public static final int dp_searchtime=0x7f060048;
         public static final int dropdown=0x7f06000f;
-        public static final int eataddButton=0x7f060078;
-        public static final int eatnumEditText=0x7f060077;
-        public static final int eatreduceButton=0x7f060076;
-        public static final int edit_query=0x7f060030;
-        public static final int edtTxt_remark=0x7f060086;
-        public static final int edtTxt_submit_time=0x7f060084;
-        public static final int edtTxt_supervisor=0x7f060083;
-        public static final int edtTxt_teacher_name=0x7f060082;
+        public static final int eataddButton=0x7f060083;
+        public static final int eatnumEditText=0x7f060082;
+        public static final int eatreduceButton=0x7f060081;
+        public static final int edit_query=0x7f060034;
+        public static final int edtTxt_remark=0x7f060091;
+        public static final int edtTxt_submit_time=0x7f06008f;
+        public static final int edtTxt_supervisor=0x7f06008e;
+        public static final int edtTxt_teacher_name=0x7f06008d;
         public static final int end=0x7f060013;
-        public static final int enddate=0x7f060049;
-        public static final int et_evaluate_test=0x7f060052;
-        public static final int et_login_account=0x7f06005f;
-        public static final int et_login_password=0x7f060061;
-        public static final int expand_activities_button=0x7f060026;
-        public static final int expanded_menu=0x7f06002c;
-        public static final int fragment_content=0x7f06003d;
+        public static final int enddate=0x7f06004d;
+        public static final int et_evaluate_test=0x7f060056;
+        public static final int et_login_account=0x7f06006a;
+        public static final int et_login_password=0x7f06006c;
+        public static final int expand_activities_button=0x7f06002a;
+        public static final int expanded_menu=0x7f060030;
+        public static final int fragment_content=0x7f060041;
         public static final int home=0x7f060014;
         public static final int homeAsUp=0x7f060005;
-        public static final int ib_supervisor_directwrite=0x7f060053;
-        public static final int ib_supervisor_preparewrite=0x7f060054;
-        public static final int icon=0x7f06002a;
+        public static final int icon=0x7f06002e;
         public static final int ifRoom=0x7f06000a;
-        public static final int image=0x7f060027;
-        public static final int lateaddButton=0x7f06006f;
-        public static final int latenumEditText=0x7f06006e;
-        public static final int latereduceButton=0x7f06006d;
-        public static final int leaveaddButton=0x7f060075;
-        public static final int leavenumEditText=0x7f060074;
-        public static final int leavereduceButton=0x7f060073;
+        public static final int image=0x7f06002b;
+        public static final int imgView_supervisor_class_search=0x7f06005e;
+        public static final int imgView_supervisor_directwrite=0x7f06005c;
+        public static final int imgView_supervisor_history_search=0x7f06005a;
+        public static final int imgView_supervisor_others=0x7f06005d;
+        public static final int imgView_supervisor_preparewrite=0x7f06005b;
+        public static final int imgView_supervisor_teacher_search=0x7f060059;
+        public static final int lateaddButton=0x7f06007a;
+        public static final int latenumEditText=0x7f060079;
+        public static final int latereduceButton=0x7f060078;
+        public static final int leaveaddButton=0x7f060080;
+        public static final int leavenumEditText=0x7f06007f;
+        public static final int leavereduceButton=0x7f06007e;
         public static final int listMode=0x7f060001;
-        public static final int list_item=0x7f060029;
-        public static final int lv_searchform_everyday=0x7f060051;
-        public static final int menu_about=0x7f060088;
-        public static final int menu_help=0x7f060087;
-        public static final int menu_logout=0x7f06008a;
-        public static final int menu_setting=0x7f060089;
+        public static final int list_item=0x7f06002d;
+        public static final int lv_searchform_everyday=0x7f060055;
+        public static final int main_circle_layout=0x7f060057;
+        public static final int main_selected_textView=0x7f060058;
+        public static final int menu_about=0x7f060093;
+        public static final int menu_help=0x7f060092;
+        public static final int menu_logout=0x7f060095;
+        public static final int menu_setting=0x7f060094;
         public static final int middle=0x7f060012;
         public static final int never=0x7f060009;
         public static final int none=0x7f060010;
         public static final int normal=0x7f060000;
-        public static final int pagertab=0x7f060050;
-        public static final int peoplenumEditText=0x7f06005d;
-        public static final int phoneaddButton=0x7f06007b;
-        public static final int phonenumEditText=0x7f06007a;
-        public static final int phonereduceButton=0x7f060079;
-        public static final int popup_menu=0x7f06008b;
-        public static final int popup_view=0x7f06003c;
-        public static final int progressBar1=0x7f060043;
+        public static final int pagertab=0x7f060054;
+        public static final int peoplenumEditText=0x7f060068;
+        public static final int phoneaddButton=0x7f060086;
+        public static final int phonenumEditText=0x7f060085;
+        public static final int phonereduceButton=0x7f060084;
+        public static final int popup_menu=0x7f060096;
+        public static final int popup_view=0x7f060040;
+        public static final int progressBar1=0x7f060047;
         public static final int progress_circular=0x7f060018;
         public static final int progress_horizontal=0x7f060019;
-        public static final int radio=0x7f06002f;
-        public static final int rdoBtn_teacher_if_ontime_no=0x7f060068;
-        public static final int rdoBtn_teacher_if_ontime_yes=0x7f060067;
-        public static final int rdoGop_teacher_if_ontime=0x7f060066;
-        public static final int reallynumEditText=0x7f06005e;
-        public static final int schoollationEditText=0x7f06005a;
-        public static final int schoollocationSpinner=0x7f060058;
-        public static final int schoolnameEditText=0x7f06005b;
-        public static final int search_badge=0x7f060032;
-        public static final int search_bar=0x7f060031;
-        public static final int search_button=0x7f060033;
-        public static final int search_close_btn=0x7f060038;
-        public static final int search_edit_frame=0x7f060034;
-        public static final int search_go_btn=0x7f06003a;
-        public static final int search_mag_icon=0x7f060035;
-        public static final int search_plate=0x7f060036;
-        public static final int search_src_text=0x7f060037;
-        public static final int search_voice_btn=0x7f06003b;
-        public static final int shoneaddButton=0x7f060081;
-        public static final int shonenumEditText=0x7f060080;
-        public static final int shonereduceButton=0x7f06007f;
-        public static final int shortcut=0x7f06002e;
+        public static final int radio=0x7f060033;
+        public static final int rdoBtn_teacher_if_ontime_no=0x7f060073;
+        public static final int rdoBtn_teacher_if_ontime_yes=0x7f060072;
+        public static final int rdoGop_teacher_if_ontime=0x7f060071;
+        public static final int reallynumEditText=0x7f060069;
+        public static final int schoollationEditText=0x7f060065;
+        public static final int schoollocationSpinner=0x7f060063;
+        public static final int schoolnameEditText=0x7f060066;
+        public static final int search_badge=0x7f060036;
+        public static final int search_bar=0x7f060035;
+        public static final int search_button=0x7f060037;
+        public static final int search_close_btn=0x7f06003c;
+        public static final int search_edit_frame=0x7f060038;
+        public static final int search_go_btn=0x7f06003e;
+        public static final int search_mag_icon=0x7f060039;
+        public static final int search_plate=0x7f06003a;
+        public static final int search_src_text=0x7f06003b;
+        public static final int search_voice_btn=0x7f06003f;
+        public static final int shoneaddButton=0x7f06008c;
+        public static final int shonenumEditText=0x7f06008b;
+        public static final int shonereduceButton=0x7f06008a;
+        public static final int shortcut=0x7f060032;
         public static final int showCustom=0x7f060007;
         public static final int showHome=0x7f060004;
         public static final int showTitle=0x7f060006;
-        public static final int sleepaddButton=0x7f06007e;
-        public static final int sleepnumEditText=0x7f06007d;
-        public static final int sleepreduceButton=0x7f06007c;
-        public static final int split_action_bar=0x7f06001e;
-        public static final int startdate=0x7f060048;
-        public static final int submitButton=0x7f06004e;
-        public static final int submit_area=0x7f060039;
-        public static final int supervisor_no=0x7f060047;
+        public static final int sleepaddButton=0x7f060089;
+        public static final int sleepnumEditText=0x7f060088;
+        public static final int sleepreduceButton=0x7f060087;
+        public static final int split_action_bar=0x7f060022;
+        public static final int startdate=0x7f06004c;
+        public static final int submitButton=0x7f060052;
+        public static final int submit_area=0x7f06003d;
+        public static final int supervisor_no=0x7f06004b;
         public static final int tabMode=0x7f060002;
-        public static final int tab_rb_1=0x7f06003f;
-        public static final int tab_rb_2=0x7f060040;
-        public static final int tab_rb_3=0x7f060041;
-        public static final int tab_rb_4=0x7f060042;
-        public static final int tab_rg_menu=0x7f06003e;
-        public static final int title=0x7f06002b;
-        public static final int top_action_bar=0x7f060020;
-        public static final int truantnumEditText=0x7f060071;
-        public static final int truantnumaddButton=0x7f060072;
-        public static final int truantnumreduceButton=0x7f060070;
-        public static final int tv_login_account=0x7f060060;
-        public static final int tv_login_password=0x7f060062;
-        public static final int tv_searchform_listviewadapter=0x7f06006b;
-        public static final int up=0x7f060021;
+        public static final int tab_rb_1=0x7f060043;
+        public static final int tab_rb_2=0x7f060044;
+        public static final int tab_rb_3=0x7f060045;
+        public static final int tab_rb_4=0x7f060046;
+        public static final int tab_rg_menu=0x7f060042;
+        public static final int title=0x7f06002f;
+        public static final int top_action_bar=0x7f060024;
+        public static final int truantnumEditText=0x7f06007c;
+        public static final int truantnumaddButton=0x7f06007d;
+        public static final int truantnumreduceButton=0x7f06007b;
+        public static final int tv_login_account=0x7f06006b;
+        public static final int tv_login_password=0x7f06006d;
+        public static final int tv_searchform_listviewadapter=0x7f060076;
+        public static final int txt_supervisor_function_name=0x7f06005f;
+        public static final int up=0x7f060025;
         public static final int useLogo=0x7f060003;
-        public static final int viewpager=0x7f06004f;
+        public static final int viewpager=0x7f060053;
         public static final int withText=0x7f06000c;
     }
     public static final class integer {
@@ -1700,7 +1762,7 @@ containing a value of this type.
         public static final int popup_menu=0x7f0e0001;
     }
     public static final class string {
-        public static final int Url=0x7f0b003f;
+        public static final int Url=0x7f0b0044;
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
          */
         public static final int abc_action_bar_home_description=0x7f0b0001;
@@ -1744,67 +1806,72 @@ containing a value of this type.
         public static final int about=0x7f0b0011;
         /**  APP名称 
          */
-        public static final int app_name=0x7f0b003e;
-        public static final int check_class=0x7f0b0022;
-        public static final int check_title=0x7f0b002f;
-        public static final int class_location=0x7f0b0021;
-        public static final int class_name=0x7f0b001f;
-        public static final int clear=0x7f0b001b;
-        public static final int eat=0x7f0b0028;
+        public static final int app_name=0x7f0b0043;
+        public static final int check_class=0x7f0b0027;
+        public static final int check_title=0x7f0b0034;
+        public static final int class_location=0x7f0b0026;
+        public static final int class_name=0x7f0b0024;
+        public static final int class_search=0x7f0b001a;
+        public static final int clear=0x7f0b0020;
+        public static final int directwrite=0x7f0b0016;
+        public static final int eat=0x7f0b002d;
         public static final int educational=0x7f0b000e;
         public static final int evaluate=0x7f0b000f;
-        public static final int feedback=0x7f0b003c;
+        public static final int feedback=0x7f0b0041;
         public static final int help=0x7f0b0012;
-        public static final int helpMessage=0x7f0b0032;
-        public static final int help_fragment_title=0x7f0b0031;
+        public static final int helpMessage=0x7f0b0037;
+        public static final int help_fragment_title=0x7f0b0036;
+        public static final int history_search=0x7f0b0018;
         /**  表格2内容 
          */
-        public static final int late=0x7f0b0025;
-        public static final int leave=0x7f0b0027;
-        public static final int login=0x7f0b001c;
-        public static final int login_title=0x7f0b0017;
+        public static final int late=0x7f0b002a;
+        public static final int leave=0x7f0b002c;
+        public static final int login=0x7f0b0021;
+        public static final int login_title=0x7f0b001c;
         public static final int logo=0x7f0b0015;
         public static final int logout=0x7f0b0014;
-        public static final int name=0x7f0b0018;
-        public static final int ontime=0x7f0b002d;
-        public static final int other=0x7f0b002e;
-        public static final int password=0x7f0b001a;
-        public static final int people_num=0x7f0b0023;
-        public static final int phone=0x7f0b0029;
-        public static final int prompt=0x7f0b003b;
-        public static final int really_num=0x7f0b0024;
+        public static final int name=0x7f0b001d;
+        public static final int ontime=0x7f0b0032;
+        public static final int other=0x7f0b0033;
+        public static final int password=0x7f0b001f;
+        public static final int people_num=0x7f0b0028;
+        public static final int phone=0x7f0b002e;
+        public static final int preparewrite=0x7f0b0017;
+        public static final int prompt=0x7f0b0040;
+        public static final int really_num=0x7f0b0029;
         /**  表格1内容 
          */
-        public static final int school_location=0x7f0b001d;
-        public static final int school_name=0x7f0b001e;
+        public static final int school_location=0x7f0b0022;
+        public static final int school_name=0x7f0b0023;
         /**  反馈模块 
          */
-        public static final int sent=0x7f0b003a;
+        public static final int sent=0x7f0b003f;
         public static final int setting=0x7f0b0013;
-        public static final int shone=0x7f0b002b;
-        public static final int sleep=0x7f0b002a;
-        public static final int soft_update_cancel=0x7f0b0039;
-        public static final int soft_update_info=0x7f0b0035;
-        public static final int soft_update_later=0x7f0b0037;
+        public static final int shone=0x7f0b0030;
+        public static final int sleep=0x7f0b002f;
+        public static final int soft_update_cancel=0x7f0b003e;
+        public static final int soft_update_info=0x7f0b003a;
+        public static final int soft_update_later=0x7f0b003c;
         /**  更新模块 
          */
-        public static final int soft_update_no=0x7f0b0033;
-        public static final int soft_update_title=0x7f0b0034;
-        public static final int soft_update_updatebtn=0x7f0b0036;
-        public static final int soft_updating=0x7f0b0038;
+        public static final int soft_update_no=0x7f0b0038;
+        public static final int soft_update_title=0x7f0b0039;
+        public static final int soft_update_updatebtn=0x7f0b003b;
+        public static final int soft_updating=0x7f0b003d;
         /**  表格3内容 
          */
-        public static final int submit_time=0x7f0b002c;
+        public static final int submit_time=0x7f0b0031;
         /**  各菜单名称 
          */
         public static final int supervisor=0x7f0b000d;
-        public static final int teacher_name=0x7f0b0020;
-        public static final int title=0x7f0b0016;
-        public static final int title_com=0x7f0b0030;
+        public static final int teacher_name=0x7f0b0025;
+        public static final int teacher_search=0x7f0b0019;
+        public static final int title=0x7f0b001b;
+        public static final int title_com=0x7f0b0035;
         public static final int tools=0x7f0b0010;
-        public static final int truant=0x7f0b0026;
-        public static final int user=0x7f0b0019;
-        public static final int welcome=0x7f0b003d;
+        public static final int truant=0x7f0b002b;
+        public static final int user=0x7f0b001e;
+        public static final int welcome=0x7f0b0042;
     }
     public static final class style {
         /** 
@@ -2638,6 +2705,113 @@ containing a value of this type.
           @attr name com.gdut.supervisor:initialActivityCount
         */
         public static final int ActivityChooserView_initialActivityCount = 0;
+        /** Attributes that can be used with a Circle.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #Circle_circleBackground com.gdut.supervisor:circleBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #Circle_firstChildPosition com.gdut.supervisor:firstChildPosition}</code></td><td></td></tr>
+           <tr><td><code>{@link #Circle_isRotating com.gdut.supervisor:isRotating}</code></td><td></td></tr>
+           <tr><td><code>{@link #Circle_rotateToCenter com.gdut.supervisor:rotateToCenter}</code></td><td></td></tr>
+           </table>
+           @see #Circle_circleBackground
+           @see #Circle_firstChildPosition
+           @see #Circle_isRotating
+           @see #Circle_rotateToCenter
+         */
+        public static final int[] Circle = {
+            0x7f01006a, 0x7f01006b, 0x7f01006c, 0x7f01006d
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.gdut.supervisor.R.attr#circleBackground}
+          attribute's value can be found in the {@link #Circle} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.gdut.supervisor:circleBackground
+        */
+        public static final int Circle_circleBackground = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.gdut.supervisor.R.attr#firstChildPosition}
+          attribute's value can be found in the {@link #Circle} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>East</code></td><td>0</td><td></td></tr>
+<tr><td><code>South</code></td><td>90</td><td></td></tr>
+<tr><td><code>West</code></td><td>180</td><td></td></tr>
+<tr><td><code>North</code></td><td>270</td><td></td></tr>
+</table>
+          @attr name com.gdut.supervisor:firstChildPosition
+        */
+        public static final int Circle_firstChildPosition = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.gdut.supervisor.R.attr#isRotating}
+          attribute's value can be found in the {@link #Circle} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.gdut.supervisor:isRotating
+        */
+        public static final int Circle_isRotating = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.gdut.supervisor.R.attr#rotateToCenter}
+          attribute's value can be found in the {@link #Circle} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.gdut.supervisor:rotateToCenter
+        */
+        public static final int Circle_rotateToCenter = 2;
+        /** Attributes that can be used with a CircleImageView.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #CircleImageView_name com.gdut.supervisor:name}</code></td><td></td></tr>
+           </table>
+           @see #CircleImageView_name
+         */
+        public static final int[] CircleImageView = {
+            0x7f01006e
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.gdut.supervisor.R.attr#name}
+          attribute's value can be found in the {@link #CircleImageView} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.gdut.supervisor:name
+        */
+        public static final int CircleImageView_name = 0;
         /** Attributes that can be used with a CompatTextView.
            <p>Includes the following attributes:</p>
            <table>

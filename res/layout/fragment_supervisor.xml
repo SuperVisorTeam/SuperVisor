@@ -1,26 +1,72 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:circle="http://schemas.android.com/apk/res/com.gdut.supervisor"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical" >
+    tools:context=".MainActivity" >
 
     <!-- 督导功能的Fragment -->
 
-    <ImageButton
-        android:id="@+id/ib_supervisor_directwrite"
+    <com.gdut.supervisor.view.CircleLayout
+        android:id="@+id/main_circle_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/main_selected_textView"
+        android:layout_gravity="center_horizontal"
+        circle:firstChildPosition="South"
+        circle:isRotating="true"
+        circle:rotateToCenter="true" >
+
+        <com.gdut.supervisor.view.CircleImageView
+            android:id="@+id/imgView_supervisor_teacher_search"
+            circle:name="@string/teacher_search"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/icon_facebook" />
+
+        <com.gdut.supervisor.view.CircleImageView
+            android:id="@+id/imgView_supervisor_history_search"
+            circle:name="@string/history_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_google" />
+
+        <com.gdut.supervisor.view.CircleImageView
+            android:id="@+id/imgView_supervisor_preparewrite"
+            circle:name="@string/preparewrite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_linkedin" />
+
+        <com.gdut.supervisor.view.CircleImageView
+            android:id="@+id/imgView_supervisor_directwrite"
+            circle:name="@string/directwrite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_myspace" />
+
+        <com.gdut.supervisor.view.CircleImageView
+            android:id="@+id/imgView_supervisor_others"
+            circle:name="其它···"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_twitter" />
+
+        <com.gdut.supervisor.view.CircleImageView
+            android:id="@+id/imgView_supervisor_class_search"
+            circle:name="@string/class_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_wordpress" />
+    </com.gdut.supervisor.view.CircleLayout>
+
+    <TextView
+        android:id="@+id/txt_supervisor_function_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:background="@drawable/ib_selector_supervisor"
-        android:src="@drawable/ib_supervisor_directwrite" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <ImageButton
-        android:id="@+id/ib_supervisor_preparewrite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:background="@drawable/ib_selector_supervisor"
-        android:src="@drawable/ib_supervisor_preparewrite" />
-
-</LinearLayout>
+</RelativeLayout>

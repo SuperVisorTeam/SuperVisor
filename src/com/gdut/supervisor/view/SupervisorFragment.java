@@ -10,27 +10,33 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gdut.supervisor.R;
 import com.gdut.supervisor.ui.SupervisorActivity;
+import com.gdut.supervisor.view.CircleLayout.OnItemClickListener;
+import com.gdut.supervisor.view.CircleLayout.OnItemSelectedListener;
 
 /**
  * 督导功能的Fragment
  */
 @SuppressLint("ValidFragment")
-public class SupervisorFragment extends Fragment implements OnClickListener
+public class SupervisorFragment extends Fragment implements OnItemSelectedListener, OnItemClickListener
 {
-	/**
-	 * 直接录入按钮
-	 */
-	private ImageButton btn_directwrite;
-	/**
-	 * 预定录入按钮
-	 */
-	private ImageButton btn_preparewrite;
-	/**
-	 * 高开窗口
-	 */
+	TextView selectedTextView;
+
+	// /**
+	// * 直接录入按钮
+	// */
+	// private ImageButton btn_directwrite;
+	// /**
+	// * 预定录入按钮
+	// */
+	// private ImageButton btn_preparewrite;
+	// /**
+	// * 高开窗口
+	// */
 	private AlertDialog leaveDialog;
 	/**
 	 * 判断查询功能是否打开
@@ -40,7 +46,7 @@ public class SupervisorFragment extends Fragment implements OnClickListener
 	 * 判断预定功能是否打开
 	 */
 	public static boolean scheduleIsOpen = false;
-	
+
 	public static SupervisorFragment supervisorFragment;
 
 	/**
@@ -70,35 +76,72 @@ public class SupervisorFragment extends Fragment implements OnClickListener
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		View parentView = inflater.inflate(R.layout.fragment_supervisor, container, false);
-		//
-		btn_directwrite = (ImageButton) parentView.findViewById(R.id.ib_supervisor_directwrite);
-		btn_preparewrite = (ImageButton) parentView.findViewById(R.id.ib_supervisor_preparewrite);
-		//
-		btn_directwrite.setOnClickListener(this);
-		btn_preparewrite.setOnClickListener(this);
+		initView(parentView);
 		return parentView;
 	}
-
-	// 为按钮添加监听
-	@Override
-	public void onClick(View v)
+	/**
+	 * 初始化控件
+	 * @param parentView
+	 */
+	private void initView(View parentView)
 	{
-		switch (v.getId())
-		{
-		// 预定录入按钮
-		case R.id.ib_supervisor_preparewrite:
+		// btn_directwrite = (ImageButton)
+		// parentView.findViewById(R.id.ib_supervisor_directwrite);
+		// btn_preparewrite = (ImageButton)
+		// parentView.findViewById(R.id.ib_supervisor_preparewrite);
+		// btn_directwrite.setOnClickListener(this);
+		// btn_preparewrite.setOnClickListener(this);
 
+		CircleLayout circleMenu = (CircleLayout) parentView.findViewById(R.id.main_circle_layout);
+		circleMenu.setOnItemSelectedListener(this);
+		circleMenu.setOnItemClickListener(this);
+
+		selectedTextView = (TextView) parentView.findViewById(R.id.txt_supervisor_function_name);
+		selectedTextView.setText(((CircleImageView) circleMenu.getSelectedItem()).getName());
+	}
+
+	/**
+	 * 转轮按钮点击监听
+	 */
+	@Override
+	public void onItemClick(View view, int position, long id, String name)
+	{
+		switch (position)
+		{
+		// 教师查询
+		case 0:
+			Toast.makeText(getActivity(), "你点击了 " + name, Toast.LENGTH_SHORT).show();
 			break;
-		// 直接录入按钮
-		case R.id.ib_supervisor_directwrite:
+		// 历史查询
+		case 1:
+			Toast.makeText(getActivity(), "你点击了 " + name, Toast.LENGTH_SHORT).show();
+			break;
+		// 预定录入
+		case 2:
+			Toast.makeText(getActivity(), "你点击了 " + name, Toast.LENGTH_SHORT).show();
+			break;
+		// 直接录入
+		case 3:
 			Intent intent = new Intent();
 			intent.setClass(getActivity(), SupervisorActivity.class);
 			startActivity(intent);
 			break;
+		case 4:
+			// 其它
+			Toast.makeText(getActivity(), "你点击了 " + name, Toast.LENGTH_SHORT).show();
+			break;
+		// 课室查询
+		case 5:
+			Toast.makeText(getActivity(), "你点击了 " + name, Toast.LENGTH_SHORT).show();
+			break;
 		default:
 			break;
 		}
-
 	}
-		
+
+	@Override
+	public void onItemSelected(View view, int position, long id, String name)
+	{
+		selectedTextView.setText(name);
+	}
 }
