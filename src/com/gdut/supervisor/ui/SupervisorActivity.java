@@ -2,6 +2,7 @@ package com.gdut.supervisor.ui;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -13,7 +14,12 @@ import android.widget.Button;
 
 import com.gdut.supervisor.R;
 import com.gdut.supervisor.adapter.SupervisorAdapter;
+import com.gdut.supervisor.dialog.ShowMessageDialog;
 import com.gdut.supervisor.info.BaseMessage;
+import com.gdut.supervisor.info.Edu_CourseClass;
+import com.gdut.supervisor.info.Edu_Survey;
+import com.gdut.supervisor.utils.PrintlnFromData;
+import com.gdut.supervisor.utils.SubmitHandler;
 import com.gdut.supervisor.view.SupervisorFragment;
 /**
  * 包含三表单的FragmentActivity
@@ -117,6 +123,8 @@ public class SupervisorActivity extends FragmentActivity  {
 	protected void onCreate(Bundle savedInstanceState) {
 		  super.onCreate(savedInstanceState);
 		  setContentView(R.layout.form);
+		  //初始化各种窗口控件
+		  iniDialog();
         //实例化控件
 		 viewPager=(ViewPager)findViewById(R.id.viewpager);		 
 		 pagerTabStrip=(PagerTabStrip)findViewById(R.id.pagertab);
@@ -129,19 +137,82 @@ public class SupervisorActivity extends FragmentActivity  {
 		 SupervisorAdapter mySupervisorAdapter=new SupervisorAdapter(myFragmentManager);
 		 viewPager.setAdapter(mySupervisorAdapter);
 		 
-		 iniDialog();
-		 //
-		 if (!SupervisorFragment.searchIsOpen && !SupervisorFragment.scheduleIsOpen) {
-				submitButton.setText("提交");
-				clearButton.setText("重置");
-			} else if (SupervisorFragment.searchIsOpen) {
-				submitButton.setText("修改");
-				clearButton.setText("退出");
-			} else if (SupervisorFragment.scheduleIsOpen) {
-				submitButton.setText("提交");
-				clearButton.setText("退出");
+		
+		}
+	/**
+	 * 返回键的监听时间处理器
+	 * /(non-Javadoc)
+	 * @see android.app.Activity#dispatchKeyEvent(android.view.KeyEvent)
+	 */
+	public boolean dispatchKeyEvent(KeyEvent event) {
+		if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+			if (event.getAction() == KeyEvent.ACTION_DOWN
+					&& event.getRepeatCount() == 0) {
+				if (!SupervisorFragment.searchIsOpen && !SupervisorFragment.scheduleIsOpen) {
+					leaveDialog.show();
+				} else if (SupervisorFragment.searchIsOpen) {
+					System.out.println("查询之后的退出事件！！");
+					BaseMessage.num = 0;
+					BaseMessage.teacherName = "";
+					SupervisorFragment.searchIsOpen = false;
+					secondOpen = false;
+					thirdOpen = false;
+					Intent intent = new Intent(SupervisorActivity.this,
+							SearchFormActivity.class);
+					startActivity(intent);
+					SupervisorActivity.this.finish();
+				} else if (SupervisorFragment.scheduleIsOpen) {
+					System.out.println("预约之后的退出事件！！");
+					BaseMessage.num = 0;
+					BaseMessage.teacherName = "";
+					SupervisorFragment.scheduleIsOpen = false;
+					secondOpen = false;
+					thirdOpen = false;
+					Intent intent = new Intent(SupervisorActivity.this,
+							ScheduleActivity.class);
+					startActivity(intent);
+					SupervisorActivity.this.finish();
+				}
+				return true;
 			}
 		}
+		return super.dispatchKeyEvent(event);
+	}
+
+	/**
+	 * 审核窗口
+	 */
+	private void iniAuditdaiog() {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage("该数据已经审核，不能执行修改操作！！")
+				.setPositiveButton("返回查询",
+						new DialogInterface.OnClickListener() {
+
+							public void onClick(DialogInterface dialog,
+									int which) {
+								BaseMessage.num = 0;
+								BaseMessage.teacherName = "";
+								SupervisorFragment.searchIsOpen = false;
+								secondOpen = false;
+								thirdOpen = false;
+								Intent intent = new Intent(
+										SupervisorActivity.this,
+										SearchFormActivity.class);
+								startActivity(intent);
+								SupervisorActivity.this.finish();
+							}
+
+						})
+				.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+					}
+				});
+		auditDialog = builder.create();
+		auditDialog.setTitle("提示");
+		auditDialog.show();
+	}
 	// 初始化各种窗口
 	private void iniDialog() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -162,10 +233,11 @@ public class SupervisorActivity extends FragmentActivity  {
 		leaveDialog = builder.create();
 		leaveDialog.setTitle("退出");
 		builder = new AlertDialog.Builder(this);
+		//提交窗口的初始化
 		builder.setMessage("您确定要 提交 吗？")
 				.setPositiveButton("提交", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
-						//submitFrom();
+						submitFrom();
 					}
 				})
 				.setNegativeButton("返回", new DialogInterface.OnClickListener() {
@@ -179,7 +251,7 @@ public class SupervisorActivity extends FragmentActivity  {
 				.setPositiveButton("重置", new DialogInterface.OnClickListener() {
 
 					public void onClick(DialogInterface dialog, int which) {
-					//	clear();
+						clear();
 					}
 
 				})
@@ -206,7 +278,7 @@ public class SupervisorActivity extends FragmentActivity  {
 							public void onClick(DialogInterface dialog,
 									int which) {
 								dialog.dismiss();
-								//clear();
+								clear();
 							}
 						});
 		submitsuccessDialog = builder.create();
@@ -224,16 +296,16 @@ public class SupervisorActivity extends FragmentActivity  {
 
 							public void onClick(DialogInterface dialog,
 									int which) {
-						/*		BaseMessage.num = 0;
+								BaseMessage.num = 0;
 								BaseMessage.teacherName = "";
-								MenuActivity.scheduleIsOpen = false;
+								SupervisorFragment.scheduleIsOpen = false;
 								secondOpen = false;
 								thirdOpen = false;
 								Intent intent = new Intent(
 										SupervisorActivity.this,
 										ScheduleActivity.class);
 								startActivity(intent);
-								SupervisorActivity.this.finish();*/
+								SupervisorActivity.this.finish();
 							}
 						});
 		schedulesuccessDialog = builder.create();
@@ -253,7 +325,7 @@ public class SupervisorActivity extends FragmentActivity  {
 							public void onClick(DialogInterface dialog,
 									int which) {
 								dialog.dismiss();
-							//	clear();
+								clear();
 							}
 						});
 		hasSaveDialog = builder.create();
@@ -272,57 +344,25 @@ public class SupervisorActivity extends FragmentActivity  {
 
 							public void onClick(DialogInterface dialog,
 									int which) {
-/*								BaseMessage.num = 0;
+								BaseMessage.num = 0;
 								BaseMessage.teacherName = "";
-								MenuActivity.scheduleIsOpen = false;
+								SupervisorFragment.scheduleIsOpen = false;
 								secondOpen = false;
 								thirdOpen = false;
 								Intent intent = new Intent(
 										SupervisorActivity.this,
 										ScheduleActivity.class);
 								startActivity(intent);
-								SupervisorActivity.this.finish();*/
+								SupervisorActivity.this.finish();
 							}
 						});
 		schedulehasSaveDialog = builder.create();
 		schedulehasSaveDialog.setTitle("提示");
 	}
-	//返回按钮的点击事件监听器
-	public boolean dispatchKeyEvent(KeyEvent event) {
-		if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
-			if (event.getAction() == KeyEvent.ACTION_DOWN
-					&& event.getRepeatCount() == 0) {
-				if (!SupervisorFragment.searchIsOpen && !SupervisorFragment.scheduleIsOpen) {
-					leaveDialog.show();
-				} else if (SupervisorFragment.searchIsOpen) {
-					System.out.println("查询之后的退出事件！！");
-					BaseMessage.num = 0;
-					BaseMessage.teacherName = "";
-					SupervisorFragment.searchIsOpen = false;
-					secondOpen = false;
-					thirdOpen = false;
-					/*Intent intent = new Intent(SupervisorActivity.this,
-							SearchFormActivity.class);
-					startActivity(intent);
-					SupervisorActivity.this.finish();*/
-				} else if (SupervisorFragment.scheduleIsOpen) {
-					System.out.println("预约之后的退出事件！！");
-					BaseMessage.num = 0;
-					BaseMessage.teacherName = "";
-					SupervisorFragment.scheduleIsOpen = false;
-					secondOpen = false;
-					thirdOpen = false;
-				/*	Intent intent = new Intent(SupervisorActivity.this,
-							ScheduleActivity.class);
-					startActivity(intent);
-					SupervisorActivity.this.finish();*/
-				}
-				return true;
-			}
-		}
-		return super.dispatchKeyEvent(event);
-	}
-	// 退出按钮事件
+
+	/**
+	 * 退出按钮事件
+	 */
 	private void exit() {
 		BaseMessage.num = 0;
 		BaseMessage.teacherName = "";
@@ -330,8 +370,281 @@ public class SupervisorActivity extends FragmentActivity  {
 		SupervisorFragment.scheduleIsOpen = false;
 		secondOpen = false;
 		thirdOpen = false;
-		//Intent intent = new Intent(SupervisorActivity.this, MenuActivity.class);
-		//startActivity(intent);
+		Intent intent = new Intent(SupervisorActivity.this, MainActivity.class);
+		startActivity(intent);
 		SupervisorActivity.this.finish();
 	}
+	
+	/**
+	 * 提交 表格
+	 */
+	private void submitFrom() {
+		if (!SupervisorFragment.scheduleIsOpen) {
+			createSituation();
+		} else {
+			situation.setTerminal_Type("Android");
+			String version = android.os.Build.VERSION.RELEASE;
+			situation.setTerminal_Desc(version);
+			/*FristItemActivity.greatFristItemClassSituation();
+			SecondItemActivity.greatSecondItemClassSituation();
+			ThirdItemActivity.greatThirdItemClassSituation();*/
+		}
+		int i = -1;
+		try {
+			PrintlnFromData.println(situation, "提交时表格的内容:");
+			i = SubmitHandler.submitForm(situation);
+			System.out.println("提交表单的状态码：" + i);
+		} catch (Exception e) {
+			ShowMessageDialog.showMessage(SupervisorActivity.this,
+					"系统繁忙，请稍后提交！！！");
+			return;
+		}
+		if (i == 200) {
+			if (!SupervisorFragment.scheduleIsOpen) {
+				// 提交成功
+				submitsuccessDialog.show();
+			} else {
+				// 预定提交成功
+				schedulesuccessDialog.show();
+
+			}
+		} else if (i == 400) {
+			ShowMessageDialog.showMessage(this, "表单参数有误!");
+		} else if (i == 409) {
+			if (!SupervisorFragment.scheduleIsOpen) {
+				// 已经被督导
+				hasSaveDialog.show();
+			} else {
+				// 预定被督导
+				schedulehasSaveDialog.show();
+
+			}
+
+		} else {
+			ShowMessageDialog.showMessage(this, "提交失败!");
+
+		}
+	}
+	/**
+	 * 重置函数
+	 */
+		private void clear() {
+/*
+			if (firstOpen) {
+				FristItemActivity.clearFristItem();
+			}
+			if (secondOpen) {
+				SecondItemActivity.clearSecondItem();
+			}
+			if (thirdOpen) {
+				ThirdItemActivity.clearThirdItem();
+			}
+			showFristItemActivity();*/
+		}
+		
+		// 修改之后的各种窗口
+		private void initmodificationdaiog() {
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage("是否提交修改")
+					.setPositiveButton("确定修改",
+							new DialogInterface.OnClickListener() {
+
+								public void onClick(DialogInterface dialog,
+										int which) {
+									modification();
+								}
+
+							})
+					.setNegativeButton("取消修改",
+							new DialogInterface.OnClickListener() {
+
+								public void onClick(DialogInterface dialog,
+										int which) {
+									dialog.dismiss();
+								}
+							});
+			modificationDialog = builder.create();
+			modificationDialog.setTitle("提示");
+			builder.setMessage("修改成功！！")
+					.setPositiveButton("退出修改",
+							new DialogInterface.OnClickListener() {
+
+								public void onClick(DialogInterface dialog,
+										int which) {
+									BaseMessage.num = 0;
+									BaseMessage.teacherName = "";
+									SupervisorFragment.searchIsOpen = false;
+									secondOpen = false;
+									thirdOpen = false;
+									Intent intent = new Intent(
+											SupervisorActivity.this,
+											SearchFormActivity.class);
+									startActivity(intent);
+									SupervisorActivity.this.finish();
+								}
+
+							})
+					.setNegativeButton("继续修改",
+							new DialogInterface.OnClickListener() {
+
+								public void onClick(DialogInterface dialog,
+										int which) {
+									dialog.dismiss();
+								}
+							});
+			modificationsuccessDialog = builder.create();
+			modificationsuccessDialog.setTitle("提示");
+			builder.setMessage("修改失败！！")
+					.setPositiveButton("退出修改",
+							new DialogInterface.OnClickListener() {
+
+								public void onClick(DialogInterface dialog,
+										int which) {
+									BaseMessage.num = 0;
+									BaseMessage.teacherName = "";
+									SupervisorFragment.searchIsOpen = false;
+									secondOpen = false;
+									thirdOpen = false;
+									Intent intent = new Intent(
+											SupervisorActivity.this,
+											SearchFormActivity.class);
+									startActivity(intent);
+									SupervisorActivity.this.finish();
+								}
+
+							})
+					.setNegativeButton("继续修改",
+							new DialogInterface.OnClickListener() {
+
+								public void onClick(DialogInterface dialog,
+										int which) {
+									dialog.dismiss();
+								}
+							});
+			modificationfaileDialog = builder.create();
+			modificationfaileDialog.setTitle("提示");
+		}
+
+		// 修改后的提交函数
+		private void modification() {
+			/*FristItemActivity.greatFristItemClassSituation();
+			if (secondOpen) {
+				System.out.println("第二个页面打开了，要创建页面的数据！！");
+				SecondItemActivity.greatSecondItemClassSituation();
+			} else if (!secondOpen) {
+
+			}
+			if (thirdOpen) {
+				System.out.println("第三个页面打开了，要创建页面的数据！！");
+				ThirdItemActivity.greatThirdItemClassSituation();
+			} else if (!thirdOpen) {
+
+			}
+			situation.setCourse_class_no(edu_CourseClass);
+			System.out.println("修改后的situation：" + situation);
+			int i = -1;
+			try {
+				PrintlnFromData.println(situation, "修改时表格的内容:");
+				i = SubmitHandler.modificationForm(situation);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			System.out.println("修改提交状态码：" + i);
+			if (i == 200)// 修改成功
+			{
+				modificationsuccessDialog.show();
+			} else {
+				modificationfaileDialog.show();
+			}
+       */
+		}
+		
+		/**
+		 * 创建一个表单
+		 */
+		private void createSituation() {
+			situation = new Edu_Survey();
+			edu_CourseClass = new Edu_CourseClass();
+			situation.setTerminal_Type("Android");
+			String version = android.os.Build.VERSION.RELEASE;
+			situation.setTerminal_Desc(version);
+		/*	FristItemActivity.greatFristItemClassSituation();
+			SecondItemActivity.greatSecondItemClassSituation();
+			ThirdItemActivity.greatThirdItemClassSituation();*/
+			System.out.println("situation=======" + situation);
+			situation.setCourse_class_no(edu_CourseClass);
+		}
+		/**
+		 * 显示第几页没有填写完整
+		 */
+		private void showNoFinishPage() {
+			/*int code = isFinish();
+			switch (code) {
+			case 0: {
+				// 填定完成
+
+				submitDialog.show();
+
+			}
+				break;
+			case 1: {
+				// 第一张表没有填定完成
+				ShowMessageDialog.showMessage(SupervisorActivity.this,
+						"请填写完整第一表单！！");
+				showFristItemActivity();
+			}
+				break;
+			case 2: {
+				// 第二张表没有填定完成
+				ShowMessageDialog.showMessage(SupervisorActivity.this,
+						"请填写完整第二表单！！");
+				showSecondItemActivity();
+			}
+				break;
+			case 3: {
+				// 第三张表没有填定完成
+				ShowMessageDialog.showMessage(SupervisorActivity.this,
+						"请填写完整第三表单！！");
+				showThirdItemActivity();
+			}
+				break;
+			}
+
+		}*/
+	}
+		// 判断表格是否填写完整
+		private int isFinish() {
+			/*boolean fristIsFinish = false;
+			boolean thirdIsFinish = false;
+			fristIsFinish = FristItemActivity.getIsFinish();
+			if (!fristIsFinish) {
+				return 1;
+			} else if (!secondOpen) {
+				return 2;
+			}
+			if (thirdOpen) {
+				thirdIsFinish = ThirdItemActivity.getIsFinish();
+				if (!thirdIsFinish) {
+					return 3;
+				}
+			} else if (!thirdOpen) {
+				return 3;
+			}*/
+			return 0;
+		}
+		// 启动时调用
+		protected void onStart() {
+			super.onStart();
+			if (SupervisorFragment.searchIsOpen) {
+			/*	FristItemActivity.isGet = false;
+				SecondItemActivity.isGet = false;
+				ThirdItemActivity.isGet = false;*/
+				situation = SearchFormActivity.getSearchBaseMessage();
+				edu_CourseClass = situation.getCourse_class_no();
+			}
+			if (SupervisorFragment.scheduleIsOpen) {
+				situation = ScheduleActivity.getSearchBaseMessage();
+				edu_CourseClass = situation.getCourse_class_no();
+			}
+		}
 }

@@ -14,6 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gdut.supervisor.R;
+import com.gdut.supervisor.ui.ScheduleActivity;
+import com.gdut.supervisor.ui.SearchFormActivity;
 import com.gdut.supervisor.ui.SupervisorActivity;
 import com.gdut.supervisor.view.CircleLayout.OnItemClickListener;
 import com.gdut.supervisor.view.CircleLayout.OnItemSelectedListener;
@@ -114,17 +116,24 @@ public class SupervisorFragment extends Fragment implements OnItemSelectedListen
 			break;
 		// 历史查询
 		case 1:
+			Intent intent = new Intent(getActivity(),
+					SearchFormActivity.class);
+			startActivity(intent);
+			SearchFormActivity.nownum = 1;
 			Toast.makeText(getActivity(), "你点击了 " + name, Toast.LENGTH_SHORT).show();
 			break;
 		// 预定录入
 		case 2:
+			Intent intentToSchedule = new Intent(getActivity(),
+					ScheduleActivity.class);
+			startActivity(intentToSchedule);
 			Toast.makeText(getActivity(), "你点击了 " + name, Toast.LENGTH_SHORT).show();
 			break;
 		// 直接录入
 		case 3:
-			Intent intent = new Intent();
-			intent.setClass(getActivity(), SupervisorActivity.class);
-			startActivity(intent);
+			Intent intentToSearch = new Intent();
+			intentToSearch.setClass(getActivity(), SupervisorActivity.class);
+			startActivity(intentToSearch);
 			break;
 		case 4:
 			// 其它
