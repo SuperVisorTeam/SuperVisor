@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/linearlayout" >
+
+    <!-- 显示查找表单的内容 -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/darkgray"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/schedulePage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:height="@dimen/title_height"
+            android:paddingLeft="5dp"
+            android:text="预定表单"
+            android:textColor="@color/black"
+            android:width="@dimen/title_width" />
+        <Button
+            android:id="@+id/scheduleButton"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:text="刷新"
+            android:textColor="@color/black" >
+        </Button>
+    </LinearLayout>
+
+    <!-- 中部视图布局 -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7" >
+
+        <ListView
+            android:id="@+id/schedulefromListView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/listshare"
+            android:cacheColorHint="#00000000" />
+
+    </LinearLayout>
+    <!-- 底部操作按钮布局 -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/gray"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/schedulelastButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="上一页"
+            android:textColor="@color/black" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:text="转"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/schedulegoEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:numeric="integer"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:width="@dimen/gotext_width" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:gravity="center"
+                android:text="页"
+                android:textColor="@color/black" />
+
+            <Button
+                android:id="@+id/schedulegoButton"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/set_gobutton" />
+
+            <TextView
+                android:id="@+id/schedulenum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:text="共0页"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/schedulenextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="下一页"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+</LinearLayout>

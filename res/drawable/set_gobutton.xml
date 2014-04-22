@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 获得焦点并按下 -->
+    <item android:drawable="@drawable/go_onlick" android:state_pressed="true"/>
+    <!-- 默认时 -->
+    <item android:drawable="@drawable/go_def"/>
+
+</selector>
