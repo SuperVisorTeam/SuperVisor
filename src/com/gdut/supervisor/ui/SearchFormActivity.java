@@ -1,10 +1,13 @@
 package com.gdut.supervisor.ui;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
+import org.apache.http.client.ClientProtocolException;
 
 
 import com.gdut.supervisor.R;
@@ -23,6 +26,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -180,7 +184,7 @@ public class SearchFormActivity extends Activity {
 	/**
 	 * 查找返回的数据包
 	 */
-	public static Map<String, List<List>> searchMap;
+	public static Map<String, List<List>> searchMap=null;
 	/**
 	 * 该表单数据是否审核
 	 */
@@ -199,9 +203,11 @@ public class SearchFormActivity extends Activity {
 		public void handleMessage(Message msg) {
 			if(msg.what==SUBMIT_GETMAP2)
 			{
-				if (searchMap != null) {
+				if (SubmitHandler.getGetMap2_StatuseCode()==200) {
+					System.out.println("Search success!!");
 					setDateList();
 				} else {
+					System.out.println("Search failed!!");
 					AuditCom = new ArrayList<String>();
 					fromName = new ArrayList<String>();
 					fromCom = new ArrayList<String>();
@@ -216,11 +222,12 @@ public class SearchFormActivity extends Activity {
 			}
 			else if(msg.what==GRTSEARCHBASESUCCESS)
 			{
+				Toast.makeText(SearchFormActivity.this, "获取历史数据成功", 2*1000).show();
 				Intent intent = new Intent(SearchFormActivity.this,
 						SupervisorActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);
-				Toast.makeText(SearchFormActivity.this, "获取历史数据成功", 2*1000).show();
+				
 			}
 			else
 				if(msg.what==-GRTSEARCHBASESUCCESS)
@@ -353,21 +360,26 @@ public class SearchFormActivity extends Activity {
 				long arg3) {
 			
 			id = nownum * shownum - shownum + arg2;
+			if(isAudit==null)
+			{
+				Toast.makeText(SearchFormActivity.this, "网络连接异常", 2*1000).show();
+				return;			
+			}
 			if (isAudit[id]) {
 				iniauditDialog();
 			} else {
 				showPage(nownum);
 				SupervisorFragment.searchIsOpen = true;
 				System.out.println("SupervisorFragment.searchIsOpen ="+SupervisorFragment.searchIsOpen);
-				
+				SupervisorActivity.situation=null;
 				new Thread()
 				{
-
+					
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
-						SupervisorActivity.situation=null;
-						SupervisorActivity.situation = getSearchBaseMessage();
+						Looper.prepare();
+						SupervisorActivity.situation = getSearchBaseMessage(id);
 						if(SupervisorActivity.situation!=null)
 						{
 							
@@ -597,7 +609,12 @@ public class SearchFormActivity extends Activity {
 		showPage(nownum);
 	}
 
-	// 查找请求
+	/**
+	 *  查找请求
+	 * @param supername
+	 * @param starttime
+	 * @param endtime
+	 */
 	private void search(final String supername, final String starttime, final String endtime) {
 		isAudit = null;
 		nownum = 1;
@@ -606,9 +623,20 @@ public class SearchFormActivity extends Activity {
 
 			@Override
 			public void run() {
-				searchMap = SubmitHandler.getMap2(supername, starttime, endtime);
-				System.out.println("searchMap===" + searchMap);
-			handler.sendEmptyMessage(SUBMIT_GETMAP2);					
+				Looper.prepare();
+				try {
+					searchMap=null;
+					searchMap = SubmitHandler.getMap2(supername, starttime, endtime);
+				} catch (ClientProtocolException e) {
+					Toast.makeText(SearchFormActivity.this, "网络环境异常", 2*1000).show();
+					e.printStackTrace();
+				} catch (IOException e) {
+					Toast.makeText(SearchFormActivity.this, "网络环境异常", 2*1000).show();
+					e.printStackTrace();
+				}				
+					handler.sendEmptyMessage(SUBMIT_GETMAP2);	
+				//System.out.println("searchMap===" + searchMap);
+							
 			}
 			
 		}.start();
@@ -619,12 +647,24 @@ public class SearchFormActivity extends Activity {
 	 * 获取具体的表单信息，有网络请求！
 	 * 
 	 */
-	public static Edu_Survey getSearchBaseMessage() {
-		Edu_Survey searchMessage = new Edu_Survey();
-		String s = fromCom.get(id);
+	public  Edu_Survey getSearchBaseMessage(int id_) {
+		Edu_Survey searchMessage = null;
+		String s = fromCom.get(id_);
 		System.out.println("get(id)" + s);
 		
-		searchMessage = SubmitHandler.getEdu_Survey(s);
+		try {
+			searchMessage = SubmitHandler.getEdu_Survey(s);
+		} catch (ClientProtocolException e) {
+			Toast.makeText(SearchFormActivity.this, "网络连接错误", 2*1000).show();
+			e.printStackTrace();
+			return null;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			Toast.makeText(SearchFormActivity.this, "网络连接错误", 2*1000).show();
+			e.printStackTrace();
+			return null;
+		}
+		
 		searchMessage.setSurvey_ID(s);
 		PrintlnFromData.println(searchMessage, "查找时表格的内容:");
 		return searchMessage;

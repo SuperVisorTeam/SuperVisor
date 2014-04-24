@@ -14,12 +14,15 @@ import org.apache.http.NameValuePair;
 import org.apache.http.ParseException;
 import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
@@ -33,10 +36,46 @@ import com.gdut.supervisor.ui.SupervisorActivity;
 import com.google.gson.Gson;
 
 public class SubmitHandler {
+	/**
+	 *设置请求超过时间
+	 */
+	private static final int REQUEST_TIMEOUT = 5*1000;
+	/**
+	 *设置等待数据超过时间
+	 */
+	private static final int SO_TIMEOUT = 6*1000;
+	/**
+	 *getMap2（）函数的状态码
+	 */
+	private static int getMap2_StatuseCode=-1;
+	/**
+	 *保存预约录入请求数据返回的状态码
+	 */
+	static int StatuCodeSchedule=-1;
+
+	
+
 	private static Gson gson = new Gson();
 	public static DefaultHttpClient httpclient = new DefaultHttpClient();
 	public static Map<String, Object> getmap = new HashMap<String, Object>();
+	
+	public static  int getGetMap2_StatuseCode() {
+		
+		return getMap2_StatuseCode;
+	}
 
+	public   void setGetMap2_StatuseCode(int getMap2_statuseCode) {
+		getMap2_StatuseCode = getMap2_statuseCode;
+	}
+	
+	public static int getStatuCodeSchedule() {
+		return StatuCodeSchedule;
+	}
+
+	public static void setStatuCodeSchedule(int statuCodeSchedule) {
+		StatuCodeSchedule = statuCodeSchedule;
+	}
+	
 	public static StatusLine login(String username, String password) {
 
 		StatusLine statusLine = null;
@@ -172,48 +211,32 @@ public class SubmitHandler {
 	 *             通过督导员的学号，开始时间，结束时间 来获取上课地点，校区，专业班级等表单数据
 	 */
 	public static Map<String, List<List>> getMap2(String user_no,
-			String start_date, String end_date) 
-			 {
-		DefaultHttpClient httpClient_getMap2=new DefaultHttpClient();
-		String responseTexts = null;
-		HttpResponse response = null;
-		HttpEntity entity;
-		try{
+			String start_date, String end_date)throws ClientProtocolException,
+			IOException {
+		int Statuse_code=-1;
 		HttpGet httpGet = new HttpGet(BaseMessage.baseUrl + "/dudao/check/"
 				+ user_no + "/" + start_date + "/" + end_date);
 
-	       response = httpClient_getMap2.execute(httpGet);
-	        entity = response.getEntity();
+		HttpResponse response = httpclient.execute(httpGet);
 		System.out
 				.println("查找的状态码：" + response.getStatusLine().getStatusCode());
-		responseTexts = EntityUtils.toString(entity, HTTP.UTF_8);
 		
-		}catch(ClientProtocolException e){
-			e.printStackTrace();
-		}
-		catch(IOException e){
-			e.printStackTrace();
-		}
-		catch(ParseException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			httpClient_getMap2.getConnectionManager().shutdown();  
-		}
-		
+		Statuse_code=response.getStatusLine().getStatusCode();
+		getMap2_StatuseCode=Statuse_code;
 		if (response.getStatusLine().getStatusCode() == 404) {
 			System.out.println("输入数据错误或此地点没有对应的课要上");
-		} else if 
-		     (response.getStatusLine().getStatusCode() == 200) {
-			System.out.println("输入正确");	
-			
-			@SuppressWarnings("unchecked")
-			Map<String, List<List>> map = gson.fromJson(responseTexts,
+		} else if (response.getStatusLine().getStatusCode() == 200) {
+			System.out.println("输入正确");
+
+			HttpEntity entity = response.getEntity();
+
+			String responseText = EntityUtils.toString(entity, HTTP.UTF_8);
+
+			Map<String, List<List>> map = gson.fromJson(responseText,
 					HashMap.class);
 			return map;
 		}
+
 		return null;
 	}
 		
@@ -222,35 +245,17 @@ public class SubmitHandler {
 	 * 查找功能的实现
 	 */
 	public static Edu_Survey getEdu_Survey(String survey_id)
-			 {
+			throws ClientProtocolException, IOException {
 
 		// 取得
-		
 		HttpGet httpGet = new HttpGet(BaseMessage.baseUrl
 				+ "/dudao/checkForUpdate/" + survey_id);
-		HttpResponse response;
-		HttpEntity entity = null ;
-		try {
-			response = httpclient.execute(httpGet);
-			entity = response.getEntity();
-		} catch (ClientProtocolException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
-		String responseText = null;
-		try {
-			responseText = EntityUtils.toString(entity, HTTP.UTF_8);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		HttpResponse response = httpclient.execute(httpGet);
+
+		HttpEntity entity = response.getEntity();
+
+		String responseText = EntityUtils.toString(entity, HTTP.UTF_8);
 
 		System.out.println("responseText:" + responseText);
 
@@ -270,7 +275,7 @@ public class SubmitHandler {
 		Date addtimedt = new Date(addtime);
 		String add_Time = sdf.format(addtimedt);
 		edu_survey.setAdd_Time(add_Time);
-       
+
 		return edu_survey;
 	}
 
@@ -326,39 +331,22 @@ public class SubmitHandler {
 	 *             预定功能 通过学号 来获得相关的信息
 	 */
 	public static Map<String, List<List>> getScheduleMap(String user_no)
-			 {
+			throws ClientProtocolException, IOException {
+		
 		HttpGet httpGet = new HttpGet(BaseMessage.baseUrl + "/bookingQuery/"
 				+ user_no);
-
-		HttpResponse response = null;
-		HttpEntity entity;
-		String responseText = null;
-		try {
-			response = httpclient.execute(httpGet);
-		} catch (ClientProtocolException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		HttpResponse response = httpclient.execute(httpGet);
+		System.out
+				.println("预定的状态码：" + response.getStatusLine().getStatusCode());
+		setStatuCodeSchedule(response.getStatusLine().getStatusCode());
 		if (response.getStatusLine().getStatusCode() == 404) {
 			System.out.println("没有找到相应的预定教室");
 		} else if (response.getStatusLine().getStatusCode() == 200) {
-			System.out.println("预约输入正确");
-			
-			entity = response.getEntity();
-	
-			try {
-				responseText = EntityUtils.toString(entity, HTTP.UTF_8);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			System.out.println("输入正确");
+
+			HttpEntity entity = response.getEntity();
+
+			String responseText = EntityUtils.toString(entity, HTTP.UTF_8);
 
 			Map<String, List<List>> map = gson.fromJson(responseText,
 					HashMap.class);

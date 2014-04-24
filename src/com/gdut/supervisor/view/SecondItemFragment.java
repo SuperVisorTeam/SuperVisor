@@ -42,14 +42,12 @@ public class SecondItemFragment extends Fragment {
 	 * 最多人数
 	 */
 
-	 private static int numMax = 0;
-	 
+	 public static int numMax = 0;	 
 
 	/**
 	 * 判断是否已经获得数据
 	 */
 
-	
 
 	 /**
 		 * 判断是否已经获得数据
@@ -110,6 +108,7 @@ public class SecondItemFragment extends Fragment {
 		button[j++] = (Button) rootView.findViewById(R.id.shonereduceButton);
 		button[j++] = (Button) rootView.findViewById(R.id.shoneaddButton);
 		//获取最大人数
+		System.out.println("in Second  BaseMessage.num ="+BaseMessage.num);
 		numMax = BaseMessage.num;
 		// 添加监听
 		for (int k = 0; k < buttonnum; k++) {

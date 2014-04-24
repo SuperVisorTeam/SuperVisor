@@ -246,7 +246,11 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 					double num1 = (Double) utilMap.get("plan_population");
 					int num = (int) num1;
 					BaseMessage.num = num;
+					//让第二个表单获得最大人数
+					SecondItemFragment.numMax=num;
+					System.out.println("in First  BaseMessage.num ="+BaseMessage.num);
 					studentNumber_editText.setText(num + "");
+					
 					BaseMessage.teacherName = (String) utilMap
 							.get("teacher_name");
 					showClass="显示全部专业班级";
@@ -586,91 +590,6 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 		
 	}
 
-	/*private void getData() {
-		//如果有哪个选项为空则不做任何操作
-		if (schoollocationSpinner.getSelectedItem().toString() == null
-				|| schoollocationSpinner.getSelectedItem().toString()
-						.equals("")
-				|| schoollationEditText.getText().toString() == null
-				|| schoollationEditText.getText().toString().equals("")
-				|| dateEditText.getText().toString() == null
-				|| dateEditText.getText().toString().equals("")
-				|| checkclassSpinner.getSelectedItem().toString() == null
-				|| checkclassSpinner.getSelectedItem().toString().equals("")) {
-		} else {
-			//如果第二个选项卡打开了，重置第二个菜单的数据列表
-			if (SupervisorActivity.secondOpen) {
-				SecondItemActivity.clearSecondItem();
-			}
-			//如果第三个选项卡打开了，重置第三个菜单的数据列表
-			if (SupervisorActivity.thirdOpen) {
-				ThirdItemActivity.clearThirdItem();
-			}
-			try {
-				int code = -1;
-				//将【校区ID】，【日期】，【上课地点】，【上课时间】，【督导员学号】
-				//作为参数上传到服务器端请求数据，该函数返回响应码
-				code = SubmitHandler.getMap(schoolID + "", dateEditText
-						.getText().toString(), schoollationEditText.getText()
-						.toString(), checkclassSpinner.getSelectedItem()
-						.toString(), BaseMessage.supervisor_no);
-				//提交时，如果有其它辅导员督导该班，则弹出该窗口进行提示，并将输入的值全都重置为0
-				if (code == 409) {
-					inihasBookDialog(schoollationEditText.getText().toString()
-							+ "\n班级已经被督导，请选择其它教学班进行督导！");
-				} 
-				else if (code == 200) {
-					//如果提交成功
-					utilMap = SubmitHandler.getmap;
-			
-					//得到教学班编号					
-					BaseMessage.class_no = (String) utilMap
-							.get("course_class_no");
-					//得到学院名称
-					schoolnameEditText.setText((String) utilMap
-							.get("student_faculty"));
-					int i = 0;
-					//通过解析字符串得到专业班级数组
-					classname = ClassNameHandler
-							.exchangeStringToArray((String) utilMap
-									.get("teaching_class_group"));
-					
-					classGroup = (String) utilMap.get("teaching_class_group");
-					//应到人数
-					double num1 = (Double) utilMap.get("plan_population");
-					int num = (int) num1;
-					BaseMessage.num = num;
-					studentNumber_editText.setText(num + "");
-					BaseMessage.teacherName = (String) utilMap
-							.get("teacher_name");
-					classnameEditText.setText("显示全部专业班级");
-					//设置实到的输入框初始值
-					realNumber_editText.setText("0");
-				} 
-				//以下都是提交后返回码返回的异常代表码，会弹出相应的提示框
-				else if (code == 402) {
-					inihasBookDialog(schoollationEditText.getText().toString()
-							+ "\n今天已被别人预订了，请选择其它教学班进行督导！");
-				} else if (code == 404) {
-					inihasBookDialog(schoollationEditText.getText().toString()
-							+ "\n没有对应的课要上，请选择其它教学班进行督导！");
-				} else if (code == 400) {
-					inihasBookDialog(schoollationEditText.getText().toString()
-							+ "\n请求的参数有错!");
-				} else {
-					inihasBookDialog("请保持网络连接！");
-				}
-			} catch (ClientProtocolException e) {
-				ShowMessageDialog.showMessage(getActivity(),
-						"请保持网络连接！");
-				return;
-			} catch (IOException e) {
-				ShowMessageDialog.showMessage(getActivity(),
-						"请保持网络连接！");
-				return;
-			}
-		}
-	}*/
 	/**
 	 * 已经预定窗口，
 	 */
@@ -868,8 +787,8 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 	public void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		//studentNumber_editText.clearFocus();
-		//realNumber_editText.clearFocus();
+		studentNumber_editText.clearFocus();
+		realNumber_editText.clearFocus();
 		System.out.println("-----SupervisorFragment.------------"+SupervisorFragment.searchIsOpen);
 		System.out.println("-----isGet.------------"+isGet);
 		if (SupervisorFragment.searchIsOpen) {

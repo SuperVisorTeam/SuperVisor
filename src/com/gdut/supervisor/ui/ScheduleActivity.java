@@ -22,6 +22,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.view.KeyEvent;
 import android.view.View;
@@ -33,6 +34,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Toast;
 
 public class ScheduleActivity extends Activity {
 	/**
@@ -132,7 +134,7 @@ public class ScheduleActivity extends Activity {
 			if(msg.what==SUCCESS)
 			{
 				System.out.println(scheduleMap != null);
-				if (scheduleMap != null) 
+				if (SubmitHandler.getStatuCodeSchedule()==200) 
 				{
 					setDateList();
 				} 
@@ -187,15 +189,24 @@ public class ScheduleActivity extends Activity {
 
 			@Override
 			public void run() {
-				scheduleMap = SubmitHandler.getScheduleMap(supervisor_no);
+				Looper.prepare();
+				try {
+					scheduleMap = SubmitHandler.getScheduleMap(supervisor_no);
+				} catch (ClientProtocolException e) {
+					Toast.makeText(ScheduleActivity.this, "网络环境异常", 2*1000).show();			
+					e.printStackTrace();
+					return;
+				} catch (IOException e) {
+					Toast.makeText(ScheduleActivity.this, "网络环境异常", 2*1000).show();
+					e.printStackTrace();
+					return;
+				}
 				System.out.println("scheduleMap===" + scheduleMap);
-				if(scheduleMap!=null)
-				{
+				
 					Message message=new Message();
 					message.what=SUCCESS;
 					handler.sendMessage(message);
-				}
-				
+			
 			}
 			
 		}.start();

@@ -688,22 +688,13 @@ public class SupervisorActivity extends FragmentActivity  {
  *判断表格是否填写完整
  */
 	private int isFinish() {
-		boolean fristIsFinish = false;
-		boolean thirdIsFinish = false;
 		//判断第一个表单是否填写完整
-		fristIsFinish = FirstItemFragment.getIsFinish();
-		if (!fristIsFinish) {
+		if (! FirstItemFragment.getIsFinish())
 			return 1;
-		} else if (!secondOpen) {
-			return 2;
-		}
-		if (thirdOpen) {
-			thirdIsFinish = ThirdItemFragment.getIsFinish();
-			if (!thirdIsFinish) {
+				
+	    if (!ThirdItemFragment.getIsFinish()) {
+			
 				return 3;
-			}
-		} else if (!thirdOpen) {
-			return 3;
 		}
 		return 0;
 	}
