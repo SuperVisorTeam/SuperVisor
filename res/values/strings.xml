@@ -11,11 +11,12 @@
     <string name="setting">设置</string>
     <string name="logout">注销</string>
     <string name="logo">督导系统</string>
-    <string name="directwrite">直接录入</string>
-    <string name="preparewrite">预定录入</string>
-    <string name="history_search">历史查询</string>
-    <string name="teacher_search">教师查询</string>
-    <string name="class_search">课室查询</string>
+    <string name="entry_direct">直接录入</string>
+    <string name="search_pre_entry">预约查询</string>
+    <string name="entry_pre">督导预约</string>
+    <string name="search_history">历史查询</string>
+    <string name="search_teacher">教师查询</string>
+    <string name="search_class">课室查询</string>
     <string name="title">广东工业大学学风督导员工作用表</string>
     <string name="login_title">学风督导员登录界面</string>
     <string name="name">督导系统</string>

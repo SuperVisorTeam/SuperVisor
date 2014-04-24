@@ -26,19 +26,17 @@ import com.gdut.supervisor.view.CircleLayout.OnItemSelectedListener;
 @SuppressLint("ValidFragment")
 public class SupervisorFragment extends Fragment implements OnItemSelectedListener, OnItemClickListener
 {
+	/**
+	 * 转轮菜单底部文字
+	 */
 	TextView selectedTextView;
-
-	// /**
-	// * 直接录入按钮
-	// */
-	// private ImageButton btn_directwrite;
-	// /**
-	// * 预定录入按钮
-	// */
-	// private ImageButton btn_preparewrite;
-	// /**
-	// * 高开窗口
-	// */
+	/**
+	 * 转轮菜单图片按钮
+	 */
+	ImageButton btn_preparewrite;
+	/**
+	 * 离开窗口
+	 */
 	private AlertDialog leaveDialog;
 	/**
 	 * 判断查询功能是否打开
@@ -81,18 +79,14 @@ public class SupervisorFragment extends Fragment implements OnItemSelectedListen
 		initView(parentView);
 		return parentView;
 	}
+
 	/**
 	 * 初始化控件
+	 * 
 	 * @param parentView
 	 */
 	private void initView(View parentView)
 	{
-		// btn_directwrite = (ImageButton)
-		// parentView.findViewById(R.id.ib_supervisor_directwrite);
-		// btn_preparewrite = (ImageButton)
-		// parentView.findViewById(R.id.ib_supervisor_preparewrite);
-		// btn_directwrite.setOnClickListener(this);
-		// btn_preparewrite.setOnClickListener(this);
 
 		CircleLayout circleMenu = (CircleLayout) parentView.findViewById(R.id.main_circle_layout);
 		circleMenu.setOnItemSelectedListener(this);
@@ -116,18 +110,14 @@ public class SupervisorFragment extends Fragment implements OnItemSelectedListen
 			break;
 		// 历史查询
 		case 1:
-			Intent intent = new Intent(getActivity(),
-					SearchFormActivity.class);
+			Intent intent = new Intent(getActivity(), SearchFormActivity.class);
 			startActivity(intent);
 			SearchFormActivity.nownum = 1;
-			Toast.makeText(getActivity(), "你点击了 " + name, Toast.LENGTH_SHORT).show();
 			break;
-		// 预定录入
+		// 预约查询
 		case 2:
-			Intent intentToSchedule = new Intent(getActivity(),
-					ScheduleActivity.class);
+			Intent intentToSchedule = new Intent(getActivity(), ScheduleActivity.class);
 			startActivity(intentToSchedule);
-			Toast.makeText(getActivity(), "你点击了 " + name, Toast.LENGTH_SHORT).show();
 			break;
 		// 直接录入
 		case 3:
@@ -136,7 +126,7 @@ public class SupervisorFragment extends Fragment implements OnItemSelectedListen
 			startActivity(intentToSearch);
 			break;
 		case 4:
-			// 其它
+			// 督导预约
 			Toast.makeText(getActivity(), "你点击了 " + name, Toast.LENGTH_SHORT).show();
 			break;
 		// 课室查询

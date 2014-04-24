@@ -20,45 +20,45 @@
 
         <com.gdut.supervisor.view.CircleImageView
             android:id="@+id/imgView_supervisor_teacher_search"
-            circle:name="@string/teacher_search"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/icon_facebook" />
+            circle:name="@string/search_teacher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/search_teacher" />
 
         <com.gdut.supervisor.view.CircleImageView
             android:id="@+id/imgView_supervisor_history_search"
-            circle:name="@string/history_search"
+            circle:name="@string/search_history"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_google" />
+            android:src="@drawable/search_history" />
 
         <com.gdut.supervisor.view.CircleImageView
             android:id="@+id/imgView_supervisor_preparewrite"
-            circle:name="@string/preparewrite"
+            circle:name="@string/search_pre_entry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_linkedin" />
+            android:src="@drawable/entry_pre" />
 
         <com.gdut.supervisor.view.CircleImageView
             android:id="@+id/imgView_supervisor_directwrite"
-            circle:name="@string/directwrite"
+            circle:name="@string/entry_direct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_myspace" />
+            android:src="@drawable/entry_direct" />
 
         <com.gdut.supervisor.view.CircleImageView
             android:id="@+id/imgView_supervisor_others"
-            circle:name="其它···"
+            circle:name="@string/entry_pre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_twitter" />
+            android:src="@drawable/entry_pre" />
 
         <com.gdut.supervisor.view.CircleImageView
             android:id="@+id/imgView_supervisor_class_search"
-            circle:name="@string/class_search"
+            circle:name="@string/search_class"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_wordpress" />
+            android:src="@drawable/search_class" />
     </com.gdut.supervisor.view.CircleLayout>
 
     <TextView

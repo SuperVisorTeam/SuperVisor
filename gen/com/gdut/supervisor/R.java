@@ -1487,51 +1487,50 @@ containing a value of this type.
         public static final int background_login_div=0x7f02005a;
         public static final int blue_bn=0x7f02005b;
         public static final int blue_button_shape=0x7f02005c;
-        public static final int button_shape=0x7f02005d;
-        public static final int edit_login=0x7f02005e;
-        public static final int educational_normal=0x7f02005f;
-        public static final int educational_pressed=0x7f020060;
-        public static final int evaluate_normal=0x7f020061;
-        public static final int evaluate_pressed=0x7f020062;
-        public static final int for_text=0x7f020063;
-        public static final int frame_shape=0x7f020064;
-        public static final int gdut_logo=0x7f020065;
-        public static final int go_def=0x7f020066;
-        public static final int go_onlick=0x7f020067;
-        public static final int gray_rectange=0x7f020068;
-        public static final int ib_selector_supervisor=0x7f020069;
-        public static final int ib_supervisor_directwrite=0x7f02006a;
-        public static final int ib_supervisor_preparewrite=0x7f02006b;
-        public static final int ic_launcher=0x7f02006c;
-        public static final int icon=0x7f02006d;
-        public static final int icon_facebook=0x7f02006e;
-        public static final int icon_google=0x7f02006f;
-        public static final int icon_linkedin=0x7f020070;
-        public static final int icon_myspace=0x7f020071;
-        public static final int icon_twitter=0x7f020072;
-        public static final int icon_wordpress=0x7f020073;
-        public static final int input_over=0x7f020074;
-        public static final int listshare=0x7f020075;
-        public static final int login_input=0x7f020076;
-        public static final int menu_actionbar=0x7f020077;
-        public static final int noodlesmaster_timer=0x7f020078;
-        public static final int set_gobutton=0x7f020079;
-        public static final int shape=0x7f02007a;
-        public static final int shape1=0x7f02007b;
-        public static final int shape2=0x7f02007c;
-        public static final int shape3=0x7f02007d;
-        public static final int spacebar=0x7f02007e;
-        public static final int supervisor_normal=0x7f02007f;
-        public static final int supervisor_pressed=0x7f020080;
-        public static final int tab_bg_halo=0x7f020081;
-        public static final int tab_selector_checked_bg=0x7f020082;
-        public static final int tab_selector_evaluate=0x7f020083;
-        public static final int tab_selector_help=0x7f020084;
-        public static final int tab_selector_search=0x7f020085;
-        public static final int tab_selector_write=0x7f020086;
-        public static final int tools_normal=0x7f020087;
-        public static final int tools_pressed=0x7f020088;
-        public static final int welcomepager=0x7f020089;
+        public static final int button_popupmenu=0x7f02005d;
+        public static final int button_shape=0x7f02005e;
+        public static final int edit_login=0x7f02005f;
+        public static final int educational_normal=0x7f020060;
+        public static final int educational_pressed=0x7f020061;
+        public static final int entry_direct=0x7f020062;
+        public static final int entry_pre=0x7f020063;
+        public static final int evaluate_normal=0x7f020064;
+        public static final int evaluate_pressed=0x7f020065;
+        public static final int for_text=0x7f020066;
+        public static final int frame_shape=0x7f020067;
+        public static final int gdut_logo=0x7f020068;
+        public static final int go_def=0x7f020069;
+        public static final int go_onlick=0x7f02006a;
+        public static final int gray_rectange=0x7f02006b;
+        public static final int ib_selector_supervisor=0x7f02006c;
+        public static final int ic_launcher=0x7f02006d;
+        public static final int icon=0x7f02006e;
+        public static final int input_over=0x7f02006f;
+        public static final int listshare=0x7f020070;
+        public static final int login_input=0x7f020071;
+        public static final int menu_actionbar_checked=0x7f020072;
+        public static final int menu_actionbar_normal=0x7f020073;
+        public static final int noodlesmaster_timer=0x7f020074;
+        public static final int search_class=0x7f020075;
+        public static final int search_history=0x7f020076;
+        public static final int search_teacher=0x7f020077;
+        public static final int set_gobutton=0x7f020078;
+        public static final int shape=0x7f020079;
+        public static final int shape1=0x7f02007a;
+        public static final int shape2=0x7f02007b;
+        public static final int shape3=0x7f02007c;
+        public static final int spacebar=0x7f02007d;
+        public static final int supervisor_normal=0x7f02007e;
+        public static final int supervisor_pressed=0x7f02007f;
+        public static final int tab_bg_halo=0x7f020080;
+        public static final int tab_selector_checked_bg=0x7f020081;
+        public static final int tab_selector_evaluate=0x7f020082;
+        public static final int tab_selector_help=0x7f020083;
+        public static final int tab_selector_search=0x7f020084;
+        public static final int tab_selector_write=0x7f020085;
+        public static final int tools_normal=0x7f020086;
+        public static final int tools_pressed=0x7f020087;
+        public static final int welcomepager=0x7f020088;
     }
     public static final class id {
         public static final int East=0x7f06001a;
@@ -1787,7 +1786,7 @@ containing a value of this type.
         public static final int popup_menu=0x7f0e0001;
     }
     public static final class string {
-        public static final int Url=0x7f0b0044;
+        public static final int Url=0x7f0b0045;
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
          */
         public static final int abc_action_bar_home_description=0x7f0b0001;
@@ -1831,72 +1830,73 @@ containing a value of this type.
         public static final int about=0x7f0b0011;
         /**  APP名称 
          */
-        public static final int app_name=0x7f0b0043;
-        public static final int check_class=0x7f0b0027;
-        public static final int check_title=0x7f0b0034;
-        public static final int class_location=0x7f0b0026;
-        public static final int class_name=0x7f0b0024;
-        public static final int class_search=0x7f0b001a;
-        public static final int clear=0x7f0b0020;
-        public static final int directwrite=0x7f0b0016;
-        public static final int eat=0x7f0b002d;
+        public static final int app_name=0x7f0b0044;
+        public static final int check_class=0x7f0b0028;
+        public static final int check_title=0x7f0b0035;
+        public static final int class_location=0x7f0b0027;
+        public static final int class_name=0x7f0b0025;
+        public static final int clear=0x7f0b0021;
+        public static final int eat=0x7f0b002e;
         public static final int educational=0x7f0b000e;
+        public static final int entry_direct=0x7f0b0016;
+        public static final int entry_pre=0x7f0b0018;
         public static final int evaluate=0x7f0b000f;
-        public static final int feedback=0x7f0b0041;
+        public static final int feedback=0x7f0b0042;
         public static final int help=0x7f0b0012;
-        public static final int helpMessage=0x7f0b0037;
-        public static final int help_fragment_title=0x7f0b0036;
-        public static final int history_search=0x7f0b0018;
+        public static final int helpMessage=0x7f0b0038;
+        public static final int help_fragment_title=0x7f0b0037;
         /**  表格2内容 
          */
-        public static final int late=0x7f0b002a;
-        public static final int leave=0x7f0b002c;
-        public static final int login=0x7f0b0021;
-        public static final int login_title=0x7f0b001c;
+        public static final int late=0x7f0b002b;
+        public static final int leave=0x7f0b002d;
+        public static final int login=0x7f0b0022;
+        public static final int login_title=0x7f0b001d;
         public static final int logo=0x7f0b0015;
         public static final int logout=0x7f0b0014;
-        public static final int name=0x7f0b001d;
-        public static final int ontime=0x7f0b0032;
-        public static final int other=0x7f0b0033;
-        public static final int password=0x7f0b001f;
-        public static final int people_num=0x7f0b0028;
-        public static final int phone=0x7f0b002e;
-        public static final int preparewrite=0x7f0b0017;
-        public static final int prompt=0x7f0b0040;
-        public static final int really_num=0x7f0b0029;
+        public static final int name=0x7f0b001e;
+        public static final int ontime=0x7f0b0033;
+        public static final int other=0x7f0b0034;
+        public static final int password=0x7f0b0020;
+        public static final int people_num=0x7f0b0029;
+        public static final int phone=0x7f0b002f;
+        public static final int prompt=0x7f0b0041;
+        public static final int really_num=0x7f0b002a;
         /**  表格1内容 
          */
-        public static final int school_location=0x7f0b0022;
-        public static final int school_name=0x7f0b0023;
+        public static final int school_location=0x7f0b0023;
+        public static final int school_name=0x7f0b0024;
+        public static final int search_class=0x7f0b001b;
+        public static final int search_history=0x7f0b0019;
+        public static final int search_pre_entry=0x7f0b0017;
+        public static final int search_teacher=0x7f0b001a;
         /**  反馈模块 
          */
-        public static final int sent=0x7f0b003f;
+        public static final int sent=0x7f0b0040;
         public static final int setting=0x7f0b0013;
-        public static final int shone=0x7f0b0030;
-        public static final int sleep=0x7f0b002f;
-        public static final int soft_update_cancel=0x7f0b003e;
-        public static final int soft_update_info=0x7f0b003a;
-        public static final int soft_update_later=0x7f0b003c;
+        public static final int shone=0x7f0b0031;
+        public static final int sleep=0x7f0b0030;
+        public static final int soft_update_cancel=0x7f0b003f;
+        public static final int soft_update_info=0x7f0b003b;
+        public static final int soft_update_later=0x7f0b003d;
         /**  更新模块 
          */
-        public static final int soft_update_no=0x7f0b0038;
-        public static final int soft_update_title=0x7f0b0039;
-        public static final int soft_update_updatebtn=0x7f0b003b;
-        public static final int soft_updating=0x7f0b003d;
+        public static final int soft_update_no=0x7f0b0039;
+        public static final int soft_update_title=0x7f0b003a;
+        public static final int soft_update_updatebtn=0x7f0b003c;
+        public static final int soft_updating=0x7f0b003e;
         /**  表格3内容 
          */
-        public static final int submit_time=0x7f0b0031;
+        public static final int submit_time=0x7f0b0032;
         /**  各菜单名称 
          */
         public static final int supervisor=0x7f0b000d;
-        public static final int teacher_name=0x7f0b0025;
-        public static final int teacher_search=0x7f0b0019;
-        public static final int title=0x7f0b001b;
-        public static final int title_com=0x7f0b0035;
+        public static final int teacher_name=0x7f0b0026;
+        public static final int title=0x7f0b001c;
+        public static final int title_com=0x7f0b0036;
         public static final int tools=0x7f0b0010;
-        public static final int truant=0x7f0b002b;
-        public static final int user=0x7f0b001e;
-        public static final int welcome=0x7f0b0042;
+        public static final int truant=0x7f0b002c;
+        public static final int user=0x7f0b001f;
+        public static final int welcome=0x7f0b0043;
     }
     public static final class style {
         /** 

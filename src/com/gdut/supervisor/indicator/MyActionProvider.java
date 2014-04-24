@@ -89,27 +89,25 @@ public class MyActionProvider extends ActionProvider implements OnMenuItemClickL
 		case R.id.menu_setting:
 			Toast.makeText(context, "设置", 0).show();
 			break;
-		//注销
+		// 注销
 		case R.id.menu_logout:
-			//Toast.makeText(context, "注销", 0).show();
-			new AlertDialog.Builder(context)
-			.setTitle("提示")
-			.setMessage("确认注销？")
-			.setPositiveButton("确定", new OnClickListener() {
-				
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					// TODO Auto-generated method stub
-					Intent intent = new Intent(context, LoginActivity.class);
-					context.startActivity(intent);
-					BaseMessage.supervisor_no = null;
-					MainActivity m = (MainActivity)context;
-					m.finish();
-					
-				}
-			})
-			.setNegativeButton("取消", null)
-			.show();
+			// Toast.makeText(context, "注销", 0).show();
+			new AlertDialog.Builder(context).setTitle("提示").setMessage("确认注销？")
+					.setPositiveButton("确定", new OnClickListener()
+					{
+
+						@Override
+						public void onClick(DialogInterface dialog, int which)
+						{
+							// TODO Auto-generated method stub
+							Intent intent = new Intent(context, LoginActivity.class);
+							context.startActivity(intent);
+							BaseMessage.supervisor_no = null;
+							MainActivity m = (MainActivity) context;
+							m.finish();
+
+						}
+					}).setNegativeButton("取消", null).show();
 			break;
 		// 设置菜单
 		default:
