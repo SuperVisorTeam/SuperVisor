@@ -1557,7 +1557,6 @@ containing a value of this type.
         public static final int activity_chooser_view_content=0x7f060029;
         public static final int always=0x7f06000b;
         public static final int beginning=0x7f060011;
-        public static final int btn_get_submit_time=0x7f06009f;
         public static final int btn_login_debark=0x7f06006f;
         public static final int btn_searchform_begindate=0x7f060049;
         public static final int btn_searchform_enddate=0x7f06004a;
@@ -1581,10 +1580,6 @@ containing a value of this type.
         public static final int eatnumEditText=0x7f060091;
         public static final int eatreduceButton=0x7f060090;
         public static final int edit_query=0x7f060034;
-        public static final int edtTxt_remark=0x7f0600a0;
-        public static final int edtTxt_submit_time=0x7f06009e;
-        public static final int edtTxt_supervisor=0x7f06009d;
-        public static final int edtTxt_teacher_name=0x7f06009c;
         public static final int end=0x7f060013;
         public static final int enddate=0x7f06004d;
         public static final int et_evaluate_test=0x7f060056;
@@ -1620,8 +1615,10 @@ containing a value of this type.
         public static final int menu_setting=0x7f0600a3;
         public static final int middle=0x7f060012;
         public static final int never=0x7f060009;
+        public static final int no=0x7f060072;
         public static final int none=0x7f060010;
         public static final int normal=0x7f060000;
+        public static final int othercomEditText=0x7f0600a0;
         public static final int pagertab=0x7f060054;
         public static final int peoplenumEditText=0x7f060067;
         public static final int phoneaddButton=0x7f060095;
@@ -1633,9 +1630,7 @@ containing a value of this type.
         public static final int progress_circular=0x7f060018;
         public static final int progress_horizontal=0x7f060019;
         public static final int radio=0x7f060033;
-        public static final int rdoBtn_teacher_if_ontime_no=0x7f060072;
-        public static final int rdoBtn_teacher_if_ontime_yes=0x7f060071;
-        public static final int rdoGop_teacher_if_ontime=0x7f060070;
+        public static final int radioGroup=0x7f060070;
         public static final int reallynumEditText=0x7f060068;
         public static final int scheduleButton=0x7f060074;
         public static final int schedulePage=0x7f060073;
@@ -1679,7 +1674,10 @@ containing a value of this type.
         public static final int split_action_bar=0x7f060022;
         public static final int startdate=0x7f06004c;
         public static final int submitButton=0x7f060052;
+        public static final int submitTime=0x7f06009e;
         public static final int submit_area=0x7f06003d;
+        public static final int submit_time_bt=0x7f06009f;
+        public static final int supervisorEditText=0x7f06009d;
         public static final int supervisor_no=0x7f06004b;
         public static final int tabMode=0x7f060002;
         public static final int tab_rb_1=0x7f060043;
@@ -1687,6 +1685,7 @@ containing a value of this type.
         public static final int tab_rb_3=0x7f060045;
         public static final int tab_rb_4=0x7f060046;
         public static final int tab_rg_menu=0x7f060042;
+        public static final int teachernameEditText=0x7f06009c;
         public static final int title=0x7f06002f;
         public static final int top_action_bar=0x7f060024;
         public static final int truantnumEditText=0x7f06008b;
@@ -1700,6 +1699,7 @@ containing a value of this type.
         public static final int useLogo=0x7f060003;
         public static final int viewpager=0x7f060053;
         public static final int withText=0x7f06000c;
+        public static final int yes=0x7f060071;
     }
     public static final class integer {
         /**  The maximum number of action buttons that should be permitted within

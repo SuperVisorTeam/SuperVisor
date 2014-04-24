@@ -8,6 +8,7 @@ import java.util.Map;
 import org.apache.http.client.ClientProtocolException;
 import org.xmlpull.v1.XmlPullParserException;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -52,6 +53,7 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 {
 
 
+	
 	/**
 	 * 上课时间
 	 */
@@ -83,7 +85,7 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 	/**
 	 * 专业班级
 	 */
-	private static String classGroup;
+	private static String classGroup=null;
 	/**
 	 * 学院名称
 	 */
@@ -165,13 +167,23 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 	 * 校区文件ID
 	 */
 	private static int schoolXMLID;
-	@Override
-	public void onCreate(Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
-		   System.out.println("---------OnCreatView");
-	}
+	/**
+	 * 定义一个标签判断是否按了获得数据按钮
+	 */
+	private boolean isGeDatat = false;
+	/**
+	 * 判断是否已经获得数据
+	 */
+	public static boolean isGet = false;
 	
+	/**
+	 *存储"显示专业班级"字符串
+	 */
+	public static  String showClass="";
+	/**
+	 *存储日期的字符串
+	 */
+	public static String DateString="";
 	/**
 	 *处理线程的handler
 	 */
@@ -179,31 +191,41 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 
 		@Override
 		public void handleMessage(Message msg) {
-			// TODO Auto-generated method stub
+			// 
 			super.handleMessage(msg);
 			if(msg.what ==0x123) 
-			{
+			{   
+				 //每次得到请求后要把classGroup置为空，无论请求结果是什么！
+				classGroup=null;
+				
+			    showClass="";
 				switch(msg.arg1)
 				{
 				
 				case 409:
+					schoollationString="";
 					inihasBookDialog(schoollationEditText.getText().toString()
 							+ "\n班级已经被督导，请选择其它教学班进行督导！");
 					break;
 				case 402:
+					schoollationString="";
 					inihasBookDialog(schoollationEditText.getText().toString()
 							+ "\n今天已被别人预订了，请选择其它教学班进行督导！");
 					break;
 				case 404:
+					schoollationString="";
 					inihasBookDialog(schoollationEditText.getText().toString()
 							+ "\n没有对应的课要上，请选择其它教学班进行督导！");
 					break;
 				case 400:
+					schoollationString="";
 					inihasBookDialog(schoollationEditText.getText().toString()
 							+ "\n请求的参数有错!");
 					break;
 				case 200:
 					//如果提交成功
+					SecondItemFragment.clearSecondItem();
+					//ThirdItemFragment.clearThirdItem();
 					Toast.makeText(getActivity(), "请求成功", 2*1000).show();				
 					utilMap = SubmitHandler.getmap;
 			
@@ -227,7 +249,8 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 					studentNumber_editText.setText(num + "");
 					BaseMessage.teacherName = (String) utilMap
 							.get("teacher_name");
-					classnameEditText.setText("显示全部专业班级");
+					showClass="显示全部专业班级";
+					classnameEditText.setText(showClass);
 					//设置实到的输入框初始值
 					realNumber_editText.setText("0");
 					break;
@@ -239,6 +262,19 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 		}
 		
 	};
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		System.out.println("-----onCreate------------");
+		Calendar c = Calendar.getInstance(Locale.CHINA);
+		year = c.get(Calendar.YEAR);
+		month = c.get(Calendar.MONTH);
+		day = c.get(Calendar.DAY_OF_MONTH);
+		dateString = year + "-" + (month + 1) + "-" + day;
+		defString = year + "-" + (month + 1) + "-" + day;
+	}
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
@@ -265,12 +301,7 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 		dateEditText = (Button) rootView.findViewById(R.id.dateEditText);
 		dateEditText.setTextSize(20.0f);
 		//获取当前日期
-		Calendar c = Calendar.getInstance(Locale.CHINA);
-		year = c.get(Calendar.YEAR);
-		month = c.get(Calendar.MONTH);
-		day = c.get(Calendar.DAY_OF_MONTH);
-		dateString = year + "-" + (month + 1) + "-" + day;
-		defString = year + "-" + (month + 1) + "-" + day;
+		
 		dateEditText.setText(dateString);
 
 		dateEditText.setOnClickListener(this);
@@ -300,9 +331,7 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 		{
 			iniDateDialog();
 			dataDialog.show();
-			//将显示查询结果的控件的字段（【学院名称】，【专业班级】清除
-			schoolnameEditText.setText("");
-			classnameEditText.setText("");
+		
 		}
 		/*
 		 * 获取上课地点的按钮的点击监听事件
@@ -327,7 +356,7 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 		else	if(v.getId()==R.id.classnameEditText)
 		{
 			//初始化专业班级选择窗口
-			if(utilMap==null) return;
+			if(classGroup==null||classGroup.equals("")) return;
 			iniClassnameDialog();
 			classnameDialog.show();
 		}
@@ -364,10 +393,7 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 				break;
 			default :schoolXMLID=0;
 			}
-			//将显示查询结果的控件的字段清除
-			schoollationEditText.setText("");
-			schoolnameEditText.setText("");
-			classnameEditText.setText("");
+			
 			
 		}
 
@@ -533,14 +559,6 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 					|| checkclassSpinner.getSelectedItem().toString() == null
 					|| checkclassSpinner.getSelectedItem().toString().equals("")) {
 			} else {
-				//如果第二个选项卡打开了，重置第二个菜单的数据列表
-				/*if (SupervisorActivity.secondOpen) {
-					SecondItemActivity.clearSecondItem();
-				}
-				//如果第三个选项卡打开了，重置第三个菜单的数据列表
-				if (SupervisorActivity.thirdOpen) {
-					ThirdItemActivity.clearThirdItem();
-				}*/
 				
 					int code = -1;
 					//将【校区ID】，【日期】，【上课地点】，【上课时间】，【督导员学号】
@@ -662,7 +680,7 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 		builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
 
 			public void onClick(DialogInterface dialog, int which) {
-				//hasGetNull();
+				hasGetNull();
 			}
 
 		});
@@ -684,6 +702,202 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 		classnameDialog = builder.create();
 		classnameDialog.setMessage(classcontext);
 		classnameDialog.setTitle("专业班级");
+		showClass="显示专业班级";
+	}
+	/**
+	 * 将第一个表单全部置空
+	 */
+	private void hasGetNull() {
+		BaseMessage.num = 0;
+		studentNumber_editText.setText("0");
+		realNumber_editText.setText("0");
+		schoolnameEditText.setText("");
+		classnameEditText.setText("");
+		schoollationEditText.setText("");
+		BaseMessage.teacherName = "";
+	}
+	/**
+	 * 重置设置第一个菜单的数据
+	 */
+	public static void clearFristItem() {
+		dateEditText.setText(defString);
+		BaseMessage.num = 0;
+		checkclassSpinner.setSelection(0);
+		schoollocationSpinner.setSelection(0);
+		schoollationEditText.setText(null);
+		classnameEditText.setText(null);
+		schoolnameEditText.setText(null);
+	    studentNumber_editText.setText("0");
+		realNumber_editText.clearFocus();
+
+	}
+	
+	/**
+	 * 检查该子菜单是否填写完整，
+     *检查项包括：【专业班级】，【实到人数】，【应到人数】
+     *@return boolean
+	 */
+	public static boolean getIsFinish() {
+	
+	if (classnameEditText.getText().toString() == null
+			|| classnameEditText.getText().toString().equals("")) {
+		return false;
+	} else if (studentNumber_editText.getText().toString() == null
+			|| studentNumber_editText.getText().toString().equals("")) {
+		return false;
+	}
+	if (realNumber_editText.getText().toString() == null
+			|| realNumber_editText.getText().toString().equals("")) {
+		return false;
+	}
+	return true;
+}
+	
+	/**
+	 * 获得填写表格的内容
+	 */
+	public static void greatFristItemClassSituation() {
+		//i控制【实到人数】，【应到人数】的文本输入框
+		//存放【应到人数】
+		int plan_num = 0;
+		//
+		SupervisorActivity.edu_CourseClass.setSchool_District(schoolID + "");
+		//
+		SupervisorActivity.edu_CourseClass.setTeaching_Class_Group(classGroup);
+		//如果教学班编号的编号合法
+		if (BaseMessage.class_no != null && !BaseMessage.class_no.equals("")) {
+			SupervisorActivity.edu_CourseClass
+					.setCourse_Class_No((BaseMessage.class_no));
+		}
+		//
+		SupervisorActivity.situation.setLesson_classroom(schoollationEditText
+				.getText().toString());
+
+		//
+		SupervisorActivity.situation.setLesson_section(checkclassSpinner
+				.getSelectedItem().toString());
+		//
+		SupervisorActivity.situation.setStudent_Faculty(schoolnameEditText
+				.getText().toString());
+		//
+		SupervisorActivity.situation.setLesson_date(dateEditText.getText()
+				.toString());
+		//如果实到人数合法，置空
+		if (studentNumber_editText.getText().toString() == null
+				|| studentNumber_editText.getText().toString().equals("")) {
+			studentNumber_editText.setText("0");
+		}
+		//存放【应到人数】
+		plan_num = Integer.valueOf(realNumber_editText.getText().toString());
+		SupervisorActivity.edu_CourseClass.setPlan_Population(plan_num);
+		if (realNumber_editText.getText().toString() == null
+				|| realNumber_editText.getText().toString().equals("")) {
+			SupervisorActivity.situation.setActual_Num(Integer.valueOf("0"));
+		} else {
+			SupervisorActivity.situation.setActual_Num(Integer
+					.valueOf(realNumber_editText.getText().toString()));
+		}
+		//缺课人数
+		absentnum = plan_num - SupervisorActivity.situation.getActual_Num();
+		SupervisorActivity.situation.setAbsent_Num(absentnum);
+	}
+	/** 
+	 * 设置填写表格的内容
+	 *
+	 */
+	public static void setFristItemClassSituation() {
+		System.out.println("In setFristItemClassSituation 恢复表格内容");
+		// 上课日期
+		dateEditText.setText(SupervisorActivity.situation.getLesson_date());
+		dateEditText.setClickable(false);
+		// 上课节次
+		String lesson_section = SupervisorActivity.situation
+				.getLesson_section();
+		int position = checkclassSpinnerAdapter.getPosition(lesson_section);
+		checkclassSpinner.setSelection(position);
+		checkclassSpinner.setClickable(false);
+		// 校区
+		int position2 = Integer.valueOf(SupervisorActivity.edu_CourseClass
+				.getSchool_District());
+		schoollocationSpinner.setSelection(position2);
+		schoollocationSpinner.setClickable(false);
+		// 上课教室
+		schoollationEditText.setText(SupervisorActivity.situation
+				.getLesson_classroom());
+		System.out.println("In setFristItemClassSituation 恢复上课教室内容");
+		schoollationEditText.setClickable(false);
+		// 学院名称
+		schoolnameEditText.setText(SupervisorActivity.situation.getStudent_Faculty());
+		// 专业班级
+		classnameEditText.setText("显示所有的专业班级");
+		System.out.println("In setFristItemClassSituation 恢复专业班级内容");
+		classGroup = SupervisorActivity.edu_CourseClass
+				.getTeaching_Class_Group();
+		classname = ClassNameHandler
+				.exchangeStringToArray(SupervisorActivity.edu_CourseClass
+						.getTeaching_Class_Group());
+		BaseMessage.num = SupervisorActivity.edu_CourseClass
+				.getPlan_Population();
+		// 应到人数
+		studentNumber_editText.setText(SupervisorActivity.edu_CourseClass
+				.getPlan_Population() + "");
+		if (SupervisorFragment.searchIsOpen) {
+			// 实到人数
+			realNumber_editText.setText(SupervisorActivity.situation.getActual_Num()
+					+ "");
+		}
 	}
 
+	
+
+	@Override
+	public void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		System.out.println("-----onDestroy------------");
+	}
+
+	@Override
+	public void onDestroyView() {
+		// TODO Auto-generated method stub
+		super.onDestroyView();
+		System.out.println("-----onDestroyView------------");
+	}
+
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		//studentNumber_editText.clearFocus();
+		//realNumber_editText.clearFocus();
+		System.out.println("-----SupervisorFragment.------------"+SupervisorFragment.searchIsOpen);
+		System.out.println("-----isGet.------------"+isGet);
+		if (SupervisorFragment.searchIsOpen) {
+			if (!isGet) {
+				//isGet = true;
+				System.out.println("恢复表格内容"+isGet);
+				//恢复表格内容
+				setFristItemClassSituation();
+			}
+		} else if (SupervisorFragment.scheduleIsOpen) {
+			setFristItemClassSituation();
+		}
+		else 
+		{
+			dateEditText.setText(dateString);
+			schoollationEditText.setText(schoollationString);
+			classnameEditText.setText(showClass);
+			
+		}
+		System.out.println("-----onResume------------");
+		
+	}
+
+	@Override
+	public void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+	}
+
+	
 }

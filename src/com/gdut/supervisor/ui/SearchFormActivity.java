@@ -1,13 +1,11 @@
 package com.gdut.supervisor.ui;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import org.apache.http.client.ClientProtocolException;
 
 import com.gdut.supervisor.R;
 import com.gdut.supervisor.dialog.ShowMessageDialog;
@@ -24,6 +22,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,8 +37,21 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.DatePicker.OnDateChangedListener;
+import android.widget.Toast;
 
 public class SearchFormActivity extends Activity {
+	/**
+	 *获取历史数据成功的标志
+	 */
+	protected static final int GRTSEARCHBASESUCCESS = 0X111;
+	/**
+	 *请求数据的标志码
+	 */
+	final int SUBMIT_GETMAP2=0x11;
+	/**
+	 *请求数据的标志码
+	 */
+	final int SUBMIT_GETEdu_Survey=0x22;
 	/**
 	 * 督导员学号
 	 */
@@ -176,7 +189,47 @@ public class SearchFormActivity extends Activity {
 	 * 所有表格的内容
 	 */
 	private static List<String> AuditCom;
+	/**
+	 * 
+	 */
+    Handler handler=new Handler()
+    {
 
+		@Override
+		public void handleMessage(Message msg) {
+			if(msg.what==SUBMIT_GETMAP2)
+			{
+				if (searchMap != null) {
+					setDateList();
+				} else {
+					AuditCom = new ArrayList<String>();
+					fromName = new ArrayList<String>();
+					fromCom = new ArrayList<String>();
+					showPage(1);
+					pagenum.setText("共 0 页");
+					nownum = 0;
+					pageTextView.setText("查找表单" + "    " + "第(0)页");
+					ShowMessageDialog.showMessage(SearchFormActivity.this,
+							"对不起，没有找到查找表单！！");
+				}
+				
+			}
+			else if(msg.what==GRTSEARCHBASESUCCESS)
+			{
+				Intent intent = new Intent(SearchFormActivity.this,
+						SupervisorActivity.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				startActivity(intent);
+				Toast.makeText(SearchFormActivity.this, "获取历史数据成功", 2*1000).show();
+			}
+			else
+				if(msg.what==-GRTSEARCHBASESUCCESS)
+				{
+					Toast.makeText(SearchFormActivity.this, "查找历史数据失败", 2*1000).show();					
+				}
+		}
+    	
+    };
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.search);
@@ -202,6 +255,7 @@ public class SearchFormActivity extends Activity {
 		goButton.setOnClickListener(new ButtonOnClickListener());
 		nextButton.setOnClickListener(new ButtonOnClickListener());
 		listView.setOnItemClickListener(new ListViewOnItemSelectedListener());
+		SupervisorFragment.searchIsOpen=true;
 	}
 
 	private void showPage(int pageID) {
@@ -293,18 +347,43 @@ public class SearchFormActivity extends Activity {
 
 	// 列表事件
 	private class ListViewOnItemSelectedListener implements OnItemClickListener {
+		
+
 		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 				long arg3) {
-			SupervisorFragment.searchIsOpen = true;
+			
 			id = nownum * shownum - shownum + arg2;
 			if (isAudit[id]) {
 				iniauditDialog();
 			} else {
 				showPage(nownum);
-				Intent intent = new Intent(SearchFormActivity.this,
-						SupervisorActivity.class);
-				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				startActivity(intent);
+				SupervisorFragment.searchIsOpen = true;
+				System.out.println("SupervisorFragment.searchIsOpen ="+SupervisorFragment.searchIsOpen);
+				
+				new Thread()
+				{
+
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						SupervisorActivity.situation=null;
+						SupervisorActivity.situation = getSearchBaseMessage();
+						if(SupervisorActivity.situation!=null)
+						{
+							
+							handler.sendEmptyMessage(GRTSEARCHBASESUCCESS);
+						}
+						else
+						{
+							handler.sendEmptyMessage(-GRTSEARCHBASESUCCESS);
+						}
+							
+					}
+					
+				}.start();
+				
+				
+			
 			}
 		}
 	}
@@ -529,41 +608,24 @@ public class SearchFormActivity extends Activity {
 			public void run() {
 				searchMap = SubmitHandler.getMap2(supername, starttime, endtime);
 				System.out.println("searchMap===" + searchMap);
+			handler.sendEmptyMessage(SUBMIT_GETMAP2);					
 			}
 			
 		}.start();
 		
-
-		if (searchMap != null) {
-			setDateList();
-		} else {
-			AuditCom = new ArrayList<String>();
-			fromName = new ArrayList<String>();
-			fromCom = new ArrayList<String>();
-			showPage(1);
-			pagenum.setText("共 0 页");
-			nownum = 0;
-			pageTextView.setText("查找表单" + "    " + "第(0)页");
-			ShowMessageDialog.showMessage(SearchFormActivity.this,
-					"对不起，没有找到查找表单！！");
-		}
 	}
 
 	/**
-	 * 获取具体的表单信息
+	 * 获取具体的表单信息，有网络请求！
+	 * 
 	 */
 	public static Edu_Survey getSearchBaseMessage() {
 		Edu_Survey searchMessage = new Edu_Survey();
 		String s = fromCom.get(id);
 		System.out.println("get(id)" + s);
-		try {
-			searchMessage = SubmitHandler.getEdu_Survey(s);
-			searchMessage.setSurvey_ID(s);
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
+		searchMessage = SubmitHandler.getEdu_Survey(s);
+		searchMessage.setSurvey_ID(s);
 		PrintlnFromData.println(searchMessage, "查找时表格的内容:");
 		return searchMessage;
 	}

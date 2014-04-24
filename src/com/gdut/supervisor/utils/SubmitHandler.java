@@ -140,9 +140,6 @@ public class SubmitHandler {
 		HttpGet httpGet = new HttpGet(BaseMessage.baseUrl + "/dudao/"
 				+ school_district + "/" + date + "/" + study_place + "/"
 				+ section + "/" + user_no);
-		System.out.println("=========" + BaseMessage.baseUrl + "/dudao/"
-				+ school_district + "/" + date + "/" + study_place + "/"
-				+ section + "/" + user_no);
 		HttpResponse response = httpclient.execute(httpGet);
 		System.out.println("获取上课地点的状态码："
 				+ response.getStatusLine().getStatusCode());
@@ -225,17 +222,35 @@ public class SubmitHandler {
 	 * 查找功能的实现
 	 */
 	public static Edu_Survey getEdu_Survey(String survey_id)
-			throws ClientProtocolException, IOException {
+			 {
 
 		// 取得
+		
 		HttpGet httpGet = new HttpGet(BaseMessage.baseUrl
 				+ "/dudao/checkForUpdate/" + survey_id);
+		HttpResponse response;
+		HttpEntity entity = null ;
+		try {
+			response = httpclient.execute(httpGet);
+			entity = response.getEntity();
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-		HttpResponse response = httpclient.execute(httpGet);
-
-		HttpEntity entity = response.getEntity();
-
-		String responseText = EntityUtils.toString(entity, HTTP.UTF_8);
+		String responseText = null;
+		try {
+			responseText = EntityUtils.toString(entity, HTTP.UTF_8);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		System.out.println("responseText:" + responseText);
 

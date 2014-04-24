@@ -21,7 +21,7 @@ public class LoginHandler {
 
 	private DefaultHttpClient httpclient = new DefaultHttpClient();
 	/** 登录URL */
-	// private String loginUrl =
+	 //private String loginUrl =
 	// "http://cscw.gdut.edu.cn:8888/edusupervisor/j_spring_security_check";
 	/** 退出URL */
 	private String logoutUrl;

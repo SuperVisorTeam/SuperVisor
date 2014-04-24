@@ -1,7 +1,9 @@
 package com.gdut.supervisor.view;
 
 import com.gdut.supervisor.R;
+import com.gdut.supervisor.info.BaseMessage;
 import com.gdut.supervisor.ui.SupervisorActivity;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -10,10 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 /**
  * 
  * 第二个表单的窗口
@@ -40,20 +42,19 @@ public class SecondItemFragment extends Fragment {
 	 * 最多人数
 	 */
 
-	/*
-	 * 暂时不考虑获取numMax private static int numMax = 0;
-	 */
+	 private static int numMax = 0;
+	 
 
 	/**
 	 * 判断是否已经获得数据
 	 */
 
-	/*
-	 * 暂时不考虑获取数据 public static boolean isGet = false;
-	 */
+	
 
-	// 直接给numMax赋固定值用于测试
-	private static int numMax = 100;
+	 /**
+		 * 判断是否已经获得数据
+		 */
+		public static boolean isGet = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -69,20 +70,20 @@ public class SecondItemFragment extends Fragment {
 		View rootView = inflater.inflate(R.layout.second, container, false);
 		// 初始化文本编辑框
 		int i = 0;
-
+		//1.学生上课迟到早退情况
 		editText[i++] = (EditText) rootView.findViewById(R.id.latenumEditText);
-
+		//2.学生旷课情况
 		editText[i++] = (EditText) rootView
 				.findViewById(R.id.truantnumEditText);
-
+		//3.学生请假情况
 		editText[i++] = (EditText) rootView.findViewById(R.id.leavenumEditText);
-
+		 //4.学生带食品进入教室在课堂\n上吃东西情况
 		editText[i++] = (EditText) rootView.findViewById(R.id.eatnumEditText);
-
+		//5.学生课堂上翻看手机情况
 		editText[i++] = (EditText) rootView.findViewById(R.id.phonenumEditText);
-
+		 //6.学生上课睡觉或讲话情况
 		editText[i++] = (EditText) rootView.findViewById(R.id.sleepnumEditText);
-
+		//7.学生穿拖鞋短裤进教室情况
 		editText[i++] = (EditText) rootView.findViewById(R.id.shonenumEditText);
 
 		// 初始化按钮
@@ -108,6 +109,8 @@ public class SecondItemFragment extends Fragment {
 
 		button[j++] = (Button) rootView.findViewById(R.id.shonereduceButton);
 		button[j++] = (Button) rootView.findViewById(R.id.shoneaddButton);
+		//获取最大人数
+		numMax = BaseMessage.num;
 		// 添加监听
 		for (int k = 0; k < buttonnum; k++) {
 			button[k]
@@ -457,13 +460,26 @@ public class SecondItemFragment extends Fragment {
 		editText[i++].setText(SupervisorActivity.situation
 				.getSlipper_Shorts_Num() + "");
 	}
-	/*
-	 * 暂时不考虑
-	 * 
-	 * // 恢复时调用 protected void onResume() { super.onResume(); numMax =
-	 * BaseMessage.num; if (!MenuActivity.searchIsOpen) {
-	 * 
-	 * } else { if (!isGet) { isGet = true; setSecondItemClassSituation(); } }
-	 * for (int i = 0; i < editTextnum; i++) { editText[i].clearFocus(); } }
-	 */
+	
+	
+	// 恢复时调用
+		public void onResume() {
+			super.onResume();
+			numMax = BaseMessage.num;
+			System.out.println("Second-----SupervisorFragment.searchIsOpen="+SupervisorFragment.searchIsOpen);
+			System.out.println("Second-----isGet="+isGet);
+			if (!SupervisorFragment.searchIsOpen) {
+              
+			} else {
+				if (!isGet) {
+					isGet = true;
+					setSecondItemClassSituation();
+				}
+			}
+			for (int i = 0; i < editTextnum; i++) {
+				editText[i].clearFocus();
+			}
+		}
+		
+	
 }

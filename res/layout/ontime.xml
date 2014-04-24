@@ -7,14 +7,14 @@
     <!-- 老帅是否准时 -->
 
     <RadioGroup
-        android:id="@+id/rdoGop_teacher_if_ontime"
+        android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="10dp"
         android:orientation="horizontal" >
 
         <RadioButton
-            android:id="@+id/rdoBtn_teacher_if_ontime_yes"
+            android:id="@+id/yes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
@@ -22,7 +22,7 @@
             android:textColor="@color/black" />
 
         <RadioButton
-            android:id="@+id/rdoBtn_teacher_if_ontime_no"
+            android:id="@+id/no"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="否"
