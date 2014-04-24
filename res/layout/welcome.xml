@@ -1,24 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlayout_welcom"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
-    
-    <ImageView 
+
+    <ImageView
+        android:id="@+id/imageView1"
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:layout_centerInParent="true"
-        android:background="@drawable/welcomepager"
-        />
-    
+        android:background="@drawable/welcomepager" />
+
+    <LinearLayout
+        android:id="@+id/layout_progress_welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageView1"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        android:orientation="vertical" >
+
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="登陆中..." />
+    </LinearLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
         android:text="广工督导系统"
-        android:textSize="30dp" />
+        android:textSize="10pt" 
+        />
 
 </RelativeLayout>
