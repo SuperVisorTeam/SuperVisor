@@ -1,8 +1,5 @@
 package com.gdut.supervisor.ui;
 
-import java.util.ArrayList;
-import java.util.Map;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
