@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/linearlayout" >
+    style="@style/windowsStyle" >
 
     <!-- 显示查找表单的内容 -->
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="@color/darkgray"
         android:orientation="horizontal" >
@@ -37,8 +37,9 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="7" >
+        android:layout_height="fill_parent"
+        android:layout_weight="7"
+         >
   <HorizontalScrollView
     android:layout_marginBottom="5dp"
     android:layout_marginTop="5dp"
@@ -59,7 +60,7 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="@color/gray"
         android:orientation="horizontal" >

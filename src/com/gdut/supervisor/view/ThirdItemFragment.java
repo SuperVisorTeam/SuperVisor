@@ -120,6 +120,7 @@ public class ThirdItemFragment extends Fragment
 						if (v.getId() == R.id.submit_time_bt) {
 							temp_time = gainTime();
 							BaseMessage.temp_time  = temp_time;
+		
 							submitTime.setText(temp_time);
 						}
 
@@ -157,6 +158,7 @@ public class ThirdItemFragment extends Fragment
 		// 获得填写表格的内容
 		public static void greatThirdItemClassSituation() {
 			int i = 0;
+			//获取老师上课及时到达情况
 			if (yesRadioButton.isChecked()) {
 				byte a = 1;
 				SupervisorActivity.situation.setTeacher_Ontime(a);
@@ -164,11 +166,15 @@ public class ThirdItemFragment extends Fragment
 				byte b = 0;
 				SupervisorActivity.situation.setTeacher_Ontime(b);
 			}
+			//获取上课老师的名字
 			SupervisorActivity.edu_CourseClass.setTeacher_Name(teachernameEditText
 					.getText().toString());
-
+            //获取检查时间
+			SupervisorActivity.situation.setSurvey_Time(submitTime.getText().toString());
+			//获取督导员学号
 			SupervisorActivity.situation.setSupervisor(supervisorEditText.getText()
 					.toString());
+			//获取“备注”
 			SupervisorActivity.situation.setOther_Situation(editText[i++].getText()
 					.toString());
 		}

@@ -6,7 +6,7 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="@color/darkgray"
         android:orientation="horizontal" >
@@ -37,11 +37,10 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="7" >
-
-        <ListView
+        android:layout_weight="7" ><ListView
             android:id="@+id/schedulefromListView"
             android:layout_width="fill_parent"
+        
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"

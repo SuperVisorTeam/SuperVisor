@@ -754,6 +754,7 @@ public class SupervisorActivity extends FragmentActivity  {
 		 * 创建一个表单
 		 */
 		private void createSituation() {
+			System.out.println("创建一个表单");
 			situation = new Edu_Survey();
 			edu_CourseClass = new Edu_CourseClass();
 			situation.setTerminal_Type("Android");

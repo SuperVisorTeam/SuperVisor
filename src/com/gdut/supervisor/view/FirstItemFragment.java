@@ -675,51 +675,48 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 	/**
 	 * 获得填写表格的内容
 	 */
-	public static void greatFristItemClassSituation() {
-		//i控制【实到人数】，【应到人数】的文本输入框
-		//存放【应到人数】
-		int plan_num = 0;
-		//
-		SupervisorActivity.edu_CourseClass.setSchool_District(schoolID + "");
-		//
-		SupervisorActivity.edu_CourseClass.setTeaching_Class_Group(classGroup);
-		//如果教学班编号的编号合法
-		if (BaseMessage.class_no != null && !BaseMessage.class_no.equals("")) {
-			SupervisorActivity.edu_CourseClass
-					.setCourse_Class_No((BaseMessage.class_no));
-		}
-		//
-		SupervisorActivity.situation.setLesson_classroom(schoollationEditText
-				.getText().toString());
+	// 获得填写表格的内容
+		public static void greatFristItemClassSituation() {
+			int i = 0;
+			int actual_num = 0;
+			//
+			SupervisorActivity.edu_CourseClass.setSchool_District(schoolID + "");
+			//
+			SupervisorActivity.edu_CourseClass.setTeaching_Class_Group(classGroup);
+			if (BaseMessage.class_no != null && !BaseMessage.class_no.equals("")) {
+				SupervisorActivity.edu_CourseClass
+						.setCourse_Class_No((BaseMessage.class_no));
+			}
+			//
+			SupervisorActivity.situation.setLesson_classroom(schoollationEditText
+					.getText().toString());
 
-		//
-		SupervisorActivity.situation.setLesson_section(checkclassSpinner
-				.getSelectedItem().toString());
-		//
-		SupervisorActivity.situation.setStudent_Faculty(schoolnameEditText
-				.getText().toString());
-		//
-		SupervisorActivity.situation.setLesson_date(dateEditText.getText()
-				.toString());
-		//如果实到人数合法，置空
-		if (studentNumber_editText.getText().toString() == null
-				|| studentNumber_editText.getText().toString().equals("")) {
-			studentNumber_editText.setText("0");
+			//
+			SupervisorActivity.situation.setLesson_section(checkclassSpinner
+					.getSelectedItem().toString());
+			//
+			SupervisorActivity.situation.setStudent_Faculty(schoolnameEditText
+					.getText().toString());
+			//
+			SupervisorActivity.situation.setLesson_date(dateEditText.getText()
+					.toString());
+			//
+			if (studentNumber_editText.getText().toString() == null
+					|| studentNumber_editText.getText().toString().equals("")) {
+				studentNumber_editText.setText("0");
+			}
+			actual_num = Integer.valueOf(realNumber_editText.getText().toString());
+			SupervisorActivity.edu_CourseClass.setActual_Population(actual_num);
+			if (realNumber_editText.getText().toString() == null
+					|| realNumber_editText.getText().toString().equals("")) {
+				SupervisorActivity.situation.setActual_Num(Integer.valueOf("0"));
+			} else {
+				SupervisorActivity.situation.setActual_Num(Integer
+						.valueOf(realNumber_editText.getText().toString()));
+			}
+			absentnum = actual_num - SupervisorActivity.situation.getActual_Num();
+			SupervisorActivity.situation.setAbsent_Num(absentnum);
 		}
-		//存放【应到人数】
-		plan_num = Integer.valueOf(realNumber_editText.getText().toString());
-		SupervisorActivity.edu_CourseClass.setPlan_Population(plan_num);
-		if (realNumber_editText.getText().toString() == null
-				|| realNumber_editText.getText().toString().equals("")) {
-			SupervisorActivity.situation.setActual_Num(Integer.valueOf("0"));
-		} else {
-			SupervisorActivity.situation.setActual_Num(Integer
-					.valueOf(realNumber_editText.getText().toString()));
-		}
-		//缺课人数
-		absentnum = plan_num - SupervisorActivity.situation.getActual_Num();
-		SupervisorActivity.situation.setAbsent_Num(absentnum);
-	}
 	/** 
 	 * 设置填写表格的内容
 	 *
