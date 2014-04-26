@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <!-- 当前学期-周次-学院-星期-节次-查询 -->
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:padding="5dp"
+        android:stretchColumns="1" >
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="*学期："
+                android:textColor="#FFFFFF"
+                android:textSize="15dp" />
+
+            <Spinner
+                android:id="@+id/sp_term"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="*周次："
+                android:textColor="#FFFFFF"
+                android:textSize="15dp" />
+
+            <Spinner
+                android:id="@+id/sp_week"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/order_week" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="*学院："
+                android:textColor="#FFFFFF"
+                android:textSize="15dp" />
+
+            <Spinner
+                android:id="@+id/sp_institute"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/order_institute" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="*星期："
+                android:textColor="#FFFFFF"
+                android:textSize="15dp" />
+
+            <Spinner
+                android:id="@+id/sp_day"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/order_days" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="*节次："
+                android:textColor="#FFFFFF"
+                android:textSize="15dp" />
+
+            <Spinner
+                android:id="@+id/sp_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/order_time" />
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

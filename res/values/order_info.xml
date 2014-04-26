@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string-array name="order_term">
+        <item>2013"-"2014"-"2</item>
+        <item>2013"-"2014"-"3</item>
+        <item>2013"-"2014"-"4</item>
+        <item>2013"-"2014"-"5</item>
+        <item>2013"-"2014"-"6</item>
+        <item>2013"-"2014"-"7</item>
+        <item>2013"-"2014"-"8</item>
+       
+        <item></item>
+    </string-array>
+<!-- 	周次 -->
+    <string-array name="order_week">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+    </string-array>
+    
+    <string-array name="order_institute">
+        <item>机电工程学院</item>
+        <item>自动化学院</item>
+        <item>轻工化工学院</item>
+        <item>信息工程学院</item>
+        <item>土木与交通工程学院</item>
+        <item>管理学院</item>
+        <item>计算机学院</item>
+        <item>材料与能源学院</item>
+        <item>环境科学与工程学院</item>
+        <item>外国语学院</item>
+        <item>应用数学学院</item>
+        <item>物理与光电工程学院</item>
+        <item>艺术设计学院</item>
+        <item>政法学院</item>
+        <item>建筑与城市规划学院</item>
+        <item>经济与贸易学院</item>
+        <item>商学院</item>
+        <item>省电力学校分教点</item>
+        <item>省计算中心</item>
+        <item>体育部</item>
+        <item>实验教学部</item>
+        <item>图书馆</item>
+        <item>医院</item>
+        <item>外事处</item>
+        <item>保卫处(武装部)</item>
+        <item>团委</item>
+        <item>文化素质教育中心</item>
+        <item>学生处(学生工作部)</item>
+        <item>通识教育中心</item>
+        <item>工会</item>
+    </string-array>
+    
+    <string-array name="order_days">
+        <item>周一</item>
+        <item>周二</item>
+        <item>周三</item>
+        <item>周四</item>
+        <item>周五</item>
+        <item>周六</item>
+        <item>周日</item>
+    </string-array>
+	
+      <string-array name="order_time">
+        <item>1,2</item>
+        <item>3,4</item>
+        <item>5</item>
+        <item>5,6,7</item>
+        <item>6,7</item>
+        <item>8,9</item>
+        <item>10,11,12</item>
+    </string-array>
+    
+</resources>

@@ -7,13 +7,13 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gdut.supervisor.R;
+import com.gdut.supervisor.ui.PreEntryActivity;
 import com.gdut.supervisor.ui.ScheduleActivity;
 import com.gdut.supervisor.ui.SearchFormActivity;
 import com.gdut.supervisor.ui.SupervisorActivity;
@@ -127,7 +127,7 @@ public class SupervisorFragment extends Fragment implements OnItemSelectedListen
 			break;
 		case 4:
 			// 督导预约
-			Toast.makeText(getActivity(), "你点击了 " + name, Toast.LENGTH_SHORT).show();
+			startActivity(new Intent(getActivity(), PreEntryActivity.class));
 			break;
 		// 课室查询
 		case 5:

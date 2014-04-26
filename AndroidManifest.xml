@@ -19,6 +19,7 @@
         android:theme="@style/MyTheme" >
         <activity
             android:name="com.gdut.supervisor.ui.WelcomeActivity"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -61,6 +62,10 @@
             android:name=".ui.ScheduleActivity"
             android:launchMode="singleTask"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+        <activity
+            android:name=".ui.PreEntryActivity"
+             >
         </activity>
     </application>
 
