@@ -83,10 +83,11 @@ public class LoginHandler {
 		StatusLine statusLine = null;
 		//学校服务器 http://psy.gdut.edu.cn:8080
 		//本地 0.21.32.123
-		BaseMessage.baseUrl = "http://10.21.32.123:8080";
+		BaseMessage.baseUrl = "http://psy.gdut.edu.cn:8080";
 		String loginUrl = BaseMessage.baseUrl + "/j_spring_security_check";
 		System.out.println("loginUrl:" + loginUrl);
 		try {
+			
 			System.out.println("进入LoginHandler-run-try");
 			HttpParams httpParams = new BasicHttpParams();	//设置参数
 			httpParams.setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 5000);
