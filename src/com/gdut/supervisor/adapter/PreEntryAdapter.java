@@ -1,15 +1,12 @@
 package com.gdut.supervisor.adapter;
 
-import java.util.Map;
+import java.util.List;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,42 +14,64 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gdut.supervisor.R;
 import com.gdut.supervisor.info.Edu_Survey_OrderInfo;
-import com.google.gson.Gson;
+import com.gdut.supervisor.utils.SubmitHandler;
 
+/**
+ * 可预约信息列表List的适配器
+ */
 public class PreEntryAdapter extends BaseAdapter
 {
 	private LayoutInflater inflater;
-	private View view;
 	private Context context;
-	private Map map;
-	private String summitUrl;
-	private Handler orderHandler;
-	Button btn_order;
-	// private Button button;
-	private int num;
-	TextView txtClass, teacherName, className, courseName;
+	private Dialog orderDialog;
+	private View dialogView;
+	private viewHolder holder;
+	private OrderAsyncTask orderAsyncTask;
+	private List<List> listSize, listList;
+
+	private int currentPosition = 0;
+	private Button currentBtn;
+	private boolean[] ORDER_SUCCESS;
+	private String[] classes;
 
 	/**
 	 * map 服务器返回的预约数据
 	 */
-	public PreEntryAdapter(Context context, int num)
+	public PreEntryAdapter(Context context, List<List> listSize, List<List> listList)
 	{
 		this.context = context;
-		this.map = map;
+		this.listSize = listSize;
+		this.listList = listList;
+		// ORDER_SUCCESS = new boolean[(Integer)listSize.get(0).get(0)];
+		ORDER_SUCCESS = new boolean[30];
+		classes = new String[30];
+		for (int i = 0; i < 30; i++)
+		{
+			classes[i] = "教2-" + i;
+		}
+		initView();
+	}
+
+	private void initView()
+	{
 		inflater = LayoutInflater.from(context);
-		orderHandler = new OrderHandler();
-		this.num = num;
+		dialogView = inflater.inflate(R.layout.dialog_evaluate_order_preentry, null);
+		orderDialog = new AlertDialog.Builder(context).create();
+		orderDialog.setCanceledOnTouchOutside(false);
+		
 	}
 
 	@Override
 	public int getCount()
 	{
-		return num;
+		// return (Integer) listSize.get(0).get(0);
+		return 30;
 	}
 
 	@Override
@@ -70,75 +89,103 @@ public class PreEntryAdapter extends BaseAdapter
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent)
 	{
-		Log.v("log", "--->getView()");
+		Log.v("log", "--->getView()-" + position);
 		if (convertView == null)
 		{
+			holder = new viewHolder();
 			convertView = inflater.inflate(R.layout.adapter_preentry, null);
-			btn_order = (Button) convertView.findViewById(R.id.btn_pre_entry_pre);
 
-			convertView.setTag(btn_order);
+			holder.btn_order = (Button) convertView.findViewById(R.id.btn_pre_entry_order);
+			holder.txt_class = (TextView) convertView.findViewById(R.id.txt_pre_entry_class);
+			holder.txt_class_name = (TextView) convertView.findViewById(R.id.txt_pre_entry_class_name);
+			holder.txt_course = (TextView) convertView.findViewById(R.id.txt_pre_entry_course);
+			holder.txt_teacher = (TextView) convertView.findViewById(R.id.txt_pre_entry_teacher);
+
+			convertView.setTag(holder);
 		} else
 		{
-			btn_order = (Button) convertView.getTag();
+			holder = (viewHolder) convertView.getTag();
 		}
-
-		btn_order.setOnClickListener(new OnClickListener()
+		Log.v("log", "-->getView()--ORDER_SUCCESS[" + position + "]-" + ORDER_SUCCESS[position]);
+		// 判断保存的position位置上的Butoon是否已预约成功
+		if (ORDER_SUCCESS[position])
 		{
-			@Override
-			public void onClick(View v)
-			{
-				Toast.makeText(context, "点击第 " + (position + 1) + "个Button", 0).show();
-				OrderAsyncTask orderAsyncTask = new OrderAsyncTask();
-				orderAsyncTask.execute(summitUrl);
-				btn_order.setText("已预约");
-				// new OrderThread().start();
-
-			}
-		});
-		
-		
+			holder.btn_order.setText("已预约");
+			// 这里不设的话返回来时还会可点击,因为向下拉时，Holder里的btn被设置成可点击了
+			 holder.btn_order.setEnabled(false);
+//			holder.btn_order.setClickable(false);
+		} else
+		{
+			// 这里要写上默认的显示内容，要不然后面的子控件会出现显示已预订的情况。因为不设置的话btn还是Holder中的btn，而holder中的btn是已经设置了已预约的
+			holder.btn_order.setText("未预约");
+			// 要设置为可点击，不然是Holder里的状态
+			holder.btn_order.setEnabled(true);
+//			holder.btn_order.setClickable(true);
+			// 这个也要放这里判断
+			holder.btn_order.setOnClickListener(new btnListener(position, holder.btn_order));
+		}
+		// listList的数据可能不完整，进行异常捕获
+		try
+		{
+			// 课室
+			holder.txt_class.setText(classes[position]);
+			
+//			holder.txt_class.setText((CharSequence) listList.get(position).get(4));
+			 // 在此上课的班级
+//			holder.txt_class_name.setText(listList.get(position).get());
+			// 课程名字
+//			holder.txt_course.setText((CharSequence) listList.get(position).get(2));
+			 // 老师
+//			holder.txt_teacher.setText((CharSequence) listList.get(position).get(3));
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+			Log.v("log", "-->listList-可能为空！！！");
+			Toast.makeText(context, "数据不完整或没有数据!", 1).show();
+		}
 		return convertView;
 	}
 
-
 	/**
-	 * Handler
+	 * 要传入
 	 */
-	private class OrderHandler extends Handler
+	class btnListener implements OnClickListener
 	{
-		@Override
-		public void handleMessage(Message msg)
+		private int position;
+		private Button Btn;
+
+		public btnListener(int position, Button currentBtn)
 		{
-			btn_order.setText("已预约");
-			super.handleMessage(msg);
+			this.position = position;
+			this.Btn = currentBtn;
 		}
+
+		@Override
+		public void onClick(View v)
+		{
+			currentPosition = position;
+			currentBtn = Btn;
+			Toast.makeText(context, "点击第 " + (position + 1) + "个Button", 0).show();
+			orderAsyncTask = new OrderAsyncTask();
+			orderAsyncTask.execute("");
+			
+			orderDialog.show();
+			orderDialog.getWindow().setContentView((LinearLayout)dialogView);
+		}
+
 	}
 
-	/**
-	 * 线程操作
-	 */
-	private class OrderThread extends Thread
+	private static class viewHolder
 	{
+		private Button btn_order;
+		private TextView txt_class, txt_teacher, txt_course, txt_class_name;
 
-		Message msg = new Message();
-
-		public void run()
-		{
-			try
-			{
-
-			} catch (Exception e)
-			{
-			}
-			msg.arg1 = 888;
-			orderHandler.sendMessage(msg);
-		}
 	}
 
 	/**
 	 * 异步进行预约操作AsyncTask
 	 */
-	private class OrderAsyncTask extends AsyncTask<String, Integer, String[]>
+	private class OrderAsyncTask extends AsyncTask<String, Integer, Integer>
 	{
 
 		@Override
@@ -149,49 +196,22 @@ public class PreEntryAdapter extends BaseAdapter
 
 		// 异步处理
 		@Override
-		protected String[] doInBackground(String... params)
+		protected Integer doInBackground(String... nullNow)
 		{
-			Log.v("log", "-->params:" + params[0]);
-			// /dudaoSaveBooking/{course_Class_No}/{schedule_id}/{semester}/{dayOfWeek}
-			summitUrl = "http://10.21.32.123:8080/dudaoSaveBooking/" + "(2013-2014-2)-02153939-00005985-1" + "/"
-					+ "41283" + "/" + "2013-2014-2" + "/2"
-					+ Edu_Survey_OrderInfo.dayOfWeek;
+			Log.v("log", "-->doInBackground()--params-" + nullNow[0]);
 			try
 			{
-				Gson gson = new Gson();
-				String json = gson.toJson(params[0]);
-				DefaultHttpClient client = new DefaultHttpClient();
-//				HttpPost post = new HttpPost(summitUrl);
-//				HttpEntity postEntity = new StringEntity(json, "UTF-8");
-//				post.setEntity(postEntity);
-//				post.setHeader("Content-Type", "application/json;charset=UTF-8");
-//
-//				HttpResponse response = client.execute(post);
-//				HttpEntity responseEntity = response.getEntity();
-//				String responseText = EntityUtils.toString(responseEntity, HTTP.UTF_8);
-//				Log.v("log", "-->预约返回状态码：" + response.getStatusLine().getStatusCode());
-//				Map<String, List<List>> map = gson.fromJson(responseText, HashMap.class);
-				String[][] str = new String[1][1];
-				
-				HttpGet httpGet = new HttpGet(summitUrl);
-				HttpResponse response = client.execute(httpGet);
-				Log.v("log", "---" + response.getStatusLine().getStatusCode());
-				switch (response.getStatusLine().getStatusCode())
-				{
-				case 200:
-					Toast.makeText(context, "预约成功！", 1).show();
-					break;
+				Thread.sleep(2500);
+				return SubmitHandler.submitOrder((String) listList.get(currentPosition).get(0), (String) listList
+						.get(currentPosition).get(1), (String) listList.get(currentPosition).get(5),
+						Edu_Survey_OrderInfo.ORDER_WEEK);
 
-				default:
-					Toast.makeText(context, "预约失败！", 1).show();
-					break;
-				}
 			} catch (Exception e)
 			{
 				e.printStackTrace();
-				Log.e("log", "ERROR!!!");
+				Log.v("log", "-->doInBackground() ERROR!");
 			}
-			return null;
+			return 0;
 		}
 
 		@Override
@@ -201,12 +221,32 @@ public class PreEntryAdapter extends BaseAdapter
 		}
 
 		@Override
-		protected void onPostExecute(String[] result)
+		protected void onPostExecute(Integer responseCode)
 		{
-			btn_order.setText("已预约");
-			super.onPostExecute(result);
+			Log.v("log", "-->responseCode-" + responseCode);
+			responseCode = 200;
+			switch (responseCode)
+			{
+			case 200:
+				ORDER_SUCCESS[currentPosition] = true;
+				currentBtn.setText("已预约");
+				// 这里不设的话在当前页面下currentBtn一直可点击,因为getView里设的话是要调用getView时才能起作用的。
+				 currentBtn.setEnabled(false);
+//				currentBtn.setClickable(false);
+				break;
+			case 400:
+				break;
+			default:
+				break;
+			}
+
+			Log.v("log", "-->onPostExecute()--currentPosition-" + currentPosition);
+			Log.v("log", "-->onPostExecute()--ORDER_SUCCESS[" + currentPosition + "]-"
+					+ ORDER_SUCCESS[currentPosition]);
+			orderDialog.dismiss();
+			super.onPostExecute(responseCode);
 		}
 
 	}
-	
+
 }

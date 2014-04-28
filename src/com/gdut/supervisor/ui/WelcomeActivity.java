@@ -20,7 +20,8 @@ import com.gdut.supervisor.R;
 import com.gdut.supervisor.info.BaseMessage;
 import com.gdut.supervisor.utils.LoginHandler;
 
-public class WelcomeActivity extends Activity {
+public class WelcomeActivity extends Activity
+{
 	protected static final int START_LOGIN = 0; // 开启登陆界面的
 	protected static final int START_MAIN = 1;
 	private SharedPreferences preferences = null;
@@ -31,22 +32,23 @@ public class WelcomeActivity extends Activity {
 	LinearLayout progressLayout = null;
 	RelativeLayout wholeView = null;
 
-	Handler handler = new Handler() {
+	Handler handler = new Handler()
+	{
 
 		@Override
-		public void handleMessage(Message msg) {
-			// TODO Auto-generated method stub
+		public void handleMessage(Message msg)
+		{
 			super.handleMessage(msg);
 			progressLayout.setVisibility(View.INVISIBLE);
-			if (msg.what == START_LOGIN) {
-				Intent intent = new Intent(WelcomeActivity.this,
-						LoginActivity.class);
+			if (msg.what == START_LOGIN)
+			{
+				Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
 				startActivity(intent);
 				finish();
-			} else if (msg.what == START_MAIN) {
+			} else if (msg.what == START_MAIN)
+			{
 				BaseMessage.supervisor_no = account;
-				Intent intent = new Intent(WelcomeActivity.this,
-						MainActivity.class);
+				Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
 				startActivity(intent);
 				finish();
 			}
@@ -55,8 +57,8 @@ public class WelcomeActivity extends Activity {
 	};
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
+	protected void onCreate(Bundle savedInstanceState)
+	{
 		super.onCreate(savedInstanceState);
 		// 除去标题栏
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -67,32 +69,36 @@ public class WelcomeActivity extends Activity {
 		preferences = getSharedPreferences("userdata", MODE_PRIVATE);
 		account = preferences.getString("account", "");
 		password = preferences.getString("password", "");
-
+		Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
+		startActivity(intent);
+		finish();
 		// 获取自动登陆标志
-		final boolean isAutoDebark = preferences.getBoolean("isAutoDebark",
-				false);
-		new Handler().postDelayed(new Runnable() {// 新建一个handler实现跳转
+		final boolean isAutoDebark = preferences.getBoolean("isAutoDebark", false);
+		new Handler().postDelayed(new Runnable()
+		{// 新建一个handler实现跳转
 
-					public void run() {
-						WindowManager.LayoutParams lp = getWindow()
-								.getAttributes();
+					public void run()
+					{
+						WindowManager.LayoutParams lp = getWindow().getAttributes();
 						lp.screenBrightness = 0.2f;
 						getWindow().setAttributes(lp);
 						// wholeView.addView(new
 						// MyAnimationView(WelcomeActivity.this));
-						if (isAutoDebark) { // 若自动登陆，则进行登录操作，登录成功后直接打开主界面
+						if (isAutoDebark)
+						{ // 若自动登陆，则进行登录操作，登录成功后直接打开主界面
 							ConnectivityManager connManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
-							NetworkInfo netInfo = connManager
-									.getActiveNetworkInfo();
-							if (netInfo == null || !netInfo.isAvailable()) { // 网络不可用情况
-								Toast.makeText(WelcomeActivity.this, "网络不可用",
-										Toast.LENGTH_LONG).show();
+							NetworkInfo netInfo = connManager.getActiveNetworkInfo();
+							if (netInfo == null || !netInfo.isAvailable())
+							{ // 网络不可用情况
+								Toast.makeText(WelcomeActivity.this, "网络不可用", Toast.LENGTH_LONG).show();
 								handler.sendEmptyMessage(START_LOGIN);
-							} else {
-								login(); // 登陆联网操作
-								progressLayout.setVisibility(View.VISIBLE); // 显示登陆的缓冲条
+							} else
+							{
+//								login(); // 登陆联网操作
+//								progressLayout.setVisibility(View.VISIBLE); // 显示登陆的缓冲条
 							}
-						} else { // 否则启动登陆界面
+						} else
+						{ // 否则启动登陆界面
 							handler.sendEmptyMessage(START_LOGIN);
 						}
 
@@ -105,19 +111,23 @@ public class WelcomeActivity extends Activity {
 	/**
 	 * 进行登录操作
 	 */
-	public void login() {
-		new Thread() {
+	public void login()
+	{
+		new Thread()
+		{
 
 			@Override
-			public void run() {
+			public void run()
+			{
 				// TODO Auto-generated method stub
 				super.run();
 				Looper.prepare();
-				try {
+				try
+				{
 					System.out.println("进入Welcome-run-try");
-					int statusCode = loginHandler.login(account, password)
-							.getStatusCode();
-					switch (statusCode) {
+					int statusCode = loginHandler.login(account, password).getStatusCode();
+					switch (statusCode)
+					{
 					case 200: /* 登录成功 */
 						handler.sendEmptyMessage(START_MAIN);
 						break;
@@ -126,22 +136,20 @@ public class WelcomeActivity extends Activity {
 					// Toast.LENGTH_SHORT).show();
 					// break;
 					case 401: /* 密码错误 */
-						Toast.makeText(WelcomeActivity.this, "密码错误,请重新输入",
-								Toast.LENGTH_SHORT).show();
+						Toast.makeText(WelcomeActivity.this, "密码错误,请重新输入", Toast.LENGTH_SHORT).show();
 						handler.sendEmptyMessage(START_LOGIN);
 						break;
 					case 403: /* 禁止访问 */
-						Toast.makeText(WelcomeActivity.this, "禁止访问",
-								Toast.LENGTH_SHORT).show();
+						Toast.makeText(WelcomeActivity.this, "禁止访问", Toast.LENGTH_SHORT).show();
 						handler.sendEmptyMessage(START_LOGIN);
 						break;
 					default:
 						break;
 					}
-				} catch (Exception ex) {
+				} catch (Exception ex)
+				{
 					ex.printStackTrace();
-					Toast.makeText(WelcomeActivity.this, "请求超时,请稍后重试",
-							Toast.LENGTH_SHORT).show();
+					Toast.makeText(WelcomeActivity.this, "请求超时,请稍后重试", Toast.LENGTH_SHORT).show();
 					System.out.println("welcome系统繁忙");
 					handler.sendEmptyMessage(START_LOGIN);
 				}

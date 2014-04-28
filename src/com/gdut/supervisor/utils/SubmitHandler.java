@@ -17,12 +17,15 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
+import android.util.Log;
+
 import com.gdut.supervisor.info.BaseMessage;
 import com.gdut.supervisor.info.Edu_Survey;
 import com.gdut.supervisor.info.Edu_SurveyToIphone;
 import com.google.gson.Gson;
 
-public class SubmitHandler {
+public class SubmitHandler
+{
 	/**
 	 * 设置请求超过时间
 	 */
@@ -44,23 +47,26 @@ public class SubmitHandler {
 	public static DefaultHttpClient httpclient = new DefaultHttpClient();
 	public static Map<String, Object> getmap = new HashMap<String, Object>();
 
-	public static int getGetMap2_StatuseCode() {
+	public static int getGetMap2_StatuseCode()
+	{
 
 		return getMap2_StatuseCode;
 	}
 
-	public void setGetMap2_StatuseCode(int getMap2_statuseCode) {
+	public void setGetMap2_StatuseCode(int getMap2_statuseCode)
+	{
 		getMap2_StatuseCode = getMap2_statuseCode;
 	}
 
-	public static int getStatuCodeSchedule() {
+	public static int getStatuCodeSchedule()
+	{
 		return StatuCodeSchedule;
 	}
 
-	public static void setStatuCodeSchedule(int statuCodeSchedule) {
+	public static void setStatuCodeSchedule(int statuCodeSchedule)
+	{
 		StatuCodeSchedule = statuCodeSchedule;
 	}
-
 
 	/**
 	 * 
@@ -69,7 +75,8 @@ public class SubmitHandler {
 	 * @throws Exception
 	 *             提交表单
 	 */
-	public static int submitForm(Edu_Survey classSituation) throws Exception {
+	public static int submitForm(Edu_Survey classSituation) throws Exception
+	{
 
 		/**
 		 * 表格提交的URL
@@ -98,15 +105,18 @@ public class SubmitHandler {
 		HttpEntity entity = response.getEntity();
 
 		String responseText = EntityUtils.toString(entity, HTTP.UTF_8);
-		System.out.println("提交表单的状态码："
-				+ response.getStatusLine().getStatusCode());
-		if (response.getStatusLine().getStatusCode() == 200) {
+		System.out.println("提交表单的状态码：" + response.getStatusLine().getStatusCode());
+		if (response.getStatusLine().getStatusCode() == 200)
+		{
 			System.out.println("提交成功");
-		} else if (response.getStatusLine().getStatusCode() == 400) {
+		} else if (response.getStatusLine().getStatusCode() == 400)
+		{
 			System.out.println("表单参数有误!");
-		} else if (response.getStatusLine().getStatusCode() == 409) {
+		} else if (response.getStatusLine().getStatusCode() == 409)
+		{
 			System.out.println("教学班已经被督导！！!");
-		} else {
+		} else
+		{
 			System.out.println("提交失败!");
 		}
 
@@ -125,19 +135,19 @@ public class SubmitHandler {
 	 * @throws IOException
 	 * 
 	 */
-	public static int getMap(String school_district, String date,
-			String study_place, String section, String user_no)
-			throws ClientProtocolException, IOException {
+	public static int getMap(String school_district, String date, String study_place, String section,
+			String user_no) throws ClientProtocolException, IOException
+	{
 		// 取得
-		HttpGet httpGet = new HttpGet(BaseMessage.baseUrl + "/dudao/"
-				+ school_district + "/" + date + "/" + study_place + "/"
-				+ section + "/" + user_no);
+		HttpGet httpGet = new HttpGet(BaseMessage.baseUrl + "/dudao/" + school_district + "/" + date + "/"
+				+ study_place + "/" + section + "/" + user_no);
 		HttpResponse response = httpclient.execute(httpGet);
-		System.out.println("获取上课地点的状态码："
-				+ response.getStatusLine().getStatusCode());
-		if (response.getStatusLine().getStatusCode() == 404) {
+		System.out.println("获取上课地点的状态码：" + response.getStatusLine().getStatusCode());
+		if (response.getStatusLine().getStatusCode() == 404)
+		{
 			System.out.println("输入数据错误或此地点没有对应的课要上");
-		} else if (response.getStatusLine().getStatusCode() == 200) {
+		} else if (response.getStatusLine().getStatusCode() == 200)
+		{
 			System.out.println("输入正确");
 
 			HttpEntity entity = response.getEntity();
@@ -145,9 +155,11 @@ public class SubmitHandler {
 			String responseText = EntityUtils.toString(entity, HTTP.UTF_8);
 
 			getmap = gson.fromJson(responseText, HashMap.class);
-		} else if (response.getStatusLine().getStatusCode() == 402) {
+		} else if (response.getStatusLine().getStatusCode() == 402)
+		{
 			System.out.println("该班级已经被预定");
-		} else if (response.getStatusLine().getStatusCode() == 409) {
+		} else if (response.getStatusLine().getStatusCode() == 409)
+		{
 			System.out.println("该班级已经被督导");
 		}
 		return response.getStatusLine().getStatusCode();
@@ -163,30 +175,30 @@ public class SubmitHandler {
 	 * @throws IOException
 	 *             通过督导员的学号，开始时间，结束时间 来获取上课地点，校区，专业班级等表单数据
 	 */
-	public static Map<String, List<List>> getMap2(String user_no,
-			String start_date, String end_date) throws ClientProtocolException,
-			IOException {
+	public static Map<String, List<List>> getMap2(String user_no, String start_date, String end_date)
+			throws ClientProtocolException, IOException
+	{
 		int Statuse_code = -1;
-		HttpGet httpGet = new HttpGet(BaseMessage.baseUrl + "/dudao/check/"
-				+ user_no + "/" + start_date + "/" + end_date);
+		HttpGet httpGet = new HttpGet(BaseMessage.baseUrl + "/dudao/check/" + user_no + "/" + start_date + "/"
+				+ end_date);
 
 		HttpResponse response = httpclient.execute(httpGet);
-		System.out
-				.println("查找的状态码：" + response.getStatusLine().getStatusCode());
+		System.out.println("查找的状态码：" + response.getStatusLine().getStatusCode());
 
 		Statuse_code = response.getStatusLine().getStatusCode();
 		getMap2_StatuseCode = Statuse_code;
-		if (response.getStatusLine().getStatusCode() == 404) {
+		if (response.getStatusLine().getStatusCode() == 404)
+		{
 			System.out.println("输入数据错误或此地点没有对应的课要上");
-		} else if (response.getStatusLine().getStatusCode() == 200) {
+		} else if (response.getStatusLine().getStatusCode() == 200)
+		{
 			System.out.println("输入正确");
 
 			HttpEntity entity = response.getEntity();
 
 			String responseText = EntityUtils.toString(entity, HTTP.UTF_8);
 
-			Map<String, List<List>> map = gson.fromJson(responseText,
-					HashMap.class);
+			Map<String, List<List>> map = gson.fromJson(responseText, HashMap.class);
 			return map;
 		}
 
@@ -196,12 +208,11 @@ public class SubmitHandler {
 	/**
 	 * 查找功能的实现
 	 */
-	public static Edu_Survey getEdu_Survey(String survey_id)
-			throws ClientProtocolException, IOException {
+	public static Edu_Survey getEdu_Survey(String survey_id) throws ClientProtocolException, IOException
+	{
 
 		// 取得
-		HttpGet httpGet = new HttpGet(BaseMessage.baseUrl
-				+ "/dudao/checkForUpdate/" + survey_id);
+		HttpGet httpGet = new HttpGet(BaseMessage.baseUrl + "/dudao/checkForUpdate/" + survey_id);
 
 		HttpResponse response = httpclient.execute(httpGet);
 
@@ -238,8 +249,8 @@ public class SubmitHandler {
 	 * @throws Exception
 	 *             修改表单
 	 */
-	public static int modificationForm(Edu_Survey modificationSituation)
-			throws Exception {
+	public static int modificationForm(Edu_Survey modificationSituation) throws Exception
+	{
 
 		/**
 		 * 修改的URL
@@ -261,11 +272,12 @@ public class SubmitHandler {
 		HttpEntity entity = response.getEntity();
 
 		String responseText = EntityUtils.toString(entity, HTTP.UTF_8);
-		System.out.println("修改表单的状态码："
-				+ response.getStatusLine().getStatusCode());
-		if (response.getStatusLine().getStatusCode() == 200) {
+		System.out.println("修改表单的状态码：" + response.getStatusLine().getStatusCode());
+		if (response.getStatusLine().getStatusCode() == 200)
+		{
 			System.out.println("修改成功");
-		} else {
+		} else
+		{
 			System.out.println("修改提交失败!");
 		}
 
@@ -273,35 +285,34 @@ public class SubmitHandler {
 	}
 
 	/**
-	 * 
+	 * 预定功能 通过学号 来获得相关的信息
 	 * @param user_no
 	 * @param start_date
 	 * @param end_date
 	 * @return
 	 * @throws ClientProtocolException
 	 * @throws IOException
-	 *             预定功能 通过学号 来获得相关的信息
 	 */
-	public static Map<String, List<List>> getScheduleMap(String user_no)
-			throws ClientProtocolException, IOException {
+	public static Map<String, List<List>> getScheduleMap(String user_no) throws ClientProtocolException,
+			IOException
+	{
 
-		HttpGet httpGet = new HttpGet(BaseMessage.baseUrl + "/bookingQuery/"
-				+ user_no);
+		HttpGet httpGet = new HttpGet(BaseMessage.baseUrl + "/bookingQuery/" + user_no);
 		HttpResponse response = httpclient.execute(httpGet);
-		System.out
-				.println("预定的状态码：" + response.getStatusLine().getStatusCode());
+		System.out.println("预定的状态码：" + response.getStatusLine().getStatusCode());
 		setStatuCodeSchedule(response.getStatusLine().getStatusCode());
-		if (response.getStatusLine().getStatusCode() == 404) {
+		if (response.getStatusLine().getStatusCode() == 404)
+		{
 			System.out.println("没有找到相应的预定教室");
-		} else if (response.getStatusLine().getStatusCode() == 200) {
+		} else if (response.getStatusLine().getStatusCode() == 200)
+		{
 			System.out.println("输入正确");
 
 			HttpEntity entity = response.getEntity();
 
 			String responseText = EntityUtils.toString(entity, HTTP.UTF_8);
 
-			Map<String, List<List>> map = gson.fromJson(responseText,
-					HashMap.class);
+			Map<String, List<List>> map = gson.fromJson(responseText, HashMap.class);
 			return map;
 		}
 
@@ -312,31 +323,28 @@ public class SubmitHandler {
 	/**
 	 * 获取可预约的信息
 	 */
-	public static Map getOrderableList(String term, String institute,
-			String week, String day, String time) {
+	public static Map getOrderableList(String getOrderPath)
+	{
 		// /dudaobooking/{institute}/{semester}/{week}/{dayOfWeek}/{section}
-
-		System.out.println("URL---" + "http://10.21.32.123:8080"
-				+ "/dudaobooking/" + institute + "/" + term + "/" + week + "/"
-				+ day + "/" + time);
+		Log.v("log", "-->getOrderableList()--getOrderPath-" + getOrderPath);
 		// HttpGet httpget = new HttpGet("http://10.21.32.123:8080" +
 		// "/dudaobooking/" + institute + "/" + term
 		// + "/" + week + "/" + day + "/" + time);
-		HttpGet httpget = new HttpGet("http://psy.gdut.edu.cn:8080"
-				+ "/dudaobooking/" + institute + "/" + term + "/" + week + "/"
-				+ day + "/" + time);
+		HttpGet httpget = new HttpGet(getOrderPath);
 		Map<String, List<List>> map = null;
-		try {
+		try
+		{
 			httpclient = new DefaultHttpClient();
 			HttpResponse response = httpclient.execute(httpget);
 			int code = response.getStatusLine().getStatusCode();
-			if (code == 404) {
+			if (code == 404)
+			{
 				System.out.println("没有对应预约信息");
-			} else if (code == 200) {
+			} else if (code == 200)
+			{
 				HttpEntity entity = response.getEntity();
-				String responseText = EntityUtils
-						.toString(response.getEntity());// EntityUtils.toString(entity,
-														// HTTP.UTF_8);
+				String responseText = EntityUtils.toString(response.getEntity());// EntityUtils.toString(entity,
+																					// HTTP.UTF_8);
 				System.out.println("查询后的数据" + responseText);
 				map = gson.fromJson(responseText, HashMap.class);
 				List<List> list = map.get("booking_class");
@@ -346,7 +354,8 @@ public class SubmitHandler {
 				System.out.println("单个信息---" + list.get(0).get(0));
 			}
 
-		} catch (Exception e) {
+		} catch (Exception e)
+		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("-->ERROR");
@@ -354,5 +363,36 @@ public class SubmitHandler {
 		return map;
 
 	}
+/**
+ * 提交预约信息
+ * @param course_Class_No 课程编码
+ * @param schedule_id 课程ID
+ * @param semester 学期
+ * @param dayOfWeek 周几
+ * @return responseCode
+ */
+	public static int submitOrder(String course_Class_No, String schedule_id, String semester, String dayOfWeek)
+	{
+		// /dudaoSaveBooking/{course_Class_No}/{schedule_id}/{semester}/{dayOfWeek}
+		String submitPath = "http://10.21.32.123:8080" + "/dudaoSaveBooking" + "/" + course_Class_No + "/"
+				+ schedule_id + "/" + semester + "/" + dayOfWeek;
+		int responseCode = 0;
+		DefaultHttpClient client;
+		HttpGet httpGet;
+		HttpResponse response;
+		try
+		{
+			client = new DefaultHttpClient();
+			httpGet = new HttpGet(submitPath);
+			response = client.execute(httpGet);
+			responseCode = response.getStatusLine().getStatusCode();
 
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+			Log.e("log", "-->submitOrder() ERROR!!!");
+		}
+		// 返回状态码
+		return responseCode;
+	}
 }
