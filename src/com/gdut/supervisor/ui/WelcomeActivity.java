@@ -69,9 +69,6 @@ public class WelcomeActivity extends Activity
 		preferences = getSharedPreferences("userdata", MODE_PRIVATE);
 		account = preferences.getString("account", "");
 		password = preferences.getString("password", "");
-		Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
-		startActivity(intent);
-		finish();
 		// 获取自动登陆标志
 		final boolean isAutoDebark = preferences.getBoolean("isAutoDebark", false);
 		new Handler().postDelayed(new Runnable()
@@ -94,8 +91,8 @@ public class WelcomeActivity extends Activity
 								handler.sendEmptyMessage(START_LOGIN);
 							} else
 							{
-//								login(); // 登陆联网操作
-//								progressLayout.setVisibility(View.VISIBLE); // 显示登陆的缓冲条
+								login(); // 登陆联网操作
+								progressLayout.setVisibility(View.VISIBLE); // 显示登陆的缓冲条
 							}
 						} else
 						{ // 否则启动登陆界面

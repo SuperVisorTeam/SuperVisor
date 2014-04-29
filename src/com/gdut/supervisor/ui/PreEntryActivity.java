@@ -5,6 +5,8 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.http.cookie.Cookie;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -13,6 +15,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,10 +30,12 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gdut.supervisor.R;
 import com.gdut.supervisor.adapter.PreEntryAdapter;
+import com.gdut.supervisor.info.BaseMessage;
 import com.gdut.supervisor.info.Edu_Survey_OrderInfo;
 import com.gdut.supervisor.utils.SubmitHandler;
 import com.gdut.supervisor.view.RefreshableView;
@@ -39,6 +44,7 @@ import com.gdut.supervisor.view.RefreshableView.PullToRefreshListener;
 public class PreEntryActivity extends ActionBarActivity implements OnItemClickListener, PullToRefreshListener,
 		android.view.View.OnClickListener
 {
+	public static Cookie cookie;
 	private static final int ORDER_OBTAIN = 0x123;
 	private ListView listView;
 	private String getOrderPath;
@@ -51,7 +57,12 @@ public class PreEntryActivity extends ActionBarActivity implements OnItemClickLi
 	private RefreshableView refreshableView;
 	private Dialog allMsg;
 	private View allMsgView;
+
+	// 展示所有信息的dialog中的控件
+	private List<List> listList;
+	private List<List> listSize;
 	private ImageButton imgBtn_dialog;
+	private TextView txt_dialog_course, txt_dialog_classroom, txt_dialog_teacher, txt_dialog_classes;
 
 	/**
 	 * 处理得到的预约信息
@@ -69,8 +80,9 @@ public class PreEntryActivity extends ActionBarActivity implements OnItemClickLi
 				if (map != null)
 				{
 					// setAdapter操作
-					listView.setAdapter(new PreEntryAdapter(PreEntryActivity.this, (List<List>) map.get("size"),
-							(List<List>) map.get("booking_class")));
+					listList = (List<List>) map.get("booking_class");
+					listSize = (List<List>) map.get("size");
+					listView.setAdapter(new PreEntryAdapter(PreEntryActivity.this, listSize, listList));
 
 				} else
 				{
@@ -95,16 +107,15 @@ public class PreEntryActivity extends ActionBarActivity implements OnItemClickLi
 		setContentView(R.layout.activity_preentry);
 		initView();
 		mHandler = new getOrderHandler();
-
 		// 简单测试预约
-		new Thread()
-		{
-			public void run()
-			{
-				int code = SubmitHandler.submitOrder(null, null, null, null);
-				Log.v("log", "-->code-" + code);
-			};
-		}.start();
+		// new Thread()
+		// {
+		// public void run()
+		// {
+		// int code = SubmitHandler.submitOrder(null, null, null, null);
+		// Log.v("log", "-->testCode-" + code);
+		// };
+		// }.start();
 	}
 
 	/**
@@ -122,8 +133,18 @@ public class PreEntryActivity extends ActionBarActivity implements OnItemClickLi
 		allMsgView = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.dialog_all_pre_entry_msg, null);
 		allMsg = new AlertDialog.Builder(this).create();
 		allMsg.setCanceledOnTouchOutside(false);
+
 		imgBtn_dialog = (ImageButton) allMsgView.findViewById(R.id.dialog_pre_entry_close);
 		imgBtn_dialog.setOnClickListener(this);
+
+		txt_dialog_classroom = (TextView) allMsgView.findViewById(R.id.txt_pre_entry_dialog_classroom);
+		txt_dialog_classroom.setOnClickListener(this);
+		txt_dialog_course = (TextView) allMsgView.findViewById(R.id.txt_pre_entry_dialog_course);
+		txt_dialog_course.setOnClickListener(this);
+		txt_dialog_teacher = (TextView) allMsgView.findViewById(R.id.txt_pre_entry_dialog_teacher);
+		txt_dialog_teacher.setOnClickListener(this);
+		txt_dialog_classes = (TextView) allMsgView.findViewById(R.id.txt_pre_entry_dialog_classes);
+		txt_dialog_classes.setOnClickListener(this);
 	}
 
 	@Override
@@ -191,6 +212,17 @@ public class PreEntryActivity extends ActionBarActivity implements OnItemClickLi
 	public void onItemClick(AdapterView<?> parent, View view, final int position, long id)
 	{
 		// Toast.makeText(this, "点击了第 " + (position + 1) + " 项", 0).show();
+		try
+		{
+			txt_dialog_classroom.setText((CharSequence) listList.get(position).get(4));
+			txt_dialog_teacher.setText((CharSequence) listList.get(position).get(3));
+			txt_dialog_course.setText((CharSequence) listList.get(position).get(2));
+			txt_dialog_classes.setText("待后台加上返回");
+		} catch (Exception e)
+		{
+			Toast.makeText(this, "预约信息未获取！", 1).show();
+		}
+		
 		allMsg.show();
 		allMsg.getWindow().setContentView((RelativeLayout) allMsgView);
 	}
@@ -207,7 +239,6 @@ public class PreEntryActivity extends ActionBarActivity implements OnItemClickLi
 		case R.id.dialog_pre_entry_close:
 			allMsg.dismiss();
 			break;
-
 		default:
 			break;
 		}
@@ -236,33 +267,31 @@ public class PreEntryActivity extends ActionBarActivity implements OnItemClickLi
 				year++;
 		}
 		System.out.println(Arrays.toString(terms));
-		ArrayAdapter<String> termAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
-				terms);
+		ArrayAdapter<String> termAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, terms);
 
 		termAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		sp_term.setAdapter(termAdapter);
-		new AlertDialog.Builder(this).setTitle("预约查询信息：").setView(layout)
-				.setPositiveButton("确定", new OnClickListener()
-				{
+		new AlertDialog.Builder(this).setTitle("预约查询信息：").setView(layout).setPositiveButton("确定", new OnClickListener()
+		{
 
+			@Override
+			public void onClick(DialogInterface dialog, int which)
+			{
+				// 另启线程处理网络操作
+				new Thread()
+				{
 					@Override
-					public void onClick(DialogInterface dialog, int which)
+					public void run()
 					{
-						// 另启线程处理网络操作
-						new Thread()
-						{
-							@Override
-							public void run()
-							{
-								super.run();
-								Looper.prepare();
-								Toast.makeText(PreEntryActivity.this, "查询中", 0).show();
-								obtainOrderMsg();
-								Looper.loop();
-							}
-						}.start();
+						super.run();
+						Looper.prepare();
+						Toast.makeText(PreEntryActivity.this, "查询中", 1).show();
+						obtainOrderMsg();
+						Looper.loop();
 					}
-				}).setNegativeButton("取消", null).show();
+				}.start();
+			}
+		}).setNegativeButton("取消", null).show();
 	}
 
 	/**
@@ -297,9 +326,9 @@ public class PreEntryActivity extends ActionBarActivity implements OnItemClickLi
 
 			// 接下来进行网络部分的操作
 			// getOrderPath = BaseMessage.baseUrl + "";
-			// /dudaobooking/{institute}/{semester}/{week}/{dayOfWeek}/{section}
-			getOrderPath = "http://psy.gdut.edu.cn:8080" + "/dudaobooking/" + institute + "/" + term + "/" + week
-					+ "/" + day + "/" + time;
+			// http://192.168.1.177:8080/dudaobooking/{institute}/{semester}/{week}/{dayOfWeek}/{section}
+			getOrderPath = BaseMessage.baseUrl + "/dudaobooking/" + institute + "/" + term + "/" + week + "/" + day
+					+ "/" + time;
 			Map map = SubmitHandler.getOrderableList(getOrderPath);
 			Message msg = mHandler.obtainMessage();
 			msg.what = ORDER_OBTAIN;

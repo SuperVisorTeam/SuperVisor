@@ -11,6 +11,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.AbstractHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
@@ -18,11 +19,14 @@ import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 
+import android.util.Log;
+
 import com.gdut.supervisor.info.BaseMessage;
+import com.gdut.supervisor.ui.LoginActivity;
+import com.gdut.supervisor.ui.PreEntryActivity;
 
 public class LoginHandler {
-
-	private HttpClient httpclient = null;
+	public  static DefaultHttpClient httpclient = null;
 	/** 登录URL */
 	// private String loginUrl =
 	// "http://cscw.gdut.edu.cn:8888/edusupervisor/j_spring_security_check";
@@ -82,9 +86,11 @@ public class LoginHandler {
 		int statusCode = -1;
 		StatusLine statusLine = null;
 		//学校服务器 http://psy.gdut.edu.cn:8080
-		//本地 0.21.32.123
+		//http://192.168.1.177:8080
 		BaseMessage.baseUrl = "http://psy.gdut.edu.cn:8080";
 		String loginUrl = BaseMessage.baseUrl + "/j_spring_security_check";
+		Log.v("log", "------" + loginUrl + "");
+
 		System.out.println("loginUrl:" + loginUrl);
 		try {
 			
@@ -103,6 +109,7 @@ public class LoginHandler {
 
 			//System.out.println("下一步将执行execute");
 			statusLine = httpclient.execute(httpost).getStatusLine();
+			PreEntryActivity.cookie = ((AbstractHttpClient)httpclient).getCookieStore().getCookies().get(0);
 			//System.out.println("执行完execute");
 
 		} catch (IOException e) {

@@ -13,69 +13,98 @@
         android:orientation="vertical" >
 
         <TableLayout
-            android:layout_marginLeft="30dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:shrinkColumns="1" >
 
             <TableRow>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:text="课室：" />
+                    android:layout_marginTop="10dp"
+                    android:text="课室： " />
 
                 <TextView
+                    android:id="@+id/txt_pre_entry_dialog_classroom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="10dp"
                     android:text="教1-319" />
             </TableRow>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray" />
+
+            <TableRow>
+
+                <TextView
+                   
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="老师： " />
+
+                <TextView
+                     android:id="@+id/txt_pre_entry_dialog_teacher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="陈新" />
+            </TableRow>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray" />
+
             <TableRow>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:text="老师：" />
+                    android:layout_marginTop="10dp"
+                    android:text="课程： " />
 
                 <TextView
+                    android:id="@+id/txt_pre_entry_dialog_course"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:text="习近平" />
+                    android:layout_marginTop="10dp"
+                    android:text="数据结构" />
             </TableRow>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray" />
 
             <TableRow>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:text="课程：" />
+                    android:layout_marginTop="10dp"
+                    android:text="班级： " />
 
                 <TextView
+                    android:id="@+id/txt_pre_entry_dialog_classes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:text="马克思" />
+                    android:layout_marginTop="10dp"
+                    android:text="计算机科学与技术(3)班-软件工程(2)班" />
             </TableRow>
 
-            <TableRow>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:text="班级：" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:text="·····" />
-            </TableRow>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/gray" />
         </TableLayout>
     </LinearLayout>
 

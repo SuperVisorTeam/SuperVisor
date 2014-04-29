@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:text="课程名称" />
+            android:text="测试数据" />
 
         <TextView
             android:id="@+id/txt_pre_entry_class_name"

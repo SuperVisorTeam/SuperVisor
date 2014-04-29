@@ -1,5 +1,8 @@
 package com.gdut.supervisor.ui;
 
+import org.apache.http.client.HttpClient;
+import org.apache.http.impl.client.DefaultHttpClient;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -45,7 +48,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 	private String password;
 	private SharedPreferences preferences;
 	private Editor editor;
-	private LoginHandler loginHandler = new LoginHandler();
+	public static LoginHandler loginHandler = new LoginHandler();
 	private LoginDataHandler loginDataHandler = null;
 	private String[] accountsAndPwds = null;
 	int statusCode = -1;

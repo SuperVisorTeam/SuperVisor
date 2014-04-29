@@ -22,6 +22,7 @@ import android.util.Log;
 import com.gdut.supervisor.info.BaseMessage;
 import com.gdut.supervisor.info.Edu_Survey;
 import com.gdut.supervisor.info.Edu_SurveyToIphone;
+import com.gdut.supervisor.ui.LoginActivity;
 import com.google.gson.Gson;
 
 public class SubmitHandler
@@ -135,11 +136,13 @@ public class SubmitHandler
 	 * @throws IOException
 	 * 
 	 */
-	public static int getMap(String school_district, String date, String study_place, String section,
-			String user_no) throws ClientProtocolException, IOException
+	public static int getMap(String school_district, String date, String study_place, String section, String user_no)
+			throws ClientProtocolException, IOException
 	{
 		// 取得
 		HttpGet httpGet = new HttpGet(BaseMessage.baseUrl + "/dudao/" + school_district + "/" + date + "/"
+				+ study_place + "/" + section + "/" + user_no);
+		Log.v("log", "getMap-submitPath-" + BaseMessage.baseUrl + "/dudao/" + school_district + "/" + date + "/"
 				+ study_place + "/" + section + "/" + user_no);
 		HttpResponse response = httpclient.execute(httpGet);
 		System.out.println("获取上课地点的状态码：" + response.getStatusLine().getStatusCode());
@@ -181,6 +184,8 @@ public class SubmitHandler
 		int Statuse_code = -1;
 		HttpGet httpGet = new HttpGet(BaseMessage.baseUrl + "/dudao/check/" + user_no + "/" + start_date + "/"
 				+ end_date);
+		Log.v("log", "getMap2()-submitPath-" + BaseMessage.baseUrl + "/dudao/check/" + user_no + "/" + start_date + "/"
+				+ end_date);
 
 		HttpResponse response = httpclient.execute(httpGet);
 		System.out.println("查找的状态码：" + response.getStatusLine().getStatusCode());
@@ -213,6 +218,7 @@ public class SubmitHandler
 
 		// 取得
 		HttpGet httpGet = new HttpGet(BaseMessage.baseUrl + "/dudao/checkForUpdate/" + survey_id);
+		Log.v("log", "getEdu_Survey()-submitPath-" + BaseMessage.baseUrl + "/dudao/checkForUpdate/" + survey_id);
 
 		HttpResponse response = httpclient.execute(httpGet);
 
@@ -286,6 +292,7 @@ public class SubmitHandler
 
 	/**
 	 * 预定功能 通过学号 来获得相关的信息
+	 * 
 	 * @param user_no
 	 * @param start_date
 	 * @param end_date
@@ -293,8 +300,7 @@ public class SubmitHandler
 	 * @throws ClientProtocolException
 	 * @throws IOException
 	 */
-	public static Map<String, List<List>> getScheduleMap(String user_no) throws ClientProtocolException,
-			IOException
+	public static Map<String, List<List>> getScheduleMap(String user_no) throws ClientProtocolException, IOException
 	{
 
 		HttpGet httpGet = new HttpGet(BaseMessage.baseUrl + "/bookingQuery/" + user_no);
@@ -337,6 +343,7 @@ public class SubmitHandler
 			httpclient = new DefaultHttpClient();
 			HttpResponse response = httpclient.execute(httpget);
 			int code = response.getStatusLine().getStatusCode();
+			Log.v("log", "getOrderableList()-responseCode-" + code);
 			if (code == 404)
 			{
 				System.out.println("没有对应预约信息");
@@ -345,46 +352,57 @@ public class SubmitHandler
 				HttpEntity entity = response.getEntity();
 				String responseText = EntityUtils.toString(response.getEntity());// EntityUtils.toString(entity,
 																					// HTTP.UTF_8);
-				System.out.println("查询后的数据" + responseText);
+//				System.out.println("查询后的数据" + responseText);
 				map = gson.fromJson(responseText, HashMap.class);
+//				Log.v("log", "responseMap-" + map);
 				List<List> list = map.get("booking_class");
 				List<List> size = (List<List>) map.get("size");
-
-				System.out.println("单个信息---" + size.get(0).get(0));
-				System.out.println("单个信息---" + list.get(0).get(0));
 			}
 
 		} catch (Exception e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("-->ERROR");
+			Log.e("log", "getOrderableList()-ERROR!!!");
 		}
+		Log.v("log", "getOrderableList()--map-" + map);
 		return map;
 
 	}
-/**
- * 提交预约信息
- * @param course_Class_No 课程编码
- * @param schedule_id 课程ID
- * @param semester 学期
- * @param dayOfWeek 周几
- * @return responseCode
- */
+
+	/**
+	 * 提交预约信息
+	 * 
+	 * @param course_Class_No
+	 *            课程编码
+	 * @param schedule_id
+	 *            课程ID
+	 * @param semester
+	 *            学期
+	 * @param dayOfWeek
+	 *            周几
+	 * @return responseCode
+	 */
 	public static int submitOrder(String course_Class_No, String schedule_id, String semester, String dayOfWeek)
 	{
 		// /dudaoSaveBooking/{course_Class_No}/{schedule_id}/{semester}/{dayOfWeek}
-		String submitPath = "http://10.21.32.123:8080" + "/dudaoSaveBooking" + "/" + course_Class_No + "/"
+		String submitPath_this = "http://192.168.1.177:8080" + "/dudaoSaveBooking" + "/" + course_Class_No + "/"
 				+ schedule_id + "/" + semester + "/" + dayOfWeek;
+		String submitPath = "http://192.168.1.177:8080/dudaoSaveBooking/(2013-2014-1)-03101A02-00006210-2/27414/2013-2014-1/1/1";
+		Log.v("log", "submitOrder()--submitPath-" + submitPath + "\nsubmitPath_this-" + submitPath_this);
 		int responseCode = 0;
 		DefaultHttpClient client;
-		HttpGet httpGet;
+//		HttpGet httpGet;
+		HttpPost httpPost;
 		HttpResponse response;
 		try
 		{
-			client = new DefaultHttpClient();
-			httpGet = new HttpGet(submitPath);
-			response = client.execute(httpGet);
+//			LoginHandler loginHandler = new LoginHandler();
+//			loginHandler.login("3111001175", "888888");
+//			Log.v("log", "------------------->" +  loginHandler.login("3111001175", "888888").getStatusCode());
+////			statusCode = loginHandler.login(account, password).getStatusCode();
+			client =LoginHandler.httpclient;
+			httpPost = new HttpPost(submitPath);
+			response = client.execute(httpPost);
 			responseCode = response.getStatusLine().getStatusCode();
 
 		} catch (Exception e)

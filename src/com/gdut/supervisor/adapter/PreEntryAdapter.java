@@ -34,27 +34,41 @@ public class PreEntryAdapter extends BaseAdapter
 	private viewHolder holder;
 	private OrderAsyncTask orderAsyncTask;
 	private List<List> listSize, listList;
+	private int count = 0;
 
 	private int currentPosition = 0;
 	private Button currentBtn;
 	private boolean[] ORDER_SUCCESS;
-	private String[] classes;
+//	private String[] classes;
 
 	/**
 	 * map 服务器返回的预约数据
 	 */
 	public PreEntryAdapter(Context context, List<List> listSize, List<List> listList)
 	{
+		//测试
+		try
+		{
+			Log.v("log",  "PreEntryAdapter()--listSize-" + listSize.get(0).get(0));
+			Log.v("log",  "PreEntryAdapter()--2-" + (CharSequence) listList.get(1).get(2));
+			listSize.get(0).get(0);
+			count = Integer.valueOf("" + listSize.get(0).get(0));
+		} catch (Exception e)
+		{
+			//测试使用
+			count = 30;
+		}
+		
 		this.context = context;
 		this.listSize = listSize;
 		this.listList = listList;
 		// ORDER_SUCCESS = new boolean[(Integer)listSize.get(0).get(0)];
-		ORDER_SUCCESS = new boolean[30];
-		classes = new String[30];
-		for (int i = 0; i < 30; i++)
-		{
-			classes[i] = "教2-" + i;
-		}
+		ORDER_SUCCESS = new boolean[count];
+//		classes = new String[(Integer) listSize.get(0).get(0)];
+//		for (int i = 0; i < 30; i++)
+//		{
+//			classes[i] = "教2-" + i;
+//		}
 		initView();
 	}
 
@@ -70,8 +84,8 @@ public class PreEntryAdapter extends BaseAdapter
 	@Override
 	public int getCount()
 	{
-		// return (Integer) listSize.get(0).get(0);
-		return 30;
+		 return count;
+//		return 30;
 	}
 
 	@Override
@@ -89,7 +103,7 @@ public class PreEntryAdapter extends BaseAdapter
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent)
 	{
-		Log.v("log", "--->getView()-" + position);
+//		Log.v("log", "--->getView()-" + position);
 		if (convertView == null)
 		{
 			holder = new viewHolder();
@@ -106,7 +120,7 @@ public class PreEntryAdapter extends BaseAdapter
 		{
 			holder = (viewHolder) convertView.getTag();
 		}
-		Log.v("log", "-->getView()--ORDER_SUCCESS[" + position + "]-" + ORDER_SUCCESS[position]);
+//		Log.v("log", "-->getView()--ORDER_SUCCESS[" + position + "]-" + ORDER_SUCCESS[position]);
 		// 判断保存的position位置上的Butoon是否已预约成功
 		if (ORDER_SUCCESS[position])
 		{
@@ -127,27 +141,30 @@ public class PreEntryAdapter extends BaseAdapter
 		// listList的数据可能不完整，进行异常捕获
 		try
 		{
-			// 课室
-			holder.txt_class.setText(classes[position]);
+//			 课室
+//			holder.txt_class.setText(classes[position]);
 			
-//			holder.txt_class.setText((CharSequence) listList.get(position).get(4));
-			 // 在此上课的班级
+			holder.txt_class.setText((CharSequence) listList.get(position).get(4));
+//			  在此上课的班级
 //			holder.txt_class_name.setText(listList.get(position).get());
-			// 课程名字
-//			holder.txt_course.setText((CharSequence) listList.get(position).get(2));
-			 // 老师
-//			holder.txt_teacher.setText((CharSequence) listList.get(position).get(3));
+//			 课程名字
+			holder.txt_course.setText((CharSequence) listList.get(position).get(2));
+//			  老师
+			holder.txt_teacher.setText((CharSequence) listList.get(position).get(3));
 		} catch (Exception e)
 		{
 			e.printStackTrace();
-			Log.v("log", "-->listList-可能为空！！！");
-			Toast.makeText(context, "数据不完整或没有数据!", 1).show();
+			if(position == 1)
+			{
+//				Toast.makeText(context, "数据不完整或没有数据!", 1).show();
+				Log.v("log", "-->listList-可能为空！！！");
+			}
 		}
 		return convertView;
 	}
 
 	/**
-	 * 要传入
+	 * 要传入Button本身，使点击按钮时的currentBtn是这个
 	 */
 	class btnListener implements OnClickListener
 	{
@@ -165,7 +182,7 @@ public class PreEntryAdapter extends BaseAdapter
 		{
 			currentPosition = position;
 			currentBtn = Btn;
-			Toast.makeText(context, "点击第 " + (position + 1) + "个Button", 0).show();
+//			Toast.makeText(context, "点击第 " + (position + 1) + "个Button", 0).show();
 			orderAsyncTask = new OrderAsyncTask();
 			orderAsyncTask.execute("");
 			
@@ -201,7 +218,7 @@ public class PreEntryAdapter extends BaseAdapter
 			Log.v("log", "-->doInBackground()--params-" + nullNow[0]);
 			try
 			{
-				Thread.sleep(2500);
+				Thread.sleep(1000);
 				return SubmitHandler.submitOrder((String) listList.get(currentPosition).get(0), (String) listList
 						.get(currentPosition).get(1), (String) listList.get(currentPosition).get(5),
 						Edu_Survey_OrderInfo.ORDER_WEEK);
@@ -223,8 +240,7 @@ public class PreEntryAdapter extends BaseAdapter
 		@Override
 		protected void onPostExecute(Integer responseCode)
 		{
-			Log.v("log", "-->responseCode-" + responseCode);
-			responseCode = 200;
+			Log.v("log", "-->onPostExecute()--responseCode-" + responseCode);
 			switch (responseCode)
 			{
 			case 200:
@@ -235,8 +251,8 @@ public class PreEntryAdapter extends BaseAdapter
 //				currentBtn.setClickable(false);
 				break;
 			case 400:
-				break;
 			default:
+				Toast.makeText(context, "预约失败", 1).show();
 				break;
 			}
 
