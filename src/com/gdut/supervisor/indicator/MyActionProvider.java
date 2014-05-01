@@ -20,6 +20,7 @@ import com.gdut.supervisor.R;
 import com.gdut.supervisor.info.BaseMessage;
 import com.gdut.supervisor.ui.LoginActivity;
 import com.gdut.supervisor.ui.MainActivity;
+import com.gdut.supervisor.utils.LoginHandler;
 
 /**
  * PopupMenu菜单

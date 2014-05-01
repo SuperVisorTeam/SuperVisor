@@ -13,7 +13,8 @@
 
             <TextView
                 style="@style/textview3"
-                android:text="教学楼" />
+                android:text="教学楼"
+                android:textColor="#FFFFFF" />
 
             <Spinner
                 android:id="@+id/classSpinner"
@@ -28,7 +29,8 @@
 
             <TextView
                 style="@style/textview3"
-                android:text="教  室" />
+                android:text="教  室"
+                android:textColor="#FFFFFF" />
 
             <Spinner
                 android:id="@+id/class_roomSpinner"

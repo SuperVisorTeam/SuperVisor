@@ -45,6 +45,4 @@
         <!-- Support library compatibility -->
         <item name="background">@drawable/actionbar_background</item>
     </style>
-    <!-- 查找表单的对话框主题 -->
-
 </resources>

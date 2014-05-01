@@ -5,6 +5,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -43,7 +44,6 @@ public class LoginActivity extends Activity implements OnClickListener {
 	private Button btn_debark;
 	private CheckBox cb_rmpsword;
 	private CheckBox cb_autodebark;
-	private LinearLayout progressLayout = null;	//用于登陆缓冲条的显示
 	private String account;
 	private String password;
 	private SharedPreferences preferences;
@@ -51,6 +51,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 	public static LoginHandler loginHandler = new LoginHandler();
 	private LoginDataHandler loginDataHandler = null;
 	private String[] accountsAndPwds = null;
+	private ProgressDialog procgDialog = null;	//登陆时显示缓冲对话框
 	int statusCode = -1;
 	
 	private Handler handler = new Handler() {	//用于响应处理登陆线程的结果
@@ -59,7 +60,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 		public void handleMessage(Message msg) {
 			// TODO Auto-generated method stub
 			super.handleMessage(msg);
-			progressLayout.setVisibility(View.INVISIBLE);
+			procgDialog.dismiss();
 			if(msg.what == statusCode) {
 				handleDebarkReulst(statusCode);
 			} else if(msg.what == LOGIN_EXCEPTION) {
@@ -74,7 +75,6 @@ public class LoginActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);// 去掉标题栏
 		setContentView(R.layout.login);
-		progressLayout = (LinearLayout) findViewById(R.id.layout_progress_login);
 		
 		et_account = (AutoCompleteTextView) findViewById(R.id.et_login_account);
 		et_password = (EditText) findViewById(R.id.et_login_password);
@@ -123,7 +123,10 @@ public class LoginActivity extends Activity implements OnClickListener {
 				Toast.makeText(this, "网络不可用", Toast.LENGTH_SHORT).show();
 			} else {
 				
-				progressLayout.setVisibility(View.VISIBLE);
+				procgDialog = new ProgressDialog(this);
+				procgDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+				procgDialog.setMessage("正在登录...");
+				procgDialog.show();
 				// 进行登录操作
 				new Thread() {
 

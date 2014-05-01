@@ -9,22 +9,21 @@ import org.apache.http.cookie.Cookie;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -255,7 +254,9 @@ public class PreEntryActivity extends ActionBarActivity implements OnItemClickLi
 		sp_week = (Spinner) layout.findViewById(R.id.sp_week);
 		sp_day = (Spinner) layout.findViewById(R.id.sp_day);
 		sp_time = (Spinner) layout.findViewById(R.id.sp_time);
-
+		Button btn_ensure = (Button) layout.findViewById(R.id.btn_dialog_order_ensure);
+		Button btn_cancel = (Button) layout.findViewById(R.id.btn_dialog_order_cancel);
+		
 		// 学期选项采用动态获取当前年份的方法实现，格式：2013-2014-1
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR) - 1;
@@ -267,16 +268,19 @@ public class PreEntryActivity extends ActionBarActivity implements OnItemClickLi
 				year++;
 		}
 		System.out.println(Arrays.toString(terms));
-		ArrayAdapter<String> termAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, terms);
+		ArrayAdapter<String> termAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
+				terms);
 
 		termAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		sp_term.setAdapter(termAdapter);
-		new AlertDialog.Builder(this).setTitle("预约查询信息：").setView(layout).setPositiveButton("确定", new OnClickListener()
-		{
-
+		final Dialog orderSearchDialog = new AlertDialog.Builder(this).create();
+		orderSearchDialog.show();
+		orderSearchDialog.getWindow().setContentView(layout);
+		btn_ensure.setOnClickListener(new OnClickListener() {
+			
 			@Override
-			public void onClick(DialogInterface dialog, int which)
-			{
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
 				// 另启线程处理网络操作
 				new Thread()
 				{
@@ -285,13 +289,23 @@ public class PreEntryActivity extends ActionBarActivity implements OnItemClickLi
 					{
 						super.run();
 						Looper.prepare();
-						Toast.makeText(PreEntryActivity.this, "查询中", 1).show();
+						Toast.makeText(PreEntryActivity.this, "查询中", 0).show();
 						obtainOrderMsg();
+						orderSearchDialog.dismiss();
 						Looper.loop();
 					}
 				}.start();
 			}
-		}).setNegativeButton("取消", null).show();
+		});
+		
+		btn_cancel.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				orderSearchDialog.dismiss();
+			}
+		});
 	}
 
 	/**

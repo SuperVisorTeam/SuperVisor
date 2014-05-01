@@ -1,111 +1,252 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_backgroud"
     android:orientation="vertical" >
 
-    <!-- 当前学期-周次-学院-星期-节次-查询 -->
-
-    <TableLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:padding="5dp"
-        android:stretchColumns="1" >
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:orientation="vertical" >
 
-        <TableRow
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="预约查询信息："
+            android:textColor="#7EC0EE"
+            android:textSize="20dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="*学期："
-                android:textColor="#FFFFFF"
-                android:textSize="15dp" />
-
-            <Spinner
-                android:id="@+id/sp_term"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </TableRow>
-
-        <TableRow
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="2dp"
+            android:background="#7EC0EE" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="*周次："
-                android:textColor="#FFFFFF"
-                android:textSize="15dp" />
+        <!-- 当前学期-周次-学院-星期-节次-查询 -->
 
-            <Spinner
-                android:id="@+id/sp_week"
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            android:stretchColumns="1" >
+
+            <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:entries="@array/order_week" />
-        </TableRow>
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical" >
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="*学期："
+                    android:textColor="#000000"
+                    android:textSize="15dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="*学院："
-                android:textColor="#FFFFFF"
-                android:textSize="15dp" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp" >
 
-            <Spinner
-                android:id="@+id/sp_institute"
+                    <Spinner
+                        android:id="@+id/sp_term"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:background="@drawable/dialog_btn_seletor"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dip"
+                        android:layout_alignBottom="@id/sp_term"
+                        android:layout_marginBottom="2dp"
+                        android:background="@color/darkgray" />
+                </RelativeLayout>
+            </TableRow>
+
+            <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:entries="@array/order_institute" />
-        </TableRow>
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical" >
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="*周次："
+                    android:textColor="#000000"
+                    android:textSize="15dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="*星期："
-                android:textColor="#FFFFFF"
-                android:textSize="15dp" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp" >
 
-            <Spinner
-                android:id="@+id/sp_day"
+                    <Spinner
+                        android:id="@+id/sp_week"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:background="@drawable/dialog_btn_seletor"
+                        android:entries="@array/order_week"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dip"
+                        android:layout_alignBottom="@id/sp_week"
+                        android:layout_marginBottom="2dp"
+                        android:background="@color/darkgray" />
+                </RelativeLayout>
+            </TableRow>
+
+            <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:entries="@array/order_days" />
-        </TableRow>
+                android:layout_marginLeft="10dp" >
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="*学院："
+                    android:textColor="#000000"
+                    android:textSize="15dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="*节次："
-                android:textColor="#FFFFFF"
-                android:textSize="15dp" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp" >
 
-            <Spinner
-                android:id="@+id/sp_time"
+                    <Spinner
+                        android:id="@+id/sp_institute"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:background="@drawable/dialog_btn_seletor"
+                        android:entries="@array/order_institute"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dip"
+                        android:layout_alignBottom="@id/sp_institute"
+                        android:layout_marginBottom="2dp"
+                        android:background="@color/darkgray" />
+                </RelativeLayout>
+            </TableRow>
+
+            <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:entries="@array/order_time" />
-        </TableRow>
-    </TableLayout>
+                android:layout_marginLeft="10dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="*星期："
+                    android:textColor="#000000"
+                    android:textSize="15dp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp" >
+
+                    <Spinner
+                        android:id="@+id/sp_day"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:background="@drawable/dialog_btn_seletor"
+                        android:entries="@array/order_days"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dip"
+                        android:layout_alignBottom="@id/sp_day"
+                        android:layout_marginBottom="2dp"
+                        android:background="@color/darkgray" />
+                </RelativeLayout>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="*节次："
+                    android:textColor="#000000"
+                    android:textSize="15dp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp" >
+
+                    <Spinner
+                        android:id="@+id/sp_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:background="@drawable/dialog_btn_seletor"
+                        android:entries="@array/order_time"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dip"
+                        android:layout_alignBottom="@id/sp_time"
+                        android:layout_marginBottom="2dp"
+                        android:background="@color/darkgray" />
+                </RelativeLayout>
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:background="@color/darkgray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="horizontal" >
+
+        <!-- 不同版本的默认字体大小不同 ：在2.3版本字体很小；而在4.多版本字体较大 -->
+
+        <Button
+            android:id="@+id/btn_dialog_order_cancel"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/dialog_btn_seletor"
+            android:gravity="center"
+            android:text="取消"
+            android:textSize="18dp" />
+
+        <View
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="@color/darkgray" />
+
+        <Button
+            android:id="@+id/btn_dialog_order_ensure"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/dialog_btn_seletor"
+            android:gravity="center"
+            android:text="确定"
+            android:textSize="18dp" />
+    </LinearLayout>
 
 </LinearLayout>
