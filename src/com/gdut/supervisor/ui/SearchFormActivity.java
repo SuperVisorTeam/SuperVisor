@@ -117,7 +117,7 @@ public class SearchFormActivity extends Activity {
 	/**
 	 * 一页要显示的条数
 	 */
-	public static int shownum = 3;
+	public static int shownum = 6;
 	/**
 	 * 一共有多少页
 	 */

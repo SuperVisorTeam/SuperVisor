@@ -248,7 +248,6 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 					BaseMessage.num = num;
 					//让第二个表单获得最大人数
 					SecondItemFragment.numMax=num;
-					System.out.println("in First  BaseMessage.num ="+BaseMessage.num);
 					studentNumber_editText.setText(num + "");
 					
 					BaseMessage.teacherName = (String) utilMap
@@ -722,7 +721,7 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 	 *
 	 */
 	public static void setFristItemClassSituation() {
-		System.out.println("In setFristItemClassSituation 恢复表格内容");
+		
 		// 上课日期
 		dateEditText.setText(SupervisorActivity.situation.getLesson_date());
 		dateEditText.setClickable(false);
@@ -740,13 +739,13 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 		// 上课教室
 		schoollationEditText.setText(SupervisorActivity.situation
 				.getLesson_classroom());
-		System.out.println("In setFristItemClassSituation 恢复上课教室内容");
+		
 		schoollationEditText.setClickable(false);
 		// 学院名称
 		schoolnameEditText.setText(SupervisorActivity.situation.getStudent_Faculty());
 		// 专业班级
 		classnameEditText.setText("显示所有的专业班级");
-		System.out.println("In setFristItemClassSituation 恢复专业班级内容");
+		
 		classGroup = SupervisorActivity.edu_CourseClass
 				.getTeaching_Class_Group();
 		classname = ClassNameHandler
@@ -765,29 +764,13 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 	}
 
 	
-
-	@Override
-	public void onDestroy() {
-		// TODO Auto-generated method stub
-		super.onDestroy();
-		System.out.println("-----onDestroy------------");
-	}
-
-	@Override
-	public void onDestroyView() {
-		// TODO Auto-generated method stub
-		super.onDestroyView();
-		System.out.println("-----onDestroyView------------");
-	}
-
 	@Override
 	public void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
 		studentNumber_editText.clearFocus();
 		realNumber_editText.clearFocus();
-		System.out.println("-----SupervisorFragment.------------"+SupervisorFragment.searchIsOpen);
-		System.out.println("-----isGet.------------"+isGet);
+		
 		if (SupervisorFragment.searchIsOpen) {
 			if (!isGet) {
 				//isGet = true;
@@ -805,15 +788,10 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 			classnameEditText.setText(showClass);
 			
 		}
-		System.out.println("-----onResume------------");
+	
 		
 	}
 
-	@Override
-	public void onStart() {
-		// TODO Auto-generated method stub
-		super.onStart();
-	}
 
 	
 }

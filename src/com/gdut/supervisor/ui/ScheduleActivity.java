@@ -19,6 +19,8 @@ import com.gdut.supervisor.view.SupervisorFragment;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -27,7 +29,10 @@ import android.os.Message;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -137,6 +142,7 @@ public class ScheduleActivity extends Activity {
 				if (SubmitHandler.getStatuCodeSchedule()==200) 
 				{
 					setDateList();
+					Toast.makeText(ScheduleActivity.this,"刷新成功", 2*1000).show();
 				} 
 				else 
 				{
@@ -148,7 +154,7 @@ public class ScheduleActivity extends Activity {
 					nownum = 0;
 					pageTextView.setText("预定表单" + "    " + "第(0)页");
 					ShowMessageDialog.showMessage(ScheduleActivity.this,
-							"对不起，没有找到预定的表单！！拉拉");
+							"对不起，没有找到预定的表单！！");
 				}
 			}
 			
@@ -173,6 +179,7 @@ public class ScheduleActivity extends Activity {
 		nextButton.setOnClickListener(new ButtonOnClickListener());
 		scheduleButton.setOnClickListener(new ButtonOnClickListener());
 		listView.setOnItemClickListener(new ListViewOnItemSelectedListener());
+		listView.setOnItemLongClickListener(new OnItemLongClickListenter());
 		if (scheduleMap == null) {
 			getScheduleMap(BaseMessage.supervisor_no);
 		} else {
@@ -226,7 +233,7 @@ public class ScheduleActivity extends Activity {
 				android.R.layout.simple_dropdown_item_1line,
 				StringHandler.exchangeListToStringArr(tempfromName));
 		listView.setAdapter(listViewAdapter);
-		pageTextView.setText("预定表单" + "    " + "第(" + nownum + ")页");
+		pageTextView.setText("预定表单" + "\n" + "第(" + nownum + ")页");
 		goEditText.setText(null);
 		goEditText.clearFocus();
 	}
@@ -255,8 +262,10 @@ public class ScheduleActivity extends Activity {
 
 		public void onClick(View v) {
 			if (v.getId() == R.id.scheduleButton) {
+				scheduleButton.startAnimation(AnimationUtils.loadAnimation(ScheduleActivity.this, R.anim.button_anim));
 				scheduleMap = null;
 				getScheduleMap(BaseMessage.supervisor_no);
+			
 			}
 			if (v.getId() == R.id.schedulelastButton) {
 				nownum--;
@@ -312,7 +321,22 @@ public class ScheduleActivity extends Activity {
 			startActivity(intent);
 		}
 	}
+   private class OnItemLongClickListenter implements OnItemLongClickListener
+   {
 
+	@Override
+	public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2,
+			long arg3) {
+		id = nownum * shownum - shownum + arg2;
+		showPage(nownum);
+		 AlertDialog dialogDelete=showDeleteDialog(id);
+		 dialogDelete.show();
+		return true;
+	}
+
+	
+	   
+   }
 	//
 	private void setDateList() {
 		fromName = new ArrayList<String>();
@@ -329,7 +353,7 @@ public class ScheduleActivity extends Activity {
 			scheduleMessage.setSupervisor(BaseMessage.supervisor_no);
 			
 			// classno
-			
+			//教学班标号	
 			scheduleCourse.setCourse_Class_No((String) booking_class.get(j)
 					.get(0));
 			BaseMessage.class_no = (String) booking_class.get(j)
@@ -405,5 +429,39 @@ public class ScheduleActivity extends Activity {
 		System.out.println("get(id)" + id);
 		PrintlnFromData.println(scheduleMessage, "预定时表格的内容:");
 		return scheduleMessage;
+	}
+	
+	/**
+	 *返回一个删除预定提示框
+	 *框里提示要删除的条目
+	 * @param id2 
+	 */
+	private AlertDialog showDeleteDialog(int itemId)
+	{
+		AlertDialog.Builder builder = new AlertDialog.Builder(ScheduleActivity.this);
+		builder.setMessage(fromName.get(itemId));
+		builder.setPositiveButton("确定", new DialogInterface.OnClickListener()
+		{
+
+			@Override
+			public void onClick(DialogInterface arg0, int arg1) {
+				// TODO Auto-generated method stub
+				Toast.makeText(ScheduleActivity.this, "删除成功", 2*1000).show();
+			}
+			
+		});
+		builder.setNegativeButton("取消", new DialogInterface.OnClickListener()
+		{
+
+			@Override
+			public void onClick(DialogInterface arg0, int arg1) {
+				Toast.makeText(ScheduleActivity.this, "删除取消", 2*1000).show();
+				
+			}
+			
+		});
+		AlertDialog DeleteDialog=builder.create();
+		DeleteDialog.setTitle("删除预定");
+		return DeleteDialog;
 	}
 }

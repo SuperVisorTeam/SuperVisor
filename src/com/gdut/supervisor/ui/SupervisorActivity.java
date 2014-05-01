@@ -769,17 +769,15 @@ public class SupervisorActivity extends FragmentActivity  {
 		// 启动时调用
 		protected void onStart() {
 			super.onStart();
-			System.out.println("In SuperVisorActivity.OnStart()  SupervisorFragment.searchIsOpen ="+SupervisorFragment.searchIsOpen);
-			
+						
 			if (SupervisorFragment.searchIsOpen) {
 				FirstItemFragment.isGet = false;
 				SecondItemFragment.isGet = false;
-				ThirdItemFragment.isGet = false;
-				System.out.println("In SuperVisorActivity.OnStart() FirstItemFragment.isGet = "+FirstItemFragment.isGet);
+				ThirdItemFragment.isGet = false;				
 			   	
-						// TODO Auto-generated method stub
-						 //situation = SearchFormActivity.getSearchBaseMessage();
-						 edu_CourseClass = situation.getCourse_class_no();
+				// TODO Auto-generated method stub
+				//situation = SearchFormActivity.getSearchBaseMessage();
+				 edu_CourseClass = situation.getCourse_class_no();
 				
 				       		
 								

@@ -7,8 +7,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@color/darkgray"
+        android:background="@drawable/actionbar_background"
         android:orientation="horizontal" >
 
         <TextView
@@ -25,7 +24,7 @@
 
         <Button
             android:id="@+id/searchButton"
-            android:layout_width="80dp"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginTop="5dp"
             android:text="精确查找"
@@ -41,8 +40,7 @@
         android:layout_weight="7"
          >
   <HorizontalScrollView
-    android:layout_marginBottom="5dp"
-    android:layout_marginTop="5dp"
+ 
     android:scrollbars="none"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
@@ -50,9 +48,7 @@
             android:id="@+id/searchfromListView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/listshare"
+            android:background="@color/white"
             android:cacheColorHint="#00000000" />
         </HorizontalScrollView>
     </LinearLayout>
@@ -61,8 +57,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@color/gray"
+        android:background="@drawable/actionbar_background"
         android:orientation="horizontal" >
 
         <Button

@@ -385,7 +385,7 @@ public class SubmitHandler
 	public static int submitOrder(String course_Class_No, String schedule_id, String semester, String dayOfWeek)
 	{
 		// /dudaoSaveBooking/{course_Class_No}/{schedule_id}/{semester}/{dayOfWeek}
-		String submitPath_this = "http://192.168.1.177:8080" + "/dudaoSaveBooking" + "/" + course_Class_No + "/"
+		String submitPath_this = "http://192.168.1.177:8080" + "/duSaveBooking" + "/" + course_Class_No + "/"
 				+ schedule_id + "/" + semester + "/" + dayOfWeek;
 		String submitPath = "http://192.168.1.177:8080/dudaoSaveBooking/(2013-2014-1)-03101A02-00006210-2/27414/2013-2014-1/1/1";
 		Log.v("log", "submitOrder()--submitPath-" + submitPath + "\nsubmitPath_this-" + submitPath_this);

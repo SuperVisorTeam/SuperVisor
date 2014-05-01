@@ -2,7 +2,7 @@
 <resources>
 
     <!-- 所有界面的主题 -->
-    <style name="windowsStyle" parent="@android:style/TextAppearance.Medium">
+    <style name="windowsStyle" parent="@android:style/Theme.Light">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <!--烟白色 背景--> 
