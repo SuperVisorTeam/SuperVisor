@@ -179,7 +179,8 @@ public class ScheduleActivity extends Activity {
 		nextButton.setOnClickListener(new ButtonOnClickListener());
 		scheduleButton.setOnClickListener(new ButtonOnClickListener());
 		listView.setOnItemClickListener(new ListViewOnItemSelectedListener());
-		listView.setOnItemLongClickListener(new OnItemLongClickListenter());
+	    //暂时不注册长按事件监听器，等W后台！
+		//listView.setOnItemLongClickListener(new OnItemLongClickListenter());
 		if (scheduleMap == null) {
 			getScheduleMap(BaseMessage.supervisor_no);
 		} else {

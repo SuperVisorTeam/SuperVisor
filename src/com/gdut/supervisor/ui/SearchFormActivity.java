@@ -32,6 +32,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -308,6 +309,7 @@ public class SearchFormActivity extends Activity {
 
 		public void onClick(View v) {
 			if (v.getId() == R.id.searchButton) {
+				searchButton.startAnimation(AnimationUtils.loadAnimation(SearchFormActivity.this,R.anim.search_bn_anim));
 				inisearchDialogDialog();
 				searchDialog.show();
 			}

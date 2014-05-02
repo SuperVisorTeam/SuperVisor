@@ -16,6 +16,7 @@ public final class R {
         public static final int abc_slide_out_bottom=0x7f040004;
         public static final int abc_slide_out_top=0x7f040005;
         public static final int button_anim=0x7f040006;
+        public static final int search_bn_anim=0x7f040007;
     }
     public static final class array {
         /**  学院 
@@ -1533,25 +1534,26 @@ containing a value of this type.
         public static final int noodlesmaster_timer=0x7f02007f;
         public static final int refresh1=0x7f020080;
         public static final int rounded_background=0x7f020081;
-        public static final int search_class=0x7f020082;
-        public static final int search_history=0x7f020083;
-        public static final int search_teacher=0x7f020084;
-        public static final int set_gobutton=0x7f020085;
-        public static final int shape=0x7f020086;
-        public static final int shape1=0x7f020087;
-        public static final int shape2=0x7f020088;
-        public static final int shape3=0x7f020089;
-        public static final int supervisor_normal=0x7f02008a;
-        public static final int supervisor_pressed=0x7f02008b;
-        public static final int tab_bg_halo=0x7f02008c;
-        public static final int tab_selector_checked_bg=0x7f02008d;
-        public static final int tab_selector_evaluate=0x7f02008e;
-        public static final int tab_selector_help=0x7f02008f;
-        public static final int tab_selector_search=0x7f020090;
-        public static final int tab_selector_write=0x7f020091;
-        public static final int tools_normal=0x7f020092;
-        public static final int tools_pressed=0x7f020093;
-        public static final int welcomepager=0x7f020094;
+        public static final int search_bn=0x7f020082;
+        public static final int search_class=0x7f020083;
+        public static final int search_history=0x7f020084;
+        public static final int search_teacher=0x7f020085;
+        public static final int set_gobutton=0x7f020086;
+        public static final int shape=0x7f020087;
+        public static final int shape1=0x7f020088;
+        public static final int shape2=0x7f020089;
+        public static final int shape3=0x7f02008a;
+        public static final int supervisor_normal=0x7f02008b;
+        public static final int supervisor_pressed=0x7f02008c;
+        public static final int tab_bg_halo=0x7f02008d;
+        public static final int tab_selector_checked_bg=0x7f02008e;
+        public static final int tab_selector_evaluate=0x7f02008f;
+        public static final int tab_selector_help=0x7f020090;
+        public static final int tab_selector_search=0x7f020091;
+        public static final int tab_selector_write=0x7f020092;
+        public static final int tools_normal=0x7f020093;
+        public static final int tools_pressed=0x7f020094;
+        public static final int welcomepager=0x7f020095;
     }
     public static final class id {
         public static final int East=0x7f06001a;

@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" 
-    android:orientation="vertical" >  
+    android:orientation="vertical" 
+  >  
     
    <RelativeLayout
         android:id="@+id/Linear"
@@ -20,7 +21,7 @@
             android:layout_marginBottom="2dp"
             android:background="@drawable/button_seletor"        
             android:text=" 重置  "
-            android:textColor="@color/white"
+            android:textColor="#FFFFFF"
             android:textSize="20dp" />
 
         <ImageView
@@ -29,7 +30,8 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/gdut_logo" />
+            android:background="@drawable/gdut_logo"
+             />
            <Button
             android:id="@+id/submitButton"
             android:layout_width="wrap_content"
@@ -41,7 +43,7 @@
             android:layout_marginBottom="2dp"
             android:background="@drawable/button_seletor"     
             android:text=" 提交 "
-            android:textColor="@color/white"
+            android:textColor="#FFFFFF"
             android:textSize="20dp" />
     </RelativeLayout>
     
@@ -58,7 +60,7 @@
             android:layout_width="wrap_content"    
             android:layout_height="wrap_content"    
             android:layout_gravity="top"
-            android:background="@color/teal"
+            android:background="#000000"
             android:textColor="@color/skyblue"/>    
            
     </android.support.v4.view.ViewPager>  

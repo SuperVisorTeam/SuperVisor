@@ -6,8 +6,8 @@
 
    <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.4"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:background="@drawable/actionbar_background"
         >
 
@@ -106,7 +106,7 @@
                 android:id="@+id/schedulegoButton"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/set_gobutton" />
 
@@ -115,7 +115,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                 android:layout_marginLeft="10dp"
+                android:layout_marginLeft="5dp"
                 android:gravity="center"
                 android:text="共0页"
                 android:textColor="@color/black" />
@@ -125,7 +125,7 @@
             android:id="@+id/schedulenextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-              android:layout_marginTop="5dp"
+            android:layout_marginTop="5dp"
             android:text="下一页"
             android:textColor="@color/black" />
     </LinearLayout>
