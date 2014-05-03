@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gdut.supervisor.R;
+import com.gdut.supervisor.info.BaseMessage;
 import com.gdut.supervisor.info.Edu_Survey_OrderInfo;
 import com.gdut.supervisor.utils.SubmitHandler;
 
@@ -111,7 +112,7 @@ public class PreEntryAdapter extends BaseAdapter
 
 			holder.btn_order = (Button) convertView.findViewById(R.id.btn_pre_entry_order);
 			holder.txt_class = (TextView) convertView.findViewById(R.id.txt_pre_entry_class);
-			holder.txt_class_name = (TextView) convertView.findViewById(R.id.txt_pre_entry_class_name);
+			holder.txt_time = (TextView) convertView.findViewById(R.id.txt_pre_entry_time);
 			holder.txt_course = (TextView) convertView.findViewById(R.id.txt_pre_entry_course);
 			holder.txt_teacher = (TextView) convertView.findViewById(R.id.txt_pre_entry_teacher);
 
@@ -146,11 +147,13 @@ public class PreEntryAdapter extends BaseAdapter
 			
 			holder.txt_class.setText((CharSequence) listList.get(position).get(4));
 //			  在此上课的班级
-//			holder.txt_class_name.setText(listList.get(position).get());
+//			holder.txt_time.setText(listList.get(position).get());
 //			 课程名字
 			holder.txt_course.setText((CharSequence) listList.get(position).get(2));
 //			  老师
 			holder.txt_teacher.setText((CharSequence) listList.get(position).get(3));
+			//时间
+			holder.txt_time.setText(Edu_Survey_OrderInfo.ORDER_WEEK + "周-" + Edu_Survey_OrderInfo.ORDER_DAY + "-" + Edu_Survey_OrderInfo.ORDER_TIME + "节");
 		} catch (Exception e)
 		{
 			e.printStackTrace();
@@ -195,7 +198,7 @@ public class PreEntryAdapter extends BaseAdapter
 	private static class viewHolder
 	{
 		private Button btn_order;
-		private TextView txt_class, txt_teacher, txt_course, txt_class_name;
+		private TextView txt_class, txt_teacher, txt_course, txt_time;
 
 	}
 
@@ -221,7 +224,7 @@ public class PreEntryAdapter extends BaseAdapter
 				Thread.sleep(1000);
 				return SubmitHandler.submitOrder((String) listList.get(currentPosition).get(0), (String) listList
 						.get(currentPosition).get(1), (String) listList.get(currentPosition).get(5),
-						Edu_Survey_OrderInfo.ORDER_WEEK);
+						Edu_Survey_OrderInfo.ORDER_DAY, Edu_Survey_OrderInfo.ORDER_WEEK);
 
 			} catch (Exception e)
 			{

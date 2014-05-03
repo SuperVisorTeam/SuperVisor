@@ -337,6 +337,8 @@ public class PreEntryActivity extends ActionBarActivity implements OnItemClickLi
 			Edu_Survey_OrderInfo.ORDER_INSTITUTE = institute;
 			Edu_Survey_OrderInfo.ORDER_DAY = day;
 			Edu_Survey_OrderInfo.ORDER_TIME = time;
+			Edu_Survey_OrderInfo.dayOfWeek = sp_day.getSelectedItem().toString();//用于获取数据后ListView的显示周几信息
+			
 
 			// 接下来进行网络部分的操作
 			// getOrderPath = BaseMessage.baseUrl + "";

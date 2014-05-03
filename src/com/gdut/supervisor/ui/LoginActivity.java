@@ -125,6 +125,8 @@ public class LoginActivity extends Activity implements OnClickListener {
 				
 				procgDialog = new ProgressDialog(this);
 				procgDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+				procgDialog.setCanceledOnTouchOutside(false);
+				procgDialog.setCancelable(false);
 				procgDialog.setMessage("正在登录...");
 				procgDialog.show();
 				// 进行登录操作

@@ -304,6 +304,7 @@ public class SubmitHandler
 	{
 
 		HttpGet httpGet = new HttpGet(BaseMessage.baseUrl + "/bookingQuery/" + user_no);
+		System.out.println("查询预约 -----" +BaseMessage.baseUrl + "/bookingQuery/" + user_no);
 		HttpResponse response = httpclient.execute(httpGet);
 		System.out.println("预定的状态码：" + response.getStatusLine().getStatusCode());
 		setStatuCodeSchedule(response.getStatusLine().getStatusCode());
@@ -382,17 +383,17 @@ public class SubmitHandler
 	 *            周几
 	 * @return responseCode
 	 */
-	public static int submitOrder(String course_Class_No, String schedule_id, String semester, String dayOfWeek)
+	public static int submitOrder(String course_Class_No, String schedule_id, String semester, String dayOfWeek, String week)
 	{
 		// /dudaoSaveBooking/{course_Class_No}/{schedule_id}/{semester}/{dayOfWeek}
-		String submitPath_this = "http://192.168.1.177:8080" + "/duSaveBooking" + "/" + course_Class_No + "/"
-				+ schedule_id + "/" + semester + "/" + dayOfWeek;
-		String submitPath = "http://192.168.1.177:8080/dudaoSaveBooking/(2013-2014-1)-03101A02-00006210-2/27414/2013-2014-1/1/1";
-		Log.v("log", "submitOrder()--submitPath-" + submitPath + "\nsubmitPath_this-" + submitPath_this);
+		String submitPath_this = BaseMessage.baseUrl + "/dudaoSaveBooking" + "/" + course_Class_No + "/"
+				+ schedule_id + "/" + semester + "/" + dayOfWeek + "/" + week;
+		//String submitPath = "http://192.168.1.177:8080/dudaoSaveBooking/(2013-2014-1)-03101A02-00006210-2/27414/2013-2014-1/1/1";
+		Log.v("log", "\nsubmitPath_this-" + submitPath_this);
 		int responseCode = 0;
 		DefaultHttpClient client;
 //		HttpGet httpGet;
-		HttpPost httpPost;
+		HttpGet httpget;
 		HttpResponse response;
 		try
 		{
@@ -401,8 +402,8 @@ public class SubmitHandler
 //			Log.v("log", "------------------->" +  loginHandler.login("3111001175", "888888").getStatusCode());
 ////			statusCode = loginHandler.login(account, password).getStatusCode();
 			client =LoginHandler.httpclient;
-			httpPost = new HttpPost(submitPath);
-			response = client.execute(httpPost);
+			httpget = new HttpGet(submitPath_this);
+			response = client.execute(httpget);
 			responseCode = response.getStatusLine().getStatusCode();
 
 		} catch (Exception e)

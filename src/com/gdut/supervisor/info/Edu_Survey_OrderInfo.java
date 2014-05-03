@@ -29,7 +29,7 @@ public class Edu_Survey_OrderInfo {
 	public static String ORDER_INSTITUTE;
 	
 	/**
-	 * 星期几
+	 * 星期几(数字，从1开始到7，与后台对应）
 	 */
 	public static String ORDER_DAY;
 	
@@ -53,7 +53,7 @@ public class Edu_Survey_OrderInfo {
 	 */
 	public static String semester;
 	/**
-	 * dayOfWeek
+	 * 周几（格式：如周一)
 	 */
 	public static String dayOfWeek;
 
