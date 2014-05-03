@@ -1,15 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:gravity="center"
-        android:text="工具"
-        android:textSize="10pt" />
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="工具"
+            android:textColor="@color/black"
+            android:textSize="28dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:paddingBottom="8dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="8dp" >
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@color/skyblue" >
+
+                    <Button
+                        android:id="@+id/news"
+                        style="@style/tool_button_style"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:background="@drawable/news"
+                        android:text="校园新闻" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:paddingBottom="8dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="8dp" >
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@color/skyblue" >
+
+                    <Button
+                        android:id="@+id/notices"
+                        style="@style/tool_button_style"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/notices"
+                        android:text="校内通知" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:paddingBottom="8dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="8dp" >
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@color/skyblue" >
+
+                    <Button
+                        android:id="@+id/book"
+                        style="@style/tool_button_style"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/book"
+                        android:text="图书查询" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:paddingBottom="8dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="8dp" >
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@color/skyblue" >
+
+                    <Button
+                        android:id="@+id/map"
+                        style="@style/tool_button_style"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/map"
+                        android:text="地图导航" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:paddingBottom="8dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="8dp" >
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@color/skyblue" >
+
+                    <Button
+                        android:id="@+id/post"
+                        style="@style/tool_button_style"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/post"
+                        android:text="快递查询" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:paddingBottom="8dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="8dp" >
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@color/skyblue" >
+
+                    <Button
+                        android:id="@+id/bus"
+                        style="@style/tool_button_style"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/bus"
+                        android:text="实时公交" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

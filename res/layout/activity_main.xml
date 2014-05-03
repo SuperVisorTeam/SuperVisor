@@ -11,10 +11,9 @@
     <FrameLayout
         android:id="@+id/fragment_content"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical" >
-
     </FrameLayout>
 
     <LinearLayout
@@ -27,8 +26,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/background"
-            android:orientation="horizontal" 
-            android:visibility="gone">"
+            android:orientation="horizontal"
+            >
 
             <RadioButton
                 android:id="@+id/tab_rb_1"

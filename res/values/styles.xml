@@ -2,13 +2,13 @@
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+            backward-compatibility can go here.
         -->
     </style>
     <!-- RadioGroup的主题 -->
@@ -25,24 +25,38 @@
         <item name="android:paddingTop">5dp</item>
         <item name="android:singleLine">true</item>
     </style>
+    <!-- 工具的按钮主题 -->
+    <style name="tool_button_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:button">@null</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">6pt</item>
+        <item name="android:gravity">center_horizontal|bottom</item>
+        <item name="android:layout_gravity">bottom</item>
+        <item name="android:background">@drawable/tab_selector_checked_bg</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:singleLine">true</item>
+    </style>
     <!-- 查找表单的对话框主题 -->
     <style name="diolog_datechoose">
         <item name="android:background">@android:color/white</item>
     </style>
     <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme">
-    </style>
-	<!-- 自定义主题，支持actionbar -->
-	<!-- 这里报错（android:actionBarStyle requires API level 11 (current min is 8)的话clean项目就不报了。） -->
+    <style name="AppTheme" parent="AppBaseTheme"></style>
+    <!-- 自定义主题，支持actionbar -->
+    <!-- 这里报错（android:actionBarStyle requires API level 11 (current min is 8)的话clean项目就不报了。） -->
     <style name="MyTheme" parent="@style/Theme.AppCompat.Light">
         <item name="android:actionBarStyle">@style/MyActionBar</item>
-        <!-- Support library compatibility --> 
+        <!-- Support library compatibility -->
         <item name="actionBarStyle">@style/MyActionBar</item>
-    </style> 
-	<!-- ActionBar主题 -->
+    </style>
+    <!-- ActionBar主题 -->
     <style name="MyActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@drawable/actionbar_background</item>
         <!-- Support library compatibility -->
         <item name="background">@drawable/actionbar_background</item>
     </style>
+
 </resources>
