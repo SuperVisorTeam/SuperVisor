@@ -508,7 +508,6 @@ int id btn_pre_entry_order 0x7f06004d
 int id btn_searchform_begindate 0x7f060057
 int id btn_searchform_enddate 0x7f060058
 int id bus 0x7f06007a
-int id button1 0x7f06006c
 int id cb_login_auto_debark 0x7f06008b
 int id cb_login_rm_password 0x7f06008a
 int id checkbox 0x7f060031
@@ -592,6 +591,7 @@ int id progress_bar 0x7f060092
 int id progress_circular 0x7f060018
 int id progress_horizontal 0x7f060019
 int id pull_to_refresh_head 0x7f060090
+int id push_button 0x7f06006c
 int id radio 0x7f060033
 int id radioGroup 0x7f06008d
 int id reallynumEditText 0x7f060084

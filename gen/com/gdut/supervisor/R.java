@@ -1692,7 +1692,6 @@ containing a value of this type.
         public static final int btn_searchform_begindate=0x7f060057;
         public static final int btn_searchform_enddate=0x7f060058;
         public static final int bus=0x7f06007a;
-        public static final int button1=0x7f06006c;
         public static final int cb_login_auto_debark=0x7f06008b;
         public static final int cb_login_rm_password=0x7f06008a;
         public static final int checkbox=0x7f060031;
@@ -1776,6 +1775,7 @@ containing a value of this type.
         public static final int progress_circular=0x7f060018;
         public static final int progress_horizontal=0x7f060019;
         public static final int pull_to_refresh_head=0x7f060090;
+        public static final int push_button=0x7f06006c;
         public static final int radio=0x7f060033;
         public static final int radioGroup=0x7f06008d;
         public static final int reallynumEditText=0x7f060084;
