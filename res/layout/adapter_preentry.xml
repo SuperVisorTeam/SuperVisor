@@ -8,6 +8,7 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:layout_marginLeft="3dp"
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="vertical" >
@@ -17,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:text="教1-203" />
+            android:text="数据异常" />
     </LinearLayout>
 
     <LinearLayout
@@ -32,21 +33,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:text="教师名" />
+            android:text="数据异常" />
 
         <TextView
             android:id="@+id/txt_pre_entry_course"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:text="测试数据" />
+            android:text="数据异常" />
 
         <TextView
             android:id="@+id/txt_pre_entry_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:text="周次-周几-节次" />
+            android:text="数据异常" />
     </LinearLayout>
 
     <LinearLayout
@@ -60,10 +61,9 @@
             android:id="@+id/btn_pre_entry_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:singleLine="true"
             android:background="@drawable/rounded_background"
-            android:text="预约"
-            />
+            android:singleLine="true"
+            android:text="预约" />
     </LinearLayout>
 
 </LinearLayout>

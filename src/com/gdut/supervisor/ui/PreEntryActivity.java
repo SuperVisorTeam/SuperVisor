@@ -74,22 +74,27 @@ public class PreEntryActivity extends ActionBarActivity implements OnItemClickLi
 		public void handleMessage(Message msg)
 		{
 			super.handleMessage(msg);
-			ShowProgressDialog.dismissProgress();
 			switch (msg.what)
 			{
 			case ORDER_OBTAIN:
+				ShowProgressDialog.dismissProgress();
 				Map map = (Map) msg.obj;
 				if (map != null)
 				{
 					// setAdapter操作
-					listList = (List<List>) map.get("booking_class");
-					listSize = (List<List>) map.get("size");
-					listView.setAdapter(new PreEntryAdapter(PreEntryActivity.this, listSize, listList));
+					try
+					{
+						listList = (List<List>) map.get("booking_class");
+						listSize = (List<List>) map.get("size");
+						listView.setAdapter(new PreEntryAdapter(PreEntryActivity.this, listSize, listList));
+					} catch (Exception e)
+					{
+						e.printStackTrace();
+						Toast.makeText(getApplicationContext(), "获取的信息异常", 1).show();
+					}
 
 				} else
 				{
-					// 测试
-					listView.setAdapter(new PreEntryAdapter(PreEntryActivity.this, null, null));
 					Toast.makeText(getApplicationContext(), "没有可预约信息", 1).show();
 				}
 				break;
@@ -209,7 +214,7 @@ public class PreEntryActivity extends ActionBarActivity implements OnItemClickLi
 			txt_dialog_classes.setText((CharSequence) listList.get(position).get(8));
 		} catch (Exception e)
 		{
-			Toast.makeText(this, "预约信息未获取！", 1).show();
+			Toast.makeText(this, "预约信息获取异常", 1).show();
 		}
 
 		allMsg.show();
@@ -258,8 +263,7 @@ public class PreEntryActivity extends ActionBarActivity implements OnItemClickLi
 				year++;
 		}
 		System.out.println(Arrays.toString(terms));
-		ArrayAdapter<String> termAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
-				terms);
+		ArrayAdapter<String> termAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, terms);
 
 		termAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		sp_term.setAdapter(termAdapter);
@@ -334,8 +338,8 @@ public class PreEntryActivity extends ActionBarActivity implements OnItemClickLi
 			// 接下来进行网络部分的操作
 			// getOrderPath = BaseMessage.baseUrl + "";
 			// http://192.168.1.177:8080/dudaobooking/{institute}/{semester}/{week}/{dayOfWeek}/{section}
-			getOrderPath = BaseMessage.baseUrl + "/dudaobooking/" + institute + "/" + term + "/" + week + "/"
-					+ day + "/" + time;
+			getOrderPath = BaseMessage.baseUrl + "/dudaobooking/" + institute + "/" + term + "/" + week + "/" + day
+					+ "/" + time;
 			Map map = SubmitHandler.getOrderableList(getOrderPath);
 			Message msg = mHandler.obtainMessage();
 			msg.what = ORDER_OBTAIN;

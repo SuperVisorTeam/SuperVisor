@@ -107,7 +107,6 @@ public class MyActionProvider extends ActionProvider implements OnMenuItemClickL
 						@Override
 						public void onClick(DialogInterface dialog, int which)
 						{
-							// TODO Auto-generated method stub
 							Intent intent = new Intent(context, LoginActivity.class);
 							context.startActivity(intent);
 							BaseMessage.supervisor_no = null;

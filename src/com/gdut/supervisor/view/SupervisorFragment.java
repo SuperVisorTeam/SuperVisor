@@ -136,6 +136,7 @@ public class SupervisorFragment extends Fragment implements OnItemSelectedListen
 		// 平铺菜单模式
 		case 1:
 			gridView = (GridView) parentView.findViewById(R.id.gV_supervisor_fragment);
+			//放到资源文件
 			// 功能名称
 			String[] str = new String[]
 			{ "教师查询", "历史查询", "预约查询", "直接录入", "督导预约", "课室查询" };
@@ -193,7 +194,6 @@ public class SupervisorFragment extends Fragment implements OnItemSelectedListen
 		{
 			startIntent(position);
 		}
-
 	}
 
 	/**

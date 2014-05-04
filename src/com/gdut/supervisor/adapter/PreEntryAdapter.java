@@ -29,7 +29,6 @@ public class PreEntryAdapter extends BaseAdapter
 {
 	private LayoutInflater inflater;
 	private Context context;
-	private Dialog orderDialog;
 	private viewHolder holder;
 	private OrderAsyncTask orderAsyncTask;
 	private List<List> listSize, listList;
@@ -38,31 +37,29 @@ public class PreEntryAdapter extends BaseAdapter
 	private int currentPosition = 0;
 	private Button currentBtn;
 	private boolean[] ORDER_SUCCESS;
-//	private String[] classes;
 
 	/**
-	 * map 服务器返回的预约数据
+	 *  服务器返回的预约数据
 	 */
 	public PreEntryAdapter(Context context, List<List> listSize, List<List> listList)
 	{
 		//测试
 		try
 		{
+			count = Integer.valueOf("" + listSize.get(0).get(0));
 			Log.v("log",  "PreEntryAdapter()--listSize-" + listSize.get(0).get(0));
 			Log.v("log",  "PreEntryAdapter()--2-" + (CharSequence) listList.get(1).get(2));
-			listSize.get(0).get(0);
-			count = Integer.valueOf("" + listSize.get(0).get(0));
 		} catch (Exception e)
 		{
-			//测试使用
-			count = 30;
+			e.printStackTrace();
 		}
 		
 		this.context = context;
 		this.listSize = listSize;
 		this.listList = listList;
-		// ORDER_SUCCESS = new boolean[(Integer)listSize.get(0).get(0)];
+		
 		ORDER_SUCCESS = new boolean[count];
+		
 		initView();
 	}
 
@@ -131,14 +128,13 @@ public class PreEntryAdapter extends BaseAdapter
 		try
 		{
 //			 课室
-//			holder.txt_class.setText(classes[position]);
 			
 			holder.txt_class.setText((CharSequence) listList.get(position).get(4));
 //			 课程名字
 			holder.txt_course.setText((CharSequence) listList.get(position).get(2));
 //			  老师
 			holder.txt_teacher.setText((CharSequence) listList.get(position).get(3));
-			//时间
+//			时间
 			holder.txt_time.setText(Edu_Survey_OrderInfo.ORDER_WEEK + "周-" + Edu_Survey_OrderInfo.ORDER_DAY + "-" + Edu_Survey_OrderInfo.ORDER_TIME + "节");
 		} catch (Exception e)
 		{
@@ -206,7 +202,7 @@ public class PreEntryAdapter extends BaseAdapter
 			Log.v("log", "-->doInBackground()--params-" + nullNow[0]);
 			try
 			{
-				Thread.sleep(1000);
+//				Thread.sleep(1000);
 				//预约操作
 				return SubmitHandler.submitOrder((String) listList.get(currentPosition).get(0), (String) listList
 						.get(currentPosition).get(1), (String) listList.get(currentPosition).get(5),

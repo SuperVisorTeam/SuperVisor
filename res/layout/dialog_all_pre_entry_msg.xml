@@ -33,7 +33,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="教1-319" />
+                    android:text="数据异常" />
             </TableRow>
 
             <View
@@ -55,7 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="陈新" />
+                    android:text="数据异常" />
             </TableRow>
 
             <View
@@ -76,7 +76,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="数据结构" />
+                    android:text="数据异常" />
             </TableRow>
 
             <View
@@ -97,7 +97,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="计算机科学与技术(3)班-软件工程(2)班" />
+                    android:text="数据异常" />
             </TableRow>
 
             <View
