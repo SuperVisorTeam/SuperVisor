@@ -21,6 +21,7 @@ import com.gdut.supervisor.info.BaseMessage;
 import com.gdut.supervisor.ui.LoginActivity;
 import com.gdut.supervisor.ui.MainActivity;
 import com.gdut.supervisor.utils.LoginHandler;
+import com.gdut.supervisor.utils.UpdateManager;
 
 /**
  * PopupMenu菜单
@@ -85,7 +86,11 @@ public class MyActionProvider extends ActionProvider implements OnMenuItemClickL
 			break;
 		// 关于菜单
 		case R.id.menu_about:
-			Toast.makeText(context, "关于", 0).show();
+			view = layoutInflater.inflate(R.layout.alterdialog_menu_about, null);
+			builder.setTitle("关于");
+			builder.setPositiveButton("确定", null);
+			builder.setView(view);
+			builder.create().show();			
 			break;
 		case R.id.menu_setting:
 			Toast.makeText(context, "设置", 0).show();
@@ -111,6 +116,11 @@ public class MyActionProvider extends ActionProvider implements OnMenuItemClickL
 					}).setNegativeButton("取消", null).show();
 			break;
 		// 设置菜单
+		case R.id.menu_update:
+			UpdateManager manager = new UpdateManager(context);
+			// 检查软件更新
+			manager.checkUpdate();
+			break;
 		default:
 			return false;
 		}

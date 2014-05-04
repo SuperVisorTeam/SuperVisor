@@ -10,6 +10,7 @@
     <string name="help">帮助</string>
     <string name="setting">设置</string>
     <string name="logout">注销</string>
+    <string name="update">软件更新</string>
     <string name="logo">督导系统</string>
     <string name="entry_direct">直接录入</string>
     <string name="search_pre_entry">预约查询</string>
@@ -50,6 +51,7 @@
     <string name="help_fragment_title">使用帮助</string>
     <string name="helpMessage">直接录入：界面中有红色标记的标签内容是必须填写的。第一个界面在红色标签内容不为空的情况下，学院和专业班级和应到人数会自动填写。\n\n预定录入：列举该督导员这周内预定的所有教室，并通过点击预定的教室进入录入界面进行录入。
         \n\n查询表单：输入日期便可以找到关于自己在相应日期督导的表单，单击表单便可以进入查看和修改的界面。\n\n</string>
+         <string name="aboutMessage">指导老师：孙为军老师\n\n开发团队：\n协同工作室，拓科动力工作室\n\n</string> 
     <!-- 更新模块 -->
     <string name="soft_update_no">已经是最新版本，不需要更新！</string>
     <string name="soft_update_title">软件更新</string>

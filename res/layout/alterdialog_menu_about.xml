@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    
+   <RelativeLayout 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   >
+        <TextView
+            android:id="@+id/about"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="关于我们"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/aboutMessages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/about"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="27dp"
+            android:text="@string/aboutMessage" />
+  
+ </RelativeLayout>
+  </ScrollView>
+</RelativeLayout>
