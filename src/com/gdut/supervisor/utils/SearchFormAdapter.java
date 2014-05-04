@@ -9,58 +9,52 @@ import android.widget.TextView;
 
 import com.gdut.supervisor.R;
 
-public class SearchFormAdapter extends BaseAdapter
-{
+public class SearchFormAdapter extends BaseAdapter {
 	private LayoutInflater inflater;
 	private View view;
 	private Context context;
 	private String[] str;
 	private TextView textView;
 
-	public SearchFormAdapter(Context context, String[] str)
-	{
+	public SearchFormAdapter(Context context, String[] str) {
 		this.context = context;
 		inflater = LayoutInflater.from(context);
 		// this.str = str;
-		this.str = new String[]
-		{ "教务功能", "教务功能", "教务功能", "教务功能", "教务功能", "教务功能", "教务功能",
-				"教务功能", "教务功能", "教务功能", "教务功能", "教务功能", "教务功能", "教务功能",
-				"教务功能" };
+		this.str = new String[] {
+
+		"课程表", "成绩查询", "考试安排", "教学计划", "学生请假", "教务功能", "教务功能", "教务功能", "教务功能",
+				"教务功能", "教务功能", "教务功能", "教务功能", "教务功能", "教务功能" };
 	}
 
 	@Override
-	public int getCount()
-	{
+	public int getCount() {
 		// TODO Auto-generated method stub
 		return str.length;
 	}
 
 	@Override
-	public Object getItem(int position)
-	{
+	public Object getItem(int position) {
 		// TODO Auto-generated method stub
 		return position;
 	}
 
 	@Override
-	public long getItemId(int position)
-	{
+	public long getItemId(int position) {
 		// TODO Auto-generated method stub
 		return position;
 	}
 
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent)
-	{
+	public View getView(int position, View convertView, ViewGroup parent) {
 		viewHolder holder;
-		if (convertView == null)
-		{
+		if (convertView == null) {
 			holder = new viewHolder();
-			convertView = inflater.inflate(R.layout.searchform_listviewadapter, null);
-			textView = (TextView) convertView.findViewById(R.id.tv_searchform_listviewadapter);
+			convertView = inflater.inflate(R.layout.searchform_listviewadapter,
+					null);
+			textView = (TextView) convertView
+					.findViewById(R.id.tv_searchform_listviewadapter);
 			convertView.setTag(holder);
-		} else
-		{
+		} else {
 			holder = (viewHolder) convertView.getTag();
 		}
 
@@ -68,8 +62,7 @@ public class SearchFormAdapter extends BaseAdapter
 		return convertView;
 	}
 
-	static class viewHolder
-	{
+	static class viewHolder {
 		TextView holderTextView;
 	}
 
