@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:singleLine="true"
             android:background="@drawable/rounded_background"
-            android:text="未预约"
+            android:text="预约"
             />
     </LinearLayout>
 

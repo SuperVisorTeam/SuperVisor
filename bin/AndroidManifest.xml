@@ -16,12 +16,11 @@
         android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:theme="@style/MyTheme"
-         >
+        android:theme="@style/MyTheme" >
         <activity
             android:name="com.gdut.supervisor.ui.WelcomeActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -48,8 +47,7 @@
             android:name=".ui.ThirdItemActivity"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
-        <activity android:name=".ui.LoginActivity" 
-            >
+        <activity android:name=".ui.LoginActivity" >
         </activity>
         <activity
             android:name=".ui.MainActivity"
@@ -65,9 +63,13 @@
             android:launchMode="singleTask"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
+        <!-- 督导预约 -->
+        <activity android:name=".ui.PreEntryActivity" >
+        </activity>
+        <!-- 设置 -->
         <activity
-            android:name=".ui.PreEntryActivity"
-             >
+            android:name="com.gdut.supervisor.ui.SettingActivity"
+            android:label="@string/setting" >
         </activity>
     </application>
 

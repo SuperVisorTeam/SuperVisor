@@ -3,7 +3,10 @@ package com.gdut.supervisor.ui;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -36,15 +39,22 @@ public class MainActivity extends ActionBarActivity
 	/**
 	 * 教务功能的Fragment
 	 */
-	private EducationalFragment searchFragment;
+	private EducationalFragment educationalFragment;
 	/**
 	 * 工具功能的Fragment
 	 */
-	private ToolsFragment helpFragment;
+	private ToolsFragment toolsFragment;
 	/**
 	 * 离开窗口
 	 */
 	private AlertDialog leaveDialog;
+
+	private FragmentManager fragmentManager;
+	private FragmentTransaction fragmentTransaction;
+	/**
+	 * 设置保存的sharedPreferences
+	 */
+	private SharedPreferences sharedPreferences;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -52,7 +62,30 @@ public class MainActivity extends ActionBarActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		// 初始化
-		InitView();
+		init();
+	}
+
+	@Override
+	protected void onResume()
+	{
+		super.onResume();
+		fragmentTransaction = fragmentManager.beginTransaction();
+		fragmentTransaction.detach(supervisorFragment);
+		fragmentTransaction.attach(supervisorFragment);
+		fragmentTransaction.commit();
+	}
+
+	@Override
+	protected void onStart()
+	{
+		super.onStart();
+
+	}
+
+	@Override
+	protected void onDestroy()
+	{
+		super.onDestroy();
 	}
 
 	@Override
@@ -65,7 +98,7 @@ public class MainActivity extends ActionBarActivity
 	/**
 	 * 初始化界面
 	 */
-	private void InitView()
+	private void init()
 	{
 		// 初始化各种窗口
 		iniDialog();
@@ -73,11 +106,14 @@ public class MainActivity extends ActionBarActivity
 
 		evaluateFragment = EvaluateFragment.getInstance();
 		supervisorFragment = SupervisorFragment.getInstance();
-		searchFragment = EducationalFragment.getInstance();
-		helpFragment = ToolsFragment.getInstance();
+		educationalFragment = EducationalFragment.getInstance();
+		toolsFragment = ToolsFragment.getInstance();
+
+		fragmentManager = getSupportFragmentManager();
+
 		// 首次进入时先用SupervisorFragment(督导功能)来填充界面
-		final android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-		android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+		fragmentTransaction = fragmentManager.beginTransaction();
 		fragmentTransaction.replace(R.id.fragment_content, supervisorFragment);
 		fragmentTransaction.commit();
 
@@ -88,25 +124,24 @@ public class MainActivity extends ActionBarActivity
 			@Override
 			public void onCheckedChanged(RadioGroup group, int checkedId)
 			{
-				final android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager
-						.beginTransaction();
+				fragmentTransaction = fragmentManager.beginTransaction();
 				switch (checkedId)
 				{
-				// 督导功能
+				// 督导
 				case R.id.tab_rb_1:
 					fragmentTransaction.replace(R.id.fragment_content, supervisorFragment);
 					break;
-				// 查询表单
+				// 教务
 				case R.id.tab_rb_2:
-					fragmentTransaction.replace(R.id.fragment_content, searchFragment);
+					fragmentTransaction.replace(R.id.fragment_content, educationalFragment);
 					break;
-				// 评价老师
+				// 评价
 				case R.id.tab_rb_3:
 					fragmentTransaction.replace(R.id.fragment_content, evaluateFragment);
 					break;
-				// 使用帮助
+				// 工具
 				case R.id.tab_rb_4:
-					fragmentTransaction.replace(R.id.fragment_content, helpFragment);
+					fragmentTransaction.replace(R.id.fragment_content, toolsFragment);
 					break;
 				default:
 					break;
@@ -115,7 +150,6 @@ public class MainActivity extends ActionBarActivity
 			}
 		});
 	}
-
 	/**
 	 * 返回键的响应
 	 */

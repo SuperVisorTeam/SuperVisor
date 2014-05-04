@@ -20,6 +20,7 @@ import com.gdut.supervisor.R;
 import com.gdut.supervisor.info.BaseMessage;
 import com.gdut.supervisor.ui.LoginActivity;
 import com.gdut.supervisor.ui.MainActivity;
+import com.gdut.supervisor.ui.SettingActivity;
 import com.gdut.supervisor.utils.LoginHandler;
 import com.gdut.supervisor.utils.UpdateManager;
 
@@ -90,10 +91,11 @@ public class MyActionProvider extends ActionProvider implements OnMenuItemClickL
 			builder.setTitle("关于");
 			builder.setPositiveButton("确定", null);
 			builder.setView(view);
-			builder.create().show();			
+			builder.create().show();
 			break;
+		// 设置
 		case R.id.menu_setting:
-			Toast.makeText(context, "设置", 0).show();
+			context.startActivity(new Intent(context, SettingActivity.class));
 			break;
 		// 注销
 		case R.id.menu_logout:
@@ -115,7 +117,6 @@ public class MyActionProvider extends ActionProvider implements OnMenuItemClickL
 						}
 					}).setNegativeButton("取消", null).show();
 			break;
-		// 设置菜单
 		case R.id.menu_update:
 			UpdateManager manager = new UpdateManager(context);
 			// 检查软件更新

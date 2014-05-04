@@ -15,14 +15,11 @@ import android.os.Looper;
 import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -44,11 +41,12 @@ import com.gdut.supervisor.utils.SubmitHandler;
 import com.gdut.supervisor.view.RefreshableView;
 import com.gdut.supervisor.view.RefreshableView.PullToRefreshListener;
 
-public class PreEntryActivity extends ActionBarActivity implements
-		OnItemClickListener, PullToRefreshListener,
-		android.view.View.OnClickListener {
+public class PreEntryActivity extends ActionBarActivity implements OnItemClickListener, PullToRefreshListener,
+		android.view.View.OnClickListener
+{
 	public static Cookie cookie;
 	private static final int ORDER_OBTAIN = 0x123;
+	private static final int ORDER_NULL = 0x124;
 	private ListView listView;
 	private String getOrderPath;
 	private Spinner sp_term; // 学期
@@ -65,36 +63,37 @@ public class PreEntryActivity extends ActionBarActivity implements
 	private List<List> listList;
 	private List<List> listSize;
 	private ImageButton imgBtn_dialog;
-	private TextView txt_dialog_course, txt_dialog_classroom,
-			txt_dialog_teacher, txt_dialog_classes;
+	private TextView txt_dialog_course, txt_dialog_classroom, txt_dialog_teacher, txt_dialog_classes;
 
 	/**
 	 * 处理得到的预约信息
 	 */
-	private class getOrderHandler extends Handler {
+	private class getOrderHandler extends Handler
+	{
 		@Override
-		public void handleMessage(Message msg) {
+		public void handleMessage(Message msg)
+		{
 			super.handleMessage(msg);
 			ShowProgressDialog.dismissProgress();
-			switch (msg.what) {
+			switch (msg.what)
+			{
 			case ORDER_OBTAIN:
 				Map map = (Map) msg.obj;
-				if (map != null) {
+				if (map != null)
+				{
 					// setAdapter操作
 					listList = (List<List>) map.get("booking_class");
 					listSize = (List<List>) map.get("size");
-					listView.setAdapter(new PreEntryAdapter(
-							PreEntryActivity.this, listSize, listList));
+					listView.setAdapter(new PreEntryAdapter(PreEntryActivity.this, listSize, listList));
 
-				} else {
+				} else
+				{
 					// 测试
-					listView.setAdapter(new PreEntryAdapter(
-							PreEntryActivity.this, null, null));
-					Toast.makeText(getApplicationContext(), "没有可预约信息", 1)
-							.show();
+					listView.setAdapter(new PreEntryAdapter(PreEntryActivity.this, null, null));
+					Toast.makeText(getApplicationContext(), "没有可预约信息", 1).show();
 				}
 				break;
-			case 0x124:
+			case ORDER_NULL:
 				Toast.makeText(PreEntryActivity.this, "请先填写预约查询信息！", 1).show();
 				break;
 			default:
@@ -104,26 +103,19 @@ public class PreEntryActivity extends ActionBarActivity implements
 	}
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState)
+	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_preentry);
 		initView();
 		mHandler = new getOrderHandler();
-		// 简单测试预约
-		// new Thread()
-		// {
-		// public void run()
-		// {
-		// int code = SubmitHandler.submitOrder(null, null, null, null);
-		// Log.v("log", "-->testCode-" + code);
-		// };
-		// }.start();
 	}
 
 	/**
 	 * 初始化控件
 	 */
-	private void initView() {
+	private void initView()
+	{
 		listView = (ListView) findViewById(R.id.lv_preentry);
 		listView.setOnItemClickListener(this);
 		refreshableView = (RefreshableView) findViewById(R.id.refreshable_view);
@@ -131,31 +123,22 @@ public class PreEntryActivity extends ActionBarActivity implements
 		refreshableView.setOnRefreshListener(this, 0);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		// 展示所有数据的Dialog
-		allMsgView = (RelativeLayout) LayoutInflater.from(this).inflate(
-				R.layout.dialog_all_pre_entry_msg, null);
+		allMsgView = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.dialog_all_pre_entry_msg, null);
 		allMsg = new AlertDialog.Builder(this).create();
 		allMsg.setCanceledOnTouchOutside(false);
 
-		imgBtn_dialog = (ImageButton) allMsgView
-				.findViewById(R.id.dialog_pre_entry_close);
+		imgBtn_dialog = (ImageButton) allMsgView.findViewById(R.id.dialog_pre_entry_close);
 		imgBtn_dialog.setOnClickListener(this);
 
-		txt_dialog_classroom = (TextView) allMsgView
-				.findViewById(R.id.txt_pre_entry_dialog_classroom);
-		txt_dialog_classroom.setOnClickListener(this);
-		txt_dialog_course = (TextView) allMsgView
-				.findViewById(R.id.txt_pre_entry_dialog_course);
-		txt_dialog_course.setOnClickListener(this);
-		txt_dialog_teacher = (TextView) allMsgView
-				.findViewById(R.id.txt_pre_entry_dialog_teacher);
-		txt_dialog_teacher.setOnClickListener(this);
-		txt_dialog_classes = (TextView) allMsgView
-				.findViewById(R.id.txt_pre_entry_dialog_classes);
-		txt_dialog_classes.setOnClickListener(this);
+		txt_dialog_classroom = (TextView) allMsgView.findViewById(R.id.txt_pre_entry_dialog_classroom);
+		txt_dialog_course = (TextView) allMsgView.findViewById(R.id.txt_pre_entry_dialog_course);
+		txt_dialog_teacher = (TextView) allMsgView.findViewById(R.id.txt_pre_entry_dialog_teacher);
+		txt_dialog_classes = (TextView) allMsgView.findViewById(R.id.txt_pre_entry_dialog_classes);
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public boolean onCreateOptionsMenu(Menu menu)
+	{
 		getMenuInflater().inflate(R.menu.pre_entry_actionbar_menu, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
@@ -164,8 +147,10 @@ public class PreEntryActivity extends ActionBarActivity implements
 	 * 菜单监听
 	 */
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		switch (item.getItemId())
+		{
 		// 返回菜单
 		case android.R.id.home:
 			finish();
@@ -185,19 +170,24 @@ public class PreEntryActivity extends ActionBarActivity implements
 	 * 下拉刷新的监听
 	 */
 	@Override
-	public void onRefresh() {
-		try {
-			if (getOrderPath != null) {
+	public void onRefresh()
+	{
+		try
+		{
+			if (getOrderPath != null)
+			{
 				Map map = SubmitHandler.getOrderableList(getOrderPath);
 				Message msg = mHandler.obtainMessage();
 				msg.what = ORDER_OBTAIN;
 				msg.obj = map;
 				mHandler.sendMessage(msg);
 
-			} else {
-				mHandler.sendEmptyMessage(0x124);
+			} else
+			{
+				mHandler.sendEmptyMessage(ORDER_NULL);
 			}
-		} catch (Exception e) {
+		} catch (Exception e)
+		{
 			e.printStackTrace();
 			Log.e("log", "-->onRefresh()-ERROR!!!");
 		}
@@ -208,18 +198,17 @@ public class PreEntryActivity extends ActionBarActivity implements
 	 * ListView Item的监听
 	 */
 	@Override
-	public void onItemClick(AdapterView<?> parent, View view,
-			final int position, long id) {
+	public void onItemClick(AdapterView<?> parent, View view, final int position, long id)
+	{
 		// Toast.makeText(this, "点击了第 " + (position + 1) + " 项", 0).show();
-		try {
-			txt_dialog_classroom.setText((CharSequence) listList.get(position)
-					.get(4));
-			txt_dialog_teacher.setText((CharSequence) listList.get(position)
-					.get(3));
-			txt_dialog_course.setText((CharSequence) listList.get(position)
-					.get(2));
-			txt_dialog_classes.setText("待后台加上返回");
-		} catch (Exception e) {
+		try
+		{
+			txt_dialog_classroom.setText((CharSequence) listList.get(position).get(4));
+			txt_dialog_teacher.setText((CharSequence) listList.get(position).get(3));
+			txt_dialog_course.setText((CharSequence) listList.get(position).get(2));
+			txt_dialog_classes.setText((CharSequence) listList.get(position).get(8));
+		} catch (Exception e)
+		{
 			Toast.makeText(this, "预约信息未获取！", 1).show();
 		}
 
@@ -231,8 +220,10 @@ public class PreEntryActivity extends ActionBarActivity implements
 	 * 按钮监听
 	 */
 	@Override
-	public void onClick(View v) {
-		switch (v.getId()) {
+	public void onClick(View v)
+	{
+		switch (v.getId())
+		{
 		// dialog的图片取消button
 		case R.id.dialog_pre_entry_close:
 			allMsg.dismiss();
@@ -245,50 +236,49 @@ public class PreEntryActivity extends ActionBarActivity implements
 	/**
 	 * 启动预约信息填写的对话框
 	 */
-	public void showOrderDialog() {
-		LinearLayout layout = (LinearLayout) View.inflate(this,
-				R.layout.alertdialog_order_search, null);
+	public void showOrderDialog()
+	{
+		LinearLayout layout = (LinearLayout) View.inflate(this, R.layout.alertdialog_order_search, null);
 		sp_term = (Spinner) layout.findViewById(R.id.sp_term);
 		sp_institute = (Spinner) layout.findViewById(R.id.sp_institute);
 		sp_week = (Spinner) layout.findViewById(R.id.sp_week);
 		sp_day = (Spinner) layout.findViewById(R.id.sp_day);
 		sp_time = (Spinner) layout.findViewById(R.id.sp_time);
-		Button btn_ensure = (Button) layout
-				.findViewById(R.id.btn_dialog_order_ensure);
-		Button btn_cancel = (Button) layout
-				.findViewById(R.id.btn_dialog_order_cancel);
+		Button btn_ensure = (Button) layout.findViewById(R.id.btn_dialog_order_ensure);
+		Button btn_cancel = (Button) layout.findViewById(R.id.btn_dialog_order_cancel);
 
 		// 学期选项采用动态获取当前年份的方法实现，格式：2013-2014-1
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR) - 1;
 		String[] terms = new String[4];
-		for (int i = 0; i < terms.length; i++) {
-			terms[i] = year + "-" + (year + 1) + "-"
-					+ ((i % 2 == 0) ? "1" : "2");
+		for (int i = 0; i < terms.length; i++)
+		{
+			terms[i] = year + "-" + (year + 1) + "-" + ((i % 2 == 0) ? "1" : "2");
 			if (i % 2 == 1)
 				year++;
 		}
 		System.out.println(Arrays.toString(terms));
-		ArrayAdapter<String> termAdapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_spinner_item, terms);
+		ArrayAdapter<String> termAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
+				terms);
 
-		termAdapter
-				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		termAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		sp_term.setAdapter(termAdapter);
 		final Dialog orderSearchDialog = new AlertDialog.Builder(this).create();
 		orderSearchDialog.show();
 		orderSearchDialog.getWindow().setContentView(layout);
-		btn_ensure.setOnClickListener(new OnClickListener() {
+		btn_ensure.setOnClickListener(new OnClickListener()
+		{
 
 			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				
+			public void onClick(View v)
+			{
 				ShowProgressDialog.showProgress(PreEntryActivity.this, "正在查询···");
 				// 另启线程处理网络操作
-				new Thread() {
+				new Thread()
+				{
 					@Override
-					public void run() {
+					public void run()
+					{
 						super.run();
 						Looper.prepare();
 						obtainOrderMsg();
@@ -299,11 +289,12 @@ public class PreEntryActivity extends ActionBarActivity implements
 			}
 		});
 
-		btn_cancel.setOnClickListener(new OnClickListener() {
+		btn_cancel.setOnClickListener(new OnClickListener()
+		{
 
 			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
+			public void onClick(View v)
+			{
 				orderSearchDialog.dismiss();
 			}
 		});
@@ -312,36 +303,39 @@ public class PreEntryActivity extends ActionBarActivity implements
 	/**
 	 * 获取预约信息的操作
 	 */
-	public void obtainOrderMsg() {
+	public void obtainOrderMsg()
+	{
 		String term = sp_term.getSelectedItem().toString();
 		String week = sp_week.getSelectedItem().toString();
 		String institute = null;
 		int instituteID = (int) sp_institute.getSelectedItemId();
-		if (instituteID < 9) {
+		if (instituteID < 9)
+		{
 			// 加一是为了和后台数据对应
 			institute = "0" + (sp_institute.getSelectedItemId() + 1);
-		} else {
+		} else
+		{
 			institute = sp_institute.getSelectedItemId() + 1 + "";
 		}
 		String day = sp_day.getSelectedItemId() + 1 + "";
 		String time = sp_time.getSelectedItem().toString();
-		if (term.equals("") || week.equals("") || institute.equals("")
-				|| day.equals("") || time.equals("")) {
+		if (term.equals("") || week.equals("") || institute.equals("") || day.equals("") || time.equals(""))
+		{
 			Toast.makeText(this, "请填写必要信息", Toast.LENGTH_SHORT).show();
-		} else {
+		} else
+		{
 			Edu_Survey_OrderInfo.ORDER_TERM = term;
 			Edu_Survey_OrderInfo.ORDER_WEEK = week;
 			Edu_Survey_OrderInfo.ORDER_INSTITUTE = institute;
 			Edu_Survey_OrderInfo.ORDER_DAY = day;
 			Edu_Survey_OrderInfo.ORDER_TIME = time;
-			Edu_Survey_OrderInfo.dayOfWeek = sp_day.getSelectedItem()
-					.toString();// 用于获取数据后ListView的显示周几信息
+			Edu_Survey_OrderInfo.dayOfWeek = sp_day.getSelectedItem().toString();// 用于获取数据后ListView的显示周几信息
 
 			// 接下来进行网络部分的操作
 			// getOrderPath = BaseMessage.baseUrl + "";
 			// http://192.168.1.177:8080/dudaobooking/{institute}/{semester}/{week}/{dayOfWeek}/{section}
-			getOrderPath = BaseMessage.baseUrl + "/dudaobooking/" + institute
-					+ "/" + term + "/" + week + "/" + day + "/" + time;
+			getOrderPath = BaseMessage.baseUrl + "/dudaobooking/" + institute + "/" + term + "/" + week + "/"
+					+ day + "/" + time;
 			Map map = SubmitHandler.getOrderableList(getOrderPath);
 			Message msg = mHandler.obtainMessage();
 			msg.what = ORDER_OBTAIN;

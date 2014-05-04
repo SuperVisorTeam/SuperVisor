@@ -37,7 +37,7 @@
             circle:name="@string/search_pre_entry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/entry_pre" />
+            android:src="@drawable/search_pre_entry" />
 
         <com.gdut.supervisor.view.CircleImageView
             android:id="@+id/imgView_supervisor_directwrite"

@@ -4,7 +4,6 @@ import java.util.List;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -20,7 +19,6 @@ import android.widget.Toast;
 
 import com.gdut.supervisor.R;
 import com.gdut.supervisor.dialog.ShowProgressDialog;
-import com.gdut.supervisor.info.BaseMessage;
 import com.gdut.supervisor.info.Edu_Survey_OrderInfo;
 import com.gdut.supervisor.utils.SubmitHandler;
 
@@ -31,6 +29,7 @@ public class PreEntryAdapter extends BaseAdapter
 {
 	private LayoutInflater inflater;
 	private Context context;
+	private Dialog orderDialog;
 	private viewHolder holder;
 	private OrderAsyncTask orderAsyncTask;
 	private List<List> listSize, listList;
@@ -64,11 +63,6 @@ public class PreEntryAdapter extends BaseAdapter
 		this.listList = listList;
 		// ORDER_SUCCESS = new boolean[(Integer)listSize.get(0).get(0)];
 		ORDER_SUCCESS = new boolean[count];
-//		classes = new String[(Integer) listSize.get(0).get(0)];
-//		for (int i = 0; i < 30; i++)
-//		{
-//			classes[i] = "教2-" + i;
-//		}
 		initView();
 	}
 
@@ -81,7 +75,6 @@ public class PreEntryAdapter extends BaseAdapter
 	public int getCount()
 	{
 		 return count;
-//		return 30;
 	}
 
 	@Override
@@ -141,13 +134,11 @@ public class PreEntryAdapter extends BaseAdapter
 //			holder.txt_class.setText(classes[position]);
 			
 			holder.txt_class.setText((CharSequence) listList.get(position).get(4));
-//			  在此上课的班级
-//			holder.txt_time.setText(listList.get(position).get());
 //			 课程名字
 			holder.txt_course.setText((CharSequence) listList.get(position).get(2));
 //			  老师
 			holder.txt_teacher.setText((CharSequence) listList.get(position).get(3));
-			//
+			//时间
 			holder.txt_time.setText(Edu_Survey_OrderInfo.ORDER_WEEK + "周-" + Edu_Survey_OrderInfo.ORDER_DAY + "-" + Edu_Survey_OrderInfo.ORDER_TIME + "节");
 		} catch (Exception e)
 		{
@@ -155,7 +146,7 @@ public class PreEntryAdapter extends BaseAdapter
 			if(position == 1)
 			{
 //				Toast.makeText(context, "数据不完整或没有数据!", 1).show();
-				Log.v("log", "-->listList-可能为空！！！");
+				Log.v("log", "-->listList-数据不完整！");
 			}
 		}
 		return convertView;
@@ -178,9 +169,9 @@ public class PreEntryAdapter extends BaseAdapter
 		@Override
 		public void onClick(View v)
 		{
+//			Toast.makeText(context, "点击第 " + (position + 1) + "个Button", 0).show();
 			currentPosition = position;
 			currentBtn = Btn;
-//			Toast.makeText(context, "点击第 " + (position + 1) + "个Button", 0).show();
 			orderAsyncTask = new OrderAsyncTask();
 			orderAsyncTask.execute("");
 			
@@ -216,6 +207,7 @@ public class PreEntryAdapter extends BaseAdapter
 			try
 			{
 				Thread.sleep(1000);
+				//预约操作
 				return SubmitHandler.submitOrder((String) listList.get(currentPosition).get(0), (String) listList
 						.get(currentPosition).get(1), (String) listList.get(currentPosition).get(5),
 						Edu_Survey_OrderInfo.ORDER_DAY, Edu_Survey_OrderInfo.ORDER_WEEK);
@@ -238,7 +230,6 @@ public class PreEntryAdapter extends BaseAdapter
 		protected void onPostExecute(Integer responseCode)
 		{
 			Log.v("log", "-->onPostExecute()--responseCode-" + responseCode);
-			ShowProgressDialog.dismissProgress();
 			switch (responseCode)
 			{
 			case 200:
@@ -250,13 +241,14 @@ public class PreEntryAdapter extends BaseAdapter
 				break;
 			case 400:
 			default:
-				Toast.makeText(context, "预约失败", Toast.LENGTH_SHORT).show();
+				Toast.makeText(context, "预约失败", 1).show();
 				break;
 			}
 
 			Log.v("log", "-->onPostExecute()--currentPosition-" + currentPosition);
 			Log.v("log", "-->onPostExecute()--ORDER_SUCCESS[" + currentPosition + "]-"
 					+ ORDER_SUCCESS[currentPosition]);
+			ShowProgressDialog.dismissProgress();
 			super.onPostExecute(responseCode);
 		}
 
