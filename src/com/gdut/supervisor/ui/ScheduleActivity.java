@@ -9,6 +9,7 @@ import org.apache.http.client.ClientProtocolException;
 
 import com.gdut.supervisor.R;
 import com.gdut.supervisor.dialog.ShowMessageDialog;
+import com.gdut.supervisor.dialog.ShowProgressDialog;
 import com.gdut.supervisor.info.BaseMessage;
 import com.gdut.supervisor.info.Edu_CourseClass;
 import com.gdut.supervisor.info.Edu_Survey;
@@ -20,6 +21,7 @@ import com.gdut.supervisor.view.SupervisorFragment;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -46,6 +48,7 @@ public class ScheduleActivity extends Activity {
 	 * 判断请求数据是否成功的信息
 	 */
 	protected static final int SUCCESS = 1;
+	protected static final int PROGRESS_DIMISS = 0;
 	/**
 	 * 刷新按钮
 	 */
@@ -156,6 +159,8 @@ public class ScheduleActivity extends Activity {
 					ShowMessageDialog.showMessage(ScheduleActivity.this,
 							"对不起，没有找到预定的表单！！");
 				}
+			} else if(msg.what == PROGRESS_DIMISS) {	//查询完缓冲条消失
+				ShowProgressDialog.dismissProgress();
 			}
 			
 		}
@@ -193,8 +198,9 @@ public class ScheduleActivity extends Activity {
 	 */
 	private void getScheduleMap(final String supervisor_no) {
 		nownum = 1;
+		ShowProgressDialog.showProgress(this, "正在查询···");
 		new Thread(){
-
+			
 			@Override
 			public void run() {
 				Looper.prepare();
@@ -208,13 +214,15 @@ public class ScheduleActivity extends Activity {
 					Toast.makeText(ScheduleActivity.this, "网络环境异常", 2*1000).show();
 					e.printStackTrace();
 					return;
+				} finally {
+					handler.sendEmptyMessage(PROGRESS_DIMISS);
 				}
 				System.out.println("scheduleMap===" + scheduleMap);
 				
 					Message message=new Message();
 					message.what=SUCCESS;
 					handler.sendMessage(message);
-			
+					
 			}
 			
 		}.start();

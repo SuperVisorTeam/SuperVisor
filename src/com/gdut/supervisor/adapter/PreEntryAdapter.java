@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gdut.supervisor.R;
+import com.gdut.supervisor.dialog.ShowProgressDialog;
 import com.gdut.supervisor.info.BaseMessage;
 import com.gdut.supervisor.info.Edu_Survey_OrderInfo;
 import com.gdut.supervisor.utils.SubmitHandler;
@@ -30,8 +31,6 @@ public class PreEntryAdapter extends BaseAdapter
 {
 	private LayoutInflater inflater;
 	private Context context;
-	private Dialog orderDialog;
-	private View dialogView;
 	private viewHolder holder;
 	private OrderAsyncTask orderAsyncTask;
 	private List<List> listSize, listList;
@@ -76,10 +75,6 @@ public class PreEntryAdapter extends BaseAdapter
 	private void initView()
 	{
 		inflater = LayoutInflater.from(context);
-		dialogView = inflater.inflate(R.layout.dialog_evaluate_order_preentry, null);
-		orderDialog = new AlertDialog.Builder(context).create();
-		orderDialog.setCanceledOnTouchOutside(false);
-		
 	}
 
 	@Override
@@ -152,7 +147,7 @@ public class PreEntryAdapter extends BaseAdapter
 			holder.txt_course.setText((CharSequence) listList.get(position).get(2));
 //			  老师
 			holder.txt_teacher.setText((CharSequence) listList.get(position).get(3));
-			//时间
+			//
 			holder.txt_time.setText(Edu_Survey_OrderInfo.ORDER_WEEK + "周-" + Edu_Survey_OrderInfo.ORDER_DAY + "-" + Edu_Survey_OrderInfo.ORDER_TIME + "节");
 		} catch (Exception e)
 		{
@@ -189,8 +184,7 @@ public class PreEntryAdapter extends BaseAdapter
 			orderAsyncTask = new OrderAsyncTask();
 			orderAsyncTask.execute("");
 			
-			orderDialog.show();
-			orderDialog.getWindow().setContentView((LinearLayout)dialogView);
+			ShowProgressDialog.showProgress(context, "预约中···");
 		}
 
 	}
@@ -244,6 +238,7 @@ public class PreEntryAdapter extends BaseAdapter
 		protected void onPostExecute(Integer responseCode)
 		{
 			Log.v("log", "-->onPostExecute()--responseCode-" + responseCode);
+			ShowProgressDialog.dismissProgress();
 			switch (responseCode)
 			{
 			case 200:
@@ -255,14 +250,13 @@ public class PreEntryAdapter extends BaseAdapter
 				break;
 			case 400:
 			default:
-				Toast.makeText(context, "预约失败", 1).show();
+				Toast.makeText(context, "预约失败", Toast.LENGTH_SHORT).show();
 				break;
 			}
 
 			Log.v("log", "-->onPostExecute()--currentPosition-" + currentPosition);
 			Log.v("log", "-->onPostExecute()--ORDER_SUCCESS[" + currentPosition + "]-"
 					+ ORDER_SUCCESS[currentPosition]);
-			orderDialog.dismiss();
 			super.onPostExecute(responseCode);
 		}
 

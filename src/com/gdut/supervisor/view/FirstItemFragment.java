@@ -138,7 +138,7 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 	/**
 	 * 日期
 	 */
-	private String dateString = "";
+	public static String dateString = "";
 	/**
 	 * 日期
 	 */
