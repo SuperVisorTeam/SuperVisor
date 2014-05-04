@@ -87,7 +87,7 @@ public class LoginHandler {
 		StatusLine statusLine = null;
 		//学校服务器 http://psy.gdut.edu.cn:8080
 		//http://192.168.1.177:8080
-		BaseMessage.baseUrl = "http://psy.gdut.edu.cn:8080";
+		BaseMessage.baseUrl = "http://10.21.32.123:8080";
 		String loginUrl = BaseMessage.baseUrl + "/j_spring_security_check";
 		Log.v("log", "------" + loginUrl + "");
 

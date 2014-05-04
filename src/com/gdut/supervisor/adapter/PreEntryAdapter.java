@@ -120,7 +120,7 @@ public class PreEntryAdapter extends BaseAdapter
 		} else
 		{
 			// 这里要写上默认的显示内容，要不然后面的子控件会出现显示已预订的情况。因为不设置的话btn还是Holder中的btn，而holder中的btn是已经设置了已预约的
-			holder.btn_order.setText("未预约");
+			holder.btn_order.setText("预约");
 			// 要设置为可点击，不然是Holder里的状态
 			holder.btn_order.setEnabled(true);
 //			holder.btn_order.setClickable(true);

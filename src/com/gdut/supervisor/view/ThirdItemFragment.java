@@ -63,10 +63,7 @@ public class ThirdItemFragment extends Fragment {
 	 * 显示时间
 	 */
 	public static String temp_time;
-	/**
-	 * 提交时间按钮
-	 */
-	private static Button submit_time_bt;
+
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -223,7 +220,7 @@ public class ThirdItemFragment extends Fragment {
 				.setText(SupervisorActivity.situation.getSupervisor());
 		temp_time = "";
 		submitTime.setText(null);
-		submit_time_bt.setFocusable(false);
+		
 	}
 
 	// 恢复时调用

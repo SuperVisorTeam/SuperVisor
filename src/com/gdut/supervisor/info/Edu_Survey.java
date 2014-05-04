@@ -13,7 +13,7 @@ public class Edu_Survey {
 	/**
 	 * 当时督导时间
 	 */
-	public String Survey_Time;
+	public String survey_time;
 	/**
 	 * 督查编号ID
 	 * 
@@ -487,10 +487,10 @@ public class Edu_Survey {
 	// this.edu_CourseClass = edu_CourseClass;
 	// }
 	public String getSurvey_Time() {
-		return Survey_Time;
+		return survey_time;
 	}
 
 	public void setSurvey_Time(String survey_Time) {
-		Survey_Time = survey_Time;
+		survey_time = survey_Time;
 	}
 }

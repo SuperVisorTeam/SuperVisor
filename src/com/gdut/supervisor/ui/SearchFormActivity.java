@@ -12,6 +12,7 @@ import org.apache.http.client.ClientProtocolException;
 
 import com.gdut.supervisor.R;
 import com.gdut.supervisor.dialog.ShowMessageDialog;
+import com.gdut.supervisor.dialog.ShowProgressDialog;
 import com.gdut.supervisor.info.BaseMessage;
 import com.gdut.supervisor.info.Edu_Survey;
 import com.gdut.supervisor.utils.PrintlnFromData;
@@ -202,8 +203,10 @@ public class SearchFormActivity extends Activity {
 
 		@Override
 		public void handleMessage(Message msg) {
+			
 			if(msg.what==SUBMIT_GETMAP2)
 			{
+				ShowProgressDialog.dismissProgress();
 				if (SubmitHandler.getGetMap2_StatuseCode()==200) {
 					System.out.println("Search success!!");
 					setDateList();
@@ -223,6 +226,7 @@ public class SearchFormActivity extends Activity {
 			}
 			else if(msg.what==GRTSEARCHBASESUCCESS)
 			{
+				ShowProgressDialog.dismissProgress();
 				Toast.makeText(SearchFormActivity.this, "获取历史数据成功", 2*1000).show();
 				Intent intent = new Intent(SearchFormActivity.this,
 						SupervisorActivity.class);
@@ -374,6 +378,7 @@ public class SearchFormActivity extends Activity {
 				SupervisorFragment.searchIsOpen = true;
 				System.out.println("SupervisorFragment.searchIsOpen ="+SupervisorFragment.searchIsOpen);
 				SupervisorActivity.situation=null;
+				ShowProgressDialog.showProgress(SearchFormActivity.this, "数据请求中...");
 				new Thread()
 				{
 					
@@ -620,6 +625,7 @@ public class SearchFormActivity extends Activity {
 	private void search(final String supername, final String starttime, final String endtime) {
 		isAudit = null;
 		nownum = 1;
+		ShowProgressDialog.showProgress(SearchFormActivity.this, "");
 		new Thread()
 		{
 

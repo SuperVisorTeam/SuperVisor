@@ -14,6 +14,9 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.CoreConnectionPNames;
+import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
@@ -45,7 +48,7 @@ public class SubmitHandler
 	static int StatuCodeSchedule = -1;
 
 	private static Gson gson = new Gson();
-	public static DefaultHttpClient httpclient = new DefaultHttpClient();
+	public static DefaultHttpClient httpclient = getClient();
 	public static Map<String, Object> getmap = new HashMap<String, Object>();
 
 	public static int getGetMap2_StatuseCode()
@@ -83,9 +86,9 @@ public class SubmitHandler
 		 * 表格提交的URL
 		 */
 		String submitTableUrl = BaseMessage.baseUrl + "/Edu_Survey/save";
-		Edu_SurveyToIphone es = ChangeData.changePhone(classSituation);
-		PrintlnPhoneFromData.println(es, "提交后的数据显示");
-		String json = gson.toJson(es);
+		//Edu_SurveyToIphone es = ChangeData.changePhone(classSituation);
+		//PrintlnPhoneFromData.println(es, "提交后的数据显示");
+		String json = gson.toJson(classSituation);
 
 		/*
 		 * String json = ""; if (es.getCourse_class_no() == null)// 预定 { json =
@@ -386,18 +389,23 @@ public class SubmitHandler
 	public static int submitOrder(String course_Class_No, String schedule_id, String semester, String dayOfWeek, String week)
 	{
 		// /dudaoSaveBooking/{course_Class_No}/{schedule_id}/{semester}/{dayOfWeek}
-		String submitPath = BaseMessage.baseUrl + "/dudaoSaveBooking" + "/" + course_Class_No + "/"
+		String submitPath_this = BaseMessage.baseUrl + "/dudaoSaveBooking" + "/" + course_Class_No + "/"
 				+ schedule_id + "/" + semester + "/" + dayOfWeek + "/" + week;
-		//String submitPath_this = "http://192.168.1.177:8080/dudaoSaveBooking/(2013-2014-1)-03101A02-00006210-2/27414/2013-2014-1/1/1";
-		Log.v("log", "\nsubmitPath_this-" + submitPath);
+		//String submitPath = "http://192.168.1.177:8080/dudaoSaveBooking/(2013-2014-1)-03101A02-00006210-2/27414/2013-2014-1/1/1";
+		Log.v("log", "\nsubmitPath_this-" + submitPath_this);
 		int responseCode = 0;
 		DefaultHttpClient client;
+//		HttpGet httpGet;
 		HttpGet httpget;
 		HttpResponse response;
 		try
 		{
+//			LoginHandler loginHandler = new LoginHandler();
+//			loginHandler.login("3111001175", "888888");
+//			Log.v("log", "------------------->" +  loginHandler.login("3111001175", "888888").getStatusCode());
+////			statusCode = loginHandler.login(account, password).getStatusCode();
 			client =LoginHandler.httpclient;
-			httpget = new HttpGet(submitPath);
+			httpget = new HttpGet(submitPath_this);
 			response = client.execute(httpget);
 			responseCode = response.getStatusLine().getStatusCode();
 
@@ -408,5 +416,13 @@ public class SubmitHandler
 		}
 		// 返回状态码
 		return responseCode;
+	}
+	static private DefaultHttpClient getClient()
+	{
+		HttpParams httpParams = new BasicHttpParams();	//设置参数
+		httpParams.setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 5000);
+		httpParams.setParameter(CoreConnectionPNames.SO_TIMEOUT, 5000);
+		return new DefaultHttpClient(httpParams);	
+		
 	}
 }
