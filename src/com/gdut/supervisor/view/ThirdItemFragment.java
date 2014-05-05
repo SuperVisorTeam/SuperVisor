@@ -171,6 +171,9 @@ public class ThirdItemFragment extends Fragment {
 				|| teachernameEditText.getText().toString() == null) {
 			return false;
 		}
+			else if(submitTime.getText().toString().equals("")||submitTime.getText().toString()==null){
+				return false;
+		}
 		return true;
 	}
 

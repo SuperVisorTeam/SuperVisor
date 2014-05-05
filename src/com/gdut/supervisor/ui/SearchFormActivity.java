@@ -203,9 +203,10 @@ public class SearchFormActivity extends Activity {
 
 		@Override
 		public void handleMessage(Message msg) {
-			ShowProgressDialog.dismissProgress();
+			
 			if(msg.what==SUBMIT_GETMAP2)
 			{
+				ShowProgressDialog.dismissProgress();
 				if (SubmitHandler.getGetMap2_StatuseCode()==200) {
 					System.out.println("Search success!!");
 					setDateList();
@@ -225,6 +226,7 @@ public class SearchFormActivity extends Activity {
 			}
 			else if(msg.what==GRTSEARCHBASESUCCESS)
 			{
+				ShowProgressDialog.dismissProgress();
 				Toast.makeText(SearchFormActivity.this, "获取历史数据成功", 2*1000).show();
 				Intent intent = new Intent(SearchFormActivity.this,
 						SupervisorActivity.class);
@@ -233,9 +235,10 @@ public class SearchFormActivity extends Activity {
 				
 			}
 			else
-				if(msg.what==-GRTSEARCHBASESUCCESS)
+				if(msg.what==-GRTSEARCHBASESUCCESS||msg.what==-SUBMIT_GETMAP2)
 				{
-					Toast.makeText(SearchFormActivity.this, "查找历史数据失败", 2*1000).show();					
+					ShowProgressDialog.dismissProgress();
+					Toast.makeText(SearchFormActivity.this, "查找失败,请检查网络!", 2*1000).show();					
 				}
 		}
     	
@@ -386,8 +389,7 @@ public class SearchFormActivity extends Activity {
 						Looper.prepare();
 						SupervisorActivity.situation = getSearchBaseMessage(id);
 						if(SupervisorActivity.situation!=null)
-						{
-							
+						{							
 							handler.sendEmptyMessage(GRTSEARCHBASESUCCESS);
 						}
 						else
@@ -548,7 +550,8 @@ public class SearchFormActivity extends Activity {
 
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.dismiss();
-				back();
+				//暂时取消
+				//back();
 			}
 		});
 		searchDialog = builder.create();
@@ -633,12 +636,11 @@ public class SearchFormActivity extends Activity {
 				try {
 					searchMap=null;
 					searchMap = SubmitHandler.getMap2(supername, starttime, endtime);
-				} catch (ClientProtocolException e) {
-					Toast.makeText(SearchFormActivity.this, "网络环境异常", 2*1000).show();
+				} catch (IOException e) {				
+					ShowProgressDialog.dismissProgress();
+					handler.sendEmptyMessage(-SUBMIT_GETMAP2);
 					e.printStackTrace();
-				} catch (IOException e) {
-					Toast.makeText(SearchFormActivity.this, "网络环境异常", 2*1000).show();
-					e.printStackTrace();
+					return;
 				}				
 					handler.sendEmptyMessage(SUBMIT_GETMAP2);	
 				//System.out.println("searchMap===" + searchMap);
@@ -660,13 +662,9 @@ public class SearchFormActivity extends Activity {
 		
 		try {
 			searchMessage = SubmitHandler.getEdu_Survey(s);
-		} catch (ClientProtocolException e) {
-			Toast.makeText(SearchFormActivity.this, "网络连接错误", 2*1000).show();
-			e.printStackTrace();
-			return null;
-		} catch (IOException e) {
+		}  catch (IOException e) {
 			// TODO Auto-generated catch block
-			Toast.makeText(SearchFormActivity.this, "网络连接错误", 2*1000).show();
+			ShowProgressDialog.dismissProgress();
 			e.printStackTrace();
 			return null;
 		}

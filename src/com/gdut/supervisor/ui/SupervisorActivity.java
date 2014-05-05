@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -37,15 +38,16 @@ import com.gdut.supervisor.view.ThirdItemFragment;
  * 包含三表单的FragmentActivity
  */
 public class SupervisorActivity extends FragmentActivity {
+
 	/**
 	 * 提交成功状态码
 	 */
-	final int SUBMIT_SUCCESS = 1;
+	final int SUBMIT = 0x110;
 
 	/**
 	 * 修改提交成功状态码
 	 */
-	final int MODIFY_SUCCESS = 2;
+	final int MODIFY = 0x112;
 
 	/**
 	 * 清空按钮
@@ -149,8 +151,12 @@ public class SupervisorActivity extends FragmentActivity {
 
 		@Override
 		public void handleMessage(Message msg) {
-			ShowProgressDialog.dismissProgress();
-			switch (msg.what) {
+			
+			if(msg.what==SUBMIT)
+			{
+				
+				ShowProgressDialog.dismissProgress();
+			switch (msg.arg1) {
 			case 200:
 				if (!SupervisorFragment.scheduleIsOpen) {
 					// 提交成功
@@ -177,7 +183,18 @@ public class SupervisorActivity extends FragmentActivity {
 			default:
 				ShowMessageDialog.showMessage(SupervisorActivity.this, "提交失败!");
 			}
-
+			
+			}
+			else if(msg.what==MODIFY)
+			{
+				ShowProgressDialog.dismissProgress();
+				if (msg.arg1 == 200)// 修改成功
+				{
+					modificationsuccessDialog.show();
+				} else {
+					modificationfaileDialog.show();
+				}
+			}
 		}
 	};
 
@@ -535,6 +552,7 @@ public class SupervisorActivity extends FragmentActivity {
 
 							public void onClick(DialogInterface dialog,
 									int which) {
+								
 								modification();
 							}
 
@@ -665,17 +683,20 @@ public class SupervisorActivity extends FragmentActivity {
 
 			@Override
 			public void run() {
+				Looper.prepare();
 				try {
 					PrintlnFromData.println(situation, "提交时表格的内容:");
 					StatusCode = SubmitHandler.submitForm(situation);
 					System.out.println("提交表单的状态码：" + StatusCode);
-				} catch (Exception e) {
-					ShowMessageDialog.showMessage(SupervisorActivity.this,
-							"系统繁忙，请稍后提交！！！");
-					return;
+				} catch (Exception e) {					
+					
 				}
-
-				supervisorHandler.sendEmptyMessage(StatusCode);
+                Message msg=new Message();
+                msg.what=SUBMIT;
+                msg.arg1=StatusCode;
+                ShowProgressDialog.dismissProgress();
+				supervisorHandler.sendMessage(msg);
+				Looper.loop();
 			}
 
 		}.start();
@@ -716,34 +737,42 @@ public class SupervisorActivity extends FragmentActivity {
 	// 修改后的提交函数
 	private void modification() {
 		FirstItemFragment.greatFristItemClassSituation();
-		if (secondOpen) {
+		
 			System.out.println("第二个页面打开了，要创建页面的数据！！");
-			SecondItemFragment.greatSecondItemClassSituation();
-		} else if (!secondOpen) {
-
-		}
-		if (thirdOpen) {
+			SecondItemFragment.greatSecondItemClassSituation();		
+			//
 			System.out.println("第三个页面打开了，要创建页面的数据！！");
 			ThirdItemFragment.greatThirdItemClassSituation();
-		} else if (!thirdOpen) {
-
-		}
 		situation.setCourse_class_no(edu_CourseClass);
+		ShowProgressDialog.showProgress(SupervisorActivity.this, "修改结果提交中！");
 		System.out.println("修改后的situation：" + situation);
-		int i = -1;
-		try {
-			PrintlnFromData.println(situation, "修改时表格的内容:");
-			i = SubmitHandler.modificationForm(situation);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		System.out.println("修改提交状态码：" + i);
-		if (i == 200)// 修改成功
+		new Thread()
 		{
-			modificationsuccessDialog.show();
-		} else {
-			modificationfaileDialog.show();
-		}
+
+			@Override
+			public void run() {
+				Looper.prepare();
+				int i = -1;
+				try {
+					PrintlnFromData.println(situation, "修改时表格的内容:");
+					i = SubmitHandler.modificationForm(situation);
+				} catch (Exception e) {								
+					e.printStackTrace();
+					
+				}
+				System.out.println("修改提交状态码：" + i);
+				Message msg=new Message();
+				msg.what=MODIFY;
+				msg.arg1=i;
+				supervisorHandler.sendMessage(msg);
+				ShowProgressDialog.dismissProgress();	
+				Looper.loop();
+				
+			}
+			
+		}.start();
+		
+		
 
 	}
 
