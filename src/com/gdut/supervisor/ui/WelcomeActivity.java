@@ -76,11 +76,6 @@ public class WelcomeActivity extends Activity
 
 					public void run()
 					{
-						WindowManager.LayoutParams lp = getWindow().getAttributes();
-						lp.screenBrightness = 0.2f;
-						getWindow().setAttributes(lp);
-						// wholeView.addView(new
-						// MyAnimationView(WelcomeActivity.this));
 						if (isAutoDebark)
 						{ // 若自动登陆，则进行登录操作，登录成功后直接打开主界面
 							ConnectivityManager connManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);

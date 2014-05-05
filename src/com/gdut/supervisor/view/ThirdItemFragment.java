@@ -1,22 +1,18 @@
 package com.gdut.supervisor.view;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
-import android.app.TimePickerDialog;
-import android.app.TimePickerDialog.OnTimeSetListener;
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.TimingLogger;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TimePicker;
 
@@ -111,32 +107,40 @@ public class ThirdItemFragment extends Fragment {
 		// 提交时间
 		submitTime = (Button) view.findViewById(R.id.submitTime);
 		submitTime.setClickable(true);
-		Calendar c = Calendar.getInstance();
-		final int mHour = c.get(Calendar.HOUR_OF_DAY);
-		final int mMinute = c.get(Calendar.MINUTE);
 		submitTime.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				System.out.println("你点击了EditText");
-				TimePickerDialog timePickerDialog = new TimePickerDialog(
-						getActivity(), new OnTimeSetListener() {
-
-							@Override
-							public void onTimeSet(TimePicker view,
-									int hourOfDay, int minute) {
-								// TODO Auto-generated method stub
-								temp_time = FirstItemFragment.dateString + " " + hourOfDay + ":" + minute + ":00";
-								BaseMessage.temp_time = temp_time;
-								submitTime.setText(temp_time);
-							}
-						}, mHour, mMinute, true);
-				timePickerDialog.setTitle("检查时间:");
-				timePickerDialog.setButton(TimePickerDialog.BUTTON_POSITIVE, "确定", timePickerDialog);
-				timePickerDialog.setCanceledOnTouchOutside(false);
-				timePickerDialog.show();
+				Calendar c = Calendar.getInstance();
+				int mHour = c.get(Calendar.HOUR_OF_DAY);
+				int mMinute = c.get(Calendar.MINUTE);
+				LinearLayout layout = (LinearLayout) View.inflate(getActivity(), R.layout.timepicker, null);
+				final TimePicker timePicker = (TimePicker) layout.findViewById(R.id.timepicker);
+				timePicker.setCurrentHour(mHour);
+				timePicker.setCurrentMinute(mMinute);
 				
+				AlertDialog.Builder timebuilder = new AlertDialog.Builder(getActivity());
+				timebuilder.setTitle("检查时间：");
+				timebuilder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						// TODO Auto-generated method stub
+						int hour = timePicker.getCurrentHour();
+						int mimute = timePicker.getCurrentMinute();
+						String hourstr = hour < 10 ? "0" + hour: hour + "";
+						String mimutestr = mimute < 10 ? "0" + mimute : mimute + "";
+						temp_time = FirstItemFragment.dateString + " " + hourstr + ":" + mimutestr + ":00";
+						BaseMessage.temp_time = temp_time;
+						submitTime.setText(temp_time);
+					}
+				});
+				timebuilder.setNegativeButton("取消", null);
+				AlertDialog timeDialog = timebuilder.create();
+				timeDialog.setCanceledOnTouchOutside(false);
+				timeDialog.setView(layout);
+				timeDialog.show();		
 			}
 		});
 		
@@ -154,6 +158,7 @@ public class ThirdItemFragment extends Fragment {
 		temp_time = "";
 		supervisorEditText.setText(null);
 		BaseMessage.teacherName = "";
+		BaseMessage.temp_time = "";
 		teachernameEditText.setText(null);
 	}
 
@@ -243,13 +248,6 @@ public class ThirdItemFragment extends Fragment {
 		}
 	}
 
-	// 获取当前时间
-	private String gainTime() {
-		Date date = new Date();
-		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		// 将date对象转换成字符串
-		String string_date = sdf2.format(date);
-		return string_date;
-	}
+
 
 }
