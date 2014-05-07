@@ -226,8 +226,8 @@ public class ThirdItemFragment extends Fragment {
 		// 督导员签名
 		supervisorEditText
 				.setText(SupervisorActivity.situation.getSupervisor());
-		temp_time = "";
-		submitTime.setText(null);
+		 
+		
 		
 	}
 
@@ -249,6 +249,7 @@ public class ThirdItemFragment extends Fragment {
 		if (SupervisorFragment.scheduleIsOpen) {
 			setThirdItemClassSituation();
 		}
+		submitTime.setText(temp_time);
 	}
 
 

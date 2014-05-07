@@ -63,6 +63,6 @@ public class EducationalFragment extends Fragment implements OnItemClickListener
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 	{
-		Toast.makeText(getActivity(), "点击了第:" + (position + 1) + "项", 0).show();
+		Toast.makeText(getActivity(), "暂未开通", 0).show();
 	}
 }

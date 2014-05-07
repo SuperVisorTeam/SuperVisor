@@ -223,6 +223,11 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 					inihasBookDialog(schoollationEditText.getText().toString()
 							+ "\n请求的参数有错!");
 					break;
+				default :
+					//schoolnameEditText.setText("");
+					schoollationString="";
+					inihasBookDialog("网络连接错误！");
+					break;
 				case 200:
 					//如果提交成功
 					SecondItemFragment.clearSecondItem();
@@ -258,8 +263,7 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 					//设置实到的输入框初始值
 					realNumber_editText.setText("0");
 					break;
-					default :
-						break;
+					
 				}
 			
 			}
@@ -574,10 +578,12 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 								.toString(), checkclassSpinner.getSelectedItem()
 								.toString(), BaseMessage.supervisor_no);
 					} catch (ClientProtocolException e) {
+						code=-1;
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
+						code=-1;
 						e.printStackTrace();
 					}
 					Message message=new Message();

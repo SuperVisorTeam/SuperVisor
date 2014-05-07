@@ -22,8 +22,7 @@ public class SearchFormAdapter extends BaseAdapter {
 		// this.str = str;
 		this.str = new String[] {
 
-		"课程表", "成绩查询", "考试安排", "教学计划", "学生请假", "教务功能", "教务功能", "教务功能", "教务功能",
-				"教务功能", "教务功能", "教务功能", "教务功能", "教务功能", "教务功能" };
+		"课程表", "成绩查询", "考试安排", "教学计划", "学生请假" };
 	}
 
 	@Override
