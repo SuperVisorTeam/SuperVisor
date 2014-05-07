@@ -31,6 +31,7 @@ import android.widget.Spinner;
 
 import com.gdut.supervisor.R;
 import com.gdut.supervisor.dialog.ShowMessageDialog;
+import com.gdut.supervisor.dialog.ShowProgressDialog;
 import com.gdut.supervisor.info.BaseMessage;
 import com.gdut.supervisor.ui.LoginActivity;
 import com.gdut.supervisor.ui.SupervisorActivity;
@@ -194,7 +195,7 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 			// 
 			super.handleMessage(msg);
 			if(msg.what ==0x123) 
-			{   
+			{   ShowProgressDialog.dismissProgress();
 				 //每次得到请求后要把classGroup置为空，无论请求结果是什么！
 				classGroup=null;
 				
@@ -490,6 +491,7 @@ public class FirstItemFragment extends Fragment implements OnClickListener
 					schoollationString = class_roomSpinner.getSelectedItem().toString();
 					schoollationEditText.setText(schoollationString);
 					//用新线程请求数据
+					ShowProgressDialog.showProgress(getActivity(), "查找中...");
 					ThreadForGetData threadForGetData=new ThreadForGetData();
 					threadForGetData.start();
 					}

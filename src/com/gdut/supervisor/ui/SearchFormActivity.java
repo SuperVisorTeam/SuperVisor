@@ -396,7 +396,7 @@ public class SearchFormActivity extends Activity {
 						{
 							handler.sendEmptyMessage(-GRTSEARCHBASESUCCESS);
 						}
-							
+						Looper.loop();	
 					}
 					
 				}.start();

@@ -211,7 +211,7 @@ public class PreEntryActivity extends ActionBarActivity implements OnItemClickLi
 			txt_dialog_classroom.setText((CharSequence) listList.get(position).get(4));
 			txt_dialog_teacher.setText((CharSequence) listList.get(position).get(3));
 			txt_dialog_course.setText((CharSequence) listList.get(position).get(2));
-			txt_dialog_classes.setText((CharSequence) listList.get(position).get(8));
+			txt_dialog_classes.setText((CharSequence) listList.get(position).get(7));
 		} catch (Exception e)
 		{
 			Toast.makeText(this, "预约信息获取异常", 1).show();
