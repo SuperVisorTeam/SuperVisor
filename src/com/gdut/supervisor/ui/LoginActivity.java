@@ -32,6 +32,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.gdut.supervisor.R;
+import com.gdut.supervisor.dialog.ShowProgressDialog;
 import com.gdut.supervisor.info.BaseMessage;
 import com.gdut.supervisor.utils.LoginDataHandler;
 import com.gdut.supervisor.utils.LoginHandler;
@@ -51,7 +52,6 @@ public class LoginActivity extends Activity implements OnClickListener {
 	public static LoginHandler loginHandler = new LoginHandler();
 	private LoginDataHandler loginDataHandler = null;
 	private String[] accountsAndPwds = null;
-	private ProgressDialog procgDialog = null;	//登陆时显示缓冲对话框
 	int statusCode = -1;
 	
 	private Handler handler = new Handler() {	//用于响应处理登陆线程的结果
@@ -60,7 +60,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 		public void handleMessage(Message msg) {
 			// TODO Auto-generated method stub
 			super.handleMessage(msg);
-			procgDialog.dismiss();
+			ShowProgressDialog.dismissProgress();
 			if(msg.what == statusCode) {
 				handleDebarkReulst(statusCode);
 			} else if(msg.what == LOGIN_EXCEPTION) {
@@ -123,12 +123,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 				Toast.makeText(this, "网络不可用", Toast.LENGTH_SHORT).show();
 			} else {
 				
-				procgDialog = new ProgressDialog(this);
-				procgDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-				procgDialog.setCanceledOnTouchOutside(false);
-				procgDialog.setCancelable(false);
-				procgDialog.setMessage("正在登录...");
-				procgDialog.show();
+				ShowProgressDialog.showProgress(this, "正在登录...");
 				// 进行登录操作
 				new Thread() {
 
