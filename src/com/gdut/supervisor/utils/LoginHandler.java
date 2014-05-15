@@ -87,7 +87,7 @@ public class LoginHandler {
 		StatusLine statusLine = null;
 		//学校服务器 http://psy.gdut.edu.cn:8080
 		//http://192.168.1.177:8080    http://10.21.32.123:8080
-		BaseMessage.baseUrl = "http://10.21.32.123:8080";
+		BaseMessage.baseUrl = "http://psy.gdut.edu.cn:8080";
 		String loginUrl = BaseMessage.baseUrl + "/j_spring_security_check";
 		Log.v("log", "------" + loginUrl + "");
 
@@ -109,9 +109,8 @@ public class LoginHandler {
 
 			//System.out.println("下一步将执行execute");
 			statusLine = httpclient.execute(httpost).getStatusLine();
-			PreEntryActivity.cookie = ((AbstractHttpClient)httpclient).getCookieStore().getCookies().get(0);
 			//System.out.println("执行完execute");
-
+			
 		} catch (IOException e) {
 
 			e.printStackTrace();

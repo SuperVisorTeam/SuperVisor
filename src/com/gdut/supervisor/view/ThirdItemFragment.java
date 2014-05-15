@@ -64,7 +64,7 @@ public class ThirdItemFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+	   
 	}
 
 	@Override
@@ -164,6 +164,9 @@ public class ThirdItemFragment extends Fragment {
 
 	// 获得该表格是否填写完整
 	public static boolean getIsFinish() {
+		//如果打开表单的时候没划到第二个表单的话，这个表单是不会被初始化的，即控件都是null的,所以要判断下
+		if(supervisorEditText==null||teachernameEditText==null||submitTime==null)
+			return false;
 		if (supervisorEditText.getText().toString().equals("")
 				|| supervisorEditText.getText().toString() == null) {
 			return false;

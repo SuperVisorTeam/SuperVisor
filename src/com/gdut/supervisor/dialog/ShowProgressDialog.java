@@ -22,7 +22,7 @@ public class ShowProgressDialog {
 	 */
 	public static void showProgress(Context context, String message) {
 		pDialog = new AlertDialog.Builder(context).create();
-		pDialog.setCanceledOnTouchOutside(false);
+		//pDialog.setCanceledOnTouchOutside(false);
 		LinearLayout pLayout = (LinearLayout) View.inflate(context, R.layout.dialog_evaluate_order_preentry, null);
 		TextView alertMsg = (TextView) pLayout.findViewById(R.id.tv_progress_dialog);
 		alertMsg.setText(message);
