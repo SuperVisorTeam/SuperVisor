@@ -7,11 +7,9 @@ import java.util.List;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.StatusLine;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.AbstractHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
@@ -22,8 +20,6 @@ import org.apache.http.protocol.HTTP;
 import android.util.Log;
 
 import com.gdut.supervisor.info.BaseMessage;
-import com.gdut.supervisor.ui.LoginActivity;
-import com.gdut.supervisor.ui.PreEntryActivity;
 
 public class LoginHandler {
 	public  static DefaultHttpClient httpclient = null;
@@ -86,14 +82,14 @@ public class LoginHandler {
 		int statusCode = -1;
 		StatusLine statusLine = null;
 		//学校服务器 http://psy.gdut.edu.cn:8080
-		//http://192.168.1.177:8080    http://10.21.32.123:8080
+		//http://192.168.1.177:8080    http://10.21.32.123:8080  
+		//http://222.200.98.220:8080
 		BaseMessage.baseUrl = "http://psy.gdut.edu.cn:8080";
 		String loginUrl = BaseMessage.baseUrl + "/j_spring_security_check";
 		Log.v("log", "------" + loginUrl + "");
 
 		System.out.println("loginUrl:" + loginUrl);
 		try {
-			
 			System.out.println("进入LoginHandler-run-try");
 			HttpParams httpParams = new BasicHttpParams();	//设置参数
 			httpParams.setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 5000);
@@ -111,7 +107,7 @@ public class LoginHandler {
 			statusLine = httpclient.execute(httpost).getStatusLine();
 			//System.out.println("执行完execute");
 			
-		} catch (IOException e) {
+		} catch (Exception e) {
 
 			e.printStackTrace();
 		}

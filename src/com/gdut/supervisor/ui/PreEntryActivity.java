@@ -5,14 +5,13 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.http.cookie.Cookie;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,13 +37,10 @@ import com.gdut.supervisor.dialog.ShowProgressDialog;
 import com.gdut.supervisor.info.BaseMessage;
 import com.gdut.supervisor.info.Edu_Survey_OrderInfo;
 import com.gdut.supervisor.utils.SubmitHandler;
-import com.gdut.supervisor.view.RefreshableView;
-import com.gdut.supervisor.view.RefreshableView.PullToRefreshListener;
 
-public class PreEntryActivity extends ActionBarActivity implements OnItemClickListener, PullToRefreshListener,
-		android.view.View.OnClickListener
+public class PreEntryActivity extends ActionBarActivity implements OnItemClickListener,
+		android.view.View.OnClickListener, SwipeRefreshLayout.OnRefreshListener
 {
-	public static Cookie cookie;
 	private static final int ORDER_OBTAIN = 0x123;
 	private static final int ORDER_NULL = 0x124;
 	private ListView listView;
@@ -55,7 +51,6 @@ public class PreEntryActivity extends ActionBarActivity implements OnItemClickLi
 	private Spinner sp_day; // 星期
 	private Spinner sp_time; // 节次
 	private getOrderHandler mHandler;
-	private RefreshableView refreshableView;
 	private Dialog allMsg;
 	private View allMsgView;
 
@@ -64,6 +59,8 @@ public class PreEntryActivity extends ActionBarActivity implements OnItemClickLi
 	private List<List> listSize;
 	private ImageButton imgBtn_dialog;
 	private TextView txt_dialog_course, txt_dialog_classroom, txt_dialog_teacher, txt_dialog_classes;
+	// 下拉控件
+	private SwipeRefreshLayout refreshLayout;
 
 	/**
 	 * 处理得到的预约信息
@@ -78,6 +75,7 @@ public class PreEntryActivity extends ActionBarActivity implements OnItemClickLi
 			{
 			case ORDER_OBTAIN:
 				ShowProgressDialog.dismissProgress();
+				refreshLayout.setRefreshing(false);
 				Map map = (Map) msg.obj;
 				if (map != null)
 				{
@@ -99,6 +97,7 @@ public class PreEntryActivity extends ActionBarActivity implements OnItemClickLi
 				}
 				break;
 			case ORDER_NULL:
+				refreshLayout.setRefreshing(false);
 				Toast.makeText(PreEntryActivity.this, "请先填写预约查询信息！", 1).show();
 				break;
 			default:
@@ -116,6 +115,14 @@ public class PreEntryActivity extends ActionBarActivity implements OnItemClickLi
 		mHandler = new getOrderHandler();
 	}
 
+	@Override
+	protected void onDestroy()
+	{
+		listList = null;
+		listSize = null;
+		super.onDestroy();
+	}
+
 	/**
 	 * 初始化控件
 	 */
@@ -123,10 +130,14 @@ public class PreEntryActivity extends ActionBarActivity implements OnItemClickLi
 	{
 		listView = (ListView) findViewById(R.id.lv_preentry);
 		listView.setOnItemClickListener(this);
-		refreshableView = (RefreshableView) findViewById(R.id.refreshable_view);
-		// 下拉刷新
-		refreshableView.setOnRefreshListener(this, 0);
+
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+		refreshLayout = (SwipeRefreshLayout) findViewById(R.id.refreshable_view);
+		refreshLayout.setOnRefreshListener(this);
+		refreshLayout.setColorScheme(R.color.holo_red_light, R.color.holo_green_light, R.color.holo_blue_bright,
+				R.color.holo_orange_light);
+
 		// 展示所有数据的Dialog
 		allMsgView = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.dialog_all_pre_entry_msg, null);
 		allMsg = new AlertDialog.Builder(this).create();
@@ -181,12 +192,23 @@ public class PreEntryActivity extends ActionBarActivity implements OnItemClickLi
 		{
 			if (getOrderPath != null)
 			{
-				Map map = SubmitHandler.getOrderableList(getOrderPath);
-				Message msg = mHandler.obtainMessage();
-				msg.what = ORDER_OBTAIN;
-				msg.obj = map;
-				mHandler.sendMessage(msg);
-
+				if (refreshLayout.isRefreshing())
+				{
+					return;
+				}
+				new Thread(new Runnable()
+				{
+					@Override
+					public void run()
+					{
+						Map map = SubmitHandler.getOrderableList(getOrderPath);
+						Message msg = mHandler.obtainMessage();
+						msg.what = ORDER_OBTAIN;
+						msg.obj = map;
+						mHandler.sendMessage(msg);
+					}
+				}).start();
+				;
 			} else
 			{
 				mHandler.sendEmptyMessage(ORDER_NULL);
@@ -196,7 +218,6 @@ public class PreEntryActivity extends ActionBarActivity implements OnItemClickLi
 			e.printStackTrace();
 			Log.e("log", "-->onRefresh()-ERROR!!!");
 		}
-		refreshableView.finishRefreshing();
 	}
 
 	/**
@@ -263,7 +284,8 @@ public class PreEntryActivity extends ActionBarActivity implements OnItemClickLi
 				year++;
 		}
 		System.out.println(Arrays.toString(terms));
-		ArrayAdapter<String> termAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, terms);
+		ArrayAdapter<String> termAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
+				terms);
 
 		termAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		sp_term.setAdapter(termAdapter);
@@ -338,14 +360,13 @@ public class PreEntryActivity extends ActionBarActivity implements OnItemClickLi
 			// 接下来进行网络部分的操作
 			// getOrderPath = BaseMessage.baseUrl + "";
 			// http://192.168.1.177:8080/dudaobooking/{institute}/{semester}/{week}/{dayOfWeek}/{section}
-			getOrderPath = BaseMessage.baseUrl + "/dudaobooking/" + institute + "/" + term + "/" + week + "/" + day
-					+ "/" + time;
+			getOrderPath = BaseMessage.baseUrl + "/dudaobooking/" + institute + "/" + term + "/" + week + "/"
+					+ day + "/" + time;
 			Map map = SubmitHandler.getOrderableList(getOrderPath);
 			Message msg = mHandler.obtainMessage();
 			msg.what = ORDER_OBTAIN;
 			msg.obj = map;
 			mHandler.sendMessage(msg);
-
 		}
 	}
 

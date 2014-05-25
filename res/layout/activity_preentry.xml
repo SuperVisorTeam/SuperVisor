@@ -6,7 +6,7 @@
 
     <!-- 预约督导的布局 -->
 
-    <com.gdut.supervisor.view.RefreshableView
+    <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/refreshable_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
@@ -16,6 +16,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
         </ListView>
-    </com.gdut.supervisor.view.RefreshableView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>
